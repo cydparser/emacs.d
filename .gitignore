@@ -1,2 +1,11 @@
-/packages/slime
+/cache
+/color-themes
+/elpa
+/eshell/history
+/eshell/lastdir
+/eshell/profile
+/packages
+/snippets-local
+/tramp
 /tweaks/local.el
+/url
