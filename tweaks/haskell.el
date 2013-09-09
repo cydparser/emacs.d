@@ -1,4 +1,5 @@
 (add-hook 'haskell-mode-hook
           (lambda ()
-            (turn-on-haskell-doc)
+            (define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
+            (turn-on-haskell-doc-mode)
             (turn-on-haskell-indentation)))
