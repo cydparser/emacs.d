@@ -1,4 +1,4 @@
-(require 'iedit)
+(init-package-require 'iedit)
 
 (defun iedit-dwim (arg)
   "Starts iedit but uses \\[narrow-to-defun] to limit its scope."

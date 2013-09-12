@@ -1,3 +1,12 @@
+;;;; ELPA
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("ELPA" . "http://tromey.com/elpa/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+
+(require 'package)
+(package-initialize)
+
 ;;;; Init Utilities
 (defmacro init-expand-file-name (relative-path)
   (expand-file-name relative-path user-emacs-directory))
@@ -5,6 +14,22 @@
 (defun init-tab-width (x)
   (setq tab-width x
         tab-stop-list (number-sequence x 25 x)))
+
+(defun init-package-install (pname)
+  (unless (package-installed-p pname)
+    (init-package-refresh)
+    (package-install pname)))
+
+(defvar init-package-fresh nil)
+
+(defun init-package-refresh ()
+  (when (null init-package-fresh)
+    (package-refresh-contents)
+    (setq init-package-fresh t)))
+
+(defun init-package-require (pname)
+  (init-package-install pname)
+  (require pname))
 
 ;; http://emacsblog.org/2007/01/29/maximize-on-startup-part-1/
 (defun fix-window-size ()
@@ -15,11 +40,6 @@
 (setq user-cache-directory (init-expand-file-name "cache"))
 (setq user-tweaks-directory (init-expand-file-name "tweaks"))
 (setq user-packages-directory (init-expand-file-name "packages"))
-
-;;;; ELPA
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("ELPA" . "http://tromey.com/elpa/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 (add-to-list 'exec-path "/usr/local/bin")
 
@@ -48,9 +68,12 @@
   (dolist (theme (directory-files themes :full "^[^.]"))
     (add-to-list 'custom-theme-load-path theme)))
 
+(init-package-install 'color-theme)
+(init-package-require 'color-theme-solarized)
 (load-theme 'solarized-dark t)
 
 (let ((default-directory (init-expand-file-name "packages/")))
+  (make-directory default-directory t)
   (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
 

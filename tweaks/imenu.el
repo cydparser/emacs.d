@@ -1,1 +1,1 @@
-(require 'idomenu)
+(init-package-require 'idomenu)
