@@ -11,3 +11,5 @@
 
 (defun align-comments ()
   (align-regexp region-beginning region-end REGEXP))
+
+(setq mode-compile-always-save-buffer-p t)
