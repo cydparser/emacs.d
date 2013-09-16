@@ -1,4 +1,4 @@
-;; ruby-mode config
+(init-package-install 'ruby-block)
 
 (add-to-list 'auto-mode-alist '("Buildfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
@@ -12,11 +12,9 @@
   "Run an inferior Ruby process")
 
 (defun tweak-ruby-mode ()
-  (when (package-installed-p 'ruby-block)
-        (require 'ruby-block)
-        (ruby-block-mode t)
-        (setq ruby-block-highlight-toggle 'overlay))
   (subword-mode 1)
-  (setq ruby-deep-indent-paren nil))
+  (setq ruby-deep-indent-paren nil)
+  (ruby-block-mode t)
+  (setq ruby-block-highlight-toggle 'overlay))
 
 (add-hook 'ruby-mode-hook 'tweak-ruby-mode)

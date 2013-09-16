@@ -1,8 +1,7 @@
 ;;;; ELPA
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("ELPA" . "http://tromey.com/elpa/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (require 'package)
 (package-initialize)
@@ -41,8 +40,6 @@
 (setq user-tweaks-directory (init-expand-file-name "tweaks"))
 (setq user-packages-directory (init-expand-file-name "packages"))
 
-(add-to-list 'exec-path "/usr/local/bin")
-
 ;; disable audible and visual bell
 (setq ring-bell-function (lambda ()))
 (setq echo-keystrokes 0.125)
@@ -68,7 +65,7 @@
   (dolist (theme (directory-files themes :full "^[^.]"))
     (add-to-list 'custom-theme-load-path theme)))
 
-(init-package-install 'color-theme)
+(init-package-require 'color-theme)
 (init-package-require 'color-theme-solarized)
 (load-theme 'solarized-dark t)
 
