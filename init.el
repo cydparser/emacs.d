@@ -59,3 +59,9 @@
 
 (dolist (file (directory-files (init-expand-file-name "tweaks") :full "\\.el$"))
   (load file))
+
+;;; enable disabled features
+
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
