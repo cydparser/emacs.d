@@ -1,15 +1,17 @@
 (init-package-require 'yasnippet)
 
-(setq yas/root-directory `(,(init-expand-file-name "snippets")
+(setq yas-snippet-dirs `(,(init-expand-file-name "snippets")
                            ,(init-expand-file-name "snippets-local")))
 
-(dolist (dir yas/root-directory)
+(dolist (dir yas-snippet-dirs)
   (make-directory dir t)
-  (yas/load-directory dir))
+  (yas-load-directory dir))
 
-(setq yas/prompt-functions '(yas/ido-prompt))
+(setq yas-prompt-functions '(yas-ido-prompt))
 
-(add-to-list 'hippie-expand-try-functions-list 'yas/hippie-try-expand)
+(add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
+
+(yas-global-mode 1)
 
 (defun yasutils/uncapitalize (cap)
   (concat (downcase (substring cap 0 1))
