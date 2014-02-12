@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: new spec
+# key: spec
+# condition: (init-rspec-file-p)
+# --
+include "spec_helper"
+
+describe $1 do
+
+  $0
+
+end

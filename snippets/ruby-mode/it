@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: it
+# key: it
+# condition: (init-rspec-file-p)
+# --
+it "$1" do
+  $0
+end

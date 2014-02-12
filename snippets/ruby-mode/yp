@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: yarv param
+# key: yp
+# --
+# @param [$1] $0
