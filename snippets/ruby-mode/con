@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: context
+# key: con
+# condition: (init-rspec-file-p)
+# --
+context "$1" do
+
+  $0
+
+end

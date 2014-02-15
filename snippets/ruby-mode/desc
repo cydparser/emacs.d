@@ -1,10 +1,11 @@
 # -*- mode: snippet -*-
-# name: describe
+# name: describe class method
 # key: desc
-# condition: (init-rspec-file-p)
 # --
-describe "$1" do
+describe ".${1:meth}" do
 
-  $0
+  def $1$0
+    ${2:Class}.$1
+  end
 
 end

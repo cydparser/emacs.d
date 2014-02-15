@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: describe method
+# key: desm
+# --
+describe "#${1:meth}" do
+
+  let(:${2:obj}) { ${2:$(capitalize yas-text)}.new }
+
+  def $1$0
+    $2.$1
+  end
+
+end

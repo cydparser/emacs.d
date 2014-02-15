@@ -1,10 +1,6 @@
 # -*- mode: snippet -*-
-# name: context
-# key: cont
+# name: expect equal
+# key: ee
 # condition: (init-rspec-file-p)
 # --
-context "$1" do
-
-  $0
-
-end
+expect($1).to eq($2)

@@ -3,7 +3,7 @@
 # key: spec
 # condition: (init-rspec-file-p)
 # --
-include "spec_helper"
+require "spec_helper"
 
 describe $1 do
 
