@@ -1,10 +1,12 @@
 ;;; packages
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("ELPA" . "http://tromey.com/elpa/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
-
 (require 'package)
+
+(dolist (a '(("gnu" . "http://elpa.gnu.org/packages/")
+             ("ELPA" . "http://tromey.com/elpa/")
+             ("melpa" . "http://melpa.milkbox.net/packages/")))
+  (add-to-list 'package-archives a t))
+
 (package-initialize)
 
 ;;; utilities
