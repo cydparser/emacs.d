@@ -15,8 +15,10 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
-;; disable prompts
+;; simplify prompts
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;; disable prompts
 (setq confirm-nonexistent-file-or-buffer nil
       kill-buffer-query-functions (remq 'process-kill-buffer-query-function
                                         kill-buffer-query-functions))
@@ -47,3 +49,7 @@
 
 (global-set-key (kbd "C-c C-SPC") 'delete-trailing-whitespace)
 (global-set-key (kbd "M-/") 'hippie-expand)
+
+;;; exiting
+
+(setq confirm-kill-emacs 'yes-or-no-p)
