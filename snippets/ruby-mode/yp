@@ -2,4 +2,4 @@
 # name: yarv param
 # key: yp
 # --
-# @param [$1] $0
+# @param [${1:Type}] $0${1:$(downcase yas-text)}
