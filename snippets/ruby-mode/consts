@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: const String
+# key: consts
+# --
+${1:CONST$(upcase yas-text)} = "$2${1:$(downcase yas-text)}".freeze
