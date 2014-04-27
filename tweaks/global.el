@@ -41,6 +41,8 @@
 
 (global-subword-mode 1)
 
+(setq kill-whole-line t)
+
 ;;; behavior
 
 (setq mode-compile-always-save-buffer-p t)
@@ -49,6 +51,7 @@
 
 (global-set-key (kbd "C-c C-SPC") 'delete-trailing-whitespace)
 (global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "M-g M-f") 'first-error)
 
 ;;; exiting
 
