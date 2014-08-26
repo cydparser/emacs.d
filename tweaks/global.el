@@ -47,6 +47,8 @@
 
 (setq mode-compile-always-save-buffer-p t)
 
+(setq gc-cons-threshold 20000000)
+
 ;;; bindings
 
 (global-set-key (kbd "C-c C-SPC") 'delete-trailing-whitespace)
