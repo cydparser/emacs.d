@@ -62,6 +62,9 @@
 (dolist (file (directory-files (init-expand-file-name "tweaks") :full "\\.el$"))
   (load file))
 
+;; summon daemon
+(server-start)
+
 ;;; enable disabled features
 
 (put 'upcase-region 'disabled nil)
