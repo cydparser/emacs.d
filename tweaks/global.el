@@ -31,10 +31,12 @@
 
 ;;; formatting
 
-;; tabs
+;; indenting
 (setq-default indent-tabs-mode nil
               tab-width 4
               tab-stop-list (number-sequence 4 120 4))
+
+(electric-indent-mode nil)
 
 ;; line-wrapping
 (setq-default fill-column 100)
