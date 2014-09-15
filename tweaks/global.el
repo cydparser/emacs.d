@@ -24,7 +24,7 @@
                                         kill-buffer-query-functions))
 
 ;; disable bell
-(setq ring-bell-function (lambda ()))
+(setq ring-bell-function 'ignore)
 
 (setq echo-keystrokes 0.125)
 (setq column-number-mode t)
