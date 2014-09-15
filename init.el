@@ -7,6 +7,9 @@
              ("melpa" . "http://melpa.milkbox.net/packages/")))
   (add-to-list 'package-archives a t))
 
+(setq package-enable-at-startup nil)
+(package-initialize)
+
 ;;; utilities
 
 (defmacro init-expand-file-name (relative-path)
@@ -57,10 +60,8 @@
 
 ;;; tweaks
 
-(add-hook 'after-init-hook
-          (lambda ()
-            (dolist (file (directory-files (init-expand-file-name "tweaks") :full "\\.el$"))
-              (load file))))
+(dolist (file (directory-files (init-expand-file-name "tweaks") :full "\\.el$"))
+  (load file))
 
 ;; summon daemon
 (server-start)
