@@ -21,8 +21,9 @@
 
 (defun tweak-ruby-mode ()
   (subword-mode 1)
-  (setq ruby-deep-indent-paren nil)
   (ruby-block-mode t)
-  (setq ruby-block-highlight-toggle 'overlay))
+  (setq ruby-block-highlight-toggle 'overlay
+        ruby-use-smie nil
+        ruby-deep-indent-paren nil))
 
 (add-hook 'ruby-mode-hook 'tweak-ruby-mode)
