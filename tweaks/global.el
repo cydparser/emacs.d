@@ -3,7 +3,8 @@
 ;; startup
 (setq inhibit-splash-screen t
       inhibit-startup-message t
-      inhibit-startup-echo-area-message t)
+      inhibit-startup-echo-area-message t
+      initial-scratch-message ";; *scratch*\n\n")
 
 ;; display flymake messages in minibuffer
 (init-package-require 'flymake-cursor)
@@ -11,7 +12,9 @@
 ;; enable syntax highlighting
 (global-font-lock-mode 1)
 
-;; display matchign parens
+(set-default-font "Inconsolata 14")
+
+;; display matching parens
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
