@@ -1,7 +1,6 @@
 # -*- mode: snippet -*-
 # name: new spec
 # key: spec
-# condition: (init-rspec-file-p)
 # --
 require "spec_helper"
 

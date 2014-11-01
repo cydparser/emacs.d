@@ -1,7 +1,7 @@
 (init-package-require 'yasnippet)
 
 (setq yas-snippet-dirs `(,(init-expand-file-name "snippets")
-                           ,(init-expand-file-name "snippets-local")))
+                         ,(init-expand-file-name "local-snippets")))
 
 (dolist (dir yas-snippet-dirs)
   (make-directory dir t)
