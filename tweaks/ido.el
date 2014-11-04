@@ -5,7 +5,7 @@
       ido-use-faces nil
       ido-everywhere t
       ido-ignore-extensions t
-      ido-save-directory-list-file (expand-file-name "ido.last" user-cache-directory))
+      ido-save-directory-list-file (expand-file-name "ido.last" user-var-directory))
 
 (ido-mode 1)
 (ido-everywhere 1)
