@@ -46,6 +46,10 @@
   (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
 
+(dolist (path '("~/.nix-profile/share/emacs/site-lisp" "/run/current-system/sw/share/emacs/site-lisp"))
+  (when (file-exists-p path)
+    (add-to-list 'load-path path)))
+
 ;; store autosaves and backups in emacs.d/cache
 (let ((adir (expand-file-name "autosaves/" user-var-directory))
       (ldir (expand-file-name "auto-save-list/" user-var-directory))
