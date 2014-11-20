@@ -1,6 +1,7 @@
 (init-package-install 'haskell-mode)
 
 (setq haskell-tags-on-save t
+      ;; interactive-haskell-mode
       haskell-process-suggest-remove-import-lines t
       haskell-process-auto-import-loaded-modules t
       haskell-process-log t)
