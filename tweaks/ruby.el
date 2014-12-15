@@ -1,3 +1,4 @@
+(init-package-install 'projectile-rails)
 (init-package-install 'ruby-block)
 
 (add-to-list 'auto-mode-alist '("Buildfile$" . ruby-mode))
@@ -21,9 +22,10 @@
 
 (defun tweak-ruby-mode ()
   (subword-mode 1)
-  (ruby-block-mode t)
   (setq ruby-block-highlight-toggle 'overlay
         ruby-use-smie nil
-        ruby-deep-indent-paren nil))
+        ruby-deep-indent-paren nil)
+  (projectile-rails-mode)
+  (ruby-block-mode t))
 
 (add-hook 'ruby-mode-hook 'tweak-ruby-mode)
