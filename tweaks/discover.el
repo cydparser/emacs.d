@@ -1,3 +1,3 @@
-(init-package-install 'discover)
+;; (init-package-install 'discover)
 
-(global-discover-mode)
+;; (global-discover-mode)
