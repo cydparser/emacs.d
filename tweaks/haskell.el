@@ -15,7 +15,8 @@
   (flymake-haskell-multi-load)
   (interactive-haskell-mode)
   (let ((m haskell-mode-map))
-    (define-key m (kbd "C-c C-p") 'haskell-navigate-imports)))
+    (define-key m (kbd "C-c C-p") 'haskell-navigate-imports)
+    (define-key m (kbd "C-c C-y") 'haskell-mode-stylish-buffer)))
 
 ;; (autoload 'ghc-init "ghc" nil t)
 ;; (autoload 'ghc-debug "ghc" nil t)
