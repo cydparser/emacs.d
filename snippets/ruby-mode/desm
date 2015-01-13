@@ -10,4 +10,6 @@ describe "#${1:meth}" do
     $2.$1
   end
 
+  it ""
+
 end
