@@ -1,5 +1,4 @@
 (init-package-install 'erc-hl-nicks)
-(require 'tls)
 
 (setq
  erc-hide-list '("JOIN" "MODE" "PART" "QUIT")
@@ -14,4 +13,4 @@
 
 (defun init-erc()
   (interactive)
-  (erc-tls :server "irc.freenode.net" :port 7000 :nick "cydparser" :password erc-password))
+  (erc-tls :server "irc.freenode.net" :port 7000 :nick erc-nick :password erc-password))
