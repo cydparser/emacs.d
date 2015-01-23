@@ -1,9 +1,18 @@
 (require 'whitespace)
 
-(setq whitespace-style '(face lines-tail))
-(setq whitespace-line-column 100)
+(setq
+ whitespace-global-modes '(not erc-mode) ; disables colors
+ whitespace-style '(face lines-tail)
+ whitespace-line-column 100)
 
-(setq-default show-trailing-whitespace t)
-(setq-default indicate-empty-lines t)
+(setq-default
+ indicate-empty-lines t
+ show-trailing-whitespace t)
 
 (global-whitespace-mode t)
+
+(defun init-whitespace-disable ()
+  (interactive)
+  (whitespace-mode -1)
+  (setq-local indicate-empty-lines nil)
+  (setq-local show-trailing-whitespace nil))
