@@ -12,6 +12,16 @@
 
 ;;; utilities
 
+(defconst init-home (getenv "HOME"))
+(defconst init-xdg-cache (concat init-home "/.cache"))
+(defconst init-xdg-config (concat init-home "/.config"))
+(defconst init-xdg-data (concat init-home "/.local/share"))
+
+(defmacro init-home (path) (expand-file-name path init-home))
+(defmacro init-xdg-cache (path) (expand-file-name path xdg-cache))
+(defmacro init-xdg-config (path) (expand-file-name path init-xdg-config))
+(defmacro init-xdg-data (path) (expand-file-name path init-xdg-data))
+
 (defmacro init-expand-file-name (relative-path)
   (expand-file-name relative-path user-emacs-directory))
 
