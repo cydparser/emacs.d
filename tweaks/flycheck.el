@@ -8,4 +8,12 @@
 
 (init-package-install 'flycheck)
 
+(let ((f (init-xdg-config "ruby/ruby-lint.yml")))
+  (when (file-exists-p f)
+    (setq flycheck-rubylintrc f)))
+
+(let ((f (init-xdg-config "ruby/rubocop.yml")))
+  (when (file-exists-p f)
+    (setq flycheck-rubocoprc f)))
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
