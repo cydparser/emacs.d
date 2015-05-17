@@ -18,6 +18,7 @@
 (defun tweak-haskell-mode ()
   (ghc-init)
   (turn-on-haskell-doc-mode)
+  (haskell-indentation-mode)
   ;; (flymake-haskell-multi-load)
   ;; (interactive-haskell-mode)
   (let ((hm haskell-mode-map))
