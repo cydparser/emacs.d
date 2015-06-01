@@ -5,5 +5,4 @@
 
 (init-package-require 'color-theme)
 (init-package-require 'color-theme-solarized)
-(load-theme 'solarized-dark t)
 (color-theme-solarized)
