@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: local
+# key: loc
+# binding: direct-keybinding
+# --
+local ${1:name}="\${1:? Missing $1}"
