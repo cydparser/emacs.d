@@ -16,4 +16,10 @@
   (when (file-exists-p f)
     (setq flycheck-rubocoprc f)))
 
+(with-eval-after-load 'flycheck
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+  (let ((map flycheck-mode-map))
+    (define-key map (kbd "M-n") 'flycheck-next-error)
+    (define-key map (kbd "M-p") 'flycheck-previous-error)))
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
