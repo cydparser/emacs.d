@@ -21,7 +21,6 @@
 (autoload 'ruby-block-mode "ruby-block")
 
 (defun tweak-ruby-mode ()
-  (subword-mode 1)
   (setq ruby-block-highlight-toggle 'overlay
         ruby-use-smie nil
         ruby-deep-indent-paren nil)
