@@ -50,9 +50,16 @@
 
 ;;; behavior
 
-(setq mode-compile-always-save-buffer-p t)
+(setq compilation-auto-jump-to-first-error t
+      mode-compile-always-save-buffer-p t)
 
 (setq gc-cons-threshold 20000000)
+
+;;; aliases
+
+(defalias 'ar 'align-regex)
+(defalias 'rs 'replace-string)
+(defalias 'sl 'sort-lines)
 
 ;;; bindings
 
