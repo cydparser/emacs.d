@@ -16,10 +16,6 @@
 
 (global-prettify-symbols-mode 1)
 
-;; display matching parens
-(show-paren-mode 1)
-(setq show-paren-delay 0)
-
 ;; simplify prompts
 (fset 'yes-or-no-p 'y-or-n-p)
 

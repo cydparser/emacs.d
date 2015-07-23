@@ -6,6 +6,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(menu-bar-mode nil)
+ '(package-selected-packages
+   (quote
+    (yasnippet yaml-mode twittering-mode systemd shm ruby-block rainbow-delimiters projectile-rails nix-mode markdown-mode magit lui lcs json-mode iedit idomenu helm git-link ghc flymake-easy flymake-cursor flycheck flx-ido exec-path-from-shell erc-hl-nicks dockerfile-mode discover debbugs company-cabal color-theme-solarized aggressive-indent ace-jump-mode)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -13,4 +16,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(show-paren-match ((t (:foreground "#fdf6e3" :weight bold)))))
+ '(sh-heredoc ((t (:foreground "#2aa198" :weight bold)))))
