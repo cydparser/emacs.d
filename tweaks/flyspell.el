@@ -16,4 +16,4 @@
 (with-eval-after-load 'flyspell
   (let ((map flyspell-mode-map))
     (define-key map flyspell-auto-correct-binding nil)
-    (define-key map (kbd "C-M-.") 'init-flyspell-save-word))
+    (define-key map (kbd "C-M-.") 'init-flyspell-save-word)))
