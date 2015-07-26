@@ -12,12 +12,12 @@
                 (concat "gnutls-cli --priority secure256 --x509cafile " ca " --x509certfile " pem)
                 "gnutls-cli --priority secure256 -p %p %h"))))
 
-(defun tweak-erc-mode ()
+(defun init-erc-mode ()
   (init-whitespace-disable)
   (erc-hl-nicks-mode 1)
   (erc-spelling-mode 1))
 
-(add-hook 'erc-mode-hook 'tweak-erc-mode)
+(add-hook 'erc-mode-hook 'init-erc-mode)
 
 (defun init-erc()
   (interactive)

@@ -20,11 +20,11 @@
 (autoload 'run-ruby "inf-ruby")
 (autoload 'ruby-block-mode "ruby-block")
 
-(defun tweak-ruby-mode ()
+(defun init-ruby-mode ()
   (setq ruby-block-highlight-toggle 'overlay
         ruby-use-smie nil
         ruby-deep-indent-paren nil)
   (projectile-rails-mode)
   (ruby-block-mode t))
 
-(add-hook 'ruby-mode-hook 'tweak-ruby-mode)
+(add-hook 'ruby-mode-hook 'init-ruby-mode)

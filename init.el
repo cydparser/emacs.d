@@ -48,7 +48,6 @@
   (require pname))
 
 (setq user-var-directory (init-expand-file-name "var"))
-(setq user-tweaks-directory (init-expand-file-name "tweaks"))
 (setq user-packages-directory (init-expand-file-name "packages"))
 
 ;;; emacs files
@@ -78,9 +77,8 @@
 
 ;; (package-install-selected-packages)
 
-;;; tweaks
-
-(dolist (file (directory-files (init-expand-file-name "tweaks") :full "\\.el$"))
+;; Load all init/*.el files.
+(dolist (file (directory-files (init-expand-file-name "init") :full "\\.el$"))
   (load file))
 
 ;; summon daemon

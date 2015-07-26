@@ -1,6 +1,6 @@
 (setq browse-url-browser-function 'eww-browse-url)
 
-(defun tweak-eww-mode ()
+(defun init-eww-mode ()
   (init-whitespace-disable))
 
-(add-hook 'eww-mode-hook 'tweak-eww-mode)
+(add-hook 'eww-mode-hook 'init-eww-mode)
