@@ -8,7 +8,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (yasnippet yaml-mode twittering-mode systemd shm ruby-block rainbow-delimiters projectile-rails nix-mode markdown-mode magit lui lcs json-mode iedit idomenu helm git-link ghc flymake-easy flymake-cursor flycheck flx-ido exec-path-from-shell erc-hl-nicks dockerfile-mode discover debbugs company-cabal color-theme-solarized aggressive-indent ace-jump-mode)))
+    (yasnippet yaml-mode twittering-mode systemd ruby-block rainbow-delimiters projectile-rails nix-mode markdown-mode magit json-mode iedit idomenu helm haskell-mode git-link flycheck flx-ido exec-path-from-shell erc-hl-nicks dockerfile-mode discover debbugs company-cabal color-theme-solarized aggressive-indent ace-jump-mode)))
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces

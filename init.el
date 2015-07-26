@@ -76,6 +76,8 @@
 (setq custom-file (init-expand-file-name "custom.el"))
 (load custom-file)
 
+;; (package-install-selected-packages)
+
 ;;; tweaks
 
 (dolist (file (directory-files (init-expand-file-name "tweaks") :full "\\.el$"))
