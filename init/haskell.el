@@ -1,4 +1,4 @@
-;; stack install hasktags hlint hoogle
+;; stack install hasktags hindent hlint hoogle
 
 (init-package-install 'haskell-mode)
 
@@ -17,7 +17,8 @@
       haskell-process-path-ghci "stack"
       haskell-process-suggest-hoogle-imports t
       haskell-process-suggest-remove-import-lines t
-      haskell-process-type 'stack-ghci)
+      haskell-process-type 'stack-ghci
+      hindent-style "chris-done")
 
 (when (executable-find "hasktags")
   (setq haskell-tags-on-save t))
@@ -68,6 +69,7 @@
 (defun init-haskell-mode ()
   (haskell-auto-insert-module-template)
   (haskell-indentation-mode)
+  (hindent-mode)
   (interactive-haskell-mode))
 
 (add-hook 'haskell-mode-hook 'init-haskell-mode)
