@@ -1,5 +1,3 @@
-(init-package-install 'twittering-mode)
-
 ;; requires gpg
 (setq twittering-use-master-password t)
 

@@ -1,6 +1,3 @@
-(init-package-install 'aggressive-indent)
-(init-package-install 'rainbow-delimiters)
-
 (defun init-emacs-lisp-mode ()
   (unless (equal (buffer-name) "*scratch*")
     (aggressive-indent-mode)

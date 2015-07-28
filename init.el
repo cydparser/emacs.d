@@ -1,15 +1,3 @@
-;;; packages
-
-(require 'package)
-
-(dolist (a '(("gnu" . "http://elpa.gnu.org/packages/")
-             ("ELPA" . "http://tromey.com/elpa/")
-             ("melpa" . "http://melpa.milkbox.net/packages/")))
-  (add-to-list 'package-archives a t))
-
-(setq package-enable-at-startup nil)
-(package-initialize)
-
 ;;; utilities
 
 (defconst init-home (getenv "HOME"))
@@ -30,22 +18,6 @@
 (defun init-tab-width (x)
   (setq tab-width x
         tab-stop-list (number-sequence x 25 x)))
-
-(defun init-package-install (pname)
-  (unless (package-installed-p pname)
-    (init-package-refresh)
-    (package-install pname)))
-
-(defvar init-package-fresh nil)
-
-(defun init-package-refresh ()
-  (when (null init-package-fresh)
-    (package-refresh-contents)
-    (setq init-package-fresh t)))
-
-(defun init-package-require (pname)
-  (init-package-install pname)
-  (require pname))
 
 (setq user-var-directory (init-expand-file-name "var"))
 (setq user-packages-directory (init-expand-file-name "packages"))
@@ -71,11 +43,28 @@
   (make-directory bdir t)
   (setq backup-directory-alist `((".*" . ,bdir))))
 
-;; store generated custom settings in separate file
+;; Store customizations in a separate file.
 (setq custom-file (init-expand-file-name "custom.el"))
 (load custom-file)
 
-;; (package-install-selected-packages)
+;;; Initialize Packages
+
+(require 'package)
+
+(dolist (a '(("gnu" . "http://elpa.gnu.org/packages/")
+             ("ELPA" . "http://tromey.com/elpa/")
+             ("melpa" . "http://melpa.milkbox.net/packages/")))
+  (add-to-list 'package-archives a t))
+
+(setq package-enable-at-startup nil)
+(package-initialize)
+(require 'cl-seq)
+
+(let ((missing (cl-remove-if 'package-installed-p package-selected-packages)))
+  (unless (null missing)
+    (package-refresh-contents)
+    (dolist (p missing)
+      (package-install p))))
 
 ;; Load all init/*.el files.
 (dolist (file (directory-files (init-expand-file-name "init") :full "\\.el$"))

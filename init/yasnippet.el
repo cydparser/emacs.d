@@ -1,4 +1,4 @@
-(init-package-require 'yasnippet)
+(require 'yasnippet)
 
 (setq yas-snippet-dirs `(,(init-expand-file-name "snippets")
                          ,(init-expand-file-name "local-snippets")))

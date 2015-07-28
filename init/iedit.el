@@ -1,4 +1,4 @@
-(init-package-require 'iedit)
+(require 'iedit)
 
 ;; http://www.masteringemacs.org/articles/2012/10/02/iedit-interactive-multi-occurrence-editing-in-your-buffer/
 (defun iedit-dwim (arg)

@@ -1,4 +1,4 @@
-(init-package-require 'flx-ido)
+(require 'flx-ido)
 
 (setq ido-create-new-buffer 'always
       ido-enable-flex-matching t

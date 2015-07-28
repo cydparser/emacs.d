@@ -1,1 +1,0 @@
-(init-package-install 'debbugs)

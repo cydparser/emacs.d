@@ -6,8 +6,6 @@
 ;; python: pylint (pip)
 ;; ruby: rubocop ruby-lint (gem)
 
-(init-package-install 'flycheck)
-
 (let ((f (init-xdg-config "ruby/ruby-lint.yml")))
   (when (file-exists-p f)
     (setq flycheck-rubylintrc f)))

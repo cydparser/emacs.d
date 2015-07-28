@@ -1,4 +1,4 @@
-(init-package-require 'json-mode)
+(require 'json-mode)
 
 (defun init-json-mode ()
   (setq js-indent-level 2))

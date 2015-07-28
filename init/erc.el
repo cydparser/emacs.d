@@ -1,5 +1,3 @@
-(init-package-install 'erc-hl-nicks)
-
 (setq
  erc-hide-list '("JOIN" "MODE" "PART" "QUIT")
  erc-track-enable-keybindings nil)

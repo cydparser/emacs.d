@@ -1,1 +1,0 @@
-(init-package-require 'idomenu)

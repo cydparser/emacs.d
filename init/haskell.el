@@ -1,7 +1,5 @@
 ;; stack install hasktags hindent hlint hoogle
 
-(init-package-install 'haskell-mode)
-
 (setq haskell-cabal-commands '("bench" "build" "clean" "docker" "dot" "exec" "ghc" "ghci" "haddock"
                                "ide" "image" "init" "install" "new" "path" "runghc" "setup" "solver"
                                "test" "uninstall" "unpack" "update" "upgrade" "upload")
