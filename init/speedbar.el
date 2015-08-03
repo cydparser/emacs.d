@@ -1,5 +1,7 @@
 (defalias 'sb 'speedbar)
 
+(autoload 'speedbar-add-supported-extension "speedbar")
+
 (defun init-speedbar ()
   (speedbar-add-supported-extension '(".hs" ".lhs")))
 
