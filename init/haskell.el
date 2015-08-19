@@ -23,6 +23,24 @@
 
 (defalias 'hoo 'haskell-hoogle)
 
+(defun init-haskell-goto-next-error ()
+  "Go to the next Haskell or flycheck error."
+  (interactive)
+  (if (init-haskell-check-overlays-p)
+      (haskell-goto-next-error)
+    (flycheck-next-error)))
+
+(defun init-haskell-goto-prev-error ()
+  "Go to the previous Haskell or flycheck error."
+  (interactive)
+  (if (init-haskell-check-overlays-p)
+      (haskell-goto-prev-error)
+    (flycheck-previous-error)))
+
+(defun init-haskell-check-overlays-p ()
+  (car (haskell-check-filter-overlays
+        (overlays-in (point-min) (point-max)))))
+
 (defun init-haskell-process-insert-type ()
   "Insert the type of the identifier at point."
   (interactive)
@@ -52,8 +70,12 @@
     (define-key map (kbd "C-c t") 'init-haskell-process-insert-type)
     (define-key map (kbd "C-c C-r") 'init-haskell-process-reload-switch)
     (define-key map (kbd "SPC") 'haskell-mode-contextual-space)
-    (define-key map (kbd "C-c C-p") 'haskell-navigate-imports)
-    ))
+    (define-key map (kbd "C-c C-p") 'haskell-navigate-imports)))
+
+(with-eval-after-load 'haskell
+  (let ((map interactive-haskell-mode-map))
+    (define-key map (kbd "M-n") 'init-haskell-goto-next-error)
+    (define-key map (kbd "M-p") 'init-haskell-goto-prev-error)))
 
 (with-eval-after-load 'haskell-cabal
   (let ((map haskell-cabal-mode-map))
