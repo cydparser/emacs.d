@@ -64,13 +64,6 @@
   (define-key map (kbd "C-c c") 'haskell-process-cabal)
   (define-key map (kbd "C-c C-k") 'haskell-interactive-mode-clear))
 
-(defun init-haskell-set-flycheck-ghc-args ()
-  (let ((root (haskell-cabal-find-dir)))
-    (when root
-      (let ((src (expand-file-name "src" root)))
-        (when (file-exists-p src)
-          (setq flycheck-ghc-args (list (concat "-i" src))))))))
-
 (with-eval-after-load 'haskell-mode
   (let ((map haskell-mode-map))
     (init-haskell-mode-map map)
@@ -93,15 +86,14 @@
   (let ((map haskell-interactive-mode-map))
     (define-key map (kbd "C-c C-r") 'previous-multiframe-window)))
 
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook 'flycheck-haskell-setup))
+
 (defun init-haskell-mode ()
   (haskell-auto-insert-module-template)
   (haskell-indentation-mode)
   (hindent-mode)
-  (interactive-haskell-mode)
-  (init-haskell-set-flycheck-ghc-args)
-  (let ((map flycheck-mode-map))
-    (define-key map (kbd "M-n") nil)
-    (define-key map (kbd "M-p") nil)))
+  (interactive-haskell-mode))
 
 (add-hook 'haskell-mode-hook 'init-haskell-mode)
 
