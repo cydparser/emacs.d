@@ -3,6 +3,7 @@
 (setq haskell-compile-cabal-build-alt-command "cd %s && stack clean && stack build --ghc-options -ferror-spans"
       haskell-compile-cabal-build-command "cd %s && stack build --ghc-options -ferror-spans"
       haskell-compile-command "stack ghc -- -Wall -ferror-spans -fforce-recomp -c %s"
+      haskell-process-args-stack-ghci '("--ghc-options" "-ferror-spans -fdefer-type-errors")
       haskell-process-auto-import-loaded-modules t
       haskell-process-log t
       haskell-process-suggest-hoogle-imports t
