@@ -1,18 +1,10 @@
 ;; stack install hasktags hindent hlint hoogle
 
-(setq haskell-cabal-commands '("bench" "build" "clean" "docker" "dot" "exec" "ghc" "ghci" "haddock"
-                               "ide" "image" "init" "install" "new" "path" "runghc" "setup" "solver"
-                               "test" "uninstall" "unpack" "update" "upgrade" "upload")
-      haskell-compile-cabal-build-alt-command "cd %s && stack clean && stack build --ghc-options -ferror-spans"
+(setq haskell-compile-cabal-build-alt-command "cd %s && stack clean && stack build --ghc-options -ferror-spans"
       haskell-compile-cabal-build-command "cd %s && stack build --ghc-options -ferror-spans"
-      haskell-compile-command "stack ghc -Wall -ferror-spans -fforce-recomp -c %s"
-      haskell-process-args-cabal-repl "ghci --ghc-options -ferror-spans"
-      haskell-process-args-ghci "ghci --ghc-options -ferror-spans"
+      haskell-compile-command "stack ghc -- -Wall -ferror-spans -fforce-recomp -c %s"
       haskell-process-auto-import-loaded-modules t
       haskell-process-log t
-      ;; HACK: `haskell-process-do-cabal` always uses `haskell-process-path-cabal`.
-      haskell-process-path-cabal "stack"
-      haskell-process-path-ghci "stack"
       haskell-process-suggest-hoogle-imports t
       haskell-process-suggest-remove-import-lines t
       haskell-process-type 'stack-ghci
@@ -51,13 +43,6 @@
   (interactive)
   (haskell-process-load-or-reload)
   (haskell-interactive-switch))
-
-(defun init-haskell-process-type-ghci (f &rest args)
-  "HACK: Temporarily modify `haskell-process-type` since 'stack-ghci is not fully functional."
-  (let ((haskell-process-type 'ghci))
-    (apply f args)))
-
-(advice-add 'haskell-process-do-cabal :around #'init-haskell-process-type-ghci)
 
 (defun init-haskell-mode-map (map)
   (define-key map (kbd "C-c C-c") 'haskell-process-cabal-build)
