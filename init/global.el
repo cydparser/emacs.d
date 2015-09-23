@@ -50,7 +50,7 @@
 
 ;;; aliases
 
-(defalias 'ar 'align-regex)
+(defalias 'ar 'align-regexp)
 (defalias 'rs 'replace-string)
 (defalias 'sl 'sort-lines)
 
