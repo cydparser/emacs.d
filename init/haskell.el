@@ -1,8 +1,10 @@
 ;; stack install hasktags hindent hlint hoogle
 
-(setq haskell-compile-cabal-build-alt-command "cd %s && stack clean && stack build --ghc-options -ferror-spans"
+(setq haskell-auto-insert-module-format-string "module %s where\n\n"
+      haskell-compile-cabal-build-alt-command "cd %s && stack clean && stack build --ghc-options -ferror-spans"
       haskell-compile-cabal-build-command "cd %s && stack build --ghc-options -ferror-spans"
       haskell-compile-command "stack ghc -- -Wall -ferror-spans -fforce-recomp -c %s"
+      haskell-interactive-popup-errors nil
       haskell-process-args-stack-ghci '("--ghc-options" "-ferror-spans -fdefer-type-errors")
       haskell-process-auto-import-loaded-modules t
       haskell-process-log t
@@ -77,7 +79,6 @@
 
 (defun init-haskell-mode ()
   (haskell-auto-insert-module-template)
-  (haskell-indentation-mode)
   (hindent-mode)
   (interactive-haskell-mode))
 
