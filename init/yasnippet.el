@@ -1,4 +1,5 @@
 (require 'yasnippet)
+(require 'haskell-snippets)
 
 (setq yas-snippet-dirs `(,(init-expand-file-name "snippets")
                          ,(init-expand-file-name "local-snippets")))
@@ -7,7 +8,7 @@
   (make-directory dir t)
   (yas-load-directory dir))
 
-(setq yas-prompt-functions '(yas-ido-prompt))
+(setq yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
 
 (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
 
