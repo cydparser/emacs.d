@@ -5,7 +5,11 @@
       haskell-compile-cabal-build-command "cd %s && stack build --ghc-options -ferror-spans"
       haskell-compile-command "stack ghc -- -Wall -ferror-spans -fforce-recomp -c %s"
       haskell-interactive-popup-errors nil
-      haskell-process-args-stack-ghci '("--ghc-options" "-ferror-spans -fdefer-type-errors")
+      haskell-process-args-stack-ghci
+      (list "--ghc-options"
+            (concat
+             "-XNamedWildCards -XPartialTypeSignatures -ferror-spans -fdefer-type-errors"
+             " -fno-warn-missing-signatures -fno-warn-partial-type-signatures -fno-warn-type-defaults"))
       haskell-process-auto-import-loaded-modules t
       haskell-process-log t
       haskell-process-suggest-hoogle-imports t
