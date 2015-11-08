@@ -17,6 +17,8 @@
       haskell-process-type 'stack-ghci
       hindent-style "chris-done")
 
+(defvar init-haskell-ghc-mod-p nil)
+
 (when (executable-find "hasktags")
   (setq haskell-tags-on-save t))
 
@@ -78,13 +80,34 @@
   (let ((map haskell-interactive-mode-map))
     (define-key map (kbd "C-c C-r") 'previous-multiframe-window)))
 
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook 'flycheck-haskell-setup))
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-cabal)
+  (add-to-list 'company-backends
+               (if init-haskell-ghc-mod-p 'company-ghc 'company-ghci)))
+
+(dolist (m '(company-ghc company-ghci))
+  (with-eval-after-load m
+    (when (and (executable-find "hoogle") (file-exists-p (init-xdg-data "hoogle")))
+      ;; Use local database.
+      (defun company-ghci/hoogle-info (symbol)
+        "Use hoogle --info to search documentation of SYMBOL"
+        (shell-command-to-string (format "hoogle --info -d %s %s" (init-xdg-data "hoogle") symbol))))))
+
+(unless init-haskell-ghc-mod-p
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook 'flycheck-haskell-setup)))
+
+(when init-haskell-ghc-mod-p
+  (autoload 'ghc-init "ghc" nil t)
+  (autoload 'ghc-debug "ghc" nil t))
 
 (defun init-haskell-mode ()
+  (when init-haskell-ghc-mod-p
+    (ghc-init))
   (haskell-auto-insert-module-template)
   (hindent-mode)
-  (interactive-haskell-mode))
+  (interactive-haskell-mode)
+  (company-mode))
 
 (add-hook 'haskell-mode-hook 'init-haskell-mode)
 
@@ -94,6 +117,7 @@
 (add-hook 'haskell-cabal-mode-hook 'init-haskell-cabal-mode)
 
 (defun init-haskell-interactive-mode ()
+  (company-mode)
   (flycheck-mode -1))
 
 (add-hook 'haskell-interactive-mode-hook 'init-haskell-interactive-mode)
