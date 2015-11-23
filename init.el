@@ -51,10 +51,7 @@
 
 (require 'package)
 
-(dolist (a '(("gnu" . "http://elpa.gnu.org/packages/")
-             ("ELPA" . "http://tromey.com/elpa/")
-             ("melpa" . "http://melpa.milkbox.net/packages/")))
-  (add-to-list 'package-archives a t))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (setq package-enable-at-startup nil)
 (package-initialize)
