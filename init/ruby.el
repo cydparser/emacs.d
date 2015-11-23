@@ -17,10 +17,11 @@
 (autoload 'run-ruby "inf-ruby")
 (autoload 'ruby-block-mode "ruby-block")
 
+(setq ruby-block-highlight-toggle 'overlay
+      ruby-deep-indent-paren nil
+      ruby-use-smie nil)
+
 (defun init-ruby-mode ()
-  (setq ruby-block-highlight-toggle 'overlay
-        ruby-use-smie nil
-        ruby-deep-indent-paren nil)
   (projectile-rails-mode)
   (ruby-block-mode t))
 
