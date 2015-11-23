@@ -9,7 +9,7 @@
 ;; enable syntax highlighting
 (global-font-lock-mode 1)
 
-(set-default-font "Inconsolata 14")
+(set-frame-font "Inconsolata 14")
 
 (global-prettify-symbols-mode 1)
 
