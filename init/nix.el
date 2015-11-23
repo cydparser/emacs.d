@@ -1,7 +1,4 @@
-(with-eval-after-load 'company
-  (add-to-list 'company-backends 'company-nixos-options))
-
-(defun init-nix-mode ()
-  (company-mode))
-
-(add-hook 'nix-mode-hook 'init-nix-mode)
+(when (executable-find "nixos-option")
+  (with-eval-after-load 'company
+    (add-to-list 'company-backends 'company-nixos-options))
+  (add-hook 'nix-mode-hook 'company-mode))
