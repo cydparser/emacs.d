@@ -22,6 +22,11 @@
 (setq user-var-directory (init-expand-file-name "var"))
 (setq user-packages-directory (init-expand-file-name "packages"))
 
+;;; Store customizations in a separate file.
+
+(setq custom-file (init-expand-file-name "custom.el"))
+(load custom-file)
+
 ;;; emacs files
 
 (let ((default-directory user-packages-directory))
@@ -42,10 +47,6 @@
         auto-save-list-file-prefix (concat ldir "/saves-"))
   (make-directory bdir t)
   (setq backup-directory-alist `((".*" . ,bdir))))
-
-;; Store customizations in a separate file.
-(setq custom-file (init-expand-file-name "custom.el"))
-(load custom-file)
 
 ;;; Initialize Packages
 

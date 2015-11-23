@@ -8,8 +8,10 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (yasnippet yaml-mode twittering-mode systemd ruby-block rainbow-delimiters projectile-rails nix-mode markdown-mode magit json-mode iedit idomenu hindent helm haskell-snippets haskell-mode git-link flycheck-package flycheck-haskell flycheck flx-ido exec-path-from-shell erc-hl-nicks dockerfile-mode discover debbugs company-quickhelp company-nixos-options company-ghci company-cabal company color-theme-solarized aggressive-indent ace-jump-mode)))
+    (yasnippet yaml-mode twittering-mode systemd solarized-theme smart-mode-line ruby-block rainbow-delimiters projectile-rails nix-mode markdown-mode magit json-mode iedit idomenu hindent helm haskell-snippets haskell-mode git-link flycheck-package flycheck-haskell flycheck flx-ido exec-path-from-shell erc-hl-nicks dockerfile-mode discover debbugs company-quickhelp company-nixos-options company-ghci company-cabal company aggressive-indent ace-jump-mode)))
  '(scroll-bar-mode nil)
+ '(sml/col-number-format "%3c")
+ '(sml/numbers-separator ",")
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
