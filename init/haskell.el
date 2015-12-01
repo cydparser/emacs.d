@@ -105,6 +105,7 @@
   (when init-haskell-ghc-mod-p
     (ghc-init))
   (hindent-mode)
+  (hlint-refactor-mode)
   (interactive-haskell-mode)
   (company-mode))
 
