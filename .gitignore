@@ -1,3 +1,4 @@
+.yas-compiled-snippets.el
 /color-themes
 /elpa
 /eshell/history
@@ -9,5 +10,5 @@
 /tramp
 /url
 /var
-local*
 eww-bookmarks
+local*
