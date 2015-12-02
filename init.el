@@ -12,7 +12,7 @@
 (defconst init-xdg-data (or (getenv "XDG_DATA_HOME") (init-home ".local/share")))
 (defmacro init-xdg-data (path) (expand-file-name path init-xdg-data))
 
-(defmacro init-expand-file-name (relative-path)
+(defun init-expand-file-name (relative-path)
   (expand-file-name relative-path user-emacs-directory))
 
 (defun init-tab-width (x)

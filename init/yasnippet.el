@@ -1,12 +1,10 @@
-(require 'yasnippet)
-(require 'haskell-snippets)
+(setq yas-snippet-dirs (mapcar 'init-expand-file-name '("snippets" "local-snippets")))
 
-(setq yas-snippet-dirs `(,(init-expand-file-name "snippets")
-                         ,(init-expand-file-name "local-snippets")))
+(require 'haskell-snippets)
 
 (dolist (dir yas-snippet-dirs)
   (make-directory dir t)
-  (yas-load-directory dir))
+  (yas-load-directory dir :jit))
 
 (setq yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
 
