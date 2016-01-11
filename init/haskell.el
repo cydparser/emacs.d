@@ -12,16 +12,15 @@
              " -fno-warn-missing-signatures -fno-warn-partial-type-signatures -fno-warn-type-defaults"))
       haskell-process-auto-import-loaded-modules t
       haskell-process-log t
-      haskell-process-suggest-hoogle-imports t
+      haskell-process-suggest-hayoo-imports t
       haskell-process-suggest-remove-import-lines t
       haskell-process-type 'stack-ghci
       hindent-style "chris-done")
 
-(defvar init-haskell-ghc-mod-p nil)
-
 (when (executable-find "hasktags")
   (setq haskell-tags-on-save t))
 
+(defalias 'hay 'haskell-hayoo)
 (defalias 'hoo 'haskell-hoogle)
 
 (defun init-haskell-goto-next-error ()
@@ -82,28 +81,19 @@
 
 (with-eval-after-load 'company
   (add-to-list 'company-backends 'company-cabal)
-  (add-to-list 'company-backends
-               (if init-haskell-ghc-mod-p 'company-ghc 'company-ghci)))
+  (add-to-list 'company-backends 'company-ghci))
 
-(dolist (m '(company-ghc company-ghci))
-  (with-eval-after-load m
-    (when (and (executable-find "hoogle") (file-exists-p (init-xdg-data "hoogle")))
-      ;; Use local database.
-      (defun company-ghci/hoogle-info (symbol)
-        "Use hoogle --info to search documentation of SYMBOL"
-        (shell-command-to-string (format "hoogle --info -d %s %s" (init-xdg-data "hoogle") symbol))))))
+(with-eval-after-load company-ghci
+  (when (and (executable-find "hoogle") (file-exists-p (init-xdg-data "hoogle")))
+    ;; Use local database.
+    (defun company-ghci/hoogle-info (symbol)
+      "Use hoogle --info to search documentation of SYMBOL"
+      (shell-command-to-string (format "hoogle --info -d %s %s" (init-xdg-data "hoogle") symbol)))))
 
-(unless init-haskell-ghc-mod-p
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook 'flycheck-haskell-setup)))
-
-(when init-haskell-ghc-mod-p
-  (autoload 'ghc-init "ghc" nil t)
-  (autoload 'ghc-debug "ghc" nil t))
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook 'flycheck-haskell-setup))
 
 (defun init-haskell-mode ()
-  (when init-haskell-ghc-mod-p
-    (ghc-init))
   (hindent-mode)
   (hlint-refactor-mode)
   (interactive-haskell-mode)
