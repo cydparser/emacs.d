@@ -83,7 +83,7 @@
   (add-to-list 'company-backends 'company-cabal)
   (add-to-list 'company-backends 'company-ghci))
 
-(with-eval-after-load company-ghci
+(with-eval-after-load 'company-ghci
   (when (and (executable-find "hoogle") (file-exists-p (init-xdg-data "hoogle")))
     ;; Use local database.
     (defun company-ghci/hoogle-info (symbol)
