@@ -8,7 +8,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (yasnippet yaml-mode twittering-mode systemd solarized-theme smart-mode-line ruby-block rainbow-delimiters projectile-rails nix-mode multi-term markdown-mode magit json-mode iedit idomenu hlint-refactor hindent haskell-snippets haskell-mode google-this git-link flycheck-package flycheck-haskell flycheck flx-ido exec-path-from-shell erc-hl-nicks dockerfile-mode debbugs company-quickhelp company-nixos-options company-ghci company-cabal company aggressive-indent ace-jump-mode)))
+    (yasnippet yaml-mode twittering-mode systemd solarized-theme smart-mode-line ruby-block rainbow-delimiters projectile-rails nix-mode multi-term markdown-mode magit json-mode iedit idomenu hlint-refactor hindent haskell-snippets haskell-mode guide-key google-this git-link flycheck-package flycheck-haskell flycheck flx-ido exec-path-from-shell erc-hl-nicks dockerfile-mode debbugs company-quickhelp company-nixos-options company-ghci company-cabal company aggressive-indent ace-jump-mode)))
  '(scroll-bar-mode nil)
  '(sml/col-number-format "%3c")
  '(sml/numbers-separator ",")
