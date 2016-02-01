@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# key: ```
+# --
+#+BEGIN_SRC ${1:haskell}
+  $0
+#+END_SRC
