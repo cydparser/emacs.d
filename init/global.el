@@ -4,7 +4,7 @@
 (setq inhibit-splash-screen t
       inhibit-startup-message t
       inhibit-startup-echo-area-message t
-      initial-scratch-message ";; *scratch*\n\n")
+      initial-scratch-message nil)
 
 ;; enable syntax highlighting
 (global-font-lock-mode 1)
