@@ -31,11 +31,11 @@
 
 ;; indenting
 (setq-default indent-tabs-mode nil
-              tab-width 4
-              tab-stop-list (number-sequence 4 120 4))
+              tab-width 2
+              tab-stop-list (number-sequence 2 120 2))
 
 ;; line-wrapping
-(setq-default fill-column 100)
+(setq-default fill-column 120)
 
 (global-subword-mode 1)
 
