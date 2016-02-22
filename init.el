@@ -50,18 +50,24 @@
 
 ;;; Initialize Packages
 
+(defcustom package-selected-packages nil
+  "Packages installed by the user in Emacs 25"
+  :type '(repeat symbol)
+  :version "24")
+
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (setq package-enable-at-startup nil)
 (package-initialize)
-(require 'cl-seq)
 
-(let ((missing (cl-remove-if 'package-installed-p package-selected-packages)))
-  (unless (null missing)
-    (package-refresh-contents)
-    (dolist (p missing)
+(let ((refreshed nil))
+  (dolist (p package-selected-packages)
+    (unless (package-installed-p p)
+      (unless refreshed
+        (package-refresh-contents)
+        (setq refreshed t))
       (package-install p))))
 
 ;; Load all init/*.el files.
