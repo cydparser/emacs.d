@@ -62,7 +62,6 @@
     (init-haskell-mode-map map)
     (define-key map (kbd "C-c t") 'init-haskell-process-insert-type)
     (define-key map (kbd "C-c o") 'init-haskell-process-reload-switch)
-    (define-key map (kbd "SPC") 'haskell-mode-contextual-space)
     (define-key map (kbd "C-c C-p") 'haskell-navigate-imports)))
 
 (with-eval-after-load 'haskell
@@ -77,7 +76,7 @@
 
 (with-eval-after-load 'haskell-interactive-mode
   (let ((map haskell-interactive-mode-map))
-    (define-key map (kbd "C-c o") 'previous-multiframe-window)))
+    (define-key map (kbd "C-c o") 'haskell-interactive-switch-back)))
 
 (with-eval-after-load 'company
   (add-to-list 'company-backends 'company-cabal)
