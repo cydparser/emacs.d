@@ -3,4 +3,4 @@
       (dolist (theme (directory-files themes :full "^[^.]"))
         (add-to-list 'custom-theme-load-path theme))))
 
-(load-theme 'solarized-dark 'no-confirm)
+(load-theme 'solarized-light 'no-confirm)
