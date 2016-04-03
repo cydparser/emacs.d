@@ -56,9 +56,16 @@
 
 ;;; bindings
 
+(defun kill-buffer-current ()
+  (interactive)
+  (kill-buffer (current-buffer)))
+
 (global-set-key (kbd "C-c C-SPC") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-x C-k") 'kill-buffer-current)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-g M-f") 'first-error)
+(global-set-key (kbd "M-o") 'other-window)
 
 ;;; exiting
 
