@@ -32,10 +32,10 @@
 ;; indenting
 (setq-default indent-tabs-mode nil
               tab-width 2
-              tab-stop-list (number-sequence 2 120 2))
+              tab-stop-list (number-sequence 2 100 2))
 
 ;; line-wrapping
-(setq-default fill-column 120)
+(setq-default fill-column 100)
 
 (global-subword-mode 1)
 
