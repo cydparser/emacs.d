@@ -6,9 +6,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(menu-bar-mode nil)
- '(package-selected-packages
-   (quote
-    (yasnippet yaml-mode which-key use-package twittering-mode systemd smart-mode-line ruby-block rainbow-delimiters projectile-rails projectile org-bullets nix-mode multi-term markdown-mode magit json-mode iedit idomenu hlint-refactor hindent haskell-snippets haskell-mode google-this git-link flycheck-package flycheck-haskell flycheck flx-ido exec-path-from-shell erc-hl-nicks dockerfile-mode debbugs company-quickhelp company-nixos-options company-ghci company-cabal company color-theme-sanityinc-solarized aggressive-indent ace-jump-mode)))
+ '(ruby-align-to-stmt-keywords t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces

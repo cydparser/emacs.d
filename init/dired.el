@@ -1,3 +1,9 @@
-(add-hook 'dired-load-hook
-          (lambda ()
-            (load "dired-x")))
+(use-package dired-x
+  :defer t
+  :ensure nil
+  :init
+  (progn
+    (defun init-dired-load ()
+      (require 'dired-x))
+
+    (add-hook 'dired-load-hook #'init-dired-load)))

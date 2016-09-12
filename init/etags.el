@@ -1,1 +1,4 @@
-(setq tags-revert-without-query 1)
+(use-package etags
+  :init
+  (progn
+    (setq tags-revert-without-query t)))

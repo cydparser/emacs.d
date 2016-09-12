@@ -1,9 +1,11 @@
-(let ((spaces 2))
-  (setq sh-basic-offset spaces
-        sh-indentation spaces))
+(use-package sh-script
+  :defer t
+  :init
+  (progn
+    (defun init-sh ()
+      (unless (file-exists-p buffer-file-name)
+        (sh-set-shell "/usr/bin/env bash" t t)))
 
-(defun init-sh-mode ()
-  (unless (file-exists-p buffer-file-name)
-    (sh-set-shell "/bin/bash" t t)))
-
-(add-hook 'sh-mode-hook 'init-sh-mode)
+    (setq sh-basic-offset 2
+          sh-indentation 2)
+    (add-hook 'sh-mode-hook #'init-sh)))

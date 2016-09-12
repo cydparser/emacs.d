@@ -1,12 +1,14 @@
-(require 'flx-ido)
+;; TODO: Convert to use-package.
 
-(setq ido-create-new-buffer 'always
-      ido-enable-flex-matching t
-      ido-use-faces nil
-      ido-everywhere t
-      ido-ignore-extensions t
-      ido-save-directory-list-file (expand-file-name "ido.last" user-var-directory))
+;; (require 'flx-ido)
 
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
+;; (setq ido-create-new-buffer 'always
+;;       ido-enable-flex-matching t
+;;       ido-use-faces nil
+;;       ido-everywhere t
+;;       ido-ignore-extensions t
+;;       ido-save-directory-list-file (expand-file-name "ido.last" init-var-directory))
+
+;; (ido-mode 1)
+;; (ido-everywhere 1)
+;; (flx-ido-mode 1)

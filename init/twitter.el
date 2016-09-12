@@ -1,7 +1,6 @@
-;; requires gpg
-(setq twittering-use-master-password t)
-
-(defun init-twittering-mode ()
-  (init-whitespace-disable))
-
-(add-hook 'twittering-mode-hook 'init-twittering-mode)
+(use-package twittering-mode
+  :defer t
+  :init
+  (progn
+    (setq twittering-use-master-password t)
+    (add-hook 'twittering-mode-hook 'init-whitespace-disable)))

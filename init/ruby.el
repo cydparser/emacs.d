@@ -1,28 +1,23 @@
-(add-to-list 'auto-mode-alist '("Buildfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Guardfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
+;; gem install rubocop ruby-lint
 
-(defconst rspec-spec-file-name-re "\\(_\\|-\\)[j]?spec\\.rb\\'"
-  "The regex to identify spec files: /([_-][j]?spec.rb$/")
+(use-package ruby-mode
+  :defer t
+  :init
+  (progn
+    (setq ruby-deep-indent-paren nil
+          ruby-use-smie nil)
+    (init-when-file-exists (init-xdg-config "ruby/ruby-lint.yml") (setq flycheck-rubylintrc))
+    (init-when-file-exists (init-xdg-config "ruby/rubocop.yml") (setq flycheck-rubocoprc)))
+  :config
+  (progn
+    (defun init-rspec-file-p ()
+      "Indicates whether the current buffer is an rspec file."
+      (let ((bname buffer-file-name))
+        (and bname (rspec-spec-file-p bname))))))
 
-(defmacro init-rspec-file-p ()
-  (and buffer-file-name
-       (rspec-spec-file-p buffer-file-name)))
-
-(autoload 'run-ruby "inf-ruby")
-(autoload 'ruby-block-mode "ruby-block")
-
-(setq ruby-block-highlight-toggle 'overlay
-      ruby-deep-indent-paren nil
-      ruby-use-smie nil)
-
-(defun init-ruby-mode ()
-  (projectile-rails-mode)
-  (ruby-block-mode t))
-
-(add-hook 'ruby-mode-hook 'init-ruby-mode)
+(use-package ruby-block
+  :defer t
+  :init
+  (progn
+    (setq ruby-block-highlight-toggle 'overlay)
+    (add-hook 'ruby-mode-hook #'ruby-block-mode)))

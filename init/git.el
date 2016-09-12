@@ -1,13 +1,18 @@
-(defalias 'ms 'magit-status)
+(use-package git-gutter
+  :demand
+  :diminish ""
+  :init
+  (progn
+    (setq git-gutter:diff-option "-w")
+    (global-git-gutter-mode 1)))
 
-(setq magit-push-always-verify nil
-      magit-revert-buffers t)
+(use-package git-link
+  :defer t)
 
-(with-eval-after-load 'git-rebase
-  (let ((map git-rebase-mode-map))
-    (define-key map (kbd "q") 'with-editor-finish)))
-
-(defun init-git-commit-mode-hook ()
-  (flyspell-mode))
-
-(add-hook 'git-commit-mode-hook 'init-git-commit-mode-hook)
+(use-package magit
+  :defer t
+  :init
+  (progn
+    (setq magit-push-always-verify nil
+          magit-revert-buffers t)
+    (add-hook 'git-commit-mode-hook #'flyspell-mode)))
