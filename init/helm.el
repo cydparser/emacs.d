@@ -9,7 +9,12 @@
          ("M-x" . helm-M-x))
   :init
   (progn
-    (setq helm-ff-newfile-prompt-p nil)
+    (setq helm-M-x-fuzzy-match t
+          helm-apropos-fuzzy-match t
+          helm-buffers-fuzzy-matching t
+          helm-ff-newfile-prompt-p nil
+          helm-locate-fuzzy-match t
+          helm-recentf-fuzzy-match t)
     (require 'helm-config)
     (helm-mode)))
 
