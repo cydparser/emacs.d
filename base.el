@@ -98,6 +98,7 @@
 (bind-key "C-c C-SPC" #'delete-trailing-whitespace)
 (bind-key "C-x C-b" #'ibuffer)
 (bind-key "C-x C-k" #'init-kill-buffer-current)
+(bind-key "M-/" #'hippie-expand)
 (bind-key "M-o" #'other-window)
 
 (global-subword-mode 1)
