@@ -1,4 +1,4 @@
-;; stack install apply-refact hlint
+;; stack install apply-refact codex hasktags hlint
 
 (use-package cmm-mode
   :defer t)
@@ -44,7 +44,25 @@
 (use-package intero
   :defer t
   :diminish " λ"
+  :bind (:map intero-mode-map
+              ("M-." . init-intero-goto-definition))
   :init
-  (add-hook 'haskell-mode-hook #'intero-mode)
+  (progn
+    (defun init-intero ()
+      "Enable Intero unless visiting a cached dependency."
+      (if (and buffer-file-name
+               (string-match ".+/\\.\\(stack\\|stack-work\\)/.+" buffer-file-name))
+          (flycheck-mode -1)
+        (intero-mode)
+        (eldoc-mode)))
+
+    (add-hook 'haskell-mode-hook #'init-intero))
   :config
-  (flycheck-add-next-checker 'intero '(warning . haskell-hlint)))
+  (progn
+    (defun init-intero-goto-definition ()
+      "Jump to the definition of the thing at point using Intero or etags."
+      (interactive)
+      (or (intero-goto-definition)
+          (find-tag (find-tag-default))))
+
+    (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
