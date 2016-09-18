@@ -9,4 +9,7 @@
   (progn
     (defun init-yas-uncapitalize (cap)
       (concat (downcase (substring cap 0 1))
-              (substring cap 1)))))
+              (substring cap 1)))
+
+    (unbind-key "TAB" yas-minor-mode-map)
+    (unbind-key "<tab>" yas-minor-mode-map)))
