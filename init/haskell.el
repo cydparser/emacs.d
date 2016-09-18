@@ -29,12 +29,7 @@
     (speedbar-add-supported-extension '(".hs" ".lhs"))))
 
 (use-package haskell-snippets
-  :defer t
-  :init
-  (progn
-    ;; TODO: Investigate haskell-snippets errors during snippet expansion.
-    (with-eval-after-load 'yasnippet
-      (haskell-snippets-initialize))))
+  :defer t)
 
 (use-package hlint-refactor
   :defer t
