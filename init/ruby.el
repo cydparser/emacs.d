@@ -17,6 +17,7 @@
 
 (use-package ruby-block
   :defer t
+  :commands (ruby-block-mode)
   :init
   (progn
     (setq ruby-block-highlight-toggle 'overlay)
