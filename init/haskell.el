@@ -49,7 +49,8 @@
                (string-match ".+/\\.\\(stack\\|stack-work\\)/.+" buffer-file-name))
           (flycheck-mode -1)
         (intero-mode)
-        (eldoc-mode)))
+        (eldoc-mode)
+        (setq projectile-tags-command "codex update")))
 
     (add-hook 'haskell-mode-hook #'init-intero))
   :config
