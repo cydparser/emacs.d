@@ -17,6 +17,7 @@
 
 (use-package ruby-block
   :defer t
+  :diminish ""
   :commands (ruby-block-mode)
   :init
   (progn
