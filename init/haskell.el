@@ -47,9 +47,10 @@
       "Enable Intero unless visiting a cached dependency."
       (if (and buffer-file-name
                (string-match ".+/\\.\\(stack\\|stack-work\\)/.+" buffer-file-name))
-          (flycheck-mode -1)
+          (progn
+            (eldoc-mode -1)
+            (flycheck-mode -1))
         (intero-mode)
-        (eldoc-mode)
         (setq projectile-tags-command "codex update")))
 
     (add-hook 'haskell-mode-hook #'init-intero))
