@@ -5,7 +5,11 @@
     (defun init-compile-colorize ()
       "Colorize compilation.
 http://endlessparentheses.com/ansi-colors-in-the-compilation-buffer-output.html"
-      (let ((inhibit-read-only t))
-        (ansi-color-apply-on-region compilation-filter-start (point))))
+      (let ((inhibit-read-only t)
+            (end (point)))
+        (save-excursion
+          (goto-char compilation-filter-start)
+          (move-beginning-of-line nil)
+          (ansi-color-apply-on-region (point) end))))
 
     (add-hook 'compilation-filter-hook #'init-compile-colorize)))
