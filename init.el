@@ -4,8 +4,8 @@
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
-(setq package-enable-at-startup nil)
-
+(setq package-archive-priorities '(("melpa" . 10))
+      package-enable-at-startup nil)
 (package-initialize)
 
 ;;; Initialize use-package
