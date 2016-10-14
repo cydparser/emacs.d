@@ -8,7 +8,8 @@
       (cond ((member project-type '(haskell-stack)) "Spec")
             (t (projectile-test-suffix project-type))))
 
-    (setq projectile-mode-line nil
+    (setq projectile-create-missing-test-files t
+          projectile-mode-line nil
           ;; `call-process` uses a different path.
           projectile-tags-command (concat "PATH=" (getenv "PATH") " ctags -Re -f \"%s\" %s")
           projectile-test-suffix-function #'init-projectile-test-suffix
