@@ -2,6 +2,8 @@
   :defer t
   :init
   (progn
+    (setq compilation-scroll-output 'first-error)
+
     (defun init-compile-colorize ()
       "Colorize compilation."
       (let ((inhibit-read-only t))
