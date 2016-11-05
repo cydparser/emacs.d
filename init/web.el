@@ -8,3 +8,8 @@
 
 (use-package scss-mode
   :defer t)
+
+(use-package web-mode
+  :defer t
+  :mode (("\\.html\\'" . web-mode)
+         ("\\.html\\.erb\\'" . web-mode)))
