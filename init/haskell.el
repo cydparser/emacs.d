@@ -14,8 +14,6 @@
 
 (use-package haskell-mode
   :defer t
-  :bind (:map haskell-mode-map
-              ("C-c C-." . haskell-sort-imports))
   :init
   (progn
     (setq haskell-compile-cabal-build-alt-command
