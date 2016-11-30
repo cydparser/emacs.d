@@ -14,6 +14,9 @@
 
 (use-package haskell-mode
   :defer t
+  :bind (:map haskell-mode-map
+              ("M-g i" . haskell-navigate-imports)
+              ("M-g M-i" . haskell-navigate-imports))
   :init
   (progn
     (setq haskell-compile-cabal-build-alt-command
