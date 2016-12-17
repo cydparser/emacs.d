@@ -56,7 +56,8 @@
         auto-save-list-file-prefix (concat ldir "/saves-")
         backup-directory-alist `((".*" . ,bdir))))
 
-(set-frame-font "Inconsolata 15")
+(when (member "Inconsolata" (font-family-list))
+  (set-frame-font "Inconsolata 15"))
 
 ;; Simplify prompts.
 (fset 'yes-or-no-p 'y-or-n-p)
