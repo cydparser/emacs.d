@@ -1,4 +1,5 @@
 (use-package erc
+  :defer t
   :commands (init-erc-freenode)
   :init
   (progn
@@ -14,7 +15,6 @@
                     "gnutls-cli --priority secure256 -p %p %h"))))
 
     (defun init-erc-mode ()
-      (init-whitespace-disable)
       (erc-spelling-mode 1))
 
     (add-hook 'erc-mode-hook #'init-erc-mode))
