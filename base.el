@@ -17,6 +17,13 @@
   (interactive)
   (kill-buffer (current-buffer)))
 
+(defun init-kill-region-or-backward-word (arg)
+  "Kill selected region or backward word."
+  (interactive "p")
+  (if (region-active-p)
+      (kill-region (mark) (point) 'region)
+    (backward-kill-word arg)))
+
 (defun init-special-buffer-p ()
   "Checks if current buffer is special."
   (string-prefix-p "*" (buffer-name)))
@@ -97,6 +104,7 @@
 (defalias 'sl #'sort-lines)
 
 (bind-key "C-c C-SPC" #'delete-trailing-whitespace)
+(bind-key "C-w" #'init-kill-region-or-backward-word)
 (bind-key "C-x C-b" #'ibuffer)
 (bind-key "C-x C-k" #'init-kill-buffer-current)
 (bind-key "M-/" #'hippie-expand)
