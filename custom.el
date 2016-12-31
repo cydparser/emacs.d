@@ -8,7 +8,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (zenburn-theme yaml-mode which-key use-package twittering-mode systemd scss-mode ruby-block rainbow-delimiters org-bullets nix-mode multi-term markdown-mode magit intero hlint-refactor helm-projectile helm-nixos-options helm-descbinds haskell-snippets haml-mode git-link git-gutter floobits exec-path-from-shell erc-hl-nicks dockerfile-mode docker company-quickhelp company-nixos-options company-cabal command-log-mode coffee-mode cmm-mode aggressive-indent)))
+    (zenburn-theme yaml-mode which-key web-mode use-package twittering-mode systemd scss-mode ruby-block rainbow-mode rainbow-delimiters org-tree-slide org-bullets nix-mode multi-term markdown-mode magit intero hlint-refactor helm-projectile helm-nixos-options helm-descbinds haskell-snippets haml-mode git-link git-gutter flycheck-pos-tip floobits expand-region exec-path-from-shell erc-hl-nicks epg-config dumb-jump dockerfile-mode docker demo-it company-quickhelp company-nixos-options company-cabal command-log-mode coffee-mode cmm-mode aggressive-indent)))
  '(ruby-align-to-stmt-keywords t)
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil))
