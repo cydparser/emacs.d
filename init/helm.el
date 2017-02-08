@@ -6,7 +6,9 @@
          ("C-x C-f" . helm-find-files)
          ("C-x b" . helm-mini)
          ("M-s o" . helm-occur)
-         ("M-x" . helm-M-x))
+         ("M-x" . helm-M-x)
+         :map helm-map
+         ([tab] . helm-execute-persistent-action))
   :init
   (progn
     (setq helm-M-x-fuzzy-match t
