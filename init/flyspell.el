@@ -2,10 +2,11 @@
   :defer t
   :init
   (progn
-    (setq ispell-silently-savep t)
-    (let ((pdict (init-xdg-config "ispell/words")))
-      (if (file-exists-p pdict)
-          (setq ispell-personal-dictionary pdict)))))
+    (setq ispell-dictionary "en_US"
+          ispell-program-name (executable-find "hunspell")
+          ispell-silently-savep t)
+    (init-when-file-exists (init-xdg-config (concat "hunspell/" ispell-dictionary))
+      (setq ispell-personal-dictionary))))
 
 (use-package flyspell
   :defer t
