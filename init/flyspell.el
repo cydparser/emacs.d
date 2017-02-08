@@ -19,8 +19,8 @@
 Source: http://stackoverflow.com/a/22116480/1231408"
       (interactive)
       (let ((cursor-location (point))
-            (word (flyspell-get-word)))
-        (if (consp word)
-            (flyspell-do-correct 'save nil (car word)
-                                 cursor-location (cadr word) (caddr word)
+            (word-start-end (flyspell-get-word)))
+        (if (consp word-start-end)
+            (flyspell-do-correct 'save nil (nth 0 word-start-end)
+                                 cursor-location (nth 1 word-start-end) (nth 2 word-start-end)
                                  cursor-location))))))
