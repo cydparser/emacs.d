@@ -93,7 +93,7 @@
 
 ;; Adjust indentation and line wrapping.
 (let ((spaces 2)
-      (max-line-length 100))
+      (max-line-length 80))
   (setq-default fill-column max-line-length
                 indent-tabs-mode nil
                 tab-width spaces
