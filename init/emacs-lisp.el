@@ -1,6 +1,14 @@
 (use-package aggressive-indent
   :defer t)
 
+(use-package elisp-slime-nav
+  :defer t
+  :diminish ""
+  :init
+  (progn
+    (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+      (add-hook hook #'turn-on-elisp-slime-nav-mode))))
+
 (use-package rainbow-delimiters
   :defer t)
 
