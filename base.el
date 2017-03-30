@@ -79,6 +79,9 @@
       kill-buffer-query-functions (remq 'process-kill-buffer-query-function kill-buffer-query-functions)
       ring-bell-function 'ignore)
 
+(diminish 'auto-revert-mode "")
+(diminish 'subword-mode "")
+
 ;; Prevent accidental closure.
 (setq confirm-kill-emacs 'y-or-n-p)
 
