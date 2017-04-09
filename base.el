@@ -108,6 +108,10 @@
 (defalias 'sl #'sort-lines)
 
 (bind-key "C-c C-SPC" #'delete-trailing-whitespace)
+(bind-key "C-h C-f" #'find-function-at-point)
+(bind-key "C-h C-k" #'find-function-on-key)
+(bind-key "C-h C-l" #'find-library)
+(bind-key "C-h C-v" #'find-variable-at-point)
 (bind-key "C-w" #'init-kill-region-or-backward-word)
 (bind-key "C-x C-b" #'ibuffer)
 (bind-key "C-x C-k" #'init-kill-buffer-current)
