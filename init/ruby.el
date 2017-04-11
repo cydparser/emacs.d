@@ -1,5 +1,9 @@
 ;; gem install rubocop ruby-lint
 
+(use-package inf-ruby
+  :defer t
+  :init (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode))
+
 (use-package ruby-mode
   :defer t
   :init
