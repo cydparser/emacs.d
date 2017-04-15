@@ -1,1 +1,14 @@
 *.elc
+*.info
+*.info-1
+*.info-2
+*.svg
+*.txt
+AUTHORS.md
+COPYING
+LICENSE
+NEWS
+NOTICE
+README.md
+\archives
+snippets
