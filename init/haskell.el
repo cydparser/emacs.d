@@ -48,7 +48,8 @@
     (defun init-intero ()
       "Enable Intero unless visiting a cached dependency."
       (if (and buffer-file-name
-               (string-match ".+/\\.\\(stack\\|stack-work\\)/.+" buffer-file-name))
+               (string-match "^\\(/nix\\|.+/\\.\\(stack\\|stack-work\\)\\)/.+"
+                             buffer-file-name))
           (progn
             (eldoc-mode -1)
             (flycheck-mode -1))
