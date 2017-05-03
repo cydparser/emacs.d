@@ -68,7 +68,7 @@
   (set-frame-font "Inconsolata 15"))
 
 ;; Simplify prompts.
-(fset 'yes-or-no-p 'y-or-n-p)
+(fset 'yes-or-no-p #'y-or-n-p)
 
 ;; Reduce noise.
 (setq confirm-nonexistent-file-or-buffer nil
@@ -77,13 +77,13 @@
       inhibit-startup-message t
       initial-scratch-message nil
       kill-buffer-query-functions (remq 'process-kill-buffer-query-function kill-buffer-query-functions)
-      ring-bell-function 'ignore)
+      ring-bell-function #'ignore)
 
 (diminish 'auto-revert-mode "")
 (diminish 'subword-mode "")
 
 ;; Prevent accidental closure.
-(setq confirm-kill-emacs 'y-or-n-p)
+(setq confirm-kill-emacs #'y-or-n-p)
 
 ;; Display column number in modeline.
 (setq column-number-mode t)
