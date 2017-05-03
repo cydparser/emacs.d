@@ -1,5 +1,4 @@
 ;; stack install apply-refact codex hasktags hlint
-;; stack install apply-refact hasktags hlint
 
 (use-package cmm-mode
   :defer t)
