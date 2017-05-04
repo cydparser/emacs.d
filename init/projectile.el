@@ -5,7 +5,7 @@
   (progn
     (defun init-projectile-test-suffix (project-type)
       "Find default test files suffix based on PROJECT-TYPE."
-      (cond ((member project-type '(haskell-stack)) "Spec")
+      (cond ((member project-type '(haskell-cabal haskell-stack)) "Spec")
             (t (projectile-test-suffix project-type))))
 
     (setq projectile-create-missing-test-files t
