@@ -1,4 +1,26 @@
+;;; -*- lexical-binding: t -*-
+
 ;; stack install apply-refact codex hasktags hlint
+
+(defvar init--haskell-backend :intero
+  "Backend to use for realtime errors, completions, etc.")
+
+(defun init-haskell-backend-hook (keyword)
+  "Convert KEYWORD symbol into a symbol beginning with 'init-'."
+  (intern (concat "init-" (substring (symbol-name keyword) 1 nil))))
+
+(defun init-haskell-backend-change (backend)
+  "Switch Haskell backend.
+
+This only affects new buffers."
+  (interactive
+   (let ((s (read-string "Backend: " nil 'init-haskell-backend-history
+                         '("dante" "intero"))))
+     (list (intern (concat ":" s)))))
+  (when (not (eq backend init--haskell-backend))
+    (remove-hook 'haskell-mode-hook (init-haskell-backend-hook init--haskell-backend))
+    (add-hook 'haskell-mode-hook (init-haskell-backend-hook backend))
+    (setq init--haskell-backend backend)))
 
 (use-package cmm-mode
   :defer t)
@@ -11,6 +33,27 @@
       (add-to-list 'company-backends #'company-cabal))
 
     (add-hook 'haskell-cabal-mode-hook #'init-haskell-cabal)))
+
+(use-package dante
+  :ensure t
+  :bind (:map dante-mode-map
+              ("C-c C-i" . dante-info)
+              ("C-c C-r" . dante-auto-fix)
+              ("C-c C-t" . dante-type-at))
+  :init
+  (progn
+    (defun init-dante ()
+      (dante-mode)
+      (flycheck-mode))
+
+    (when (eq :dante init--haskell-backend)
+      (add-hook 'haskell-mode-hook #'init-dante)))
+  :config
+  (progn
+    (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
+    (unbind-key "C-c ." dante-mode-map)
+    (unbind-key "C-c ," dante-mode-map)
+    (unbind-key "C-c /" dante-mode-map)))
 
 (use-package haskell-mode
   :defer t
@@ -55,7 +98,8 @@
         (intero-mode)
         (setq projectile-tags-command "codex update")))
 
-    (add-hook 'haskell-mode-hook #'init-intero))
+    (when (eq :intero init--haskell-backend)
+      (add-hook 'haskell-mode-hook #'init-intero)))
   :config
   (progn
     (defun init-intero-goto-definition ()
