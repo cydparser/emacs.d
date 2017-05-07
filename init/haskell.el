@@ -96,7 +96,9 @@ This only affects new buffers."
             (eldoc-mode -1)
             (flycheck-mode -1))
         (intero-mode)
-        (setq projectile-tags-command "codex update")))
+        (setq company-dabbrev-downcase nil
+              company-dabbrev-ignore-case :ignore-case
+              projectile-tags-command "codex update")))
 
     (when (eq :intero init--haskell-backend)
       (add-hook 'haskell-mode-hook #'init-intero)))
