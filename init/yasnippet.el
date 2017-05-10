@@ -4,7 +4,7 @@
   :init
   (progn
     (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand)
-    (yas-global-mode))
+    (add-hook 'after-init-hook #'yas-global-mode))
   :config
   (progn
     (defun init-yas-uncapitalize (cap)

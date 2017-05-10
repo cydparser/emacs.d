@@ -15,7 +15,6 @@
           projectile-test-suffix-function #'init-projectile-test-suffix
           projectile-use-git-grep t)
     (make-variable-buffer-local 'projectile-tags-command)
-    (projectile-mode)))
 
 (use-package helm-projectile
   :demand
@@ -23,3 +22,4 @@
   (progn
     (setq projectile-completion-system 'helm)
     (helm-projectile-on)))
+    (add-hook 'after-init-hook #'projectile-mode)))

@@ -4,7 +4,7 @@
   :init
   (progn
     (setq git-gutter:diff-option "-w")
-    (global-git-gutter-mode 1)))
+    (add-hook 'after-init-hook (lambda () (global-git-gutter-mode 1)))))
 
 (use-package git-link
   :defer t)
