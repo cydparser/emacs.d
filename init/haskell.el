@@ -35,7 +35,7 @@ This only affects new buffers."
     (add-hook 'haskell-cabal-mode-hook #'init-haskell-cabal)))
 
 (use-package dante
-  :ensure t
+  :defer t
   :bind (:map dante-mode-map
               ("C-c C-i" . dante-info)
               ("C-c C-r" . dante-auto-fix)
