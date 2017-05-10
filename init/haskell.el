@@ -84,6 +84,7 @@ This only affects new buffers."
   :defer t
   :diminish " λ"
   :bind (:map intero-mode-map
+              ("C-c r i" . init-intero-add-import)
               ("M-." . init-intero-goto-definition))
   :init
   (progn
@@ -104,6 +105,41 @@ This only affects new buffers."
       (add-hook 'haskell-mode-hook #'init-intero)))
   :config
   (progn
+    (defun init-intero-insert-import ()
+      "Insert a module using ivy.
+
+The string 'import ' will be inserted as well if missing."
+      (interactive)
+      (if (string-match "^import" (buffer-substring (line-beginning-position)
+                                                    (line-end-position)))
+          (progn
+            (end-of-line)
+            (just-one-space))
+        (beginning-of-line)
+        (insert "import "))
+      (let ((p (point)))
+        (intero-get-repl-completions
+         (current-buffer) "import "
+         (lambda (modules)
+           (ivy-read "Import: " modules
+                     :action (lambda (module)
+                               (init-intero-insert-import-action p module)))))))
+
+    (defun init-intero-insert-import-action (point module)
+      "Insert MODULE at POINT and organize imports."
+      (save-excursion
+        (goto-char point)
+        (insert module)
+        (haskell-mode-format-imports)))
+
+    (defun init-intero-add-import ()
+      "Add an import and keep current position."
+      (interactive)
+      (save-excursion
+        (haskell-navigate-imports)
+        (open-line 1)
+        (init-intero-insert-import)))
+
     (defun init-intero-goto-definition ()
       "Jump to the definition of the thing at point using Intero or etags."
       (interactive)
