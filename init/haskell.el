@@ -108,6 +108,7 @@ This only affects new buffers."
       "Jump to the definition of the thing at point using Intero or etags."
       (interactive)
       (or (intero-goto-definition)
-          (find-tag (find-tag-default))))
+          (xref-find-definitions (xref-backend-identifier-at-point
+                                  (xref-find-backend)))))
 
     (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
