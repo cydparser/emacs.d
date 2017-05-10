@@ -24,3 +24,9 @@ Source: http://stackoverflow.com/a/22116480/1231408"
             (flyspell-do-correct 'save nil (nth 0 word-start-end)
                                  cursor-location (nth 1 word-start-end) (nth 2 word-start-end)
                                  cursor-location))))))
+
+(use-package flyspell-correct-ivy
+  :defer t
+  :after flyspell
+  :bind (:map flyspell-mode-map
+              ("C-c r" . flyspell-correct-word-generic)))
