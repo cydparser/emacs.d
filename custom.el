@@ -13,7 +13,8 @@
  '(safe-local-variable-values
    (quote
     ((flycheck-disabled-checkers emacs-lisp-checkdoc)
-     (intero-stack-executable . "intero-nix-shim"))))
+     (intero-stack-executable . "intero-nix-shim")
+     (flycheck-disabled-checkers emacs-lisp-checkdoc))))
  '(scroll-bar-mode nil)
  '(smerge-command-prefix "m")
  '(tool-bar-mode nil))
