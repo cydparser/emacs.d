@@ -107,12 +107,11 @@ This only affects new buffers."
   :config
   (progn
     (defun init-intero-insert-import ()
-      "Insert a module using ivy.
+      "Insert a module using completing read.
 
-The string 'import ' will be inserted as well if missing."
+The string 'import ' will be inserted as well, if missing."
       (interactive)
-      (if (string-match "^import" (buffer-substring (line-beginning-position)
-                                                    (line-end-position)))
+      (if (save-excursion (beginning-of-line) (looking-at "^import *"))
           (progn
             (end-of-line)
             (just-one-space))
@@ -122,16 +121,10 @@ The string 'import ' will be inserted as well if missing."
         (intero-get-repl-completions
          (current-buffer) "import "
          (lambda (modules)
-           (ivy-read "Import: " modules
-                     :action (lambda (module)
-                               (init-intero-insert-import-action p module)))))))
-
-    (defun init-intero-insert-import-action (point module)
-      "Insert MODULE at POINT and organize imports."
-      (save-excursion
-        (goto-char point)
-        (insert module)
-        (haskell-mode-format-imports)))
+           (save-excursion
+             (goto-char p)
+             (insert (funcall completing-read-function "Import: " modules))
+             (haskell-mode-format-imports))))))
 
     (defun init-intero-add-import ()
       "Add an import and keep current position."
