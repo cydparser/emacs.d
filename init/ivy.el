@@ -11,6 +11,7 @@
 
 (use-package ivy
   :defer t
+  :diminish ""
   :bind (("C-c z" . ivy-resume)
          ("C-x b" . ivy-switch-buffer))
   :init

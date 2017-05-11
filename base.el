@@ -71,7 +71,8 @@
 (fset 'yes-or-no-p #'y-or-n-p)
 
 ;; Reduce noise.
-(setq confirm-nonexistent-file-or-buffer nil
+(setq auto-revert-mode-text ""
+      confirm-nonexistent-file-or-buffer nil
       inhibit-splash-screen t
       inhibit-startup-echo-area-message t
       inhibit-startup-message t
@@ -79,7 +80,6 @@
       kill-buffer-query-functions (remq 'process-kill-buffer-query-function kill-buffer-query-functions)
       ring-bell-function #'ignore)
 
-(diminish 'auto-revert-mode "")
 (diminish 'subword-mode "")
 
 ;; Prevent accidental closure.
