@@ -67,7 +67,8 @@ This only affects new buffers."
           haskell-compile-cabal-build-command
           "cd %s && stack build --ghc-options -ferror-spans"
           haskell-compile-command
-          "stack ghc -- -Wall -ferror-spans -fforce-recomp -c %s"))
+          "stack ghc -- -Wall -ferror-spans -fforce-recomp -c %s")
+    (remove-hook 'haskell-mode-hook #'interactive-haskell-mode))
   :config
   (progn
     (speedbar-add-supported-extension '(".hs" ".lhs"))))
