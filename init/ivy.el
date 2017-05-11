@@ -25,4 +25,4 @@
 
 (use-package swiper
   :defer t
-  :bind (("C-s" . swiper)))
+  :bind (("C-M-s" . swiper)))
