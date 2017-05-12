@@ -14,8 +14,7 @@
 
 This only affects new buffers."
   (interactive
-   (let ((s (read-string "Backend: " nil 'init-haskell-backend-history
-                         '("dante" "intero"))))
+   (let ((s (completing-read "Import: " '("dante" "intero") nil t)))
      (list (intern (concat ":" s)))))
   (when (not (eq backend init--haskell-backend))
     (remove-hook 'haskell-mode-hook (init-haskell-backend-hook init--haskell-backend))
@@ -123,16 +122,16 @@ The string 'import ' will be inserted as well, if missing."
          (lambda (modules)
            (save-excursion
              (goto-char p)
-             (insert (funcall completing-read-function "Import: " modules))
-             (haskell-mode-format-imports))))))
+             (insert (completing-read "Import: " modules)))))))
 
     (defun init-intero-add-import ()
-      "Add an import and keep current position."
+      "Add an import, format imports, and keep current position."
       (interactive)
       (save-excursion
         (haskell-navigate-imports)
         (open-line 1)
-        (init-intero-insert-import)))
+        (init-intero-insert-import)
+        (haskell-mode-format-imports)))
 
     (defun init-intero-goto-definition ()
       "Jump to the definition of the thing at point using Intero or etags."
