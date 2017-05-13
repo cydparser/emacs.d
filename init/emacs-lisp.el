@@ -19,6 +19,7 @@
   (progn
     (defun init-emacs-lisp-mode ()
       (setq mode-name "elisp")
+      (add-to-list (make-local-variable 'company-backends) #'company-elisp)
       (unless (init-special-buffer-p)
         (aggressive-indent-mode)
         (rainbow-delimiters-mode)))

@@ -29,7 +29,7 @@ This only affects new buffers."
   :init
   (progn
     (defun init-haskell-cabal ()
-      (add-to-list 'company-backends #'company-cabal))
+      (add-to-list (make-local-variable 'company-backends) #'company-cabal))
 
     (add-hook 'haskell-cabal-mode-hook #'init-haskell-cabal)))
 

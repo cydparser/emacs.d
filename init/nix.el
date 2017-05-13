@@ -7,7 +7,7 @@
   :init
   (progn
     (defun init-company-nixos-options ()
-      (add-to-list 'company-backends #'company-nixos-options))
+      (add-to-list (make-local-variable 'company-backends) #'company-nixos-options))
 
     (add-hook 'nix-mode-hook #'init-company-nixos-options)))
 

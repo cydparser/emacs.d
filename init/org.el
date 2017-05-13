@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package org
   :defer t
   :init
@@ -6,7 +8,17 @@
           org-log-done 'time
           org-src-fontify-natively t
           org-startup-truncated nil)
-    (add-hook 'org-mode-hook #'flyspell-mode))
+
+    (let ((backends '(company-capf
+                      company-files
+                      company-dabbrev
+                      company-etags
+                      company-ispell)))
+      (defun init-org ()
+        (flyspell-mode)
+        (set (make-local-variable 'company-backends) backends)))
+
+    (add-hook 'org-mode-hook #'init-org))
   :config
   (progn
     (progn
