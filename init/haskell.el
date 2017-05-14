@@ -76,8 +76,7 @@ This only affects new buffers."
     (add-hook 'haskell-mode #'init-haskell))
   :config
   (progn
-    (remove-hook 'haskell-mode-hook #'interactive-haskell-mode)
-    (speedbar-add-supported-extension '(".hs" ".lhs"))))
+    (remove-hook 'haskell-mode-hook #'interactive-haskell-mode)))
 
 (use-package haskell-snippets
   :defer t)
