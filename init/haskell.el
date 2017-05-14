@@ -67,9 +67,16 @@ This only affects new buffers."
           "cd %s && stack build --ghc-options -ferror-spans"
           haskell-compile-command
           "stack ghc -- -Wall -ferror-spans -fforce-recomp -c %s")
-    (remove-hook 'haskell-mode-hook #'interactive-haskell-mode))
+
+    (defun init-haskell ()
+      (setq company-dabbrev-downcase nil
+            company-dabbrev-ignore-case :ignore-case)
+      (set (make-local-variable 'projectile-tags-command) "codex update"))
+
+    (add-hook 'haskell-mode #'init-haskell))
   :config
   (progn
+    (remove-hook 'haskell-mode-hook #'interactive-haskell-mode)
     (speedbar-add-supported-extension '(".hs" ".lhs"))))
 
 (use-package haskell-snippets
@@ -96,10 +103,7 @@ This only affects new buffers."
           (progn
             (eldoc-mode -1)
             (flycheck-mode -1))
-        (intero-mode)
-        (setq company-dabbrev-downcase nil
-              company-dabbrev-ignore-case :ignore-case
-              projectile-tags-command "codex update")))
+        (intero-mode)))
 
     (when (eq :intero init--haskell-backend)
       (add-hook 'haskell-mode-hook #'init-intero)))
