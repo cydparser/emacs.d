@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;;; Utilities
 
 (defconst init-var-directory
@@ -39,9 +41,9 @@
 (defmacro init-when-file-exists (path sexp)
   "Evaluates (append SEXP (PATH)) if file exists."
   (declare (indent defun))
-  (let ((file (eval path)))
-    `(if (file-exists-p ,file)
-         ,(append sexp (list file)))))
+  `(let ((file ,path))
+     (when (file-exists-p file)
+       (,@sexp file))))
 
 ;;; Global Configuration
 
