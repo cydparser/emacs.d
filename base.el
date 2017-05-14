@@ -66,8 +66,43 @@
         auto-save-list-file-prefix (concat ldir "/saves-")
         backup-directory-alist `((".*" . ,bdir))))
 
-(when (member "Inconsolata" (font-family-list))
-  (set-frame-font "Inconsolata 15"))
+(let ((fonts (font-family-list)))
+  (cond ((member "Hasklig" fonts)
+         (set-frame-font "Hasklig Light 14")
+
+         (defconst init-hasklig-prettify-symbols-alist
+           (let ((codepoint #Xe100))
+             (mapcar (lambda (lig)
+                       (let ((pair (cons lig (string ?\t codepoint))))
+                         (setq codepoint (1+ codepoint))
+                         pair))
+                     '("&&"  "***" "*>"  "\\\\" "||"  "|>"  "::"
+                       "=="  "===" "==>" "=>"   "=<<" "!!"  ">>"
+                       ">>=" ">>>" ">>-" ">-"   "->"  "-<"  "-<<"
+                       "<*"  "<*>" "<|"  "<|>"  "<$>" "<>"  "<-"
+                       "<<"  "<<<" "<+>" ".."   "..." "++"  "+++"
+                       "/="  ":::" ">=>" "->>"  "<=>" "<=<" "<->"))))
+
+         (defconst init-hasklig-prettify-symbols-common-alist
+           (let ((common '("&&" "==" "===" "=>" "->" ".." "..." "++" "<=>")))
+             (append
+              '(("lambda" . "λ"))
+              (seq-filter (lambda (pair)
+                            (member (car pair) common))
+                          init-hasklig-prettify-symbols-alist))))
+
+         (setq prettify-symbols-alist init-hasklig-prettify-symbols-common-alist)
+
+         (defun init-prettify-symbols ()
+           (setq prettify-symbols-alist
+                 (cond ((derived-mode-p 'haskell-mode)
+                        init-hasklig-prettify-symbols-alist)
+                       (t init-hasklig-prettify-symbols-common-alist)))
+           (prettify-symbols-mode))
+
+         (add-hook 'prog-mode-hook #'init-prettify-symbols))
+        ((member "Inconsolata" fonts)
+         (set-frame-font "Inconsolata 15"))))
 
 ;; Simplify prompts.
 (fset 'yes-or-no-p #'y-or-n-p)
