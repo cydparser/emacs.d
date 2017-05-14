@@ -35,6 +35,7 @@ This only affects new buffers."
 
 (use-package dante
   :defer t
+  :diminish " Δ"
   :bind (:map dante-mode-map
               ("C-c C-i" . dante-info)
               ("C-c C-r" . dante-auto-fix)
@@ -56,6 +57,7 @@ This only affects new buffers."
 
 (use-package haskell-mode
   :defer t
+  :diminish " λ"
   :bind (:map haskell-mode-map
               ("M-g i" . haskell-navigate-imports)
               ("M-g M-i" . haskell-navigate-imports))
@@ -95,7 +97,7 @@ This only affects new buffers."
 
 (use-package intero
   :defer t
-  :diminish " λ"
+  :diminish " η"
   :bind (:map intero-mode-map
               ("C-c r i" . init-intero-add-import)
               ("M-." . init-intero-goto-definition))
