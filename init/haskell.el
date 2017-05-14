@@ -61,6 +61,13 @@ This only affects new buffers."
               ("M-g M-i" . haskell-navigate-imports))
   :init
   (progn
+    (setq haskell-font-lock-symbols t
+          haskell-font-lock-symbols-alist
+          '(("\\" . "λ")
+            ("undefined" . "⊥")
+            ("pi" . "π")
+            ("." "∘" haskell-font-lock-dot-is-not-composition)
+            ("forall" . "∀")))
     (setq haskell-compile-cabal-build-alt-command
           "cd %s && stack clean && stack build --ghc-options -ferror-spans"
           haskell-compile-cabal-build-command
