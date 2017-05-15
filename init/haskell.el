@@ -100,11 +100,11 @@
 
 The string 'import ' will be inserted as well, if missing."
       (interactive)
-      (if (save-excursion (beginning-of-line) (looking-at "^import *"))
+      (beginning-of-line)
+      (if (looking-at "^import *")
           (progn
             (end-of-line)
             (just-one-space))
-        (beginning-of-line)
         (insert "import "))
       (let ((p (point)))
         (intero-get-repl-completions
