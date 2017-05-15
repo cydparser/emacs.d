@@ -54,7 +54,7 @@
 
     (defun init-haskell-change-backend (backend)
       "Change Haskell backend for future buffers."
-      (interactive (list (completing-read "Import: " '("dante" "intero" "") nil t)))
+      (interactive (list (completing-read "Import: " '("dante" "intero" " ") nil t)))
       (setq init-haskell-backend-function
             (and backend
                  (not (string-blank-p backend))
