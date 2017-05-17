@@ -98,10 +98,9 @@
                             (member (car pair) keep))
                           init-hasklig-prettify-symbols-alist))))
 
-         (setq prettify-symbols-alist init-hasklig-prettify-symbols-common-alist)
-
          (defun init-prettify-symbols ()
            (unless (derived-mode-p 'haskell-mode)
+             (setq prettify-symbols-alist init-hasklig-prettify-symbols-common-alist)
              (prettify-symbols-mode)))
 
          (add-hook 'prog-mode-hook #'init-prettify-symbols))
