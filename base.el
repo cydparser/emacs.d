@@ -162,6 +162,18 @@
 
 ;;; Packages
 
+(use-package async
+  :demand t
+  :init
+  (progn
+    (setq async-bytecomp-allowed-packages '(all))
+
+    (defun init-async ()
+      (async-bytecomp-package-mode 1)
+      (dired-async-mode 1))
+
+    (add-hook 'after-init-hook #'init-async)))
+
 (use-package exec-path-from-shell
   :defer t
   :if (memq window-system '(mac ns))
