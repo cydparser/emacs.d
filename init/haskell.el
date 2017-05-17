@@ -39,11 +39,7 @@
   (progn
     (setq haskell-font-lock-symbols t
           haskell-font-lock-symbols-alist
-          '(("\\" . "λ")
-            ("undefined" . "⊥")
-            ("pi" . "π")
-            ("." "∘" haskell-font-lock-dot-is-not-composition)
-            ("forall" . "∀")))
+          '(("." "∘" haskell-font-lock-dot-is-not-composition)))
     (setq haskell-compile-cabal-build-alt-command
           "cd %s && stack clean && stack build --ghc-options -ferror-spans"
           haskell-compile-cabal-build-command
@@ -51,6 +47,28 @@
           haskell-compile-command
           "stack ghc -- -Wall -ferror-spans -fforce-recomp -c %s")
     (defvar init-haskell-backend-function 'init-intero)
+
+    (defconst init-haskell-prettify-symbols-alist
+      (let ((exclude '("&&" "||")))
+        (append
+         '(("\\" . "λ")
+           ("&&" . "∧")
+           ("||" . "∨")
+           ("not" . "¬")
+           ("empty" . "∅")
+           ("forall" . "∀")
+           ("pi" . "π")
+           ("undefined" . "⊥")
+           ("`elem`" . "∈")
+           ("`notElem`" . "∉")
+           ("`member`" . "∈")
+           ("`notMember`" . "∉")
+           ("`isSubsetOf`" . "⊆")
+           ("`isProperSubsetOf`" . "⊂")
+           ("`intersection`" . "∩")
+           ("`union`" . "∪"))
+         (seq-remove (lambda (pair) (member (car pair) exclude))
+                     init-hasklig-prettify-symbols-alist))))
 
     (defun init-haskell-change-backend (backend)
       "Change Haskell backend for future buffers."
@@ -70,6 +88,8 @@
              (setq company-dabbrev-downcase nil
                    company-dabbrev-ignore-case :ignore-case)
              (set (make-local-variable 'projectile-tags-command) "codex update")
+             (setq prettify-symbols-alist init-haskell-prettify-symbols-alist)
+             (prettify-symbols-mode)
              (when (fboundp init-haskell-backend-function)
                (funcall init-haskell-backend-function)))))
 

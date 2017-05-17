@@ -67,6 +67,10 @@
         backup-directory-alist `((".*" . ,bdir))))
 
 (let ((fonts (font-family-list)))
+  (when (member "Symbola" fonts)
+    ;; Use Symbola for mathematical operators.
+    (set-fontset-font t '(#x2200 . #x22FF) "Symbola 14"))
+
   (cond ((member "Hasklig" fonts)
          (set-frame-font "Hasklig Light 14")
 
@@ -84,21 +88,21 @@
                        "/="  ":::" ">=>" "->>"  "<=>" "<=<" "<->"))))
 
          (defconst init-hasklig-prettify-symbols-common-alist
-           (let ((common '("&&" "==" "===" "=>" "->" ".." "..." "++" "<=>")))
+           (let ((keep '("&&" "||" "==" "===" "=>" "->" "<<" ">>" ">>>"
+                         ".." "..." "++" "<=>")))
              (append
-              '(("lambda" . "λ"))
+              '(("!=" . "	")
+                ("lambda" . "λ")
+                ("not" . "¬"))
               (seq-filter (lambda (pair)
-                            (member (car pair) common))
+                            (member (car pair) keep))
                           init-hasklig-prettify-symbols-alist))))
 
          (setq prettify-symbols-alist init-hasklig-prettify-symbols-common-alist)
 
          (defun init-prettify-symbols ()
-           (setq prettify-symbols-alist
-                 (cond ((derived-mode-p 'haskell-mode)
-                        init-hasklig-prettify-symbols-alist)
-                       (t init-hasklig-prettify-symbols-common-alist)))
-           (prettify-symbols-mode))
+           (unless (derived-mode-p 'haskell-mode)
+             (prettify-symbols-mode)))
 
          (add-hook 'prog-mode-hook #'init-prettify-symbols))
         ((member "Inconsolata" fonts)
