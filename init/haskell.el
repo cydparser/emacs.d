@@ -33,6 +33,7 @@
   :defer t
   :diminish (haskell-mode . " λ")
   :bind (:map haskell-mode-map
+              ("C-c C-," . init-haskell-format-imports)
               ("M-g i" . haskell-navigate-imports)
               ("M-g M-i" . haskell-navigate-imports))
   :init
