@@ -29,4 +29,5 @@ Source: http://stackoverflow.com/a/22116480/1231408"
   :defer t
   :after flyspell
   :bind (:map flyspell-mode-map
-              ("C-c r" . flyspell-correct-word-generic)))
+              ("C-." . flyspell-correct-word-generic)
+              ("C-c r s" . flyspell-correct-word-generic)))
