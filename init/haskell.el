@@ -78,6 +78,18 @@
                  (not (string-blank-p backend))
                  (intern (concat "init-" backend)))))
 
+    (defun init-haskell-format-imports ()
+      "Align and sort all imports."
+      (interactive)
+      (save-excursion
+        (goto-char (point-min))
+        (haskell-navigate-imports)
+        (haskell-mode-format-imports)
+
+        (while (progn (haskell-navigate-imports)
+                      (looking-at "^import "))
+          (haskell-sort-imports))))
+
     (defun init-haskell ()
       (cond ((and buffer-file-name
                   (string-match "^\\(/nix\\|.+/\\.\\(cabal\\|stack\\|stack-work\\)\\)/.+"
@@ -115,13 +127,13 @@
   :init (defalias 'init-intero 'intero-mode)
   :config
   (progn
-    (defun init-intero-insert-import ()
+    (defun init-intero-insert-import (callback)
       "Insert a module using completing read.
 
 The string 'import ' will be inserted as well, if missing."
-      (interactive)
+      (interactive '(nil))
       (beginning-of-line)
-      (if (looking-at "^import *")
+      (if (looking-at "^import ")
           (progn
             (end-of-line)
             (just-one-space))
@@ -132,7 +144,8 @@ The string 'import ' will be inserted as well, if missing."
          (lambda (modules)
            (save-excursion
              (goto-char p)
-             (insert (completing-read "Import: " modules)))))))
+             (insert (completing-read "Import: " modules))
+             (if callback (funcall callback)))))))
 
     (defun init-intero-add-import ()
       "Add an import, format imports, and keep current position."
@@ -140,8 +153,7 @@ The string 'import ' will be inserted as well, if missing."
       (save-excursion
         (haskell-navigate-imports)
         (open-line 1)
-        (init-intero-insert-import)
-        (haskell-mode-format-imports)))
+        (init-intero-insert-import #'init-haskell-format-imports)))
 
     (defun init-intero-goto-definition ()
       "Jump to the definition of the thing at point using Intero or etags."
