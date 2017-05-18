@@ -13,7 +13,11 @@
   :defer t
   :diminish ""
   :bind (("C-c z" . ivy-resume)
-         ("C-x b" . ivy-switch-buffer))
+         ("C-x b" . ivy-switch-buffer)
+         :map ivy-occur-mode-map
+         ("n" . ivy-occur-next-line)
+         ("p" . ivy-occur-previous-line)
+         ("C-o" . ivy-occur-press))
   :init
   (progn
     (setq ivy-initial-inputs-alist nil
