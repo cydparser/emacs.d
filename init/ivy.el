@@ -14,6 +14,9 @@
   :diminish ""
   :bind (("C-c z" . ivy-resume)
          ("C-x b" . ivy-switch-buffer)
+         :map ivy-minibuffer-map
+         ("C-o" . ivy-occur)
+         ("M-h" . hydra-ivy/body)
          :map ivy-occur-mode-map
          ("n" . ivy-occur-next-line)
          ("p" . ivy-occur-previous-line)
@@ -26,7 +29,13 @@
     (add-hook 'after-init-hook (lambda () (ivy-mode 1)))))
 
 (use-package ivy-hydra
-  :defer t)
+  :defer t
+  :config
+  (progn
+    (bind-keys
+     :map hydra-ivy/keymap
+     ("n" . ivy-next-line)
+     ("p" . ivy-previous-line))))
 
 (use-package swiper
   :defer t
