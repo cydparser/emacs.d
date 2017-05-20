@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;; gem install rubocop ruby-lint
 
 (use-package inf-ruby

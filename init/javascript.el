@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;; npm install -g coffeelint jshint
 
 (use-package js

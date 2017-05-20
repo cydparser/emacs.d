@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package nxml-mode
   :defer
   :ensure nil

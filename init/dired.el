@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package dired-x
   :defer t
   :ensure nil

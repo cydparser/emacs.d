@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package epa
   :defer t
   :ensure nil

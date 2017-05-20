@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package sh-script
   :defer t
   :init

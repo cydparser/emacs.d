@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;;; Initialize package
 
 (require 'package)

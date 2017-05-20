@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package counsel
   :defer t
   :bind (("C-M-y" . counsel-yank-pop)

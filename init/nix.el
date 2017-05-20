@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (defconst init-nixos (file-exists-p "/run/current-system/sw")
   "Indicates if on NixOS.")
 

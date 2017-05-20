@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package popup
   :defer t
   :ensure nil

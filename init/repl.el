@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package repl-toggle
   :defer t
   :diminish ""

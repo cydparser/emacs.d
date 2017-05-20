@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;; brew install the_silver_searcher
 
 (use-package dumb-jump

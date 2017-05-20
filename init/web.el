@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 ;; npm install -g csslint jsonlint
 
 (use-package css-mode

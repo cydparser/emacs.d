@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package aggressive-indent
   :defer t)
 

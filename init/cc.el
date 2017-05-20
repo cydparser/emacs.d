@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package cc-mode
   :defer t
   :init

@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package demo-it
   :defer t)
 

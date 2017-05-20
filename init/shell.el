@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package shell
   :defer t
   :ensure nil

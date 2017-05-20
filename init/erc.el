@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package erc
   :defer t
   :commands (init-erc-freenode)

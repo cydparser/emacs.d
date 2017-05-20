@@ -1,3 +1,5 @@
+;;; -*- lexical-binding: t -*-
+
 (use-package widget-edit
   :defer t
   :ensure nil
