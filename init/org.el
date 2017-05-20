@@ -7,18 +7,7 @@
     (setq org-hide-emphasis-markers t
           org-log-done 'time
           org-src-fontify-natively t
-          org-startup-truncated nil)
-
-    (let ((backends '(company-capf
-                      company-files
-                      company-dabbrev
-                      company-etags
-                      company-ispell)))
-      (defun init-org ()
-        (flyspell-mode)
-        (set (make-local-variable 'company-backends) backends)))
-
-    (add-hook 'org-mode-hook #'init-org))
+          org-startup-truncated nil))
   :config
   (progn
     (progn
