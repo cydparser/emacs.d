@@ -9,6 +9,7 @@
          ("C-h f" . counsel-describe-function)
          ("C-h v" . counsel-describe-variable)
          ("C-x C-f" . counsel-find-file)
+         ("C-x r b" . counsel-bookmark)
          ("M-x" . counsel-M-x)))
 
 (use-package ivy
