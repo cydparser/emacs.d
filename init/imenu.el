@@ -2,4 +2,4 @@
 
 (use-package imenu-anywhere
   :defer t
-  :bind ("C-." . ivy-imenu-anywhere))
+  :bind ("C-c g m" . ivy-imenu-anywhere))
