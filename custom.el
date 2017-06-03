@@ -9,7 +9,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (zenburn-theme yaml-mode which-key web-mode use-package twittering-mode systemd solarized-theme sdcv scss-mode ruby-block repl-toggle rainbow-mode rainbow-delimiters projectile powershell org-tree-slide org-bullets nodejs-repl nix-mode multi-term markdown-mode magit ivy-hydra intero inf-ruby imenu-anywhere hlint-refactor haskell-snippets haml-mode git-link git-gutter flyspell-correct-ivy fancy-narrow expand-region exec-path-from-shell erc-services erc-hl-nicks elisp-slime-nav dumb-jump dockerfile-mode docker demo-it dante counsel company-quickhelp company-nixos-options company-cabal command-log-mode coffee-mode cmm-mode avy auctex aggressive-indent)))
+    (zenburn-theme yaml-mode which-key web-mode use-package twittering-mode systemd solarized-theme sdcv scss-mode ruby-block repl-toggle rainbow-mode rainbow-delimiters projectile powershell paxedit paredit org-tree-slide org-bullets nodejs-repl nix-mode multi-term markdown-mode magit ivy-hydra intero inf-ruby imenu-anywhere hlint-refactor haskell-snippets haml-mode git-link git-gutter flyspell-correct-ivy fancy-narrow expand-region exec-path-from-shell erc-services erc-hl-nicks elisp-slime-nav dumb-jump dockerfile-mode docker demo-it dante counsel company-quickhelp company-nixos-options company-cabal command-log-mode coffee-mode cmm-mode avy auctex aggressive-indent)))
  '(ruby-align-to-stmt-keywords t)
  '(safe-local-variable-values
    (quote
