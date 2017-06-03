@@ -98,8 +98,8 @@
              (eldoc-mode -1)
              (flycheck-mode -1))
             (t
-             (setq company-dabbrev-downcase nil
-                   company-dabbrev-ignore-case :ignore-case)
+             (setq-local company-dabbrev-downcase nil)
+             (setq-local company-dabbrev-ignore-case :ignore-case)
              (set (make-local-variable 'projectile-tags-command) "codex update")
              (setq prettify-symbols-alist init-haskell-prettify-symbols-alist)
              (prettify-symbols-mode)
