@@ -20,5 +20,18 @@
   :init
   (show-paren-mode))
 
-(use-package paxedit
-  :defer t)
+(use-package smartparens
+  :defer t
+  :diminish " $"
+  :bind (:map smartparens-mode-map
+              ("M-N" . sp-next-sexp)
+              ("M-P" . sp-previous-sexp))
+  :bind (:map smartparens-strict-mode-map
+              (")" . sp-up-sexp))
+  :init
+  (progn
+    (setq sp-base-key-bindings 'paredit)
+    (add-hook 'prog-mode-hook #'turn-on-smartparens-strict-mode))
+  :config
+  (progn
+    (require 'smartparens-config)))

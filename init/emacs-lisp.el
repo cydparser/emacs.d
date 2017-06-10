@@ -17,9 +17,6 @@
 (use-package lisp-mode
   :defer t
   :ensure nil
-  :bind (:map emacs-lisp-mode-map
-              (";" . paredit-semicolon)
-              ("M-;" . paredit-comment-dwim))
   :init
   (progn
     (defun init-emacs-lisp-mode ()
@@ -27,7 +24,6 @@
       (add-to-list (make-local-variable 'company-backends) #'company-elisp)
       (unless (init-special-buffer-p)
         (aggressive-indent-mode)
-        (paredit-mode)
         (rainbow-delimiters-mode)))
 
     (add-hook 'emacs-lisp-mode-hook #'init-emacs-lisp-mode)))
