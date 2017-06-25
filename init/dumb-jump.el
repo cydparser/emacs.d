@@ -1,7 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-;; brew install the_silver_searcher
-
 (use-package dumb-jump
   :defer t
   :bind (("C-c j j" . dumb-jump-go)
