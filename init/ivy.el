@@ -10,7 +10,13 @@
          ("C-h v" . counsel-describe-variable)
          ("C-x C-f" . counsel-find-file)
          ("C-x r b" . counsel-bookmark)
-         ("M-x" . counsel-M-x)))
+         ("M-x" . counsel-M-x))
+  :init
+  (progn
+    (with-eval-after-load "projectile"
+      (bind-keys :map projectile-command-map
+                 ("s g" . counsel-git-grep)
+                 ("s r" . counsel-rg)))))
 
 (use-package ivy
   :defer t
