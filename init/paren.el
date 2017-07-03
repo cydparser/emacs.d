@@ -16,9 +16,8 @@
     (unbind-key "\\" paredit-mode-map)))
 
 (use-package paren
-  :defer t
-  :init
-  (show-paren-mode))
+  :ensure nil
+  :init (add-hook 'after-init-hook #'show-paren-mode))
 
 (use-package smartparens
   :defer t
@@ -34,4 +33,7 @@
     (add-hook 'prog-mode-hook #'turn-on-smartparens-strict-mode))
   :config
   (progn
-    (require 'smartparens-config)))
+    (require 'smartparens-config)
+    (with-eval-after-load "smartparens-haskell"
+      (sp-with-modes '(haskell-mode haskell-interactive-mode)
+        (sp-local-pair "'" nil :actions nil)))))
