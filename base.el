@@ -107,6 +107,9 @@
         ((member "Inconsolata" fonts)
          (set-frame-font "Inconsolata 15"))))
 
+(unless (boundp 'init-hasklig-prettify-symbols-alist)
+  (defconst init-hasklig-prettify-symbols-alist nil))
+
 ;; Simplify prompts.
 (fset 'yes-or-no-p #'y-or-n-p)
 
