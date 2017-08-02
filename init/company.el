@@ -11,6 +11,7 @@
                              (company-dabbrev-code company-etags company-keywords)
                              company-dabbrev))
     (setq company-idle-delay 0.3)
+    (setq-default company-dabbrev-downcase nil)
     (add-hook 'after-init-hook #'global-company-mode)))
 
 (use-package company-quickhelp
