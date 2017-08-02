@@ -30,6 +30,7 @@
   :init
   (progn
     (setq sp-base-key-bindings 'paredit)
+    (add-hook 'text-mode-hook #'turn-on-smartparens-mode)
     (add-hook 'prog-mode-hook #'turn-on-smartparens-strict-mode))
   :config
   (progn
