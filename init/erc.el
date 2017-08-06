@@ -7,7 +7,8 @@
   :init
   (progn
     (setq erc-hide-list '("JOIN" "MODE" "PART" "QUIT")
-          erc-track-enable-keybindings nil)
+          erc-track-enable-keybindings nil
+          erc-track-when-inactive t)
 
     (let ((ca (init-xdg-config "ssl/local-ca.pem"))
           (cert (init-xdg-config "irc/local.pem")))
@@ -21,7 +22,8 @@
                                 "gnutls-cli --x509cafile %t -p %p %h"))))
 
     (defun init-erc-mode ()
-      (erc-spelling-mode 1))
+      (erc-spelling-mode 1)
+      (erc-track-mode))
 
     (add-hook 'erc-mode-hook #'init-erc-mode))
   :config
