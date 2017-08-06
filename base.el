@@ -123,8 +123,6 @@
       kill-buffer-query-functions (remq 'process-kill-buffer-query-function kill-buffer-query-functions)
       ring-bell-function #'ignore)
 
-(diminish 'subword-mode "")
-
 ;; Prevent accidental closure.
 (setq confirm-kill-emacs #'y-or-n-p)
 
@@ -161,6 +159,7 @@
 (bind-key "M-o" #'other-window)
 
 (global-subword-mode 1)
+(diminish 'subword-mode "")
 
 ;;; Packages
 

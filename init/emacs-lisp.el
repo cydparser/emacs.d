@@ -1,7 +1,8 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package aggressive-indent
-  :defer t)
+  :defer t
+  :diminish "⃕")
 
 (use-package elisp-slime-nav
   :defer t

@@ -1,7 +1,8 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package rainbow-mode
-  :defer t)
+  :defer t
+  :diminish (rainbow-mode . "🌈"))
 
 (use-package zenburn-theme
   :demand
