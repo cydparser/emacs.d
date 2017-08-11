@@ -14,6 +14,7 @@
   :defer t
   :bind (:map flyspell-mode-map
               ("C-M-." . init-flyspell-save-word))
+  :diminish "_"
   :config
   (progn
     (defun init-flyspell-save-word ()
