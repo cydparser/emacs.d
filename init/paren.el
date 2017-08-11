@@ -22,11 +22,12 @@
 (use-package smartparens
   :defer t
   :diminish " $"
-  :bind (:map smartparens-mode-map
-              ("M-N" . sp-next-sexp)
-              ("M-P" . sp-previous-sexp))
-  :bind (:map smartparens-strict-mode-map
-              (")" . sp-up-sexp))
+  :bind (("C-w" . init-sp-kill-region-or-backward-word)
+         :map smartparens-mode-map
+         ("M-N" . sp-next-sexp)
+         ("M-P" . sp-previous-sexp)
+         :map smartparens-strict-mode-map
+         (")" . sp-up-sexp))
   :init
   (progn
     (setq sp-base-key-bindings 'paredit)
@@ -35,6 +36,14 @@
   :config
   (progn
     (require 'smartparens-config)
+
+    (defun init-sp-kill-region-or-backward-word (arg)
+      "Kill selected region or backward word."
+      (interactive "p")
+      (if (region-active-p)
+          (sp-kill-region (mark) (point))
+        (sp-backward-kill-word arg)))
+
     (with-eval-after-load "smartparens-haskell"
       (sp-with-modes '(haskell-mode haskell-interactive-mode)
         (sp-local-pair "'" nil :actions nil)))))
