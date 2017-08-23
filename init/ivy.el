@@ -18,6 +18,13 @@
                  ("s g" . counsel-git-grep)
                  ("s r" . counsel-rg)))))
 
+(use-package counsel-projectile
+  :defer t
+  :init
+  (progn
+    (with-eval-after-load "projectile"
+      (counsel-projectile-on))))
+
 (use-package ivy
   :defer t
   :diminish ""
