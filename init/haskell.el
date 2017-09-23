@@ -31,8 +31,8 @@
 
 (use-package haskell-mode
   :defer t
-  :diminish (haskell-mode . " λ")
-  :diminish (literate-haskell-mode . " ƛ")
+  :diminish ((haskell-collapse-mode . " …")
+             (interactive-haskell-mode . " λ"))
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
               ("C-c r i" . init-haskell-format-imports)
