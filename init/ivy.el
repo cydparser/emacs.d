@@ -32,7 +32,7 @@
          ("C-x b" . ivy-switch-buffer)
          :map ivy-minibuffer-map
          ("C-o" . ivy-occur)
-         ("C-w" . ivy-backward-delete-char)
+         ("C-w" . ivy-backward-kill-word)
          ("M-h" . hydra-ivy/body)
          :map ivy-occur-mode-map
          ("n" . ivy-occur-next-line)
