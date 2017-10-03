@@ -24,6 +24,17 @@
   :init (defalias 'init-dante 'dante-mode)
   :config
   (progn
+    (defun init-dante-change-target (target)
+      "Change GHCi target to TARGET and restart, if changed."
+      (interactive (list (completing-read "Choose target: "
+                                          (haskell-cabal-enum-targets 'ghci)
+                                          nil nil nil
+                                          'init-dante-cabal-targets-history)))
+      (unless (or (string-equal target dante-target)
+                  (and (null dante-target) (string-empty-p target) ))
+        (setq dante-target (or (and (string-empty-p target) nil) target))
+        (dante-restart)))
+
     (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
     (unbind-key "C-c ." dante-mode-map)
     (unbind-key "C-c ," dante-mode-map)
@@ -45,28 +56,22 @@
           haskell-font-lock-symbols-alist
           '(("." "∘" haskell-font-lock-dot-is-not-composition))
           haskell-process-auto-import-loaded-modules t)
-    ;; TODO: Try out
-    ;; * C-j multiline
-    ;; * haskell-menu
-    ;; * C-`
-    ;; * haskell-session-change-target
-    ;; * haskell-interactive-bring
     (let* ((opt-flags '("-fdefer-type-errors"
                         "-ferror-spans"
-                        "-fexternal-interpreter"
-                        "-prof"))
+                        "-fexternal-interpreter"))
            (exts '("NamedWildCards"
                    "PartialTypeSignatures"))
            (ext-flags (seq-map (lambda (s) (format "-X%s" s)) exts))
            (ghc-opts (list "--ghc-options"
-                           (format "%s %s" (string-join opt-flags " ")
+                           (format "'%s %s'" (string-join opt-flags " ")
                                    (string-join ext-flags " ")))))
-      (setq flycheck-ghc-args opt-flags
+      (setq flycheck-haskell-ghc-executable "nix-shell"
+            flycheck-ghc-args `("--run" "ghc" ,@(seq-difference opt-flags '("-fexternal-interpreter"))) ;; '("--run" "ghc" "-fdefer-type-errors" "-ferror-spans")
             flycheck-ghc-language-extensions exts
             haskell-process-args-ghci (seq-concatenate 'list opt-flags ext-flags)
             haskell-process-args-cabal-repl ghc-opts
             haskell-process-args-cabal-new-repl ghc-opts
-            haskell-process-args-stack-ghci `("--no-build" "--no-load" ,ghc-opts)))
+            haskell-process-args-stack-ghci `("--no-build" "--no-load" ,@ghc-opts)))
 
     (defvar init-haskell-backend-function 'init-interactive-haskell)
     (defalias 'init-interactive-haskell 'interactive-haskell-mode)
@@ -179,7 +184,11 @@
       "Reload file and switch to the REPL."
       (interactive)
       (haskell-process-load-or-reload)
-      (haskell-interactive-switch))))
+      (haskell-interactive-switch))
+
+    (defun init-haskell-process-wrapper (args)
+      "Executes ARGS in nix-shell."
+      (list "nix-shell" "--command" (string-join args " ")))))
 
 (use-package haskell-snippets
   :defer t)
