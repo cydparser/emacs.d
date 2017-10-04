@@ -14,7 +14,7 @@
  '(safe-local-variable-values
    (quote
     ((intero-stack-executable . "intero-nix-shim")
-     (flycheck-disabled-checkers emacs-lisp-checkdoc))))
+     (flycheck-disabled-checkers haskell-ghc haskell-stack-ghc))))
  '(scroll-bar-mode nil)
  '(smerge-command-prefix "m")
  '(tool-bar-mode nil))

@@ -52,10 +52,13 @@
   :commands (init-haskell-change-backend)
   :init
   (progn
+    ;; Either add "nix: True" to ~/.cabal/config or uncomment the next line.
+    ;; (setq haskell-process-wrapper-function 'init-haskell-process-wrapper)
     (setq haskell-font-lock-symbols t
           haskell-font-lock-symbols-alist
           '(("." "∘" haskell-font-lock-dot-is-not-composition))
           haskell-process-auto-import-loaded-modules t)
+
     (let* ((opt-flags '("-fdefer-type-errors"
                         "-ferror-spans"
                         "-fexternal-interpreter"))
@@ -63,12 +66,9 @@
                    "PartialTypeSignatures"))
            (ext-flags (seq-map (lambda (s) (format "-X%s" s)) exts))
            (ghc-opts (list "--ghc-options"
-                           (format "'%s %s'" (string-join opt-flags " ")
+                           (concat (string-join opt-flags " ") " "
                                    (string-join ext-flags " ")))))
-      (setq flycheck-haskell-ghc-executable "nix-shell"
-            flycheck-ghc-args `("--run" "ghc" ,@(seq-difference opt-flags '("-fexternal-interpreter"))) ;; '("--run" "ghc" "-fdefer-type-errors" "-ferror-spans")
-            flycheck-ghc-language-extensions exts
-            haskell-process-args-ghci (seq-concatenate 'list opt-flags ext-flags)
+      (setq haskell-process-args-ghci (seq-concatenate 'list opt-flags ext-flags)
             haskell-process-args-cabal-repl ghc-opts
             haskell-process-args-cabal-new-repl ghc-opts
             haskell-process-args-stack-ghci `("--no-build" "--no-load" ,@ghc-opts)))
