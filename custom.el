@@ -6,15 +6,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
+ '(flycheck-disabled-checkers (quote (haskell-ghc haskell-stack-ghc)))
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
     (zenburn-theme yaml-mode which-key web-mode use-package twittering-mode systemd spaceline solarized-theme smartparens sdcv scss-mode ruby-block repl-toggle rainbow-mode rainbow-delimiters projectile powershell paredit org-tree-slide org-bullets nodejs-repl nix-mode multi-term markdown-mode magit ivy-hydra intero inf-ruby imenu-anywhere iedit hlint-refactor haskell-snippets haml-mode git-link git-gutter flyspell-correct-ivy fancy-narrow fancy-battery expand-region exec-path-from-shell erc-services erc-hl-nicks elisp-slime-nav dumb-jump dockerfile-mode docker demo-it dante counsel-projectile counsel company-quickhelp company-nixos-options company-cabal command-log-mode coffee-mode cmm-mode avy auctex aggressive-indent)))
  '(ruby-align-to-stmt-keywords t)
- '(safe-local-variable-values
-   (quote
-    ((intero-stack-executable . "intero-nix-shim")
-     (flycheck-disabled-checkers haskell-ghc haskell-stack-ghc))))
+ '(safe-local-variable-values (quote ((intero-stack-executable . "intero-nix-shim"))))
  '(scroll-bar-mode nil)
  '(smerge-command-prefix "m")
  '(tool-bar-mode nil))

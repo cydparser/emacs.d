@@ -21,9 +21,12 @@
               ("C-c C-i" . dante-info)
               ("C-c C-r" . dante-auto-fix)
               ("C-c C-t" . dante-type-at))
-  :init (defalias 'init-dante 'dante-mode)
+  :commands (init-dante)
   :config
   (progn
+    (defun init-dante ()
+      (dante-mode))
+
     (defun init-dante-change-target (target)
       "Change GHCi target to TARGET and restart, if changed."
       (interactive (list (completing-read "Choose target: "
@@ -47,9 +50,10 @@
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
               ("C-c r i" . init-haskell-format-imports)
-              ("M-g i" . haskell-navigate-imports)
-              ("M-g M-i" . haskell-navigate-imports))
-  :commands (init-haskell-change-backend)
+              ("M-." . init-haskell-goto-definition)
+              ("M-g M-i" . haskell-navigate-imports)
+              ("M-g i" . haskell-navigate-imports))
+  :commands (init-haskell-change-backend init-interactive-haskell)
   :init
   (progn
     ;; Either add "nix: True" to ~/.cabal/config or uncomment the next line.
@@ -68,13 +72,14 @@
            (ghc-opts (list "--ghc-options"
                            (concat (string-join opt-flags " ") " "
                                    (string-join ext-flags " ")))))
-      (setq haskell-process-args-ghci (seq-concatenate 'list opt-flags ext-flags)
+      (setq flycheck-hlint-language-extensions exts
+            haskell-process-args-ghci (seq-concatenate 'list opt-flags ext-flags)
             haskell-process-args-cabal-repl ghc-opts
             haskell-process-args-cabal-new-repl ghc-opts
             haskell-process-args-stack-ghci `("--no-build" "--no-load" ,@ghc-opts)))
 
     (defvar init-haskell-backend-function 'init-interactive-haskell)
-    (defalias 'init-interactive-haskell 'interactive-haskell-mode)
+    (defvar-local init-haskell-goto-definition-function nil)
 
     (defconst init-haskell-prettify-symbols-alist
       (let ((exclude '("&&" "||")))
@@ -126,13 +131,18 @@
     (unbind-key "C-c C-l" haskell-mode-map)
     (unbind-key "C-c C-t" haskell-mode-map)
     (unbind-key "C-c C-v" haskell-mode-map)
+    (unbind-key "M-." interactive-haskell-mode-map)
 
     (bind-keys :map interactive-haskell-mode-map
                ("C-c C-t" . haskell-mode-show-type-at)
                ("C-c r t" . init-haskell-insert-type-sig)
-               ("M-." . haskell-mode-goto-loc) ;; TODO: test fallback to tags
                ("M-n" . init-haskell-goto-next-error)
                ("M-p" . init-haskell-goto-previous-error))
+
+    (defun init-interactive-haskell ()
+      ;; TODO haskell-mode-goto-loc always returns nil
+      (setq-local init-haskell-goto-definition-function #'haskell-mode-goto-loc)
+      (interactive-haskell-mode))
 
     (defun init-haskell-change-backend (backend)
       "Change Haskell backend for future buffers."
@@ -145,6 +155,14 @@
                  (not (string-blank-p backend))
                  (intern (concat "init-" backend)))))
 
+    (defun init-haskell-goto-definition ()
+      "Jump to the definition of the thing at point using backend or etags."
+      (interactive)
+      (let (goto-def init-haskell-goto-definition-function)
+        (or (and (fboundp goto-def) (funcall goto-def))
+            (xref-find-definitions (xref-backend-identifier-at-point
+                                    (xref-find-backend))))))
+
     (defun init-haskell-goto-next-error ()
       "Go to the next Haskell or flycheck error."
       (interactive)
@@ -152,7 +170,7 @@
           (haskell-goto-next-error)
         (flycheck-next-error)))
 
-    (defun init-haskell-goto-prev-error ()
+    (defun init-haskell-goto-previous-error ()
       "Go to the previous Haskell or flycheck error."
       (interactive)
       (if (init--haskell-check-overlays-p)
@@ -202,11 +220,14 @@
   :defer t
   :diminish " η"
   :bind (:map intero-mode-map
-              ("C-c r i" . init-intero-add-import)
-              ("M-." . init-intero-goto-definition))
-  :init (defalias 'init-intero 'intero-mode)
+              ("C-c r i" . init-intero-add-import))
+  :commands (init-intero)
   :config
   (progn
+    (defun init-intero ()
+      (setq-local init-haskell-goto-definition-function #'intero-goto-definition)
+      (intero-mode))
+
     (defun init-intero-insert-import (callback)
       "Insert a module using completing read.
 
@@ -234,12 +255,5 @@ The string 'import ' will be inserted as well, if missing."
         (haskell-navigate-imports)
         (open-line 1)
         (init-intero-insert-import #'init-haskell-format-imports)))
-
-    (defun init-intero-goto-definition ()
-      "Jump to the definition of the thing at point using Intero or etags."
-      (interactive)
-      (or (intero-goto-definition)
-          (xref-find-definitions (xref-backend-identifier-at-point
-                                  (xref-find-backend)))))
 
     (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
