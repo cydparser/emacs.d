@@ -148,6 +148,8 @@
 (defalias 'sb #'speedbar)
 (defalias 'sl #'sort-lines)
 
+(define-key input-decode-map [(control ?I)] (kbd "<backtab>"))
+
 (bind-key "C-c C-SPC" #'delete-trailing-whitespace)
 (bind-key "C-h C-f" #'find-function-at-point)
 (bind-key "C-h C-k" #'find-function-on-key)
