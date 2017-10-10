@@ -4,7 +4,9 @@
   :defer t
   :init
   (progn
-    (setq org-hide-emphasis-markers t
+    (setq org-adapt-indentation nil
+          org-hide-emphasis-markers t
+          org-list-description-max-indent 5
           org-log-done 'time
           org-src-fontify-natively t
           org-src-strip-leading-and-trailing-blank-lines t
