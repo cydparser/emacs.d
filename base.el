@@ -26,6 +26,18 @@
       (kill-region (mark) (point) 'region)
     (backward-kill-word arg)))
 
+(defun init-sexp-downcase ()
+  "Convert the sexp to lower case."
+  (interactive)
+  (mark-sexp)
+  (downcase-region (region-beginning) (region-end)))
+
+(defun init-sexp-upcase ()
+  "Convert the sexp to upper case."
+  (interactive)
+  (mark-sexp)
+  (upcase-region (region-beginning) (region-end)))
+
 (defun init-special-buffer-p ()
   "Checks if current buffer is special."
   (string-prefix-p "*" (buffer-name)))
@@ -158,7 +170,9 @@
 (bind-key "C-x C-b" #'ibuffer)
 (bind-key "C-x C-k" #'init-kill-buffer-current)
 (bind-key "M-/" #'hippie-expand)
+(bind-key "M-L" #'init-sexp-downcase)
 (bind-key "M-R" #'repeat)
+(bind-key "M-U" #'init-sexp-upcase)
 (bind-key "M-o" #'other-window)
 
 (global-subword-mode 1)
