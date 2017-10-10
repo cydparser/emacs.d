@@ -15,3 +15,6 @@
 
 (use-package nix-mode
   :defer t)
+
+(use-package nix-sandbox
+  :defer t)
