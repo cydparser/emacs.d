@@ -158,6 +158,7 @@
 (bind-key "C-x C-b" #'ibuffer)
 (bind-key "C-x C-k" #'init-kill-buffer-current)
 (bind-key "M-/" #'hippie-expand)
+(bind-key "M-R" #'repeat)
 (bind-key "M-o" #'other-window)
 
 (global-subword-mode 1)
