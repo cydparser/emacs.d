@@ -26,16 +26,18 @@
       (kill-region (mark) (point) 'region)
     (backward-kill-word arg)))
 
-(defun init-sexp-downcase ()
-  "Convert the sexp to lower case."
-  (interactive)
-  (mark-sexp)
+(defun init-sexp-downcase (&optional arg)
+  "Convert the sexp to lower case.
+ARG determines the direction and number of sexps."
+  (interactive "*P")
+  (mark-sexp arg)
   (downcase-region (region-beginning) (region-end)))
 
-(defun init-sexp-upcase ()
-  "Convert the sexp to upper case."
-  (interactive)
-  (mark-sexp)
+(defun init-sexp-upcase (&optional arg)
+  "Convert the sexp to upper case.
+ARG determines the direction and number of sexps."
+  (interactive "*P")
+  (mark-sexp arg)
   (upcase-region (region-beginning) (region-end)))
 
 (defun init-special-buffer-p ()
