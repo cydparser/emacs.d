@@ -25,6 +25,8 @@
   :config
   (progn
     (defun init-dante ()
+      (setq-local haskell-process-show-overlays nil)
+      (interactive-haskell-mode)
       (dante-mode))
 
     (defun init-dante-change-target (target)
@@ -57,7 +59,7 @@
   :init
   (progn
     ;; Either add "nix: True" to ~/.cabal/config or uncomment the next line.
-    ;; (setq haskell-process-wrapper-function 'init-haskell-process-wrapper)
+    (setq haskell-process-wrapper-function 'init-haskell-process-wrapper)
     (setq haskell-font-lock-symbols t
           haskell-font-lock-symbols-alist
           '(("." "∘" haskell-font-lock-dot-is-not-composition))
@@ -78,7 +80,7 @@
             haskell-process-args-cabal-new-repl ghc-opts
             haskell-process-args-stack-ghci `("--no-build" "--no-load" ,@ghc-opts)))
 
-    (defvar init-haskell-backend-function 'init-interactive-haskell)
+    (defvar init-haskell-backend-function 'init-dante)
     (defvar-local init-haskell-goto-definition-function nil)
 
     (defconst init-haskell-prettify-symbols-alist
@@ -178,8 +180,9 @@
         (flycheck-previous-error)))
 
     (defun init--haskell-check-overlays-p ()
-      (car (haskell-check-filter-overlays
-            (overlays-in (point-min) (point-max)))))
+      (and haskell-process-show-overlays
+           (car (haskell-check-filter-overlays
+                 (overlays-in (point-min) (point-max))))))
 
     (defun init-haskell-format-imports ()
       "Align and sort all imports."
