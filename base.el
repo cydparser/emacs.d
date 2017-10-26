@@ -14,6 +14,17 @@
   (or (getenv "$XDG_DATA_HOME") (expand-file-name "~/.local/share"))
   "XDG data home directory.")
 
+(defun init-delete-excess-whitespace (&optional n)
+  "Deletes excess spaces and newlines.
+When on an non-empty line, delete one or N spaces (see
+`just-one-space')."
+  (interactive "*p")
+  (if (save-excursion
+        (beginning-of-line)
+        (looking-at "[ \t]*$"))
+      (delete-blank-lines)
+    (just-one-space n)))
+
 (defun init-kill-buffer-current ()
   "Kill the current buffer."
   (interactive)
@@ -174,6 +185,7 @@ ARG determines the direction and number of sexps."
 (bind-key "M-/" #'hippie-expand)
 (bind-key "M-L" #'init-sexp-downcase)
 (bind-key "M-R" #'repeat)
+(bind-key "M-SPC" #'init-delete-excess-whitespace)
 (bind-key "M-U" #'init-sexp-upcase)
 (bind-key "M-o" #'other-window)
 
