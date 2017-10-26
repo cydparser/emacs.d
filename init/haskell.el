@@ -206,7 +206,8 @@
 
     (defun init-haskell-process-wrapper (args)
       "Executes ARGS in nix-shell."
-      (list "nix-shell" "--command" (string-join args " ")))))
+      (list "nix-shell" "--command"
+            (string-join (mapcar (lambda (a) (concat "'" a "'")) args) " ")))))
 
 (use-package haskell-snippets
   :defer t)
