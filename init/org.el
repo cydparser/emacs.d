@@ -24,4 +24,7 @@
   :defer t
   :init
   (progn
-    (add-hook 'org-mode-hook #'org-bullets-mode)))
+    (add-hook 'org-mode-hook #'org-bullets-mode))
+  :config
+  (progn
+    (setcdr org-bullets-bullet-map nil)))
