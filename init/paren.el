@@ -24,6 +24,7 @@
   :diminish " $"
   :bind (("C-w" . init-sp-kill-region-or-backward-word)
          :map smartparens-mode-map
+         ("M-J" . sp-join-sexp)
          ("M-N" . sp-next-sexp)
          ("M-P" . sp-previous-sexp)
          :map smartparens-strict-mode-map
