@@ -6,9 +6,14 @@
 
 (use-package zenburn-theme
   :demand
-  :init
+  :commands (init-load-theme-zenburn)
+  :init (add-hook 'after-init-hook 'init-load-theme-zenburn)
+  :config
   (progn
     (defun init-load-theme-zenburn ()
+      "Customize zenburn after calling `load-theme'.
+`load-theme' evaluates the contents of zenburn-theme.el each
+invocation rather than using `require', hence this hack."
       (interactive)
       (load-theme 'zenburn 'no-confirm)
       (zenburn-with-color-variables
@@ -26,6 +31,4 @@
          `(mode-line-inactive ((t (:foreground ,zenburn-blue-3 :background ,zenburn-bg-05 :box (:line-width -1 :style released-button)))))
          `(spaceline-modified ((t (:background ,zenburn-green+3 :foreground ,zenburn-bg-2 :inherit 'mode-line))))
          `(spaceline-read-only ((t (:background ,zenburn-orange :foreground ,zenburn-bg-2 :inherit 'mode-line))))
-         `(spaceline-unmodified ((t (:background ,zenburn-cyan :foreground ,zenburn-bg-2 :inherit 'mode-line)))))))
-
-    (add-hook 'after-init-hook #'init-load-theme-zenburn)))
+         `(spaceline-unmodified ((t (:background ,zenburn-cyan :foreground ,zenburn-bg-2 :inherit 'mode-line)))))))))
