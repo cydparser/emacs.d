@@ -11,7 +11,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (zenburn-theme yaml-mode which-key web-mode use-package twittering-mode systemd spaceline solarized-theme smartparens sdcv scss-mode ruby-block repl-toggle rainbow-mode rainbow-delimiters projectile powershell paredit org-tree-slide org-bullets nodejs-repl nix-sandbox nix-mode multi-term markdown-mode magit ivy-hydra intero inf-ruby imenu-anywhere iedit hlint-refactor haskell-snippets haml-mode git-link git-gutter flyspell-correct-ivy fancy-narrow fancy-battery expand-region exec-path-from-shell erc-services erc-hl-nicks elisp-slime-nav dumb-jump dockerfile-mode docker demo-it dante counsel-projectile counsel company-quickhelp company-nixos-options company-cabal command-log-mode coffee-mode cmm-mode avy auctex aggressive-indent)))
+    (zenburn-theme yaml-mode which-key web-mode use-package twittering-mode systemd spaceline smartparens sdcv scss-mode ruby-block repl-toggle rainbow-mode rainbow-delimiters projectile powershell poporg paredit outshine org-tree-slide org-bullets nodejs-repl nix-sandbox nix-mode navi-mode multi-term markdown-mode magit kaolin-themes ivy-hydra intero inf-ruby imenu-anywhere iedit hlint-refactor haskell-snippets haml-mode git-link git-gutter flyspell-correct-ivy fancy-narrow fancy-battery expand-region exec-path-from-shell erc-services erc-hl-nicks elisp-slime-nav dumb-jump dockerfile-mode docker demo-it dante counsel-projectile counsel company-quickhelp company-nixos-options company-cabal command-log-mode coffee-mode cmm-mode avy auctex aggressive-indent)))
  '(ruby-align-to-stmt-keywords t)
  '(safe-local-variable-values (quote ((intero-stack-executable . "intero-nix-shim"))))
  '(scroll-bar-mode nil)
