@@ -5,6 +5,7 @@
   :init
   (progn
     (setq org-adapt-indentation nil
+          org-ellipsis "…"
           org-hide-emphasis-markers t
           org-imenu-depth 3
           org-list-description-max-indent 5
