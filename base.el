@@ -76,9 +76,8 @@ ARG determines the direction and number of sexps."
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
-;; Add NixOS directories to load path.
-(dolist (path '("~/.nix-profile/share/emacs/site-lisp"
-                "/run/current-system/sw/share/emacs/site-lisp"))
+;; Add Nix-installed emacs package path.
+(let ((path (expand-file-name "~/.nix-profile/share/emacs/site-lisp/")))
   (init-when-file-exists path (add-to-list 'load-path)))
 
 ;; Store auto-saves and backups in emacs.d/var.
