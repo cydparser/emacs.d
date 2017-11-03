@@ -4,6 +4,7 @@
 
 (use-package outshine
   :defer t
+  :diminish (outline-minor-mode . " ✦")
   :init
   (progn
     (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
