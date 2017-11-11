@@ -35,13 +35,6 @@ Source: http://stackoverflow.com/a/22116480/1231408"
               ("C-." . flyspell-correct-word-generic)
               ("C-c r s" . flyspell-correct-word-generic)))
 
-(use-package tex-mode
-  :defer t
-  :ensure nil
-  :init
-  (progn
-    (add-hook 'tex-mode-hook #'prettify-symbols-mode)))
-
 (use-package text-mode
   :defer t
   :ensure nil
