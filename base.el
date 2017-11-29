@@ -200,8 +200,7 @@ ARG determines the direction and number of sexps."
     (setq async-bytecomp-allowed-packages '(all))
 
     (defun init-async ()
-      (async-bytecomp-package-mode 1)
-      (dired-async-mode 1))
+      (async-bytecomp-package-mode 1))
 
     (add-hook 'after-init-hook #'init-async)))
 
