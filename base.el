@@ -1,18 +1,8 @@
 ;;; -*- lexical-binding: t -*-
 
-;;; Utilities
+(require 'init-utils)
 
-(defconst init-var-directory
-  (expand-file-name "var" user-emacs-directory)
-  "Directory for various files created by Emacs.")
-
-(defconst init-xdg-config-home
-  (or (getenv "XDG_CONFIG_HOME") (expand-file-name "~/.config"))
-  "XDG config home directory.")
-
-(defconst init-xdg-data-home
-  (or (getenv "$XDG_DATA_HOME") (expand-file-name "~/.local/share"))
-  "XDG data home directory.")
+;;; Commands
 
 (defun init-delete-excess-whitespace (&optional n)
   "Deletes excess spaces and newlines.
@@ -51,34 +41,11 @@ ARG determines the direction and number of sexps."
   (mark-sexp arg)
   (upcase-region (region-beginning) (region-end)))
 
-(defun init-special-buffer-p ()
-  "Checks if current buffer is special."
-  (string-prefix-p "*" (buffer-name)))
-
-(defun init-xdg-config (path)
-  "Convert relative PATH to absolute using XDG config home for the parent directory."
-  (expand-file-name path init-xdg-config-home))
-
-(defun init-xdg-data (path)
-  "Convert relative PATH to absolute using XDG data home for the parent directory."
-  (expand-file-name path init-xdg-data-home))
-
-(defmacro init-when-file-exists (path sexp)
-  "Evaluates (append SEXP (PATH)) if file exists."
-  (declare (indent defun))
-  `(let ((file ,path))
-     (when (file-exists-p file)
-       (,@sexp file))))
-
 ;;; Global Configuration
 
 ;; Store customizations in a separate file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
-
-;; Add Nix-installed emacs package path.
-(let ((path (expand-file-name "~/.nix-profile/share/emacs/site-lisp/")))
-  (init-when-file-exists path (add-to-list 'load-path)))
 
 ;; Store auto-saves and backups in emacs.d/var.
 (let ((adir (expand-file-name "autosaves/" init-var-directory))

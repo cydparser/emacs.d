@@ -26,10 +26,19 @@
 
 ;;; Initialize Remaining
 
+;; Add lib/ to load path.
+(add-to-list 'load-path (expand-file-name "lib" user-emacs-directory))
+
+;; Add Nix-installed emacs package path.
+(let ((path (expand-file-name "~/.nix-profile/share/emacs/site-lisp/")))
+  (when (file-exists-p path)
+       (add-to-list 'load-path path)))
+
 (load (expand-file-name "base.el" user-emacs-directory))
 
 ;; Load all init/*.el files.
-(dolist (file (directory-files (expand-file-name "init" user-emacs-directory) :full "\\.el$"))
+(dolist (file (directory-files (expand-file-name "init" user-emacs-directory)
+                               :full "\\.el$"))
   (load file))
 
 ;; Summon the daemon.
