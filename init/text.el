@@ -17,6 +17,8 @@
   :diminish "_"
   :config
   (progn
+    (unbind-key "C-;" flyspell-mode-map)
+
     (defun init-flyspell-save-word ()
       "Add word at point to dictionary.
 Source: http://stackoverflow.com/a/22116480/1231408"
