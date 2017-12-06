@@ -8,3 +8,8 @@
     (defun init-dired-load ()
       (require 'dired-x))))
 
+(use-package treemacs)
+
+(use-package treemacs-projectile
+  :after projectile
+  :bind (("C-c g t" . treemacs-projectile-toggle)))
