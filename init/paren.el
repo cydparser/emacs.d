@@ -1,7 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package paredit
-  :defer t
   :bind (:map paredit-mode-map
               ("{" . paredit-open-curly)
               ("}" . paredit-close-curly))
@@ -17,10 +16,9 @@
 
 (use-package paren
   :ensure nil
-  :init (add-hook 'after-init-hook #'show-paren-mode))
+  :hook (after-init-hook . show-paren-mode))
 
 (use-package smartparens
-  :defer t
   :diminish " $"
   :bind (("C-w" . init-sp-kill-region-or-backward-word)
          :map smartparens-mode-map
@@ -29,12 +27,9 @@
          ("M-P" . sp-previous-sexp)
          :map smartparens-strict-mode-map
          (")" . sp-up-sexp))
-  :init
-  (progn
-    (setq sp-base-key-bindings 'paredit)
-    (add-hook 'text-mode-hook #'turn-on-smartparens-mode)
-    (add-hook 'org-mode-hook #'turn-on-smartparens-mode)
-    (add-hook 'prog-mode-hook #'turn-on-smartparens-strict-mode))
+  :hook (((org-mode-hook text-mode-hook) . turn-on-smartparens-mode)
+         (prog-mode-hook . turn-on-smartparens-strict-mode))
+  :init (setq sp-base-key-bindings 'paredit)
   :config
   (progn
     (require 'smartparens-config)

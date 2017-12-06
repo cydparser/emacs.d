@@ -1,7 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package sdcv
-  :defer t
   :bind (("C-c d" . init-define-word)
          :map sdcv-mode-map
          ("<RET>" . sdcv-search-pointer))

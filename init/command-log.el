@@ -1,7 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package command-log-mode
-  :defer t
   :diminish (command-log-mode . "log")
   :init
   (progn

@@ -1,7 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package org
-  :defer t
   :init
   (progn
     (setq org-adapt-indentation nil
@@ -23,10 +22,7 @@
          (sh . t))))))
 
 (use-package org-bullets
-  :defer t
-  :init
-  (progn
-    (add-hook 'org-mode-hook #'org-bullets-mode))
+  :hook (org-mode-hook . org-bullets-mode)
   :config
   (progn
     (setcdr org-bullets-bullet-map nil)))

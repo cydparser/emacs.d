@@ -3,10 +3,8 @@
 (use-package yasnippet
   :demand
   :diminish (yas-minor-mode . "")
-  :init
-  (progn
-    (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand)
-    (add-hook 'after-init-hook #'yas-global-mode))
+  :hook (after-init-hook . yas-global-mode)
+  :init (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand)
   :config
   (progn
     (defun init-yas-uncapitalize (cap)

@@ -1,11 +1,10 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package dired-x
-  :defer t
   :ensure nil
-  :init
+  :hook (dired-load-hook . init-dired-load)
+  :config
   (progn
     (defun init-dired-load ()
-      (require 'dired-x))
+      (require 'dired-x))))
 
-    (add-hook 'dired-load-hook #'init-dired-load)))

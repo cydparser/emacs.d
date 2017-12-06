@@ -161,21 +161,17 @@ ARG determines the direction and number of sexps."
 ;;; Packages
 
 (use-package async
-  :demand t
-  :init
-  (progn
-    (setq async-bytecomp-allowed-packages '(all))
-
-    (defun init-async ()
-      (async-bytecomp-package-mode 1))
-
-    (add-hook 'after-init-hook #'init-async)))
+  :demand
+  :hook (after-init-hook . async-bytecomp-package-mode)
+  :init (setq async-bytecomp-allowed-packages '(all)))
 
 (use-package exec-path-from-shell
-  :defer t
   :if (memq window-system '(mac ns))
   :init
   (progn
     (setq exec-path-from-shell-check-startup-files nil
           exec-path-from-shell-variables '("DICPATH" "PATH" "MANPATH"))
     (exec-path-from-shell-initialize)))
+
+(use-package hydra
+  :demand)

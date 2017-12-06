@@ -1,5 +1,4 @@
 (use-package iedit
-  :defer t
   :diminish "🙾"
   :bind (("C-;" . iedit-mode)
          :map esc-map

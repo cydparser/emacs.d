@@ -1,9 +1,11 @@
 ;;; -*- lexical-binding: t -*-
 
+(require 'init-utils)
+
 (use-package erc
-  :defer t
   :ensure nil
   :commands (init-erc-tls)
+  :hook (erc-mode-hook . init-erc-mode)
   :init
   (progn
     (setq erc-hide-list '("JOIN" "MODE" "PART" "QUIT")
@@ -19,21 +21,16 @@
         (setq tls-program (list (concat "openssl s_client -connect %h:%p"
                                         " -no_ssl2 -ign_eof"
                                         " -CAfile " ca " -cert " cert)
-                                "gnutls-cli --x509cafile %t -p %p %h"))))
-
+                                "gnutls-cli --x509cafile %t -p %p %h")))))
+  :config
+  (progn
     (defun init-erc-mode ()
       (erc-spelling-mode 1)
       (erc-track-mode))
 
-    (add-hook 'erc-mode-hook #'init-erc-mode))
-  :config
-  (progn
     (defun init-erc-tls (&optional server port)
       (interactive '("irc.freenode.net" 7000))
       (erc-tls :server server :port port))))
 
 (use-package erc-hl-nicks
-  :defer t
-  :init
-  (progn
-    (add-hook 'erc-mode-hook #'erc-hl-nicks-mode)))
+  :hook (erc-mode-hook . erc-hl-nicks-mode))

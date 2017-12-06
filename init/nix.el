@@ -4,17 +4,14 @@
   "Indicates if on NixOS.")
 
 (use-package company-nixos-options
-  :defer t
   :if init-nixos
-  :init
+  :hook (nix-mode-hook . init-company-nixos-options)
+  :config
   (progn
     (defun init-company-nixos-options ()
-      (add-to-list (make-local-variable 'company-backends) #'company-nixos-options))
+      (add-to-list (make-local-variable 'company-backends)
+                   #'company-nixos-options))))
 
-    (add-hook 'nix-mode-hook #'init-company-nixos-options)))
+(use-package nix-mode)
 
-(use-package nix-mode
-  :defer t)
-
-(use-package nix-sandbox
-  :defer t)
+(use-package nix-sandbox)

@@ -1,10 +1,8 @@
 ;;; -*- lexical-binding: t -*-
 
-(use-package auctex
-  :defer t)
+(use-package auctex)
 
 (use-package tex
-  :defer t
   :ensure nil
   :init
   (progn

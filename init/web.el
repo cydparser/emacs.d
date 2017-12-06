@@ -3,38 +3,29 @@
 ;; npm install -g csslint jsonlint
 
 (use-package css-mode
-  :defer t
   :ensure nil
-  :init
+  :hook (web-mode-hook . init-css)
+  :config
   (progn
     (defun init-css ()
-      (add-to-list (make-local-variable 'company-backends) #'company-css))
+      (add-to-list (make-local-variable 'company-backends) #'company-css))))
 
-    (add-hook 'web-mode-hook #'init-css)))
+(use-package haml-mode)
 
-(use-package haml-mode
-  :defer t)
-
-(use-package json-mode
-  :defer t)
+(use-package json-mode)
 
 (use-package scss-mode
-  :defer t
-  :init
+  :hook (web-mode-hook . init-scss)
+  :config
   (progn
     (defun init-scss ()
-      (add-to-list (make-local-variable 'company-backends) #'company-css))
-
-    (add-hook 'web-mode-hook #'init-scss)))
-
+      (add-to-list (make-local-variable 'company-backends) #'company-css))))
 
 (use-package web-mode
-  :defer t
   :mode (("\\.html\\'" . web-mode)
          ("\\.html\\.erb\\'" . web-mode))
-  :init
+  :hook (web-mode-hook . init-web)
+  :config
   (progn
     (defun init-web ()
-      (add-to-list (make-local-variable 'company-backends) #'company-nxml))
-
-    (add-hook 'web-mode-hook #'init-web)))
+      (add-to-list (make-local-variable 'company-backends) #'company-nxml))))

@@ -3,17 +3,12 @@
 ;; gem install rubocop ruby-lint
 
 (use-package inf-ruby
-  :defer t
-  :init (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode))
+  :hook (ruby-mode-hook . inf-ruby-minor-mode))
 
 (use-package ruby-mode
-  :defer t
-  :init
-  (progn
-    (setq ruby-deep-indent-paren nil
-          ruby-use-smie nil)
-    (init-when-file-exists (init-xdg-config "ruby/ruby-lint.yml") (setq flycheck-rubylintrc))
-    (init-when-file-exists (init-xdg-config "ruby/rubocop.yml") (setq flycheck-rubocoprc)))
+  :init (setq ruby-align-to-stmt-keywords t
+              ruby-deep-indent-paren nil
+              ruby-use-smie nil)
   :config
   (progn
     (defun init-rspec-file-p ()
@@ -22,10 +17,6 @@
         (and bname (rspec-spec-file-p bname))))))
 
 (use-package ruby-block
-  :defer t
   :diminish ""
-  :commands (ruby-block-mode)
-  :init
-  (progn
-    (setq ruby-block-highlight-toggle 'overlay)
-    (add-hook 'ruby-mode-hook #'ruby-block-mode)))
+  :hook (ruby-mode-hook . ruby-block-mode)
+  :init (setq ruby-block-highlight-toggle 'overlay))

@@ -3,18 +3,13 @@
 (use-package git-gutter
   :demand
   :diminish ""
-  :init
-  (progn
-    (setq git-gutter:diff-option "-w")
-    (add-hook 'after-init-hook (lambda () (global-git-gutter-mode 1)))))
+  :hook (after-init-hook . global-git-gutter-mode)
+  :init (setq git-gutter:diff-option "-w"))
 
 (use-package git-link
-  :defer t)
+  )
 
 (use-package magit
-  :defer t
-  :init
-  (progn
-    (setq magit-push-always-verify nil
-          magit-revert-buffers t)
-    (add-hook 'git-commit-mode-hook #'flyspell-mode)))
+  :hook (git-commit-mode-hook . flyspell-mode)
+  :init (setq magit-push-always-verify nil
+              magit-revert-buffers t))

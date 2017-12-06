@@ -1,11 +1,9 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package nxml-mode
-  :defer
   :ensure nil
-  :init
+  :hook (web-mode-hook . init-nxml)
+  :config
   (progn
     (defun init-nxml ()
-      (add-to-list (make-local-variable 'company-backends) #'company-nxml))
-
-    (add-hook 'web-mode-hook #'init-nxml)))
+      (add-to-list (make-local-variable 'company-backends) #'company-nxml))))

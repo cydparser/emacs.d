@@ -1,14 +1,20 @@
 ;;; -*- lexical-binding: t -*-
 
+(require 'init-utils)
+
 (use-package flycheck
   :demand
   :diminish ""
   :bind (:map flycheck-mode-map
               ("M-n" . flycheck-next-error)
               ("M-p" . flycheck-previous-error))
+  :hook (after-init-hook . global-flycheck-mode)
   :init
   (progn
-    (add-hook 'after-init-hook #'global-flycheck-mode))
+    (init-when-file-exists (init-xdg-config "ruby/ruby-lint.yml")
+      (setq flycheck-rubylintrc))
+    (init-when-file-exists (init-xdg-config "ruby/rubocop.yml")
+      (setq flycheck-rubocoprc)))
   :config
   (progn
     (defun init-flycheck-may-enable-mode (f)

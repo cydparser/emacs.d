@@ -1,7 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package ispell
-  :defer t
   :init
   (progn
     (setq ispell-dictionary "en_US"
@@ -11,7 +10,6 @@
       (setq ispell-personal-dictionary))))
 
 (use-package flyspell
-  :defer t
   :bind (:map flyspell-mode-map
               ("C-M-." . init-flyspell-save-word))
   :diminish "_"
@@ -31,16 +29,15 @@ Source: http://stackoverflow.com/a/22116480/1231408"
                                  cursor-location))))))
 
 (use-package flyspell-correct-ivy
-  :defer t
   :after flyspell
   :bind (:map flyspell-mode-map
               ("C-." . flyspell-correct-word-generic)
               ("C-c r s" . flyspell-correct-word-generic)))
 
 (use-package text-mode
-  :defer t
   :ensure nil
-  :init
+  :hook (text-mode-hook . init-text)
+  :config
   (progn
     (let ((backends '(company-capf
                       company-files
@@ -49,6 +46,4 @@ Source: http://stackoverflow.com/a/22116480/1231408"
                       company-ispell)))
       (defun init-text ()
         (flyspell-mode)
-        (set (make-local-variable 'company-backends) backends)))
-
-    (add-hook 'text-mode-hook #'init-text)))
+        (set (make-local-variable 'company-backends) backends)))))

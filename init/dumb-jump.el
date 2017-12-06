@@ -1,7 +1,6 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package dumb-jump
-  :defer t
   :bind (("C-c j j" . dumb-jump-go)
          ("C-c j p" . dumb-jump-back)
          ("C-c j l" . dumb-jump-quick-look))

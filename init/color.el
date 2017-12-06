@@ -3,16 +3,13 @@
 (defconst init-color-theme 'kaolin)
 
 (use-package kaolin-themes
-  :defer t
   :if (eq init-color-theme 'kaolin)
   :init (add-hook 'after-init-hook (lambda () (load-theme 'kaolin-dark 'no-confirm))))
 
 (use-package rainbow-mode
-  :defer t
   :diminish (rainbow-mode . "🌈"))
 
 (use-package zenburn-theme
-  :defer t
   :commands (init-load-theme-zenburn)
   :if (eq init-color-theme 'zenburn)
   :init (add-hook 'after-init-hook 'init-load-theme-zenburn)

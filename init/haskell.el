@@ -2,20 +2,16 @@
 
 ;; stack install apply-refact codex hasktags hlint
 
-(use-package cmm-mode
-  :defer t)
+(use-package cmm-mode)
 
 (use-package company-cabal
-  :defer t
-  :init
+  :hook (haskell-cabal-mode-hook . init-haskell-cabal)
+  :config
   (progn
     (defun init-haskell-cabal ()
-      (add-to-list (make-local-variable 'company-backends) #'company-cabal))
-
-    (add-hook 'haskell-cabal-mode-hook #'init-haskell-cabal)))
+      (add-to-list (make-local-variable 'company-backends) #'company-cabal))))
 
 (use-package dante
-  :defer t
   :diminish " Δ"
   :bind (:map dante-mode-map
               ("C-c C-i" . dante-info)
@@ -46,7 +42,6 @@
     (unbind-key "C-c /" dante-mode-map)))
 
 (use-package haskell-mode
-  :defer t
   :diminish ((haskell-collapse-mode . " …")
              (interactive-haskell-mode . " λ"))
   :bind (:map haskell-mode-map
@@ -56,6 +51,7 @@
               ("M-g M-i" . haskell-navigate-imports)
               ("M-g i" . haskell-navigate-imports))
   :commands (init-haskell-change-backend init-interactive-haskell)
+  :hook (haskell-mode-hook . init-haskell)
   :init
   (progn
     ;; Either add "nix: True" to ~/.cabal/config or uncomment the next line.
@@ -119,9 +115,7 @@
              (setq-local company-dabbrev-ignore-case :ignore-case)
              (set (make-local-variable 'projectile-tags-command) "codex update")
              (when (fboundp init-haskell-backend-function)
-               (funcall init-haskell-backend-function)))))
-
-    (add-hook 'haskell-mode-hook #'init-haskell))
+               (funcall init-haskell-backend-function))))))
   :config
   (progn
     (require 'haskell)
@@ -212,16 +206,13 @@
       (list "nix-shell" "--command"
             (string-join (mapcar (lambda (a) (concat "'" a "'")) args) " ")))))
 
-(use-package haskell-snippets
-  :defer t)
+(use-package haskell-snippets)
 
 (use-package hlint-refactor
-  :defer t
   :diminish ""
-  :init (add-hook 'haskell-mode-hook #'hlint-refactor-mode))
+  :hook (haskell-mode-hook . hlint-refactor-mode))
 
 (use-package intero
-  :defer t
   :diminish " η"
   :bind (:map intero-mode-map
               ("C-c r i" . init-intero-add-import))

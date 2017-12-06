@@ -1,26 +1,18 @@
 ;;; -*- lexical-binding: t -*-
 
-
-;; (use-package battery
-;;   :defer t
-;;   :ensure nil
-;;   :init
-;;   (progn
-;;     (display-battery-mode)))
-
 (use-package fancy-battery
   :demand
-  :init
-  (progn
-    (setq fancy-battery-show-percentage t)
-    (add-hook 'after-init-hook #'fancy-battery-mode)))
+  :hook (after-init-hook . fancy-battery-mode)
+  :init (setq fancy-battery-show-percentage t))
 
 (use-package spaceline
   :demand
-  :init
+  :after projectile
+  :hook (after-init-hook . init-spaceline)
+  :init (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified
+              spaceline-minor-modes-separator " ")
+  :config
   (progn
-    (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified
-          spaceline-minor-modes-separator " ")
     (require 'spaceline-config)
 
     (defun init-spaceline ()
@@ -48,9 +40,7 @@
            :separator " | "
            :priority 8)
           (battery :priority 2 :when active)))
-      (setq-default mode-line-format '("%e" (:eval (spaceline-ml-init)))))
-
-    (add-hook 'after-init-hook #'init-spaceline))
+      (setq-default mode-line-format '("%e" (:eval (spaceline-ml-init))))))
   :config
   (progn
     (spaceline-define-segment projectile-dir

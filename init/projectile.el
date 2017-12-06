@@ -3,6 +3,7 @@
 (use-package projectile
   :demand
   :diminish ""
+  :hook (after-init-hook . projectile-mode)
   :init
   (progn
     (defun init-projectile-ignored-project-p (project-root)
@@ -15,5 +16,4 @@
           projectile-mode-line nil
           ;; `call-process` uses a different path.
           projectile-tags-command (concat "PATH=" (getenv "PATH") " ctags -Re -f \"%s\" %s")
-          projectile-use-git-grep t)
-    (add-hook 'after-init-hook #'projectile-mode)))
+          projectile-use-git-grep t)))

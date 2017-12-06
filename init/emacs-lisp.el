@@ -1,30 +1,31 @@
 ;;; -*- lexical-binding: t -*-
 
+(require 'init-utils)
+
 (use-package aggressive-indent
-  :defer t
   :diminish "⃕")
 
 (use-package elisp-slime-nav
-  :defer t
   :diminish ""
-  :init
-  (progn
-    (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-      (add-hook hook #'turn-on-elisp-slime-nav-mode))))
-
-(use-package rainbow-delimiters
-  :defer t)
+  :hook ((emacs-lisp-mode-hook ielm-mode-hook) . turn-on-elisp-slime-nav-mode))
 
 (use-package lisp-mode
-  :defer t
   :ensure nil
-  :init
+  :hook (emacs-lisp-mode-hook . init-emacs-lisp-mode)
+  :config
   (progn
     (defun init-emacs-lisp-mode ()
       (setq mode-name "elisp")
       (add-to-list (make-local-variable 'company-backends) #'company-elisp)
       (unless (init-special-buffer-p)
         (aggressive-indent-mode)
-        (rainbow-delimiters-mode)))
+        (rainbow-delimiters-mode)))))
 
-    (add-hook 'emacs-lisp-mode-hook #'init-emacs-lisp-mode)))
+(use-package macrostep
+  :bind (:map emacs-lisp-mode-map
+              ("C-c e" . macrostep-expand)))
+
+(use-package pcre2el
+  :hook (emacs-lisp-mode-hook . rxt-mode))
+
+(use-package rainbow-delimiters)
