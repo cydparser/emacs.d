@@ -6,7 +6,7 @@
 (use-package company-nixos-options
   :if init-nixos
   :hook (nix-mode-hook . init-company-nixos-options)
-  :config
+  :init
   (progn
     (defun init-company-nixos-options ()
       (add-to-list (make-local-variable 'company-backends)

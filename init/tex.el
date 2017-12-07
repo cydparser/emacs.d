@@ -7,4 +7,5 @@
   :init
   (progn
     (setq TeX-auto-save t
+          TeX-newline-function 'newline-and-indent
           TeX-parse-self t)))

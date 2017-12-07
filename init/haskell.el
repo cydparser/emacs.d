@@ -6,7 +6,7 @@
 
 (use-package company-cabal
   :hook (haskell-cabal-mode-hook . init-haskell-cabal)
-  :config
+  :init
   (progn
     (defun init-haskell-cabal ()
       (add-to-list (make-local-variable 'company-backends) #'company-cabal))))

@@ -4,7 +4,6 @@
 
 (use-package erc
   :ensure nil
-  :commands (init-erc-tls)
   :hook (erc-mode-hook . init-erc-mode)
   :init
   (progn
@@ -21,9 +20,7 @@
         (setq tls-program (list (concat "openssl s_client -connect %h:%p"
                                         " -no_ssl2 -ign_eof"
                                         " -CAfile " ca " -cert " cert)
-                                "gnutls-cli --x509cafile %t -p %p %h")))))
-  :config
-  (progn
+                                "gnutls-cli --x509cafile %t -p %p %h"))))
     (defun init-erc-mode ()
       (erc-spelling-mode 1)
       (erc-track-mode))

@@ -3,7 +3,7 @@
 (use-package cc-mode
   :ensure nil
   :hook (java-mode-hook . init-java)
-  :config
+  :init
   (progn
     (defun init-java ()
       (setq c-basic-offset 4

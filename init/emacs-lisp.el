@@ -12,7 +12,7 @@
 (use-package lisp-mode
   :ensure nil
   :hook (emacs-lisp-mode-hook . init-emacs-lisp-mode)
-  :config
+  :init
   (progn
     (defun init-emacs-lisp-mode ()
       (setq mode-name "elisp")

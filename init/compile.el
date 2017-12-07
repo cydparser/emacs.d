@@ -4,7 +4,7 @@
   :ensure nil
   :hook (compilation-filter-hook . init-compilation-colorize)
   :init (setq compilation-scroll-output 'first-error)
-  :config
+  :init
   (progn
     (defun init-compilation-colorize ()
       "Colorize compilation."

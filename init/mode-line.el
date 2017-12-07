@@ -9,10 +9,11 @@
   :demand
   :after projectile
   :hook (after-init-hook . init-spaceline)
-  :init (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified
-              spaceline-minor-modes-separator " ")
-  :config
+  :init
   (progn
+    (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified
+          spaceline-minor-modes-separator " ")
+
     (require 'spaceline-config)
 
     (defun init-spaceline ()

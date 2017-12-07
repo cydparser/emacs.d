@@ -1,5 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
+(require 'init-utils)
+
 (use-package ispell
   :init
   (progn
@@ -37,7 +39,7 @@ Source: http://stackoverflow.com/a/22116480/1231408"
 (use-package text-mode
   :ensure nil
   :hook (text-mode-hook . init-text)
-  :config
+  :init
   (progn
     (let ((backends '(company-capf
                       company-files

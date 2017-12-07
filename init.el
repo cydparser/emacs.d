@@ -23,7 +23,8 @@
   (require 'use-package))
 
 (require 'bind-key)
-(require 'diminish)
+
+(use-package diminish :demand)
 
 ;;; Initialize Remaining
 

@@ -3,10 +3,10 @@
 (use-package dired-x
   :ensure nil
   :hook (dired-load-hook . init-dired-load)
-  :config
+  :init
   (progn
     (defun init-dired-load ()
-      (require 'dired-x))))
+      (load "dired-x"))))
 
 (use-package treemacs)
 
