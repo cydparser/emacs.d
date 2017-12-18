@@ -4,4 +4,4 @@
   :demand
   :diminish ""
   :pin melpa
-  :init (which-key-mode))
+  :hook (after-init-hook . which-key-mode))
