@@ -36,6 +36,7 @@
   :init
   (progn
     (setq ivy-initial-inputs-alist nil
+          ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create
           ivy-re-builders-alist '((t . ivy--regex-ignore-order))
           ivy-use-selectable-prompt t
           ivy-use-virtual-buffers t))
