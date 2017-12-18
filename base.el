@@ -57,6 +57,9 @@ ARG determines the direction and number of sexps."
         auto-save-list-file-prefix (concat ldir "/saves-")
         backup-directory-alist `((".*" . ,bdir))))
 
+;; Disable lock files.
+(setq create-lockfiles nil)
+
 (let ((fonts (font-family-list)))
   (when (member "Symbola" fonts)
     ;; Use Symbola for mathematical operators.
