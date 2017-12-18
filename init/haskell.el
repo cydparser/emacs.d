@@ -2,6 +2,8 @@
 
 ;; stack install apply-refact codex hasktags hlint
 
+(require 'init-hasklig)
+
 (use-package cmm-mode)
 
 (use-package company-cabal
