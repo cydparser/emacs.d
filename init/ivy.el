@@ -18,7 +18,7 @@
 
 (use-package counsel-projectile
   :after projectile
-  :hook (after-init-hook . counsel-projectile-on))
+  :hook (after-init-hook . counsel-projectile-mode))
 
 (use-package ivy
   :diminish ""
