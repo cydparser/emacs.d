@@ -144,6 +144,8 @@ ARG determines the direction and number of sexps."
 
 (define-key input-decode-map [(control ?I)] (kbd "<backtab>"))
 
+(bind-key "C-S-C" #'kill-ring-save)
+(bind-key "C-S-V" #'yank)
 (bind-key "C-c C-SPC" #'delete-trailing-whitespace)
 (bind-key "C-h C-f" #'find-function-at-point)
 (bind-key "C-h C-k" #'find-function-on-key)
