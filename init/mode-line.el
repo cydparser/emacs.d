@@ -46,6 +46,7 @@
   (progn
     (spaceline-define-segment projectile-dir
       "The relative project  subdirectory."
-      (when (and buffer-file-name (file-regular-p buffer-file-name))
+      (when (and buffer-file-name (projectile-project-p)
+                 (file-regular-p buffer-file-name))
         (file-name-directory (file-relative-name buffer-file-name
                                                  (projectile-project-root)))))))
