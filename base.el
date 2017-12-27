@@ -66,43 +66,9 @@ ARG determines the direction and number of sexps."
     (set-fontset-font t '(#x2200 . #x22FF) "Symbola 14"))
 
   (cond ((member "Hasklig" fonts)
-         (set-frame-font "Hasklig Light 14")
-
-         (defconst init-hasklig-prettify-symbols-alist
-           (let ((codepoint #Xe100))
-             (mapcar (lambda (lig)
-                       (let ((pair (cons lig (string ?\t codepoint))))
-                         (setq codepoint (1+ codepoint))
-                         pair))
-                     '("&&"  "***" "*>"  "\\\\" "||"  "|>"  "::"
-                       "=="  "===" "==>" "=>"   "=<<" "!!"  ">>"
-                       ">>=" ">>>" ">>-" ">-"   "->"  "-<"  "-<<"
-                       "<*"  "<*>" "<|"  "<|>"  "<$>" "<>"  "<-"
-                       "<<"  "<<<" "<+>" ".."   "..." "++"  "+++"
-                       "/="  ":::" ">=>" "->>"  "<=>" "<=<" "<->"))))
-
-         (defconst init-hasklig-prettify-symbols-common-alist
-           (let ((keep '("&&" "||" "==" "===" "=>" "->" "<<" ">>" ">>>"
-                         ".." "..." "++" "<=>")))
-             (append
-              '(("!=" . "	")
-                ("lambda" . "λ")
-                ("not" . "¬"))
-              (seq-filter (lambda (pair)
-                            (member (car pair) keep))
-                          init-hasklig-prettify-symbols-alist))))
-
-         (defun init-prettify-symbols ()
-           (unless (derived-mode-p 'haskell-mode)
-             (setq prettify-symbols-alist init-hasklig-prettify-symbols-common-alist)
-             (prettify-symbols-mode)))
-
-         (add-hook 'prog-mode-hook #'init-prettify-symbols))
+         (set-frame-font "Hasklig Light 14"))
         ((member "Inconsolata" fonts)
          (set-frame-font "Inconsolata 15"))))
-
-(unless (boundp 'init-hasklig-prettify-symbols-alist)
-  (defconst init-hasklig-prettify-symbols-alist nil))
 
 ;; Simplify prompts.
 (fset 'yes-or-no-p #'y-or-n-p)
