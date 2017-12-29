@@ -81,7 +81,8 @@ ARG determines the direction and number of sexps."
       inhibit-startup-message t
       initial-scratch-message nil
       kill-buffer-query-functions (remq 'process-kill-buffer-query-function kill-buffer-query-functions)
-      ring-bell-function #'ignore)
+      ring-bell-function #'ignore
+      xref-prompt-for-identifier nil)
 
 ;; Prevent accidental closure.
 (setq confirm-kill-emacs #'y-or-n-p)

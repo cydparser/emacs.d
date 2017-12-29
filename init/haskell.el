@@ -4,6 +4,9 @@
 
 (require 'init-hasklig)
 
+(defvar init-haskell-backend-function 'init-dante)
+(defvar-local init-haskell-goto-definition-function nil)
+
 (use-package cmm-mode)
 
 (use-package company-cabal
@@ -25,6 +28,7 @@
     (defun init-dante ()
       (setq-local haskell-process-show-overlays nil)
       (interactive-haskell-mode)
+      (setq-local init-haskell-goto-definition-function #'init-dante-goto-definition)
       (dante-mode))
 
     (defun init-dante-change-target (target)
@@ -37,6 +41,11 @@
                   (and (null dante-target) (string-empty-p target) ))
         (setq dante-target (or (and (string-empty-p target) nil) target))
         (dante-restart)))
+
+    (defun init-dante-goto-definition ()
+      (condition-case-unless-debug nil
+          (call-interactively #'xref-find-definitions)
+        ((user-error . nil))))
 
     (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
     (unbind-key "C-c ." dante-mode-map)
@@ -78,9 +87,6 @@
             haskell-process-args-cabal-new-repl ghc-opts
             haskell-process-args-stack-ghci `("--no-build" "--no-load" ,@ghc-opts)))
 
-    (defvar init-haskell-backend-function 'init-dante)
-    (defvar-local init-haskell-goto-definition-function nil)
-
     (defconst init-haskell-prettify-symbols-alist
       (let ((exclude '("&&" "||")))
         (append
@@ -116,7 +122,7 @@
              (setq-local company-dabbrev-downcase nil)
              (setq-local company-dabbrev-ignore-case :ignore-case)
              (set (make-local-variable 'projectile-tags-command) "codex update")
-             (when (fboundp init-haskell-backend-function)
+             (when init-haskell-backend-function
                (funcall init-haskell-backend-function))))))
   :config
   (progn
@@ -138,8 +144,7 @@
                ("M-p" . init-haskell-goto-previous-error))
 
     (defun init-interactive-haskell ()
-      ;; TODO haskell-mode-goto-loc always returns nil
-      (setq-local init-haskell-goto-definition-function #'haskell-mode-goto-loc)
+      (setq-local init-haskell-goto-definition-function #'init-interactive-haskell-goto-definition)
       (interactive-haskell-mode))
 
     (defun init-haskell-change-backend (backend)
@@ -156,10 +161,14 @@
     (defun init-haskell-goto-definition ()
       "Jump to the definition of the thing at point using backend or etags."
       (interactive)
-      (let (goto-def init-haskell-goto-definition-function)
-        (or (and (fboundp goto-def) (funcall goto-def))
-            (xref-find-definitions (xref-backend-identifier-at-point
-                                    (xref-find-backend))))))
+      (or (and init-haskell-goto-definition-function
+               (let ((marker (point-marker)))
+                 (funcall init-haskell-goto-definition-function)
+                 (not (equal marker (point-marker)))))
+          (let* ((identifier (xref-backend-identifier-at-point 'etags))
+                 (xrefs (xref-backend-definitions 'etags identifier)))
+            (when xrefs
+              (xref--show-xrefs xrefs nil)))))
 
     (defun init-haskell-goto-next-error ()
       "Go to the next Haskell or flycheck error."
@@ -206,7 +215,12 @@
     (defun init-haskell-process-wrapper (args)
       "Executes ARGS in nix-shell."
       (list "nix-shell" "--command"
-            (string-join (mapcar (lambda (a) (concat "'" a "'")) args) " ")))))
+            (string-join (mapcar (lambda (a) (concat "'" a "'")) args) " ")))
+
+    (defun init-interactive-haskell-goto-definition ()
+      (condition-case-unless-debug nil
+          (haskell-mode-goto-loc)
+        ((error . nil))))))
 
 (use-package haskell-snippets)
 
