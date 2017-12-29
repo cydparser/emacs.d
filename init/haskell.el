@@ -19,6 +19,7 @@
 (use-package dante
   :diminish " Δ"
   :bind (:map dante-mode-map
+              ("C-c b t" . init-dante-change-target)
               ("C-c C-i" . dante-info)
               ("C-c C-r" . dante-auto-fix)
               ("C-c C-t" . dante-type-at))
@@ -57,6 +58,7 @@
              (interactive-haskell-mode . " λ"))
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
+              ("C-c b t" . haskell-session-change-target)
               ("C-c r i" . init-haskell-format-imports)
               ("M-." . init-haskell-goto-definition)
               ("M-g M-i" . haskell-navigate-imports)
@@ -231,6 +233,7 @@
 (use-package intero
   :diminish " η"
   :bind (:map intero-mode-map
+              ("C-c b t" . intero-targets)
               ("C-c r i" . init-intero-add-import))
   :commands (init-intero)
   :config
