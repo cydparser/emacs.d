@@ -4,6 +4,9 @@
 
 (require 'init-hasklig)
 
+(eval-when-compile
+  (require 'cl))
+
 (defvar init-haskell-backend-function 'init-dante)
 (defvar-local init-haskell-goto-definition-function nil)
 
@@ -72,6 +75,7 @@
     (setq haskell-font-lock-symbols t
           haskell-font-lock-symbols-alist
           '(("." "∘" haskell-font-lock-dot-is-not-composition))
+          haskell-process-log t
           haskell-process-auto-import-loaded-modules t)
 
     (let* ((opt-flags '("-fdefer-type-errors"
@@ -167,10 +171,8 @@
                (let ((marker (point-marker)))
                  (funcall init-haskell-goto-definition-function)
                  (not (equal marker (point-marker)))))
-          (let* ((identifier (xref-backend-identifier-at-point 'etags))
-                 (xrefs (xref-backend-definitions 'etags identifier)))
-            (when xrefs
-              (xref--show-xrefs xrefs nil)))))
+          (cl-letf (((symbol-function 'xref-find-backend) (lambda () 'etags)))
+            (call-interactively #'xref-find-definitions))))
 
     (defun init-haskell-goto-next-error ()
       "Go to the next Haskell or flycheck error."
