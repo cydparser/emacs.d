@@ -5,6 +5,7 @@
   :bind (("C-M-y" . counsel-yank-pop)
          ("C-h C-l" . counsel-find-library)
          ("C-h S" . counsel-info-lookup-symbol)
+         ("C-h a" . counsel-apropos)
          ("C-h b" . counsel-descbinds)
          ("C-h f" . counsel-describe-function)
          ("C-h v" . counsel-describe-variable)
