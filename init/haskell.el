@@ -76,7 +76,7 @@
 
     (let* ((opt-flags '("-fdefer-type-errors"
                         "-ferror-spans"
-                        "-fexternal-interpreter"))
+                        "-fshow-loaded-modules"))
            (exts '("NamedWildCards"
                    "PartialTypeSignatures"))
            (ext-flags (seq-map (lambda (s) (format "-X%s" s)) exts))
