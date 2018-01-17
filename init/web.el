@@ -10,16 +10,7 @@
     (defun init-css ()
       (add-to-list (make-local-variable 'company-backends) #'company-css))))
 
-(use-package haml-mode)
-
 (use-package json-mode)
-
-(use-package scss-mode
-  :hook (web-mode-hook . init-scss)
-  :init
-  (progn
-    (defun init-scss ()
-      (add-to-list (make-local-variable 'company-backends) #'company-css))))
 
 (use-package web-mode
   :mode (("\\.html\\'" . web-mode)

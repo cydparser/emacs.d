@@ -5,10 +5,6 @@
 (use-package aggressive-indent
   :diminish "⃕")
 
-(use-package elisp-slime-nav
-  :diminish ""
-  :hook ((emacs-lisp-mode-hook ielm-mode-hook) . turn-on-elisp-slime-nav-mode))
-
 (use-package lisp-mode
   :ensure nil
   :hook (emacs-lisp-mode-hook . init-emacs-lisp-mode)

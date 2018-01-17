@@ -15,8 +15,3 @@
       "Indicates whether the current buffer is an rspec file."
       (let ((bname buffer-file-name))
         (and bname (rspec-spec-file-p bname))))))
-
-(use-package ruby-block
-  :diminish ""
-  :hook (ruby-mode-hook . ruby-block-mode)
-  :init (setq ruby-block-highlight-toggle 'overlay))

@@ -1,19 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-(use-package paredit
-  :bind (:map paredit-mode-map
-              ("{" . paredit-open-curly)
-              ("}" . paredit-close-curly))
-  :init
-  (progn
-    (setq paredit-lighter " ()"))
-  :config
-  (progn
-    (unbind-key ";" paredit-mode-map)
-    (unbind-key "M-;" paredit-mode-map)
-    (unbind-key "M-?" paredit-mode-map)
-    (unbind-key "\\" paredit-mode-map)))
-
 (use-package paren
   :ensure nil
   :hook (after-init-hook . show-paren-mode))
