@@ -27,6 +27,9 @@
               ("C-c C-r" . dante-auto-fix)
               ("C-c C-t" . dante-type-at))
   :commands (init-dante)
+  :init (setq dante-repl-command-line-methods-alist
+              `((nix  . ,(lambda (root) (dante-repl-by-file root '("shell.nix" "default.nix") '("nix-shell" "--run" (concat "cabal repl " (or dante-target "") " --builddir=dist/dante")))))
+                (bare . ,(lambda (_) '("cabal" "repl" dante-target "--builddir=dist/dante")))))
   :config
   (progn
     (defun init-dante ()
@@ -76,7 +79,8 @@
           haskell-font-lock-symbols-alist
           '(("." "∘" haskell-font-lock-dot-is-not-composition))
           haskell-process-log t
-          haskell-process-auto-import-loaded-modules t)
+          haskell-process-auto-import-loaded-modules t
+          haskell-process-type 'cabal-repl)
 
     (let* ((opt-flags '("-fdefer-type-errors"
                         "-ferror-spans"
