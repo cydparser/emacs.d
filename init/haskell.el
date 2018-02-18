@@ -27,9 +27,39 @@
               ("C-c C-r" . dante-auto-fix)
               ("C-c C-t" . dante-type-at))
   :commands (init-dante)
-  :init (setq dante-repl-command-line-methods-alist
-              `((nix  . ,(lambda (root) (dante-repl-by-file root '("shell.nix" "default.nix") '("nix-shell" "--run" (concat "cabal repl " (or dante-target "") " --builddir=dist/dante")))))
-                (bare . ,(lambda (_) '("cabal" "repl" dante-target "--builddir=dist/dante")))))
+  :init
+  (progn
+    (setq dante-repl-command-line-methods-alist
+          `((nix-cabal . ,(lambda (root)
+                            (init-dante-repl-by-files
+                             root '("dist" "shell.nix")
+                             '("nix-shell" "--run" (concat "cabal repl " (or dante-target "") " --builddir=dist/dante")))))
+            (stack     . ,(lambda (root)
+                            (dante-repl-by-file
+                             root '(".stack-work")
+                             '("stack" "repl" dante-target))))
+            (cabal-new . ,(lambda (root)
+                            (dante-repl-by-file
+                             root '("dist-new" "cabal.project")
+                             '("cabal" "new-repl" dante-target "--builddir=dist-new/dante"))))
+            (styx      . ,(lambda (root)
+                            (dante-repl-by-file
+                             root '(".styx")
+                             '("styx" "repl" dante-target))))
+            (mafia     . ,(lambda (root)
+                            (dante-repl-by-file
+                             root '(".mafia")
+                             '("mafia" "repl" dante-target))))
+            (cabal-old . ,(lambda (root)
+                            (dante-repl-by-file
+                             root '("dist")
+                             '("cabal" "repl" dante-target "--builddir=dist/dante"))))
+            (nix-ghci  . ,(lambda (root)
+                            (dante-repl-by-file
+                             root '("shell.nix")
+                             '("nix-shell" "--run" "ghci -isrc:test -Wall -Wno-missing-signatures"))))
+            (ghci      . ,(lambda (_) '("ghci" "-Wall")))))
+
     (defun init-dante-check-target (target)
       (string-match-p
        "^\\(\\(lib\\|flib\\|exe\\|test\\|bench\\):\\)?[[:alpha:]][-[:alnum:]]+$"
@@ -58,6 +88,11 @@
       (condition-case-unless-debug nil
           (call-interactively #'xref-find-definitions)
         ((user-error . nil))))
+
+    (defun init-dante-repl-by-files (root paths cmd)
+      (when (seq-every-p (lambda (p)
+                           (file-exists-p (expand-file-name p root))) paths)
+        cmd))
 
     (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
     (unbind-key "C-c ." dante-mode-map)
