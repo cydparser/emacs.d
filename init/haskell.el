@@ -30,6 +30,11 @@
   :init (setq dante-repl-command-line-methods-alist
               `((nix  . ,(lambda (root) (dante-repl-by-file root '("shell.nix" "default.nix") '("nix-shell" "--run" (concat "cabal repl " (or dante-target "") " --builddir=dist/dante")))))
                 (bare . ,(lambda (_) '("cabal" "repl" dante-target "--builddir=dist/dante")))))
+    (defun init-dante-check-target (target)
+      (string-match-p
+       "^\\(\\(lib\\|flib\\|exe\\|test\\|bench\\):\\)?[[:alpha:]][-[:alnum:]]+$"
+       target))
+    (put 'dante-target 'safe-local-variable #'init-dante-check-target))
   :config
   (progn
     (defun init-dante ()
