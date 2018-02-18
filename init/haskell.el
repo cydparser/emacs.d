@@ -89,7 +89,8 @@
 
     (let* ((opt-flags '("-fdefer-type-errors"
                         "-ferror-spans"
-                        "-fshow-loaded-modules"))
+                        "-fshow-loaded-modules"
+                        "-Wno-type-defaults"))
            (exts '("NamedWildCards"
                    "PartialTypeSignatures"))
            (ext-flags (seq-map (lambda (s) (format "-X%s" s)) exts))
