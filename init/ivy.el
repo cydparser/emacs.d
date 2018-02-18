@@ -32,6 +32,10 @@
          :map ivy-occur-mode-map
          ("n" . ivy-occur-next-line)
          ("p" . ivy-occur-previous-line)
+         ("C-o" . ivy-occur-press)
+         :map ivy-occur-grep-mode-map
+         ("n" . ivy-occur-next-line)
+         ("p" . ivy-occur-previous-line)
          ("C-o" . ivy-occur-press))
   :hook (after-init-hook . ivy-mode)
   :init
