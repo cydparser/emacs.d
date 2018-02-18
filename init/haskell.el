@@ -46,13 +46,13 @@
     (defun init-dante-change-target (target)
       "Change GHCi target to TARGET and restart, if changed."
       (interactive (list (completing-read "Choose target: "
-                                          (haskell-cabal-enum-targets 'ghci)
+                                          (haskell-cabal-enum-targets (haskell-process-type))
                                           nil nil nil
                                           'init-dante-cabal-targets-history)))
-      (unless (or (string-equal target dante-target)
-                  (and (null dante-target) (string-empty-p target) ))
-        (setq dante-target (or (and (string-empty-p target) nil) target))
-        (dante-restart)))
+      (unless (string-equal target dante-target)
+        (setq-local dante-target target)
+        (dante-restart)
+        (haskell-session-change-target target)))
 
     (defun init-dante-goto-definition ()
       (condition-case-unless-debug nil
