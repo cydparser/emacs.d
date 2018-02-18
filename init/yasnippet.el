@@ -4,7 +4,10 @@
   :demand
   :diminish (yas-minor-mode . "")
   :hook (after-init-hook . yas-global-mode)
-  :init (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand)
+  :init
+  (progn
+    (setq-default yas-indent-line 'fixed)
+    (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand))
   :config
   (progn
     (defun init-yas-uncapitalize (cap)
