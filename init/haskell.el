@@ -66,14 +66,17 @@
 
 (use-package haskell-mode
   :diminish ((haskell-collapse-mode . " …")
-             (interactive-haskell-mode . " λ"))
+             (interactive-haskell-mode . " λ")
+             ;; haskell-menu : LIST SESSION BUFFERS
+             )
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
-              ("C-c b t" . haskell-session-change-target)
               ("C-c r i" . init-haskell-format-imports)
               ("M-." . init-haskell-goto-definition)
               ("M-g M-i" . haskell-navigate-imports)
               ("M-g i" . haskell-navigate-imports))
+  :bind (:map interactive-haskell-mode-map
+              ("C-c b t" . haskell-session-change-target))
   :commands (init-haskell-change-backend init-interactive-haskell)
   :hook (haskell-mode-hook . init-haskell)
   :init
