@@ -139,6 +139,11 @@ ARG determines the direction and number of sexps."
   :hook (after-init-hook . async-bytecomp-package-mode)
   :init (setq async-bytecomp-allowed-packages '(all)))
 
+(use-package bookmark
+  :ensure nil
+  :init (setq bookmark-default-file (expand-file-name "bookmarks" init-var-directory)
+              bookmark-save-flag 1))
+
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :init
