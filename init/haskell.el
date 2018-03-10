@@ -288,6 +288,9 @@
   :commands (init-intero)
   :config
   (progn
+    (unbind-key "M-." intero-mode-map)
+    (unbind-key "M-?" intero-mode-map)
+
     (defun init-intero ()
       (setq-local init-haskell-goto-definition-function #'intero-goto-definition)
       (intero-mode))
