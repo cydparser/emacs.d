@@ -104,6 +104,7 @@
              (interactive-haskell-mode . " λ")
              ;; haskell-menu : LIST SESSION BUFFERS
              )
+  :mode "\\.hs-boot\\'"
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
               ("C-c r i" . init-haskell-format-imports)
@@ -168,8 +169,9 @@
       (setq prettify-symbols-alist init-haskell-prettify-symbols-alist)
       (prettify-symbols-mode)
       (cond ((and buffer-file-name
-                  (string-match "^\\(/nix\\|.+/\\.\\(cabal\\|stack\\|stack-work\\)\\)/.+"
-                                buffer-file-name))
+                  (string-match
+                   "\\(^\\(/nix\\|.+/\\.\\(cabal\\|stack\\|stack-work\\)\\)/.+\\)\\|\\(.+\\.hs-boot$\\)"
+                   buffer-file-name))
              (eldoc-mode -1)
              (flycheck-mode -1))
             (t
