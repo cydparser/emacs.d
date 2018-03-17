@@ -34,8 +34,8 @@
          ("p" . ivy-occur-previous-line)
          ("C-o" . ivy-occur-press)
          :map ivy-occur-grep-mode-map
-         ("n" . ivy-occur-next-line)
-         ("p" . ivy-occur-previous-line)
+         ("n" . init-ivy-occur-next-line)
+         ("p" . init-ivy-occur-previous-line)
          ("C-o" . ivy-occur-press))
   :hook (after-init-hook . ivy-mode)
   :init
@@ -47,14 +47,17 @@
           ivy-use-virtual-buffers t))
   :config
   (progn
-    ;; TODO, close, delete, new
-    ;; (ivy-set-actions
-    ;;  'ivy-switch-buffer
-    ;;  '(("k" (lambda (x)
-    ;;           (kill-buffer x)
-    ;;           (ivy--reset-state ivy-last))
-    ;;     "kill~")))
-    ))
+    (defun init-ivy-occur-next-line (&optional arg)
+      "Move to next line and open item in other window."
+      (interactive "p")
+      (ivy-occur-next-line arg)
+      (ivy-occur-press))
+
+    (defun init-ivy-occur-previous-line (&optional arg)
+      "Move to previous line and open item in other window."
+      (interactive "p")
+      (ivy-occur-previous-line arg)
+      (ivy-occur-press))))
 
 (use-package ivy-hydra
   :demand
