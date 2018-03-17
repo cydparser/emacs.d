@@ -134,6 +134,21 @@ ARG determines the direction and number of sexps."
 
 ;;; Packages
 
+(use-package align
+  :ensure nil
+  :config
+  (progn
+    (dolist (mode '(haskell-mode ruby-mode))
+      (add-to-list 'align-open-comment-modes mode))
+
+    (dolist (tr '((haskell-types       . "\\(\\s-+\\)\\(::\\|∷\\)\\s-+")
+                  (haskell-assignment  . "\\(\\s-+\\)\\(=\\|:=\\|.=\\)\\s-+")
+                  (haskell-arrows      . "\\(\\s-+\\)\\(->\\|→\\)\\s-+")
+                  (haskell-left-arrows . "\\(\\s-+\\)\\(<-\\|←\\)\\s-+")))
+      (add-to-list 'align-rules-list
+                   `(,(car tr) (regexp . ,(cdr tr))
+                     (modes . '(haskell-mode literate-haskell-mode)))))))
+
 (use-package async
   :demand
   :hook (after-init-hook . async-bytecomp-package-mode)
