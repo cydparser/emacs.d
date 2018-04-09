@@ -23,7 +23,6 @@
             projectile-root)
            :face highlight-face
            :priority 0)
-          (projectile-dir :priority 9)
           (buffer-id :priority 5)
           (major-mode :priority 7)
           (minor-modes :priority 6 :when active))
