@@ -32,7 +32,7 @@
     (setq dante-repl-command-line-methods-alist
           `((nix-cabal . ,(lambda (root)
                             (init-dante-repl-by-files
-                             root '("dist" "shell.nix")
+                             root '("dist/cabal-config-flags" "shell.nix")
                              '("nix-shell" "--run" (concat "cabal repl " (or dante-target "") " --builddir=dist/dante")))))
             (stack     . ,(lambda (root)
                             (dante-repl-by-file
@@ -123,8 +123,7 @@
           haskell-font-lock-symbols-alist
           '(("." "∘" haskell-font-lock-dot-is-not-composition))
           haskell-process-log t
-          haskell-process-auto-import-loaded-modules t
-          haskell-process-type 'cabal-repl)
+          haskell-process-auto-import-loaded-modules t)
 
     (let* ((opt-flags '("-fdefer-type-errors"
                         "-ferror-spans"
@@ -198,6 +197,27 @@
                ("C-c r t" . init-haskell-insert-type-sig)
                ("M-n" . init-haskell-goto-next-error)
                ("M-p" . init-haskell-goto-previous-error))
+
+    (defun haskell-process-type ()
+      "Return `haskell-process-type', or a guess if that variable is 'auto.
+This function also sets the `inferior-haskell-root-dir'"
+      (let ((root nil)
+            (type haskell-process-type))
+        (if (eq 'auto type)
+            (cond
+             ((and (setq root (locate-dominating-file default-directory "dist"))
+                   (file-exists-p (expand-file-name "dist/cabal-config-flags" root))
+                   (executable-find "cabal"))
+              (setq type 'cabal-repl))
+             ((and (setq root (locate-dominating-file default-directory ".stack-work"))
+                   (executable-find "stack"))
+              (setq type 'stack-ghci))
+             ((executable-find "ghc")
+              (setq root default-directory
+                    type 'ghci))
+             (error "Could not find any installation of GHC.")))
+        (setq inferior-haskell-root-dir root)
+        type))
 
     (defun init-interactive-haskell ()
       (setq-local init-haskell-goto-definition-function #'init-interactive-haskell-goto-definition)
