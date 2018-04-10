@@ -132,14 +132,13 @@
            (exts '("NamedWildCards"
                    "PartialTypeSignatures"))
            (ext-flags (seq-map (lambda (s) (format "-X%s" s)) exts))
-           (ghc-opts (list "--ghc-options"
-                           (concat (string-join opt-flags " ") " "
-                                   (string-join ext-flags " ")))))
+           (ghc-opts (concat (string-join opt-flags " ") " "
+                             (string-join ext-flags " "))))
       (setq flycheck-hlint-language-extensions exts
             haskell-process-args-ghci (seq-concatenate 'list opt-flags ext-flags)
-            haskell-process-args-cabal-repl ghc-opts
-            haskell-process-args-cabal-new-repl ghc-opts
-            haskell-process-args-stack-ghci `("--no-build" "--no-load" ,@ghc-opts)))
+            haskell-process-args-cabal-repl `("--ghc-options" ,ghc-opts)
+            haskell-process-args-cabal-new-repl `("--ghc-options" ,ghc-opts)
+            haskell-process-args-stack-ghci `("--no-build" "--no-load" "--ghci-options" ,ghc-opts)))
 
     (defconst init-haskell-prettify-symbols-alist
       (let ((exclude '("&&" "||")))
