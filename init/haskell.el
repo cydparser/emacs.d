@@ -62,7 +62,7 @@
 
     (defun init-dante-check-target (target)
       (string-match-p
-       "^\\(\\(lib\\|flib\\|exe\\|test\\|bench\\):\\)?[[:alpha:]][-[:alnum:]]+$"
+       "^\\([[:alpha:]][-[:alnum:]]+\\)?:\\(\\(lib\\|flib\\|exe\\|test\\|bench\\):\\)?[[:alpha:]][-[:alnum:]]+$"
        target))
     (put 'dante-target 'safe-local-variable #'init-dante-check-target))
   :config
