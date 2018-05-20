@@ -33,7 +33,7 @@
           `((nix-cabal . ,(lambda (root)
                             (init-dante-repl-by-files
                              root '("dist/cabal-config-flags" "shell.nix")
-                             '("nix-shell" "--run" (concat "cabal repl " (or dante-target "") (init-dante-build-dir root "nix-cabal"))))))
+                             `("nix-shell" "--run" (concat "cabal repl " (or dante-target "") (init-dante-build-dir ,root "nix-cabal"))))))
             (stack     . ,(lambda (root)
                             (dante-repl-by-file
                              root '(".stack-work")
@@ -41,7 +41,7 @@
             (cabal-new . ,(lambda (root)
                             (dante-repl-by-file
                              root '("dist-new" "cabal.project")
-                             '("cabal" "new-repl" dante-target (init-dante-build-dir root "cabal-new")))))
+                             `("cabal" "new-repl" dante-target (init-dante-build-dir ,root "cabal-new")))))
             (styx      . ,(lambda (root)
                             (dante-repl-by-file
                              root '(".styx")
@@ -53,7 +53,7 @@
             (cabal-old . ,(lambda (root)
                             (dante-repl-by-file
                              root '("dist")
-                             '("cabal" "repl" dante-target (init-dante-build-dir root "cabal")))))
+                             `("cabal" "repl" dante-target (init-dante-build-dir ,root "cabal")))))
             (nix-ghci  . ,(lambda (root)
                             (dante-repl-by-file
                              root '("shell.nix")
