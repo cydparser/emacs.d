@@ -100,7 +100,7 @@
                            (file-exists-p (expand-file-name p root))) paths)
         cmd))
 
-    (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint))
+    (flycheck-add-next-checker 'haskell-dante '(t . haskell-hlint))
     (unbind-key "C-c ." dante-mode-map)
     (unbind-key "C-c ," dante-mode-map)
     (unbind-key "C-c /" dante-mode-map)))
@@ -350,4 +350,4 @@ The string 'import ' will be inserted as well, if missing."
         (open-line 1)
         (init-intero-insert-import #'init-haskell-format-imports)))
 
-    (flycheck-add-next-checker 'intero '(warning . haskell-hlint))))
+    (flycheck-add-next-checker 'intero '(t . haskell-hlint))))
