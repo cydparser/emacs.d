@@ -75,7 +75,7 @@
 
     (defun init-dante-build-dir (root backend)
       (concat "--builddir="
-              (make-temp-name (concat "dante-"
+              (make-temp-name (concat "/tmp/dante-"
                                       backend "-"
                                       (file-name-base root) "-"))))
 
