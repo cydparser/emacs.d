@@ -185,7 +185,7 @@
             (t
              (setq-local company-dabbrev-downcase nil)
              (setq-local company-dabbrev-ignore-case :ignore-case)
-             (set (make-local-variable 'projectile-tags-command) "codex update")
+             (setq-local projectile-tags-command "codex update")
              (when init-haskell-backend-function
                (funcall init-haskell-backend-function))))))
   :config
