@@ -29,6 +29,10 @@
   :commands (init-dante)
   :init
   (progn
+    (setq dante-load-flags '("+c" "-fno-diagnostics-show-caret" "-Wwarn=missing-home-modules"
+                             "-fdefer-type-errors"
+                             "-XNamedWildCards"
+                             "-XPartialTypeSignatures"))
     (setq dante-repl-command-line-methods-alist
           `((nix-cabal . ,(lambda (root)
                             (init-dante-repl-by-files
