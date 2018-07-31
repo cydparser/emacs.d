@@ -132,6 +132,10 @@ ARG determines the direction and number of sexps."
 (global-subword-mode 1)
 (diminish 'subword-mode "")
 
+;; TODO: delete after emacs 26
+(eval-after-load "enriched"
+  '(defun enriched-decode-display-prop (start end &optional _param)
+     (list start end)))
 ;;; Packages
 
 (use-package align
