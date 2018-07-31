@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: doctest examples
+# key: dte
+# --
+-- ==== __Examples__
+-- >>> $0
