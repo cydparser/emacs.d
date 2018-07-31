@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: set -x
+# key: setx
+# --
+set -x # TODO: Remove this line
