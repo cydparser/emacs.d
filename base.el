@@ -159,6 +159,12 @@ ARG determines the direction and number of sexps."
   :init (setq bookmark-default-file (expand-file-name "bookmarks" init-var-directory)
               bookmark-save-flag 1))
 
+(use-package diff-mode
+  :ensure nil
+  :config
+  (progn
+    (unbind-key "M-o" diff-mode-map)))
+
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :init
