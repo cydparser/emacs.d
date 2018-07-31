@@ -8,6 +8,8 @@
   :diminish " $"
   :bind (("C-w" . init-sp-kill-region-or-backward-word)
          :map smartparens-mode-map
+         ("C-S-K" . sp-kill-whole-line)
+         ("C-k" . sp-kill-hybrid-sexp)
          ("M-J" . sp-join-sexp)
          ("M-N" . sp-next-sexp)
          ("M-P" . sp-previous-sexp)
@@ -15,11 +17,15 @@
          (")" . sp-up-sexp))
   :hook (((org-mode-hook text-mode-hook) . turn-on-smartparens-mode)
          (prog-mode-hook . turn-on-smartparens-strict-mode))
-  :init (setq sp-base-key-bindings 'paredit)
+  :init (setq sp-base-key-bindings 'paredit
+              sp-no-reindent-after-kill-modes '(asm-mode
+                                                haskell-mode
+                                                makefile-gmake-mode
+                                                nix-mode
+                                                python-mode))
   :config
   (progn
     (require 'smartparens-config)
-
     (unbind-key "<M-down>" smartparens-mode-map)
     (unbind-key "<M-up>" smartparens-mode-map)
 
