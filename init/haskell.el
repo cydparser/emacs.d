@@ -236,7 +236,7 @@ This function also sets the `inferior-haskell-root-dir'"
       "Change Haskell backend for future buffers."
       (interactive (list (completing-read
                           "Import: "
-                          '("dante" "interactive-haskell" "intero" " ")
+                          '("dante" "interactive-haskell" " ")
                           nil t)))
       (setq init-haskell-backend-function
             (and backend
@@ -311,47 +311,3 @@ This function also sets the `inferior-haskell-root-dir'"
   :diminish ""
   :hook (haskell-mode-hook . hlint-refactor-mode))
 
-(use-package intero
-  :diminish " η"
-  :bind (:map intero-mode-map
-              ("C-c b t" . intero-targets)
-              ("C-c r i" . init-intero-add-import))
-  :commands (init-intero)
-  :config
-  (progn
-    (unbind-key "M-." intero-mode-map)
-    (unbind-key "M-?" intero-mode-map)
-
-    (defun init-intero ()
-      (setq-local init-haskell-goto-definition-function #'intero-goto-definition)
-      (intero-mode))
-
-    (defun init-intero-insert-import (callback)
-      "Insert a module using completing read.
-
-The string 'import ' will be inserted as well, if missing."
-      (interactive '(nil))
-      (beginning-of-line)
-      (if (looking-at "^import ")
-          (progn
-            (end-of-line)
-            (just-one-space))
-        (insert "import "))
-      (let ((p (point)))
-        (intero-get-repl-completions
-         (current-buffer) "import "
-         (lambda (modules)
-           (save-excursion
-             (goto-char p)
-             (insert (completing-read "Import: " modules))
-             (if callback (funcall callback)))))))
-
-    (defun init-intero-add-import ()
-      "Add an import, format imports, and keep current position."
-      (interactive)
-      (save-excursion
-        (haskell-navigate-imports)
-        (open-line 1)
-        (init-intero-insert-import #'init-haskell-format-imports)))
-
-    (flycheck-add-next-checker 'intero '(t . haskell-hlint))))
