@@ -1,6 +1,9 @@
 ;;; -*- lexical-binding: t -*-
 
-(use-package multi-term)
+(use-package better-shell
+  :after projectile
+  :bind (:map projectile-command-map
+              ("x b" . better-shell-for-projectile-root)))
 
 (use-package shell
   :ensure nil
