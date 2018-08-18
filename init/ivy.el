@@ -66,6 +66,11 @@
               ("n" . ivy-next-line)
               ("p" . ivy-previous-line)))
 
+(use-package ivy-xref
+  :ensure t
+  :init (setq ivy-xref-use-file-path t
+              xref-show-xrefs-function #'ivy-xref-show-xrefs))
+
 (use-package swiper
   :demand
   :bind (("C-s" . swiper)))
