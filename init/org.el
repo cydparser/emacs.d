@@ -17,8 +17,7 @@
       (org-babel-do-load-languages
        'org-babel-load-languages
        '((emacs-lisp . t)
-         (ruby . t)
-         (sh . t))))))
+         (shell . t))))))
 
 (use-package org-bullets
   :hook (org-mode-hook . org-bullets-mode)
