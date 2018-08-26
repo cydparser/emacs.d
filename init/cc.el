@@ -12,3 +12,7 @@
       (c-set-offset 'arglist-close 0)
       (c-set-offset 'arglist-intro '+)
       (c-set-offset 'case-label '+))))
+(use-package cmake-mode)
+
+(use-package cquery
+  :hook (c++-mode-hook . lsp-cquery-enable))
