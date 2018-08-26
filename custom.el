@@ -11,7 +11,8 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (zenburn-theme yaml-mode which-key web-mode use-package twittering-mode treemacs-projectile treemacs systemd spaceline smartparens sdcv rxt repl-toggle rainbow-mode rainbow-delimiters projectile powershell poporg pcre2el outshine org-bullets nodejs-repl nix-sandbox nix-mode navi-mode multi-term markdown-mode magit macrostep kaolin-themes ivy-hydra intero inf-ruby imenu-anywhere iedit hlint-refactor haskell-snippets git-link git-gutter flyspell-correct-ivy fancy-battery expand-region exec-path-from-shell evil erc-services erc-hl-nicks dumb-jump dockerfile-mode docker diminish dante counsel-projectile counsel company-quickhelp company-nixos-options company-cabal command-log-mode cmm-mode avy auctex aggressive-indent)))
+    (zenburn-theme yaml-mode which-key web-mode use-package twittering-mode treemacs-projectile treemacs systemd string-inflection spaceline smartparens sdcv rxt repl-toggle rainbow-mode rainbow-delimiters projectile powershell poporg pcre2el outshine org-bullets nodejs-repl nix-sandbox nix-mode navi-mode markdown-mode magit macrostep lua-mode kaolin-themes ivy-xref ivy-hydra inf-ruby imenu-anywhere iedit hlint-refactor haskell-snippets git-link git-gutter flyspell-correct-ivy fancy-battery expand-region exec-path-from-shell evil erc-services erc-hl-nicks dumb-jump dockerfile-mode docker diminish dante cquery counsel-projectile counsel company-quickhelp company-nixos-options company-cabal command-log-mode cmm-mode cmake-mode better-shell avy auctex attrap aggressive-indent)
+    ))
  '(safe-local-variable-values
    (quote
     ((flycheck-emacs-lisp-load-path . inherit)
