@@ -79,6 +79,9 @@
     (put 'dante-target 'safe-local-variable #'init-dante-check-target))
   :config
   (progn
+    ;; Dante has trouble with operators.
+    (fset 'dante-ident-at-point #'haskell-ident-at-point)
+
     (unbind-key "C-c ." dante-mode-map)
     (unbind-key "C-c ," dante-mode-map)
     (unbind-key "C-c /" dante-mode-map)
