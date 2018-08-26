@@ -63,12 +63,12 @@ ARG determines the direction and number of sexps."
 (let ((fonts (font-family-list)))
   (when (member "Symbola" fonts)
     ;; Use Symbola for mathematical operators.
-    (set-fontset-font t '(#x2200 . #x22FF) "Symbola 14"))
+    (set-fontset-font t '(#x2200 . #x22FF) "Symbola 9"))
 
   (cond ((member "Hasklig" fonts)
-         (set-frame-font "Hasklig Light 14"))
+         (set-frame-font "Hasklig Light 12"))
         ((member "Inconsolata" fonts)
-         (set-frame-font "Inconsolata 15"))))
+         (set-frame-font "Inconsolata 12"))))
 
 ;; Simplify prompts.
 (fset 'yes-or-no-p #'y-or-n-p)
