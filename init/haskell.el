@@ -37,10 +37,13 @@
 (use-package dante
   :diminish " Δ"
   :bind (:map dante-mode-map
+              ("C-c b ?" . dante-diagnose)
               ("C-c b t" . init-dante-change-target)
+              ("C-c c b" . dante-eval-block)
               ("C-c C-i" . dante-info)
-              ("C-c C-r" . dante-auto-fix)
-              ("C-c C-t" . dante-type-at))
+              ("C-c d i" . dante-info)
+              ("C-c C-t" . dante-type-at)
+              ("C-c d t" . dante-type-at))
   :commands (init-dante)
   :init
   (progn
@@ -76,6 +79,11 @@
     (put 'dante-target 'safe-local-variable #'init-dante-check-target))
   :config
   (progn
+    (unbind-key "C-c ." dante-mode-map)
+    (unbind-key "C-c ," dante-mode-map)
+    (unbind-key "C-c /" dante-mode-map)
+    (unbind-key "C-c \"" dante-mode-map)
+
     (defun init-dante ()
       (setq-local haskell-process-show-overlays nil)
       (interactive-haskell-mode)
@@ -302,5 +310,7 @@ This function also sets the `inferior-haskell-root-dir'"
 
 (use-package hlint-refactor
   :diminish ""
-  :hook (haskell-mode-hook . hlint-refactor-mode))
-
+  :hook (haskell-mode-hook . hlint-refactor-mode)
+  :bind (:map hlint-refactor-mode-map
+              ("C-c r h b" . hlint-refactor-refactor-buffer)
+              ("C-c r h h" . hlint-refactor-refactor-at-point)))
