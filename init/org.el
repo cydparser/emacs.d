@@ -10,7 +10,6 @@
           org-list-description-max-indent 5
           org-log-done 'time
           org-src-fontify-natively t
-          org-src-strip-leading-and-trailing-blank-lines t
           org-startup-truncated nil))
   :config
   (progn
