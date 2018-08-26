@@ -28,6 +28,7 @@
     (require 'smartparens-config)
     (unbind-key "<M-down>" smartparens-mode-map)
     (unbind-key "<M-up>" smartparens-mode-map)
+    (unbind-key "M-?" smartparens-mode-map)
 
     (defun init-sp-kill-region-or-backward-word (arg)
       "Kill selected region or backward word."
