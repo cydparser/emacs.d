@@ -10,6 +10,21 @@
 (defvar init-haskell-backend-function 'init-dante)
 (defvar-local init-haskell-goto-definition-function nil)
 
+(defconst init-haskell-dev-extensions '("NamedWildCards" "PartialTypeSignatures"))
+(defconst init-haskell-repl-flags
+  (let* ((opt-flags '("-Wno-type-defaults"
+                      "-ferror-spans"
+                      "-fdefer-type-errors"
+                      "-j"))
+         (ext-flags (seq-map (lambda (s) (format "-X%s" s)) init-haskell-dev-extensions))
+         (rts '("-A128m"))
+         (rts-flags `("+RTS" ,@rts "-RTS")))
+    (seq-concatenate 'list opt-flags ext-flags rts-flags)))
+
+(defconst init-haskell-ghc-options-arg (string-join init-haskell-repl-flags " "))
+(defconst init-haskell-ghc-options-list `("--ghc-options" ,init-haskell-ghc-options-arg))
+(defconst init-haskell-ghc-options (concat "--ghc-options='" init-haskell-ghc-options-arg "'"))
+
 (use-package cmm-mode)
 
 (use-package company-cabal
@@ -29,40 +44,30 @@
   :commands (init-dante)
   :init
   (progn
-    (setq dante-load-flags '("+c" "-fno-diagnostics-show-caret" "-Wwarn=missing-home-modules"
-                             "-fdefer-type-errors"
-                             "-XNamedWildCards"
-                             "-XPartialTypeSignatures"))
     (setq dante-repl-command-line-methods-alist
           `((nix-cabal . ,(lambda (root)
                             (init-dante-repl-by-files
                              root '("dist/cabal-config-flags" "shell.nix")
-                             `("nix-shell" "--run" (concat "cabal repl " (or dante-target "") (init-dante-build-dir ,root "nix-cabal"))))))
+                             `("nix-shell" "--run" (concat "cabal repl " (or dante-target "") " "
+                                                           (init-dante-build-dir ,root "nix-cabal") " "
+                                                           ,init-haskell-ghc-options)))))
             (stack     . ,(lambda (root)
                             (dante-repl-by-file
                              root '(".stack-work")
-                             '("stack" "repl" dante-target))))
+                             `("stack" "repl" dante-target ,@init-haskell-ghci-options-list))))
             (cabal-new . ,(lambda (root)
                             (dante-repl-by-file
                              root '("dist-new" "cabal.project")
-                             `("cabal" "new-repl" dante-target (init-dante-build-dir ,root "cabal-new")))))
-            (styx      . ,(lambda (root)
-                            (dante-repl-by-file
-                             root '(".styx")
-                             '("styx" "repl" dante-target))))
-            (mafia     . ,(lambda (root)
-                            (dante-repl-by-file
-                             root '(".mafia")
-                             '("mafia" "repl" dante-target))))
+                             `("cabal" "new-repl" dante-target (init-dante-build-dir ,root "cabal-new") ,init-haskell-ghc-options))))
             (cabal-old . ,(lambda (root)
                             (dante-repl-by-file
                              root '("dist")
-                             `("cabal" "repl" dante-target (init-dante-build-dir ,root "cabal")))))
+                             `("cabal" "repl" dante-target (init-dante-build-dir ,root "cabal") ,init-haskell-ghc-options))))
             (nix-ghci  . ,(lambda (root)
                             (dante-repl-by-file
                              root '("shell.nix")
-                             '("nix-shell" "--run" "ghci -isrc:test -Wall -Wno-missing-signatures"))))
-            (ghci      . ,(lambda (_) '("ghci" "-Wall")))))
+                             `("nix-shell" "--run" ,(concat "ghci -isrc:test -Wall -Wno-missing-signatures " init-haskell-ghc-options)))))
+            (ghci      . ,(lambda (_) `("ghci" "-Wall" ,@init-haskell-repl-flags)))))
 
     (defun init-dante-check-target (target)
       (string-match-p
@@ -127,28 +132,16 @@
   :hook (haskell-mode-hook . init-haskell)
   :init
   (progn
-    ;; Either add "nix: True" to ~/.cabal/config or uncomment the next line.
-    (setq haskell-process-wrapper-function 'init-haskell-process-wrapper)
+    ;; "-fshow-loaded-modules" ; Needed for >= ghc-8.2.2
+    (setq flycheck-hlint-language-extensions init-haskell-dev-extensions)
     (setq haskell-font-lock-symbols t
-          haskell-font-lock-symbols-alist
-          '(("." "∘" haskell-font-lock-dot-is-not-composition))
-          haskell-process-log t
-          haskell-process-auto-import-loaded-modules t)
-
-    (let* ((opt-flags '("-fdefer-type-errors"
-                        "-ferror-spans"
-                        "-fshow-loaded-modules"
-                        "-Wno-type-defaults"))
-           (exts '("NamedWildCards"
-                   "PartialTypeSignatures"))
-           (ext-flags (seq-map (lambda (s) (format "-X%s" s)) exts))
-           (ghc-opts (concat (string-join opt-flags " ") " "
-                             (string-join ext-flags " "))))
-      (setq flycheck-hlint-language-extensions exts
-            haskell-process-args-ghci (seq-concatenate 'list opt-flags ext-flags)
-            haskell-process-args-cabal-repl `("--ghc-options" ,ghc-opts)
-            haskell-process-args-cabal-new-repl `("--ghc-options" ,ghc-opts)
-            haskell-process-args-stack-ghci `("--no-build" "--no-load" "--ghci-options" ,ghc-opts)))
+          haskell-font-lock-symbols-alist '(("." "∘" haskell-font-lock-dot-is-not-composition))
+          haskell-process-args-cabal-new-repl init-haskell-ghc-options-list
+          haskell-process-args-cabal-repl init-haskell-ghc-options-list
+          haskell-process-args-ghci (cons "-fshow-loaded-modules" init-haskell-repl-flags)
+          haskell-process-args-stack-ghci `("--no-build" "--no-load" ,@init-haskell-ghci-options-list)
+          haskell-process-auto-import-loaded-modules t
+          haskell-process-wrapper-function 'init-haskell-process-wrapper)
 
     (defconst init-haskell-prettify-symbols-alist
       (let ((exclude '("&&" "||")))
