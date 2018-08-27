@@ -16,6 +16,16 @@
     (defun init-prog-mode ()
       (init-prettify-symbols))))
 
+(use-package repl-toggle
+  :diminish ""
+  :bind (("C-c t r" . rtog/toggle-repl))
+  :hook (prog-mode-hook . rtog/activate)
+  :init (setq rtog/goto-buffer-fun #'pop-to-buffer
+              rtog/mode-repl-alist '((emacs-lisp-mode . ielm)
+                                     (js-mode . nodejs-repl)
+                                     (lisp-interaction-mode . ielm)
+                                     (ruby-mode . inf-ruby))))
+
 (use-package string-inflection
   :bind (("C-c r c -" . string-inflection-kebab-case)      ; kebab-case
          ("C-c r c c" . string-inflection-camelcase)       ; CamelCase
