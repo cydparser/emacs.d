@@ -24,6 +24,7 @@
 (defconst init-haskell-ghc-options-arg (string-join init-haskell-repl-flags " "))
 (defconst init-haskell-ghc-options-list `("--ghc-options" ,init-haskell-ghc-options-arg))
 (defconst init-haskell-ghc-options (concat "--ghc-options='" init-haskell-ghc-options-arg "'"))
+(defconst init-haskell-ghci-options-list `("--ghci-options" ,init-haskell-ghc-options-arg))
 
 (use-package cmm-mode)
 
