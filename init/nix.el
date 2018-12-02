@@ -12,6 +12,7 @@
       (add-to-list (make-local-variable 'company-backends)
                    #'company-nixos-options))))
 
-(use-package nix-mode)
+(use-package nix-mode
+  :mode "\\.nix\\'")
 
 (use-package nix-sandbox)
