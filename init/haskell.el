@@ -276,3 +276,11 @@ This function also sets the `inferior-haskell-root-dir'"
   :bind (:map hlint-refactor-mode-map
               ("C-c r h b" . hlint-refactor-refactor-buffer)
               ("C-c r h h" . hlint-refactor-refactor-at-point)))
+
+(use-package lsp-haskell
+  :hook (haskell-mode-hook . init-lsp-haskell)
+  :init
+  (progn
+    (defun init-lsp-haskell ()
+      (when nil
+        (lsp-haskell-enable)))))

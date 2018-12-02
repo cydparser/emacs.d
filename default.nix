@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, unzip
+{ stdenv, fetchFromGitHub, fetchurl, unzip
 , ctags
 , emacs
 , espeak
@@ -17,6 +17,15 @@ let
   inherit (haskellPackages) apply-refact hasktags codex;
 
   flycheck-yaml-ruby = ruby;
+
+  hies = let
+    src = fetchFromGitHub {
+      owner = "domenkozar";
+      repo = "hie-nix";
+      rev = "a270d8db4551f988437ac5db779a3cf614c4af68";
+      sha256 = "0hilxgmh5aaxg37cbdwixwnnripvjqxbvi8cjzqrk7rpfafv352q";
+    };
+    in (import src {}).hies;
 
   hunspellDict = hunspellDicts.en-us;
 
@@ -45,9 +54,10 @@ in stdenv.mkDerivation {
 
   buildInputs = [
     apply-refact
-    codex
+    # codex
     flycheck-yaml-ruby
     hasktags
+    hies
     hlint
     hunspellDict
     shellcheck

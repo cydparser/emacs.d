@@ -21,6 +21,13 @@
     (setq-default company-dabbrev-downcase nil
                   company-dabbrev-ignore-case nil)))
 
+(use-package company-lsp
+  :hook (lsp-mode-hook . init-company-lsp)
+  :init
+  (progn
+    (defun init-company-lsp ()
+      (add-to-list (make-local-variable 'company-backends) #'company-lsp))))
+
 (use-package company-quickhelp
   :demand
   :hook (company-mode-hook . company-quickhelp-mode))
@@ -48,6 +55,11 @@
 
     (advice-add 'flycheck-may-enable-mode :around
                 #'init-flycheck-may-enable-mode)))
+
+(use-package lsp-mode)
+
+(use-package lsp-ui
+  :hook (lsp-mode-hook . lsp-ui-mode))
 
 (use-package projectile
   :demand
