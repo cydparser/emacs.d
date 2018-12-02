@@ -8,7 +8,6 @@
   (require 'cl))
 
 (defvar init-haskell-backend-function 'init-dante)
-(defvar-local init-haskell-goto-definition-function nil)
 
 (defconst init-haskell-dev-extensions '("NamedWildCards" "PartialTypeSignatures"))
 (defconst init-haskell-repl-flags
@@ -42,9 +41,7 @@
               ("C-c b t" . init-dante-change-target)
               ("C-c c b" . dante-eval-block)
               ("C-c C-i" . dante-info)
-              ("C-c d i" . dante-info)
-              ("C-c C-t" . dante-type-at)
-              ("C-c d t" . dante-type-at))
+              ("C-c C-t" . dante-type-at))
   :commands (init-dante)
   :init
   (progn
@@ -91,7 +88,6 @@
     (defun init-dante ()
       (setq-local haskell-process-show-overlays nil)
       (interactive-haskell-mode)
-      (setq-local init-haskell-goto-definition-function #'init-dante-goto-definition)
       (dante-mode))
 
     (defun init-dante-build-dir (root backend)
@@ -110,11 +106,6 @@
         (setq-local dante-target target)
         (dante-restart)
         (haskell-session-change-target target)))
-
-    (defun init-dante-goto-definition ()
-      (condition-case-unless-debug nil
-          (call-interactively #'xref-find-definitions)
-        ((user-error . nil))))
 
     (defun init-dante-repl-by-files (root paths cmd)
       (when (seq-every-p (lambda (p)
@@ -135,7 +126,6 @@
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
               ("C-c r i" . init-haskell-format-imports)
-              ("M-." . init-haskell-goto-definition)
               ("M-g M-i" . haskell-navigate-imports)
               ("M-g i" . haskell-navigate-imports))
   :bind (:map interactive-haskell-mode-map
@@ -208,9 +198,7 @@
 
     (bind-keys :map interactive-haskell-mode-map
                ("C-c C-t" . haskell-mode-show-type-at)
-               ("C-c r t" . init-haskell-insert-type-sig)
-               ("M-n" . init-haskell-goto-next-error)
-               ("M-p" . init-haskell-goto-previous-error))
+               ("C-c r t" . init-haskell-insert-type-sig))
 
     (defun haskell-process-type ()
       "Return `haskell-process-type', or a guess if that variable is 'auto.
@@ -234,7 +222,6 @@ This function also sets the `inferior-haskell-root-dir'"
         type))
 
     (defun init-interactive-haskell ()
-      (setq-local init-haskell-goto-definition-function #'init-interactive-haskell-goto-definition)
       (interactive-haskell-mode))
 
     (defun init-haskell-change-backend (backend)
@@ -247,30 +234,6 @@ This function also sets the `inferior-haskell-root-dir'"
             (and backend
                  (not (string-blank-p backend))
                  (intern (concat "init-" backend)))))
-
-    (defun init-haskell-goto-definition ()
-      "Jump to the definition of the thing at point using backend or etags."
-      (interactive)
-      (or (and init-haskell-goto-definition-function
-               (let ((marker (point-marker)))
-                 (funcall init-haskell-goto-definition-function)
-                 (not (equal marker (point-marker)))))
-          (cl-letf (((symbol-function 'xref-find-backend) (lambda () 'etags)))
-            (call-interactively #'xref-find-definitions))))
-
-    (defun init-haskell-goto-next-error ()
-      "Go to the next Haskell or flycheck error."
-      (interactive)
-      (if (init--haskell-check-overlays-p)
-          (haskell-goto-next-error)
-        (flycheck-next-error)))
-
-    (defun init-haskell-goto-previous-error ()
-      "Go to the previous Haskell or flycheck error."
-      (interactive)
-      (if (init--haskell-check-overlays-p)
-          (haskell-goto-prev-error)
-        (flycheck-previous-error)))
 
     (defun init--haskell-check-overlays-p ()
       (and haskell-process-show-overlays
@@ -303,12 +266,7 @@ This function also sets the `inferior-haskell-root-dir'"
     (defun init-haskell-process-wrapper (args)
       "Executes ARGS in nix-shell."
       (list "nix-shell" "--command"
-            (string-join (mapcar (lambda (a) (concat "'" a "'")) args) " ")))
-
-    (defun init-interactive-haskell-goto-definition ()
-      (condition-case-unless-debug nil
-          (haskell-mode-goto-loc)
-        ((error . nil))))))
+            (string-join (mapcar (lambda (a) (concat "'" a "'")) args) " ")))))
 
 (use-package haskell-snippets)
 
