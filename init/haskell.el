@@ -20,7 +20,7 @@
          (rts-flags `("+RTS" ,@rts "-RTS")))
     (seq-concatenate 'list opt-flags ext-flags rts-flags)))
 
-(defconst init-haskell-ghc-options-arg (string-join init-haskell-repl-flags " "))
+(defconst init-haskell-ghc-options-arg (mapconcat 'identity init-haskell-repl-flags " "))
 (defconst init-haskell-ghc-options-list `("--ghc-options" ,init-haskell-ghc-options-arg))
 (defconst init-haskell-ghc-options (concat "--ghc-options='" init-haskell-ghc-options-arg "'"))
 (defconst init-haskell-ghci-options-list `("--ghci-options" ,init-haskell-ghc-options-arg))
@@ -228,7 +228,7 @@ This function also sets the `inferior-haskell-root-dir'"
       "Change Haskell backend for future buffers."
       (interactive (list (completing-read
                           "Import: "
-                          '("dante" "interactive-haskell" " ")
+                          '("dante" "interactive-haskell" "hie" " ")
                           nil t)))
       (setq init-haskell-backend-function
             (and backend
@@ -266,7 +266,7 @@ This function also sets the `inferior-haskell-root-dir'"
     (defun init-haskell-process-wrapper (args)
       "Executes ARGS in nix-shell."
       (list "nix-shell" "--command"
-            (string-join (mapcar (lambda (a) (concat "'" a "'")) args) " ")))))
+            (mapconcat 'identity (mapcar (lambda (a) (concat "'" a "'")) args) " ")))))
 
 (use-package haskell-snippets)
 
@@ -278,9 +278,7 @@ This function also sets the `inferior-haskell-root-dir'"
               ("C-c r h h" . hlint-refactor-refactor-at-point)))
 
 (use-package lsp-haskell
-  :hook (haskell-mode-hook . init-lsp-haskell)
   :init
   (progn
-    (defun init-lsp-haskell ()
-      (when nil
-        (lsp-haskell-enable)))))
+    (defun init-hie ()
+      (lsp-haskell-enable))))

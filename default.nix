@@ -1,5 +1,4 @@
-{ stdenv, fetchFromGitHub, fetchurl, unzip
-, ctags
+{ stdenv, fetchFromGitHub, fetchurl, makeWrapper, unzip
 , emacs
 , espeak
 , haskellPackages
@@ -14,7 +13,7 @@
 , wordnet
 }:
 let
-  inherit (haskellPackages) apply-refact hasktags codex;
+  inherit (haskellPackages) apply-refact codex hasktags;
 
   flycheck-yaml-ruby = ruby;
 
@@ -25,7 +24,16 @@ let
       rev = "a270d8db4551f988437ac5db779a3cf614c4af68";
       sha256 = "0hilxgmh5aaxg37cbdwixwnnripvjqxbvi8cjzqrk7rpfafv352q";
     };
-    in (import src {}).hies;
+    in (import "${src}/default.nix" {}).hies;
+
+  hnix-lsp = let
+    src = fetchFromGitHub {
+      owner = "domenkozar";
+      repo = "hnix-lsp";
+      rev = "acc1d29c2d061c3354f57faf6455dbc9767a5644";
+      sha256 = "0516bh6d7scpv4xq0d91bl6h4b20xlygx543gqy6ldj5yddml8n6";
+    };
+    in (import "${src}/stack2nix.nix" {}).hnix-lsp;
 
   hunspellDict = hunspellDicts.en-us;
 
@@ -50,24 +58,32 @@ let
   xmllint = libxml2.bin;
 
 in stdenv.mkDerivation {
-  name = "emacs.d";
+  name = "mx";
 
-  buildInputs = [
-    apply-refact
-    # codex
-    flycheck-yaml-ruby
-    hasktags
-    hies
-    hlint
-    hunspellDict
-    shellcheck
-    xmllint
-    mwebster-1913
-  ];
+  buildInputs = [ makeWrapper ];
 
-  postInstall = ''
-    wrapProgram ${emacs}/bin/emacs \
-      --suffix-each PATH : "${shellcheck}/bin" \
+  phases = [ "installPhase" ];
+
+  installPhase = ''
+    mkdir -p $out/bin
+    makeWrapper ${emacs}/bin/emacs $out/bin/mx \
+      --suffix PATH : ${stdenv.lib.makeBinPath [
+        apply-refact
+        # codex
+        espeak
+        flycheck-yaml-ruby
+        hasktags
+        hies
+        hlint
+        hnix-lsp
+        hunspell
+        mwebster-1913
+        nixpkgs-lint
+        sdcv
+        shellcheck
+        wordnet
+        xmllint
+      ]} \
       --set DICPATH "${hunspellDict}/share/hunspell" \
       --set STARDICT_DATA_DIR ${mwebster-1913}
   '';
