@@ -116,6 +116,8 @@
     (unbind-key "C-c ." dante-mode-map)
     (unbind-key "C-c ," dante-mode-map)
     (unbind-key "C-c /" dante-mode-map)))
+    ;; Dante's backend is too slow on large projects.
+    (remove-hook 'xref-backend-functions 'dante--xref-backend)
 
 (use-package haskell-mode
   :diminish ((haskell-collapse-mode . " …")
