@@ -77,14 +77,6 @@
     (put 'dante-target 'safe-local-variable #'init-dante-check-target))
   :config
   (progn
-    ;; Dante has trouble with operators.
-    (fset 'dante-ident-at-point #'haskell-ident-at-point)
-
-    (unbind-key "C-c ." dante-mode-map)
-    (unbind-key "C-c ," dante-mode-map)
-    (unbind-key "C-c /" dante-mode-map)
-    (unbind-key "C-c \"" dante-mode-map)
-
     (defun init-dante ()
       (setq-local haskell-process-show-overlays nil)
       (interactive-haskell-mode)
@@ -112,12 +104,16 @@
                            (file-exists-p (expand-file-name p root))) paths)
         cmd))
 
-    (flycheck-add-next-checker 'haskell-dante '(t . haskell-hlint))
     (unbind-key "C-c ." dante-mode-map)
     (unbind-key "C-c ," dante-mode-map)
-    (unbind-key "C-c /" dante-mode-map)))
+    (unbind-key "C-c /" dante-mode-map)
+    (unbind-key "C-c \"" dante-mode-map)
+
+    (flycheck-add-next-checker 'haskell-dante '(t . haskell-hlint))
     ;; Dante's backend is too slow on large projects.
     (remove-hook 'xref-backend-functions 'dante--xref-backend)
+    ;; Dante has trouble with operators.
+    (fset 'dante-ident-at-point #'haskell-ident-at-point)))
 
 (use-package haskell-mode
   :diminish ((haskell-collapse-mode . " …")
