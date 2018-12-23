@@ -73,5 +73,5 @@
 
 (use-package swiper
   :demand
-  :bind (("C-s" . swiper)))
+  :bind (("C-M-s" . swiper)))
 ;; TODO add M-o option for switching to isearch
