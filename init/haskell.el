@@ -276,6 +276,7 @@ This function also sets the `inferior-haskell-root-dir'"
               ("C-c r h h" . hlint-refactor-refactor-at-point)))
 
 (use-package lsp-haskell
+  :after lsp-mode
   :init
   (progn
     (defun init-hie ()
