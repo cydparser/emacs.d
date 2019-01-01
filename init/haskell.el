@@ -125,6 +125,11 @@
              ;; haskell-menu : LIST SESSION BUFFERS
              )
   :mode "\\.hs-boot\\'"
+  :bind (:map haskell-cabal-mode-map
+              ("M-g M-b" . haskell-cabal-goto-benchmark-section)
+              ("M-g M-e" . haskell-cabal-goto-executable-section)
+              ("M-g M-l" . haskell-cabal-goto-library-section)
+              ("M-g M-t" . haskell-cabal-goto-test-suite-section))
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
               ("C-c r i" . init-haskell-format-imports)
