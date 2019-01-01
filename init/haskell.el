@@ -7,7 +7,11 @@
 (eval-when-compile
   (require 'cl))
 
-(defvar init-haskell-backend-function 'init-dante)
+(defconst init-haskell-backends '("dante" "hie" "interactive-haskell"))
+
+(setq-default init-haskell-backend "dante")
+(put 'init-haskell-backend 'safe-local-variable
+     (lambda (s) (seq-contains init-haskell-backends s)))
 
 (defconst init-haskell-dev-extensions '("NamedWildCards" "PartialTypeSignatures"))
 (defconst init-haskell-repl-flags
@@ -179,8 +183,9 @@
              (setq-local company-dabbrev-downcase nil)
              (setq-local company-dabbrev-ignore-case :ignore-case)
              (setq-local projectile-tags-command "codex update")
-             (when init-haskell-backend-function
-               (funcall init-haskell-backend-function))))))
+
+             (when init-haskell-backend
+               (funcall (intern (concat "init-" init-haskell-backend))))))))
   :config
   (progn
     (require 'haskell)
@@ -226,12 +231,12 @@ This function also sets the `inferior-haskell-root-dir'"
       "Change Haskell backend for future buffers."
       (interactive (list (completing-read
                           "Import: "
-                          '("dante" "interactive-haskell" "hie" " ")
+                          (seq-concatenate 'list init-haskell-backends '(" "))
                           nil t)))
-      (setq init-haskell-backend-function
-            (and backend
-                 (not (string-blank-p backend))
-                 (intern (concat "init-" backend)))))
+      (setq-default init-haskell-backend
+                    (and backend
+                         (not (string-blank-p backend))
+                         backend)))
 
     (defun init--haskell-check-overlays-p ()
       (and haskell-process-show-overlays
@@ -276,8 +281,11 @@ This function also sets the `inferior-haskell-root-dir'"
               ("C-c r h h" . hlint-refactor-refactor-at-point)))
 
 (use-package lsp-haskell
-  :after lsp-mode
-  :init
+  :commands (init-hie)
+  :init (setq lsp-haskell-process-wrapper-function
+              (lambda (argv)
+                `("nix-shell" "--run" ,(mapconcat 'identity argv " ") ,(concat (lsp-haskell--get-root) "/shell.nix"))))
+  :config
   (progn
     (defun init-hie ()
-      (lsp-haskell-enable))))
+      (lsp))))
