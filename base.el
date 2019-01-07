@@ -178,6 +178,12 @@ ARG determines the direction and number of sexps."
           exec-path-from-shell-variables '("DICPATH" "PATH" "MANPATH"))
     (exec-path-from-shell-initialize)))
 
+(use-package flymake
+  :ensure nil
+  :bind (:map flymake-mode-map
+              ("M-n" . flymake-goto-next-error)
+              ("M-p" . flymake-goto-prev-error)))
+
 (use-package hippie-exp
   :ensure nil
   :init (setq hippie-expand-try-functions-list (seq-difference hippie-expand-try-functions-list
