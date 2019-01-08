@@ -1,6 +1,10 @@
 ;;; -*- lexical-binding: t -*-
 
-(defconst init-color-theme 'kaolin)
+(defconst init-color-theme 'sanityinc-tomorrow)
+
+(use-package color-theme-sanityinc-tomorrow
+  :if (eq init-color-theme 'sanityinc-tomorrow)
+  :init (add-hook 'after-init-hook (lambda () (load-theme 'sanityinc-tomorrow-night 'no-confirm))))
 
 (use-package kaolin-themes
   :if (eq init-color-theme 'kaolin)
