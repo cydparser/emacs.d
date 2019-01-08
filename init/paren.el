@@ -22,6 +22,7 @@
                                                 haskell-mode
                                                 makefile-gmake-mode
                                                 nix-mode
+                                                org-mode
                                                 python-mode))
   :config
   (progn
