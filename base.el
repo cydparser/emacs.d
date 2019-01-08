@@ -170,6 +170,11 @@ ARG determines the direction and number of sexps."
   (progn
     (unbind-key "M-o" diff-mode-map)))
 
+(use-package etags
+  :ensure nil
+  :init (setq tags-add-tables nil
+              tags-revert-without-query t))
+
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
   :init
