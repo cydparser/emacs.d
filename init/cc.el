@@ -2,16 +2,14 @@
 
 (use-package cc-mode
   :ensure nil
-  :hook (java-mode-hook . init-java)
+  :hook (c-mode-common-hook . init-cc)
   :init
   (progn
-    (defun init-java ()
-      (setq c-basic-offset 4
-            tab-stop-list (number-sequence 4 fill-column 4)
-            tab-width 4)
-      (c-set-offset 'arglist-close 0)
-      (c-set-offset 'arglist-intro '+)
-      (c-set-offset 'case-label '+))))
+    (require 'google-c-style)
+
+    (defun init-cc ()
+      (c-add-style "Google" google-c-style t))))
+
 (use-package cmake-mode)
 
 (use-package cquery
