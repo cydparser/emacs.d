@@ -2,6 +2,19 @@
 
 (require 'init-hasklig)
 
+(use-package hl-todo
+  :hook (prog-mode-hook . hl-todo-mode)
+  :init
+  (progn
+    (setq hl-todo-keyword-faces
+          '(("FAIL"  . "#cc6666")
+            ("FIXME" . "#cc6666")
+            ("HACK"  . "#de935f")
+            ("NB"    . "#f0c674")
+            ("NOTE"  . "#f0c674")
+            ("TODO"  . "#de935f")
+            ("XXX"   . "#de935f")))))
+
 (use-package prog-mode
   :ensure nil
   :hook (prog-mode-hook . init-prog-mode)
