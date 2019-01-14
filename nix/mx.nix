@@ -1,6 +1,7 @@
 { stdenv, makeWrapper, runCommandNoCC
 , codex
 , emacs
+, emacsPackages
 , espeak
 , haskellPackages
 , hies
@@ -17,6 +18,7 @@
 , wordnet
 }:
 let
+  inherit (emacsPackages) cask;
   inherit (haskellPackages) apply-refact hasktags;
 
   flycheck-yaml = ruby;
@@ -30,6 +32,7 @@ in
     makeWrapper ${emacs}/bin/emacs $out/bin/mx \
       --suffix PATH : ${stdenv.lib.makeBinPath [
         apply-refact
+        cask
         codex
         espeak
         flycheck-yaml

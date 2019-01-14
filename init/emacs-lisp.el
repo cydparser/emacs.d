@@ -5,6 +5,16 @@
 (use-package aggressive-indent
   :diminish "⃕")
 
+(use-package flycheck-elsa
+  :after flycheck
+  :hook (emacs-lisp-mode-hook . init-flycheck-elsa)
+  :init
+  (progn
+    (defun init-flycheck-elsa ()
+      (let ((pr (project-current)))
+        (when (and pr (seq-some (lambda (dir) (file-exists-p (expand-file-name ".cask" dir))) (project-roots pr)))
+          (flycheck-elsa-setup))))))
+
 (use-package lisp-mode
   :ensure nil
   :hook (emacs-lisp-mode-hook . init-emacs-lisp-mode)

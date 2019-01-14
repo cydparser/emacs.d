@@ -1,4 +1,5 @@
 .yas-compiled-snippets.el
+/.cask
 /color-themes
 /elpa
 /eshell/history
