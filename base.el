@@ -170,6 +170,10 @@ ARG determines the direction and number of sexps."
   (progn
     (unbind-key "M-o" diff-mode-map)))
 
+(use-package eldoc
+  :ensure nil
+  :diminish (eldoc-mode . ""))
+
 (use-package etags
   :ensure nil
   :init (setq tags-add-tables nil
