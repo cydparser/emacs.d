@@ -1,0 +1,37 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p nix-prefetch-github
+# Local Variables:
+# mode: sh
+# End:
+set -e
+
+cd "$(dirname "$0")"/..
+
+if [[ "$#" -gt 0 ]]; then
+  packages=( "$@" )
+else
+  packages=( dhall hies lsp-java nix-linter )
+fi
+
+for p in "${packages[@]}"; do
+  case "$p" in
+    codex)
+      nix-prefetch-github aloiscochard codex > nix/codex.json ;;
+    dhall)
+      cabal2nix cabal://dhall > nix/dhall.nix ;;
+    hies)
+      nix-prefetch-github domenkozar hie-nix > nix/hie-nix.json ;;
+    lsp-java)
+      _url="https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)"
+      _sha="$(nix-prefetch-url "$_url")"
+      echo "{ \"url\": \"$_url\", \"sha256\": \"$_sha\" }" > nix/lsp-java.json
+      ;;
+    nix-linter)
+      nix-prefetch-github Synthetica9 nix-linter > nix/nix-linter.json ;;
+    repline)
+      cabal2nix cabal://repline > nix/repline.nix ;;
+    *)
+      echo "ERROR: Unknown package: $p" >&2
+      exit 1
+  esac
+done

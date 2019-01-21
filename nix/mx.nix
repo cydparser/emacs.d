@@ -1,5 +1,6 @@
 { stdenv, makeWrapper, runCommandNoCC
 , codex
+, dhall
 , emacs
 , emacsPackages
 , espeak
@@ -33,6 +34,7 @@ in
         apply-refact
         cask
         codex
+        dhall
         espeak
         flycheck-yaml
         hasktags

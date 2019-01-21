@@ -34,7 +34,8 @@
   :bind (("C-c t r" . rtog/toggle-repl))
   :hook (prog-mode-hook . rtog/activate)
   :init (setq rtog/goto-buffer-fun #'pop-to-buffer
-              rtog/mode-repl-alist '((emacs-lisp-mode . ielm)
+              rtog/mode-repl-alist '((dhall-mode . dhall-repl-show)
+                                     (emacs-lisp-mode . ielm)
                                      (js-mode . nodejs-repl)
                                      (lisp-interaction-mode . ielm)
                                      (ruby-mode . inf-ruby))))
