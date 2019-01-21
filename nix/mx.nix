@@ -8,6 +8,7 @@
 , hlint
 , hunspell
 , hunspellDicts
+, jdt-language-server
 , libxml2
 , mwebster-1913
 , nix-linter
@@ -22,8 +23,6 @@ let
   inherit (haskellPackages) apply-refact hasktags;
 
   flycheck-yaml = ruby;
-
-  hunspellDict = hunspellDicts.en-us;
 
   xmllint = libxml2.bin;
 in
@@ -49,7 +48,8 @@ in
         xmllint
       ]} \
       --set CODEX_DISABLE_WORKSPACE true \
-      --set DICPATH "${hunspellDict}/share/hunspell" \
+      --set DICPATH "${hunspellDicts.en-us}/share/hunspell" \
+      --set JDT_LSP "${jdt-language-server}" \
       --set STARDICT_DATA_DIR "${mwebster-1913}" \
       --set WORDLIST "$XDG_CONFIG_HOME/ispell/words"
   ''
