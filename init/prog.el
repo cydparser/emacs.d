@@ -7,13 +7,14 @@
   :init
   (progn
     (setq hl-todo-keyword-faces
-          '(("FAIL"  . "#cc6666")
-            ("FIXME" . "#cc6666")
+          '(("WTF"   . "#c82829")
+            ("XXX"   . "#c82829")
+            ("FAIL"  . "#cc6666")
+            ("FIXME" . "#de935f")
             ("HACK"  . "#de935f")
-            ("NB"    . "#f0c674")
-            ("NOTE"  . "#f0c674")
-            ("TODO"  . "#de935f")
-            ("XXX"   . "#de935f")))))
+            ("TODO"  . "#f0c674")
+            ("NB"    . "#8abeb7")
+            ("NOTE"  . "#8abeb7")))))
 
 (use-package prog-mode
   :ensure nil
