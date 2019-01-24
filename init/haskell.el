@@ -49,30 +49,26 @@
   :commands (init-dante)
   :init
   (progn
-    (setq dante-repl-command-line-methods-alist
-          `((nix-cabal . ,(lambda (root)
-                            (init-dante-repl-by-files
-                             root '("dist/cabal-config-flags" "shell.nix")
-                             `("nix-shell" "--run" (concat "cabal repl " (or dante-target "") " "
-                                                           (init-dante-build-dir ,root "nix-cabal") " "
-                                                           ,init-haskell-ghc-options)))))
-            (stack     . ,(lambda (root)
-                            (dante-repl-by-file
-                             root '(".stack-work")
-                             `("stack" "repl" dante-target ,@init-haskell-ghci-options-list))))
-            (cabal-new . ,(lambda (root)
-                            (dante-repl-by-file
-                             root '("dist-new" "cabal.project")
-                             `("cabal" "new-repl" dante-target (init-dante-build-dir ,root "cabal-new") ,init-haskell-ghc-options))))
-            (cabal-old . ,(lambda (root)
-                            (dante-repl-by-file
-                             root '("dist")
-                             `("cabal" "repl" dante-target (init-dante-build-dir ,root "cabal") ,init-haskell-ghc-options))))
-            (nix-ghci  . ,(lambda (root)
-                            (dante-repl-by-file
-                             root '("shell.nix")
-                             `("nix-shell" "--run" ,(concat "ghci -isrc:test -Wall -Wno-missing-signatures " init-haskell-ghc-options)))))
-            (ghci      . ,(lambda (_) `("ghci" "-Wall" ,@init-haskell-repl-flags)))))
+    (defun init-dante-build-dir ()
+      (concat "--builddir=" (make-temp-name
+                             (concat "/tmp/dante-" (file-name-base (dante-project-root)) "-"))))
+
+    (defmacro init-dante-files-exist-p (&rest paths)
+      `(lambda (root) (seq-every-p
+                  (lambda (p) (file-exists-p (expand-file-name p root))) (vector ,@paths))))
+
+    (setq dante-methods-alist
+          `((nix-v1 ,(init-dante-files-exist-p "shell.nix" "dist/cabal-config-flags")
+                    ("nix-shell" "--run" (concat "cabal repl " (or dante-target "") " " (init-dante-build-dir) ,init-haskell-ghc-options)))
+            (nix-v2 ,(init-dante-files-exist-p "shell.nix" "dist-new")
+                    ("nix-shell" "--run" (concat "cabal new-repl " (or dante-target "") (init-dante-build-dir) ,init-haskell-ghc-options)))
+            (stack ".stack-work"
+                   ("stack" "repl" dante-target ,@init-haskell-ghci-options-list))
+            (nix-ghci ,(init-dante-files-exist-p "default.nix" "shell.nix")
+                      ("nix-shell" "--pure" "--run" (concat "ghci -isrc:test -Wall -Wno-missing-signatures " ,init-haskell-ghc-options)))
+            (cabal ,(lambda (d) (directory-files d t ".cabal$"))
+                   ("cabal" "new-repl" dante-target (init-dante-build-dir) ,init-haskell-ghc-options))
+            (ghci ,(lambda (_) t) ("ghci" "-Wall" ,@init-haskell-repl-flags))))
 
     (defun init-dante-check-target (target)
       (string-match-p
@@ -85,12 +81,6 @@
       (setq-local haskell-process-show-overlays nil)
       (interactive-haskell-mode)
       (dante-mode))
-
-    (defun init-dante-build-dir (root backend)
-      (concat "--builddir="
-              (make-temp-name (concat "/tmp/dante-"
-                                      backend "-"
-                                      (file-name-base root) "-"))))
 
     (defun init-dante-change-target (target)
       "Change GHCi target to TARGET and restart, if changed."
