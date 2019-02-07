@@ -13,6 +13,10 @@ rec {
 
   dhall = pkgs.haskell.lib.dontCheck (hs.callPackage nix/dhall.nix { megaparsec = hs.megaparsec_7_0_0; inherit repline; });
 
+  emacs = pkgs.emacsWithPackages (epkgs: with epkgs.melpaStablePackages; [
+    epkgs.pdf-tools
+  ]);
+
   hasktags = hs.callPackage nix/hasktags.nix {};
 
   hies = callPackage nix/hies.nix { inherit fetchPinnedGitHub; };
@@ -23,7 +27,7 @@ rec {
 
   mwebster-1913 = callPackage nix/mwebster-1913.nix {};
 
-  mx = callPackage nix/mx.nix { inherit codex dhall hasktags hies jdt-language-server nix-linter mwebster-1913; };
+  mx = callPackage nix/mx.nix { inherit codex dhall emacs hasktags hies jdt-language-server nix-linter mwebster-1913; };
 
   repline = hs.callPackage nix/repline.nix {};
 }
