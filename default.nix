@@ -13,6 +13,8 @@ rec {
 
   dhall = pkgs.haskell.lib.dontCheck (hs.callPackage nix/dhall.nix { megaparsec = hs.megaparsec_7_0_0; inherit repline; });
 
+  hasktags = hs.callPackage nix/hasktags.nix {};
+
   hies = callPackage nix/hies.nix { inherit fetchPinnedGitHub; };
 
   jdt-language-server = callPackage nix/jdt-language-server.nix { jre = pkgs.jre10_headless; inherit fetchPinnedUrl; };
@@ -21,7 +23,7 @@ rec {
 
   mwebster-1913 = callPackage nix/mwebster-1913.nix {};
 
-  mx = callPackage nix/mx.nix { inherit codex dhall hies jdt-language-server nix-linter mwebster-1913; };
+  mx = callPackage nix/mx.nix { inherit codex dhall hasktags hies jdt-language-server nix-linter mwebster-1913; };
 
   repline = hs.callPackage nix/repline.nix {};
 }

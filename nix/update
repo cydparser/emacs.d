@@ -19,6 +19,8 @@ for p in "${packages[@]}"; do
       nix-prefetch-github aloiscochard codex > nix/codex.json ;;
     dhall)
       cabal2nix cabal://dhall > nix/dhall.nix ;;
+    hasktags)
+      cabal2nix cabal://hasktags > nix/hasktags.nix ;;
     hies)
       nix-prefetch-github domenkozar hie-nix > nix/hie-nix.json ;;
     lsp-java)

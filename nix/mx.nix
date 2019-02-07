@@ -5,6 +5,7 @@
 , emacsPackages
 , espeak
 , haskellPackages
+, hasktags
 , hies
 , hlint
 , hunspell
@@ -21,7 +22,7 @@
 }:
 let
   inherit (emacsPackages) cask;
-  inherit (haskellPackages) apply-refact hasktags;
+  inherit (haskellPackages) apply-refact;
 
   flycheck-yaml = ruby;
 
