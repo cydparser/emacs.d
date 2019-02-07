@@ -8,6 +8,7 @@
  '(apropos-sort-by-scores t)
  '(ediff-window-setup-function (quote ediff-setup-windows-plain))
  '(flycheck-disabled-checkers (quote (haskell-ghc haskell-stack-ghc)))
+ '(large-file-warning-threshold 524288000)
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
