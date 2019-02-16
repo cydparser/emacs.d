@@ -20,7 +20,10 @@
      (flycheck-disabled-checkers emacs-lisp-checkdoc))))
  '(scroll-bar-mode nil)
  '(smerge-command-prefix "m")
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(treemacs-collapse-dirs 1)
+ '(treemacs-filewatch-mode nil)
+ '(treemacs-fringe-indicator-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
