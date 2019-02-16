@@ -172,15 +172,21 @@
                   (string-match
                    "\\(^\\(/nix\\|.+/\\.\\(cabal\\|stack\\|stack-work\\)\\)/.+\\)\\|\\(.+\\.hs-boot$\\)"
                    buffer-file-name))
-             (eldoc-mode -1)
+             (setq-local eldoc-documentation-function #'haskell-doc-current-info)
              (flycheck-mode -1))
             (t
              (setq-local company-dabbrev-downcase nil)
              (setq-local company-dabbrev-ignore-case :ignore-case)
              (setq-local projectile-tags-command "codex update")
 
-             (when init-haskell-backend
-               (funcall (intern (concat "init-" init-haskell-backend))))))))
+             (add-hook 'hack-local-variables-hook #'init-haskell--after-locals nil :local))))
+
+    (defun init-haskell--after-locals ()
+      (cond (init-haskell-backend
+             (setq-local eldoc-documentation-function nil)
+             (funcall (intern (concat "init-" init-haskell-backend))))
+            (t
+             (setq-local eldoc-documentation-function #'haskell-doc-current-info)))))
   :config
   (progn
     (require 'haskell)
