@@ -20,6 +20,7 @@
      (flycheck-disabled-checkers emacs-lisp-checkdoc))))
  '(scroll-bar-mode nil)
  '(smerge-command-prefix "m")
+ '(sql-product (quote postgres))
  '(tool-bar-mode nil)
  '(treemacs-collapse-dirs 1)
  '(treemacs-filewatch-mode nil)
