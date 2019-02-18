@@ -21,9 +21,6 @@
 
 (use-package cmake-mode)
 
-(use-package cquery
-  :hook (c++-mode-hook . lsp-cquery-enable))
-
 (use-package lsp-java
   :hook (java-mode-hook . lsp)
   :init
