@@ -22,7 +22,7 @@
 (use-package cmake-mode)
 
 (use-package lsp-java
-  :hook (java-mode-hook . lsp)
+  ;; :hook (java-mode-hook . lsp)
   :init
   (progn
     (let ((jtd-dir (getenv "JDT_LSP"))
@@ -31,7 +31,7 @@
             lsp-java-format-settings-url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
             lsp-java-import-gradle-enabled nil
             lsp-java-import-order '("com" "java" "javax" "org")
-            lsp-java-java-path (expand-file-name "jre/bin/java" jtd-dir)
+            lsp-java-java-path "lsp-java"
             lsp-java-server-install-dir jtd-dir
             lsp-java-workspace-cache-dir (expand-file-name "cache/" workspace)
             lsp-java-workspace-dir workspace))

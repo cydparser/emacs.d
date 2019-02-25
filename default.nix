@@ -29,7 +29,7 @@ rec {
 
   hlint = hs.callPackage nix/hlint.nix {};
 
-  jdt-language-server = callPackage nix/jdt-language-server.nix { jre = pkgs.jre10_headless; inherit fetchPinnedUrl; };
+  jdt-language-server = callPackage nix/jdt-language-server.nix { jdk = pkgs.jdk10; inherit fetchPinnedUrl; };
 
   nix-linter = (import (fetchPinnedGitHub nix/nix-linter.json) { inherit pkgs; }).nix-linter;
 

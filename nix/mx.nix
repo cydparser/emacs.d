@@ -42,6 +42,7 @@ in
         hies
         hlint
         hunspell
+        jdt-language-server
         mwebster-1913
         nix-linter
         nixpkgs-lint

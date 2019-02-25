@@ -1,4 +1,4 @@
-{ fetchPinnedUrl, jre, stdenv }:
+{ fetchPinnedUrl, jdk, makeWrapper, stdenv }:
 stdenv.mkDerivation {
   name = "jdt-language-server";
 
@@ -6,9 +6,15 @@ stdenv.mkDerivation {
 
   sourceRoot = ".";
 
+  buildInputs = [ makeWrapper ];
+
   installPhase = ''
-    mkdir -p $out/jre
+    mkdir -p $out/bin $out/share
     mv ./* $out/
-    ln -s ${jre}/bin $out/jre/
+    ln -s $out/plugins $out/share/java
+
+    makeWrapper ${jdk}/bin/java $out/bin/lsp-java \
+      --prefix PATH : ${stdenv.lib.makeBinPath [ jdk ]} \
+      --set JAVA_HOME ${jdk.home}
   '';
 }
