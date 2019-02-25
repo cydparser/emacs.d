@@ -19,10 +19,14 @@ for p in "${packages[@]}"; do
       nix-prefetch-github aloiscochard codex > nix/codex.json ;;
     dhall)
       cabal2nix cabal://dhall > nix/dhall.nix ;;
+    haskell-src-exts)
+      cabal2nix cabal://haskell-src-exts > nix/haskell-src-exts.nix ;;
     hasktags)
       cabal2nix cabal://hasktags > nix/hasktags.nix ;;
     hies)
       nix-prefetch-github domenkozar hie-nix > nix/hie-nix.json ;;
+    hlint)
+      cabal2nix cabal://hlint > nix/hlint.nix ;;
     lsp-java)
       _url="https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)"
       _sha="$(nix-prefetch-url "$_url")"
