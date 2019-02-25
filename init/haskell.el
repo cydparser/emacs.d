@@ -134,7 +134,7 @@
     ;; "-fshow-loaded-modules" ; Needed for >= ghc-8.2.2
     (setq flycheck-hlint-language-extensions init-haskell-dev-extensions)
     (setq haskell-font-lock-symbols t
-          haskell-font-lock-symbols-alist '(("." [?\s (bc . bc) ?∘] haskell-font-lock-dot-is-not-composition))
+          haskell-font-lock-symbols-alist '(("." [?\s (Bc . Bc) ?∘] haskell-font-lock-dot-is-not-composition))
           haskell-process-args-cabal-new-repl init-haskell-ghc-options-list
           haskell-process-args-cabal-repl init-haskell-ghc-options-list
           haskell-process-args-ghci (cons "-fshow-loaded-modules" init-haskell-repl-flags)
@@ -145,22 +145,22 @@
     (defconst init-haskell-prettify-symbols-alist
       (let ((exclude '("&&" "||")))
         (append
-         '(("\\" . "λ")
-           ("&&" . "∧")
-           ("||" . "∨")
-           ("not" . "¬")
-           ("empty" . "∅")
-           ("forall" . "∀")
-           ("pi" . "π")
-           ("undefined" . "⊥")
-           ("`elem`" . "∈")
-           ("`notElem`" . "∉")
-           ("`member`" . "∈")
-           ("`notMember`" . "∉")
-           ("`isSubsetOf`" . "⊆")
-           ("`isProperSubsetOf`" . "⊂")
-           ("`intersection`" . "∩")
-           ("`union`" . "∪"))
+         (list
+          (init-lig-rule-replace "\\" ?λ)
+          (init-lig-rule-replace "forall" ?∀)
+          (init-lig-rule-replace "undefined" ?⊥)
+          (init-lig-rule-pad "error" ?⊥)
+          (init-lig-rule-center "&&" ?∧)
+          (init-lig-rule-center "||" ?∨)
+          (init-lig-rule-pad "empty" ?∅)
+          (init-lig-rule-center "elem" ?∈)
+          (init-lig-rule-center "notElem" ?∉)
+          (init-lig-rule-center "member" ?∈)
+          (init-lig-rule-center "notMember" ?∉)
+          (init-lig-rule-center "isSubsetOf" ?⊆)
+          (init-lig-rule-center "isProperSubsetOf" ?⊂)
+          (init-lig-rule-center "intersection" ?∩)
+          (init-lig-rule-center "union" ?∪))
          (seq-remove (lambda (pair) (member (car pair) exclude))
                      init-hasklig-prettify-symbols-alist))))
 
