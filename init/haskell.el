@@ -135,6 +135,7 @@
     (setq flycheck-hlint-language-extensions init-haskell-dev-extensions)
     (setq haskell-font-lock-symbols t
           haskell-font-lock-symbols-alist '(("." [?\s (Bc . Bc) ?∘] haskell-font-lock-dot-is-not-composition))
+          haskell-hoogle-url "https://hoogle.haskell.org/?hoogle=%s"
           haskell-process-args-cabal-new-repl init-haskell-ghc-options-list
           haskell-process-args-cabal-repl init-haskell-ghc-options-list
           haskell-process-args-ghci (cons "-fshow-loaded-modules" init-haskell-repl-flags)
