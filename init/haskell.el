@@ -61,7 +61,7 @@
           `((nix-v1 ,(init-dante-files-exist-p "shell.nix" "dist/cabal-config-flags")
                     ("nix-shell" "--run" (concat "cabal repl " (or dante-target "") " " (init-dante-build-dir) ,init-haskell-ghc-options)))
             (nix-v2 ,(init-dante-files-exist-p "shell.nix" "dist-newstyle")
-                    ("nix-shell" "--run" (concat "cabal new-repl " (or dante-target "") (init-dante-build-dir) ,init-haskell-ghc-options)))
+                    ("nix-shell" "--run" (concat "cabal new-repl " (or dante-target "") " " (init-dante-build-dir) ,init-haskell-ghc-options)))
             (stack ".stack-work"
                    ("stack" "repl" dante-target ,@init-haskell-ghci-options-list))
             (nix-ghci ,(init-dante-files-exist-p "default.nix" "shell.nix")
@@ -72,7 +72,7 @@
 
     (defun init-dante-check-target (target)
       (string-match-p
-       "^\\([[:alpha:]][-[:alnum:]]+\\)?:\\(\\(lib\\|flib\\|exe\\|test\\|bench\\):\\)?[[:alpha:]][-[:alnum:]]*$"
+       "^\\([[:alpha:]][-[:alnum:]]+\\)?\\(:\\(lib\\|flib\\|exe\\|test\\|bench\\)\\)?\\(:[[:alpha:]][-[:alnum:]]+\\)?$"
        target))
     (put 'dante-target 'safe-local-variable #'init-dante-check-target))
   :config
