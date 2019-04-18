@@ -81,4 +81,15 @@
           projectile-mode-line nil
           ;; `call-process` uses a different path.
           projectile-tags-command (concat "PATH=" (getenv "PATH") " ctags -Re -f \"%s\" %s")
-          projectile-use-git-grep t)))
+          projectile-use-git-grep t)
+    (setq projectile-other-file-alist
+          '(;; From projectile's default list
+            ("c"    . ("h"))
+            ("h"    . ("c"))
+            (nil    . ("lock" "gpg"))
+            ("lock" . (""))
+            ("gpg"  . (""))
+            ;; GWT
+            ("java" . ("ui.xml"))
+            ("ui.xml" . ("java"))
+            ))))
