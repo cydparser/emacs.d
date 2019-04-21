@@ -5,15 +5,11 @@
 , emacsPackages
 , espeak
 , haskellPackages
-, hasktags
-, hies
-, hlint
 , hunspell
 , hunspellDicts
 , jdt-language-server
 , libxml2
 , mwebster-1913
-, nix-linter
 , nixpkgs-lint
 , ruby
 , sdcv
@@ -22,7 +18,7 @@
 }:
 let
   inherit (emacsPackages) cask;
-  inherit (haskellPackages) apply-refact;
+  inherit (haskellPackages) apply-refact hasktags hlint;
 
   flycheck-yaml = ruby;
 
@@ -39,12 +35,10 @@ in
         espeak
         flycheck-yaml
         hasktags
-        hies
         hlint
         hunspell
         jdt-language-server
         mwebster-1913
-        nix-linter
         nixpkgs-lint
         sdcv
         shellcheck

@@ -1,0 +1,49 @@
+{
+    "nixpkgs": {
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/b807bc8a531a49fc4671a0f89dab070a320281b5.tar.gz",
+        "owner": "NixOS",
+        "branch": "nixpkgs-19.03",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "nixpkgs-channels",
+        "type": "tarball",
+        "sha256": "0v717x3w2jkwz06hvnqzcwd6ryp5pmmvi4mrkgl2svi2zzqmkzhw",
+        "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
+        "rev": "2aa505b77c04bfd8bb702cbf261f1141a3fe55c2"
+    },
+    "lorri": {
+        "homepage": "",
+        "url": "https://github.com/target/lorri/archive/a1818308db1ed0d2de7d3cf95db3a669c40612b6.tar.gz",
+        "owner": "target",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "lorri",
+        "type": "tarball",
+        "sha256": "0kh3hz0c38d5zhkp41b87q5sngsbkdpk9awx8lihgmas95n07rwm",
+        "description": "Your project's nix-env",
+        "rev": "a1818308db1ed0d2de7d3cf95db3a669c40612b6"
+    },
+    "codex": {
+        "homepage": "",
+        "url": "https://github.com/aloiscochard/codex/archive/48b2a4b94132b537943bcd966c3922cbf67a7409.tar.gz",
+        "owner": "aloiscochard",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "codex",
+        "type": "tarball",
+        "sha256": "1mwsz824rqsphy68frqdrpkdmvlqg3zfn7wb565r8621jbbn9iws",
+        "description": "A ctags file generator for cabal/stack project dependencies.",
+        "rev": "48b2a4b94132b537943bcd966c3922cbf67a7409"
+    },
+    "niv": {
+        "homepage": "https://github.com/nmattia/niv",
+        "url": "https://github.com/nmattia/niv/archive/a489b65a5c3a29983701069d1ce395b23d9bde64.tar.gz",
+        "owner": "nmattia",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "niv",
+        "type": "tarball",
+        "sha256": "0mvh2x4l4f3nbgzzygk317nkzbyj3xgnczivgdra4q82dg8x77ka",
+        "description": "Easy dependency management for Nix projects",
+        "rev": "a489b65a5c3a29983701069d1ce395b23d9bde64"
+    }
+}
