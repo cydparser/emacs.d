@@ -73,6 +73,15 @@
     (defun init-projectile-ignored-project-p (project-root)
       (string-prefix-p "/nix/store/" project-root))
 
+    (defun init-projectile-test-suffix (project-type)
+      (cond
+       ((seq-contains '(haskell-cabal haskell-stack) project-type)
+        (let ((root (projectile-project-root)))
+          (cond
+           ((projectile-file-exists-p (expand-file-name "test/Spec.hs" root)) "Spec")
+           (t "Test"))))
+       (t (projectile-test-suffix project-type))))
+
     (setq projectile-completion-system 'ivy
           projectile-create-missing-test-files t
           projectile-ignored-project-function #'init-projectile-ignored-project-p
@@ -81,6 +90,7 @@
           projectile-mode-line nil
           ;; `call-process` uses a different path.
           projectile-tags-command (concat "PATH=" (getenv "PATH") " ctags -Re -f \"%s\" %s")
+          projectile-test-suffix-function #'init-projectile-test-suffix
           projectile-use-git-grep t)
     (setq projectile-other-file-alist
           '(;; From projectile's default list
