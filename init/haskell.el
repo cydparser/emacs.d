@@ -250,8 +250,9 @@ This function also sets the `inferior-haskell-root-dir'"
       (interactive)
       (save-excursion
         (goto-char (point-min))
-        (haskell-navigate-imports)
-        (haskell-mode-format-imports)
+        (haskell-navigate-imports-go)
+        (haskell-align-imports)
+        (haskell-sort-imports)
 
         (while (progn (haskell-navigate-imports)
                       (looking-at "^import "))
