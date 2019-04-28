@@ -101,8 +101,8 @@ ARG determines the direction and number of sexps."
       (max-line-length 80))
   (setq-default fill-column max-line-length
                 indent-tabs-mode nil
-                tab-width spaces
-                tab-stop-list (number-sequence spaces max-line-length spaces)))
+                standard-indent spaces
+                tab-width spaces))
 
 (defalias 'ar #'align-regexp)
 (defalias 'rs #'replace-string)
