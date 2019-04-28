@@ -205,26 +205,39 @@
                ("C-c C-t" . haskell-mode-show-type-at)
                ("C-c r t" . init-haskell-insert-type-sig))
 
+    (defcustom haskell-process-types-alist
+      '((cabal-new-repl "cabal" "dist-newstyle")
+        (stack          "stack" ".stack-work")
+        (cabal-sandbox  "cabal" "cabal.sandbox.config")
+        (cabal-repl     "cabal" "dist")
+        (ghc            "ghc"   nil))
+      "TODO"
+      :type '(alist :key-type symbol
+                    :value-type (list (string :tag "Required executable")
+                                      (choice (string   :tag "Filename")
+                                              (function :tag "Filename predicate"))))
+      :group 'haskell-interactive)
+
     (defun haskell-process-type ()
       "Return `haskell-process-type', or a guess if that variable is 'auto.
 This function also sets the `inferior-haskell-root-dir'"
-      (let ((root nil)
-            (type haskell-process-type))
-        (if (eq 'auto type)
-            (cond
-             ((and (setq root (locate-dominating-file default-directory "dist"))
-                   (file-exists-p (expand-file-name "dist/cabal-config-flags" root))
-                   (executable-find "cabal"))
-              (setq type 'cabal-repl))
-             ((and (setq root (locate-dominating-file default-directory ".stack-work"))
-                   (executable-find "stack"))
-              (setq type 'stack-ghci))
-             ((executable-find "ghc")
-              (setq root default-directory
-                    type 'ghci))
-             (error "Could not find any installation of GHC.")))
-        (setq inferior-haskell-root-dir root)
-        type))
+      (when (eq 'auto haskell-process-type)
+        (unless (dolist (list haskell-process-types-alist)
+                  (let ((exe  (nth 1 list))
+                        (root (locate-dominating-file default-directory (nth 2 list))))
+                    (when (and root (or (not exe) (executable-find exe)))
+                      (return (setq inferior-haskell-root-dir root
+                                    haskell-process-type (nth 0 list))))))
+          (error "Unable to determine haskell-process-type")))
+
+      (unless inferior-haskell-root-dir
+        (let ((list (assoc haskell-process-type inferior-haskell-root-dir)))
+          (unless list
+            (error "Unrecognized haskell-process-type"))
+          (let ((root (locate-dominating-file default-directory (nth 2 list))))
+            (if root (setq inferior-haskell-root-dir root)
+              (error "Unable to determine inferior-haskell-root-dir")))))
+      haskell-process-type)
 
     (defun init-interactive-haskell ()
       (interactive-haskell-mode))
