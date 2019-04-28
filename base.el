@@ -66,7 +66,7 @@ ARG determines the direction and number of sexps."
     (set-fontset-font t '(#x2200 . #x22FF) "Symbola 12"))
 
   (cond ((member "Hasklig" fonts)
-         (set-frame-font "Hasklig Light 12"))
+         (set-frame-font "Hasklig 12"))
         ((member "Inconsolata" fonts)
          (set-frame-font "Inconsolata 12"))))
 
