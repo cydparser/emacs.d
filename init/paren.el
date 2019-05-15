@@ -23,7 +23,8 @@
                                                 makefile-gmake-mode
                                                 nix-mode
                                                 org-mode
-                                                python-mode))
+                                                python-mode
+                                                sql-mode))
   :config
   (progn
     (require 'smartparens-config)
