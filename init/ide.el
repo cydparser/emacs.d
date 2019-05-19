@@ -62,7 +62,8 @@
               lsp-prefer-flymake nil))
 
 (use-package lsp-ui
-  :hook (lsp-mode-hook . lsp-ui-mode))
+  :hook (lsp-mode-hook . lsp-ui-mode)
+  :init (setq lsp-ui-doc-use-webkit t))
 
 (use-package projectile
   :demand
