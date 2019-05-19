@@ -1,20 +1,20 @@
 let
-  sources = import nix/sources.nix;
-  pkgs = import sources.nixpkgs {};
+  readJSON = path: builtins.fromJSON (builtins.readFile path);
+
+  pkgs = import (builtins.fetchTarball (readJSON nix/nixpkgs.json)) {};
 
   inherit (pkgs) callPackage;
 
-  fetchPinnedGitHub = path: pkgs.fetchFromGitHub (builtins.fromJSON (builtins.readFile path));
+  fetchPinnedGitHub = path: pkgs.fetchFromGitHub (readJSON path);
 
-  fetchPinnedUrl = path: builtins.fetchurl (builtins.fromJSON (builtins.readFile path));
+  fetchPinnedUrl = path: builtins.fetchurl (readJSON path);
 
   hs = pkgs.haskellPackages;
-
 
   skipTests = pkgs.haskell.lib.dontCheck;
 in
 rec {
-  codex = hs.callCabal2nix "codex" sources.codex {};
+  codex = hs.callCabal2nix "codex" (fetchPinnedGitHub nix/codex.json) {};
 
   dhall = skipTests (hs.callPackage nix/dhall.nix {});
 
@@ -37,5 +37,3 @@ rec {
     ;
   };
 }
-
-# TODO clang-tools (clangd)

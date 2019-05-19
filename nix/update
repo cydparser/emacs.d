@@ -10,18 +10,35 @@ cd "$(dirname "$0")"/..
 if [[ "$#" -gt 0 ]]; then
   packages=( "$@" )
 else
-  packages=( dhall hies jdt-language-server nix-linter )
+  packages=( dhall jdt-language-server )
 fi
+
+from-url() {
+  local _name="${1:? Missing name}"
+  local _url="${2:? Missing url}"
+  _sha="$(nix-prefetch-url "$_url")"
+  echo "{ \"_url\": \"$_url\", \"sha256\": \"$_sha\" }" > "nix/$name.json"
+}
+
+from-gh-release() {
+  local _name="${1:? Missing name}"
+  local _repo="${2:? Missing owner/repo}"
+  local _latest_url _latest
+  _latest_url="$(curl --fail -w "%{redirect_url}\n" --head -sS -o /dev/null "https://github.com/$repo/releases/latest")"
+  _latest="$(basename "$_latest_url")"
+  from-url "$_name" \
+           "https://github.com/$repo/releases/download/$_latest/infer-linux64-$_latest.tar.xz"
+}
 
 for p in "${packages[@]}"; do
   case "$p" in
+    codex)
+      nix-prefetch-github aloiscochard codex > nix/codex.json ;;
     dhall)
       cabal2nix cabal://dhall > nix/dhall.nix ;;
     jdt-language-server)
-      _url="https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)"
-      _sha="$(nix-prefetch-url "$_url")"
-      echo "{ \"url\": \"$_url\", \"sha256\": \"$_sha\" }" > nix/jdt-language-server.json
-      ;;
+      from-url 'jdt-language-server' \
+               "https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)" ;;
     *)
       echo "ERROR: Unknown package: $p" >&2
       exit 1
