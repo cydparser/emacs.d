@@ -18,13 +18,16 @@ rec {
 
   dhall = skipTests (hs.callPackage nix/dhall.nix {});
 
-  emacs = pkgs.emacsWithPackages (epkgs: with epkgs.melpaStablePackages; [
-    epkgs.pdf-tools
-  ]);
-
+  emacs =
+    let epkgs = pkgs.emacsPackagesNg.overrideScope' (self: super: {
+      emacs = super.emacs.override {
+        inherit (pkgs) webkitgtk;
+        withXwidgets = true;
+      };
+    });
+    in epkgs.emacsWithPackages (p: with p.melpaStablePackages; [ p.pdf-tools ]);
 
   jdt-language-server = callPackage nix/jdt-language-server.nix { jdk = pkgs.jdk; inherit fetchPinnedUrl; };
-
 
   mwebster-1913 = callPackage nix/mwebster-1913.nix {};
 
