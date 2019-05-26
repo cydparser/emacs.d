@@ -15,6 +15,7 @@
 , sdcv
 , shellcheck
 , wordnet
+, z3
 }:
 let
   inherit (emacsPackages) cask;
@@ -44,6 +45,7 @@ in
         shellcheck
         wordnet
         xmllint
+        z3
       ]} \
       --set CODEX_DISABLE_WORKSPACE true \
       --set DICPATH "${hunspellDicts.en-us}/share/hunspell" \
