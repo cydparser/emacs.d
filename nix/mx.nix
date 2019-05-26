@@ -24,7 +24,7 @@ let
 
   xmllint = libxml2.bin;
 in
-  runCommandNoCC "mx" { buildInputs = [ makeWrapper ]; } ''
+  runCommandNoCC "mx" { name = "emacs+"; buildInputs = [ makeWrapper ]; } ''
     mkdir -p $out/bin
     makeWrapper ${emacs}/bin/emacs $out/bin/mx \
       --suffix PATH : ${stdenv.lib.makeBinPath [
