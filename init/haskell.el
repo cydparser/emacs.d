@@ -171,7 +171,7 @@
       (prettify-symbols-mode)
       (cond ((and buffer-file-name
                   (string-match
-                   "\\(^\\(/nix\\|.+/\\.\\(cabal\\|stack\\|stack-work\\)\\)/.+\\)\\|\\(.+\\.hs-boot$\\)"
+                   "\\(^\\(/nix\\|.+/\\(\\(dist\\|dist-newstyle\\)\\|\\.\\(cabal\\|stack\\|stack-work\\)\\)\\)/.+\\)\\|\\(.+\\.hs-boot$\\)"
                    buffer-file-name))
              (setq-local eldoc-documentation-function #'haskell-doc-current-info)
              (flycheck-mode -1))
