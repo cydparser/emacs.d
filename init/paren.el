@@ -24,6 +24,7 @@
                                                 nix-mode
                                                 org-mode
                                                 python-mode
+                                                sh-mode
                                                 sql-mode))
   :config
   (progn
