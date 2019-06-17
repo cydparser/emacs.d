@@ -2,6 +2,10 @@
 
 ;;; Utilities
 
+(defconst init-config-directory
+  (expand-file-name "config" user-emacs-directory)
+  "Directory for config files created by Emacs.")
+
 (defconst init-var-directory
   (expand-file-name "var" user-emacs-directory)
   "Directory for various files created by Emacs.")
