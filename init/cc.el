@@ -22,6 +22,7 @@
 (use-package cmake-mode)
 
 (use-package lsp-java
+  :if (getenv "JDT_LSP")
   ;; :hook (java-mode-hook . lsp)
   :init
   (progn

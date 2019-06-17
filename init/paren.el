@@ -5,7 +5,7 @@
   :hook (after-init-hook . show-paren-mode))
 
 (use-package smartparens
-  :diminish " $"
+  :diminish "$"
   :bind (("C-w" . init-sp-kill-region-or-backward-word)
          :map smartparens-mode-map
          ("C-S-K" . sp-kill-whole-line)

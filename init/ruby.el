@@ -3,6 +3,7 @@
 ;; gem install rubocop ruby-lint
 
 (use-package inf-ruby
+  :if (executable-find "irb")
   :hook (ruby-mode-hook . inf-ruby-minor-mode))
 
 (use-package ruby-mode

@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package sdcv
+  :if (executable-find "sdcv")
   :bind (("C-c d" . init-define-word)
          :map sdcv-mode-map
          ("<RET>" . sdcv-search-pointer))

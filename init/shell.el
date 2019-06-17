@@ -8,6 +8,7 @@
               ("x b" . better-shell-for-projectile-root)))
 
 (use-package direnv
+  :if (executable-find "direnv")
   :hook (after-init-hook . direnv-mode))
 
 (use-package shell

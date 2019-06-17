@@ -110,7 +110,7 @@
     (fset 'dante-ident-at-point #'haskell-ident-at-point)))
 
 (use-package haskell-mode
-  :diminish ((haskell-collapse-mode . " …")
+  :diminish ((haskell-collapse-mode . "…")
              (interactive-haskell-mode . " λ")
              ;; haskell-menu : LIST SESSION BUFFERS
              )
@@ -290,6 +290,7 @@ This function also sets the `inferior-haskell-root-dir'"
 (use-package haskell-snippets)
 
 (use-package hlint-refactor
+  :if (executable-find "refactor")
   :diminish ""
   :hook (haskell-mode-hook . hlint-refactor-mode)
   :bind (:map hlint-refactor-mode-map
@@ -297,6 +298,7 @@ This function also sets the `inferior-haskell-root-dir'"
               ("C-c r h h" . hlint-refactor-refactor-at-point)))
 
 (use-package lsp-haskell
+  :if (executable-find "hie-wrapper")
   :commands (init-hie)
   :init (setq lsp-haskell-process-wrapper-function
               (lambda (argv)
