@@ -47,7 +47,7 @@ ARG determines the direction and number of sexps."
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
-(make-directory init-config-directory)
+(make-directory init-config-directory :parents)
 
 ;; Store auto-saves and backups in emacs.d/var.
 (let ((adir (expand-file-name "autosaves/" init-var-directory))
