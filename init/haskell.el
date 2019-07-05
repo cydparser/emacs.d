@@ -51,7 +51,7 @@
   (progn
     (defun init-dante-build-dir ()
       (concat "--builddir=" (make-temp-name
-                             (concat "/tmp/dante-" (file-name-base (dante-project-root)) "-"))))
+                             (concat "/tmp/dante-" (file-name-nondirectory (substring (dante-project-root) 0 -1)) "-"))))
 
     (defmacro init-dante-files-exist-p (&rest paths)
       `(lambda (root) (seq-every-p
