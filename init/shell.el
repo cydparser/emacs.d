@@ -17,6 +17,8 @@
               ("SPC" . comint-magic-space))
   :init
   (progn
+    (setq comint-input-ring-separator "\n\\(: \\([0-9]+\\):\\([0-9]+\\);\\)?")
+
     (let ((hist (init-xdg-data "zsh/history")))
       (when (and (file-exists-p hist)
                  (not (getenv "HISTFILE")))
