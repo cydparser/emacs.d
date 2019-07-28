@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         haskell-indentation-common-electric-command
+        init-sp-kill-region-or-backward-word
         kill-sexp
         mark-sexp
         outshine-self-insert-command
@@ -11,6 +12,7 @@
         sp-backward-kill-word
         sp-delete-char
         sp-kill-word
+        sp-splice-sexp
         transpose-sexps
         yaml-electric-dash-and-dot
         ))
