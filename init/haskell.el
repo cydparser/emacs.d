@@ -15,9 +15,11 @@
 
 (defconst init-haskell-dev-extensions '("NamedWildCards" "PartialTypeSignatures"))
 (defconst init-haskell-repl-flags
-  (let* ((opt-flags '("-Wno-type-defaults"
-                      "-ferror-spans"
+  (let* ((opt-flags '("-O0"
+                      "-Wno-type-defaults"
                       "-fdefer-type-errors"
+                      "-ferror-spans"
+                      "-fomit-interface-pragmas"
                       "-j"))
          (ext-flags (seq-map (lambda (s) (format "-X%s" s)) init-haskell-dev-extensions))
          (rts '("-A128m"))
