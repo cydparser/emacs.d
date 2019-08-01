@@ -34,10 +34,10 @@
 (use-package cmm-mode)
 
 (use-package company-cabal
-  :hook (haskell-cabal-mode-hook . init-haskell-cabal)
+  :hook (haskell-cabal-mode-hook . init-company-cabal)
   :init
   (progn
-    (defun init-haskell-cabal ()
+    (defun init-company-cabal ()
       (add-to-list (make-local-variable 'company-backends) #'company-cabal))))
 
 (use-package dante
@@ -111,17 +111,34 @@
     ;; Dante has trouble with operators.
     (fset 'dante-ident-at-point #'haskell-ident-at-point)))
 
+(use-package haskell-cabal
+  :ensure nil
+  :after haskell-mode
+  :bind (:map haskell-cabal-mode-map
+              ("M-g M-b" . haskell-cabal-goto-benchmark-section)
+              ("M-g M-e" . haskell-cabal-goto-executable-section)
+              ("M-g M-l" . haskell-cabal-goto-library-section)
+              ("M-g M-t" . haskell-cabal-goto-test-suite-section))
+  :config
+  (progn
+    (defun init-haskell-cabal-subsection (f)
+      (let ((plist (funcall f)))
+        (save-excursion
+          (haskell-cabal-beginning-of-subsection)
+          (cond
+           ((looking-at "\\([ \t]*\\(\\w*\\):\\)[ \t]*$")
+            (plist-put plist :data-start-column (+ standard-indent (current-column))))
+           (t plist)))))
+
+    (advice-add 'haskell-cabal-subsection :around
+                #'init-haskell-cabal-subsection)))
+
 (use-package haskell-mode
   :diminish ((haskell-collapse-mode . "…")
              (interactive-haskell-mode . " λ")
              ;; haskell-menu : LIST SESSION BUFFERS
              )
   :mode "\\.hs-boot\\'"
-  :bind (:map haskell-cabal-mode-map
-              ("M-g M-b" . haskell-cabal-goto-benchmark-section)
-              ("M-g M-e" . haskell-cabal-goto-executable-section)
-              ("M-g M-l" . haskell-cabal-goto-library-section)
-              ("M-g M-t" . haskell-cabal-goto-test-suite-section))
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
               ("C-c r i" . init-haskell-format-imports)
