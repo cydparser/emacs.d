@@ -6,7 +6,12 @@
              (global-whitespace-mode . ""))
   :init
   (progn
-    (setq whitespace-global-modes '(not compilation-mode erc-mode twittering-mode)
+    (setq whitespace-global-modes '(not
+                                    compilation-mode
+                                    csv-mode
+                                    erc-mode
+                                    magit-status-mode
+                                    twittering-mode)
           whitespace-line-column fill-column
-          whitespace-style '(empty face lines-tail trailing))
+          whitespace-style '(empty face lines-tail tabs trailing))
     (global-whitespace-mode)))
