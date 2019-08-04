@@ -6,6 +6,7 @@
               ;; ("k" . dired-subtree-remove)
               ("C-d" . dired-subtree-remove)
               ;; ("TAB" . dired-subtree-toggle)
+              ("<tab>" . dired-subtree-cycle)
               ("TAB" . dired-subtree-cycle)
               ;; dired-subtree-revert
               ;; dired-subtree-narrow
