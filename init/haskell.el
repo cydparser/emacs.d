@@ -114,6 +114,7 @@
 (use-package haskell-cabal
   :ensure nil
   :after haskell-mode
+  :hook (haskell-cabal-mode-hook . init-haskell-cabal)
   :bind (:map haskell-cabal-mode-map
               ("M-g M-b" . haskell-cabal-goto-benchmark-section)
               ("M-g M-e" . haskell-cabal-goto-executable-section)
@@ -121,6 +122,27 @@
               ("M-g M-t" . haskell-cabal-goto-test-suite-section))
   :config
   (progn
+    (defun init-haskell-cabal ()
+      (setq-local indent-line-function 'init-haskell-cabal-indent-line))
+
+    ;; Copied from haskell-mode.
+    (defun init-haskell-cabal-indent-line ()
+      "Indent current line according to subsection"
+      (interactive)
+      (cl-case (haskell-cabal-classify-line)
+        (section-data
+         (save-excursion
+           (let ((indent (haskell-cabal-section-data-start-column
+                          (haskell-cabal-subsection))))
+             (indent-line-to indent)
+             ;; (beginning-of-line)
+             ;; (when (looking-at "[ ]*\\([ ]\\{2\\},[ ]*\\)")
+             ;;   (replace-match ", " t t nil 1))
+             )))
+        (empty
+         (indent-relative)))
+      (haskell-cabal-forward-to-line-entry))
+
     (defun init-haskell-cabal-subsection (f)
       (let ((plist (funcall f)))
         (save-excursion
