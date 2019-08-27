@@ -3,14 +3,18 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        counsel-M-x
         haskell-indentation-common-electric-command
+        init-delete-excess-whitespace
         init-sp-kill-region-or-backward-word
         kill-sexp
         mark-sexp
         outshine-self-insert-command
         sp-backward-delete-char
         sp-backward-kill-word
+        sp-backward-sexp
         sp-delete-char
+        sp-forward-sexp
         sp-kill-word
         sp-splice-sexp
         transpose-sexps
