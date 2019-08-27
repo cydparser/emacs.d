@@ -182,6 +182,8 @@
           haskell-process-args-ghci (cons "-fshow-loaded-modules" init-haskell-repl-flags)
           haskell-process-args-stack-ghci `("--no-build" "--no-load" ,@init-haskell-ghci-options-list)
           haskell-process-auto-import-loaded-modules t
+          haskell-process-load-or-reload-prompt t
+          haskell-process-log t
           haskell-process-wrapper-function 'init-haskell-process-wrapper)
 
     (defconst init-haskell-prettify-symbols-alist
