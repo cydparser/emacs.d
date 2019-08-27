@@ -281,6 +281,7 @@ This function also sets the `inferior-haskell-root-dir'"
             (if root (setq inferior-haskell-root-dir root)
               (error "Unable to determine inferior-haskell-root-dir")))))
       haskell-process-type)
+    (setq haskell-font-lock-keywords (delete "proc" haskell-font-lock-keywords))
 
     (defun init-interactive-haskell ()
       (interactive-haskell-mode))
