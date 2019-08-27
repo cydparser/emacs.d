@@ -47,3 +47,22 @@
          ("C-c r c l" . string-inflection-lower-camelcase) ; lowerCamelCase
          ("C-c r c s" . string-inflection-underscore)      ; snake_case
          ("C-c r c u" . string-inflection-upcase)))        ; UPPER_SNAKE_CASE
+
+(use-package sql
+  :ensure nil
+  :hook (sql-mode-hook . init-sql)
+  :init
+  (progn
+    (defun init-sql ()
+      (setq indent-line-function #'init-sql-indent))
+
+    (defun init-sql-indent ()
+      (indent-line-to
+       (save-excursion
+         (forward-line -1)
+         (beginning-of-line)
+         (cond ((looking-at-p ".+;[	 ]*\\(--.*\\)?$") 0)
+               ((looking-at-p "^[	 ]*\\($\\|--\\)") 0)
+               ((looking-at-p "^[a-zA-Z\\]") standard-indent)
+               (t (back-to-indentation)
+                  (max (current-column) standard-indent))))))))
