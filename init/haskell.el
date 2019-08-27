@@ -130,18 +130,18 @@
       "Indent current line according to subsection"
       (interactive)
       (cl-case (haskell-cabal-classify-line)
-        (section-data
-         (save-excursion
-           (let ((indent (haskell-cabal-section-data-start-column
-                          (haskell-cabal-subsection))))
-             (indent-line-to indent)
-             ;; (beginning-of-line)
-             ;; (when (looking-at "[ ]*\\([ ]\\{2\\},[ ]*\\)")
-             ;;   (replace-match ", " t t nil 1))
-             )))
-        (empty
-         (indent-relative)))
+        (section-data (init-haskell-cabal-indent-section-data))
+        (empty (init-haskell-cabal-indent-section-data)))
       (haskell-cabal-forward-to-line-entry))
+
+    (defun init-haskell-cabal-indent-section-data ()
+      (let ((data-indent (haskell-cabal-section-data-start-column
+                          (haskell-cabal-subsection)))
+            (prev-indent (save-excursion
+                           (next-line -1)
+                           (back-to-indentation)
+                           (current-column))))
+        (indent-line-to (max data-indent prev-indent))))
 
     (defun init-haskell-cabal-subsection (f)
       (let ((plist (funcall f)))
