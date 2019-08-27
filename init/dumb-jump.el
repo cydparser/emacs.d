@@ -5,6 +5,7 @@
          ("C-c j p" . dumb-jump-back)
          ("C-c j l" . dumb-jump-quick-look))
   :init (setq dumb-jump-force-searcher 'rg
+              dumb-jump-rg-search-args ""
               dumb-jump-selector 'ivy)
   :config
   (progn
