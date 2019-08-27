@@ -11,6 +11,7 @@
 , libxml2
 , mwebster-1913
 , nixpkgs-lint
+, ripgrep
 , ruby
 , sdcv
 , shellcheck
@@ -41,6 +42,7 @@ in
         jdt-language-server
         mwebster-1913
         nixpkgs-lint
+        ripgrep
         sdcv
         shellcheck
         wordnet

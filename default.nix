@@ -38,5 +38,6 @@ rec {
     jdt-language-server
     mwebster-1913
     ;
+    ripgrep = pkgs.ripgrep.override { withPCRE2 = true; };
   };
 }
