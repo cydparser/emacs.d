@@ -11,4 +11,28 @@
   (progn
     (unbind-key "C-M-g" dumb-jump-mode-map)
     (unbind-key "C-M-p" dumb-jump-mode-map)
-    (unbind-key "C-M-q" dumb-jump-mode-map)))
+    (unbind-key "C-M-q" dumb-jump-mode-map)
+
+    (setq dumb-jump-find-rules
+          (seq-concatenate
+           'list
+           '((:type "top-level" :supports ("rg") :language "haskell"
+                    :regex "^JJJ($|(\\s+((::[^-]+->\\s)|([^:=|-]*[=|]))))")
+             (:type "data constructor" :supports ("rg") :language "haskell"
+                    :regex "^(data|newtype)\\s+.*(([=|]\\s+JJJ($|\\s)))")
+             (:type "data constructor newline" :supports ("rg") :language "haskell"
+                    :regex "^\\s+[=|]\\s+(forall\\s+[^.]+\\.\\s+)?JJJ(\\s|$)")
+             (:type "record field" :supports ("rg") :language "haskell"
+                    :regex "^((data|newtype)\\s+.*([=|]\\s+[^{]+[{]\\s+JJJ\\s+::))|(\\s+[,{]\\s+JJJ\\s+::)")
+             (:type "GADT constructor" :supports ("rg") :language "haskell"
+                    :regex "^\\s+JJJ\\s+::\\s")
+             (:type "module" :supports ("rg") :language "haskell"
+                    :regex "^module\\s+JJJ(\\s|$)")
+             (:type "type-like" :supports ("rg") :language "haskell"
+                    :regex "^((data(\\s+family)?)|(newtype)|(type(\\s+family)?))\\s+JJJ(\\s|$)")
+             (:type "typeclass" :supports ("rg") :language "haskell"
+                    :regex "^class\\s+([^=]+=>\\s+)?JJJ(\\s|$)")
+             (:type "associated type family" :supports ("rg") :language "haskell"
+                    :regex "^\\s+type\\s+Key\\s+[^:]+::"))
+           (seq-remove (lambda (rule) (string-equal "haskell" (plist-get rule :language)))
+                       dumb-jump-find-rules)))))
