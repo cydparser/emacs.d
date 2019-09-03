@@ -11,10 +11,12 @@ let
 
   hs = pkgs.haskellPackages;
 
+  allowNewer = pkgs.haskell.lib.doJailbreak;
+
   skipTests = pkgs.haskell.lib.dontCheck;
 in
 rec {
-  codex = hs.callCabal2nix "codex" (fetchPinnedGitHub nix/codex.json) {};
+  codex = allowNewer (hs.callCabal2nix "codex" (fetchPinnedGitHub nix/codex.json) {});
 
   emacs =
     let epkgs = pkgs.emacsPackagesNg.overrideScope' (self: super: {

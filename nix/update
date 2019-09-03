@@ -33,7 +33,7 @@ from-gh-release() {
 for p in "${packages[@]}"; do
   case "$p" in
     codex)
-      nix-prefetch-github aloiscochard codex > nix/codex.json ;;
+      nix-prefetch-github --rev hack cydparser codex > nix/codex.json ;;
     jdt-language-server)
       from-url 'jdt-language-server' \
                "https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)" ;;
