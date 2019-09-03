@@ -15,6 +15,7 @@
         sp-backward-sexp
         sp-delete-char
         sp-forward-sexp
+        sp-kill-hybrid-sexp
         sp-kill-word
         sp-splice-sexp
         transpose-sexps
