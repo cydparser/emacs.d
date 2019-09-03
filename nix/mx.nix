@@ -1,4 +1,5 @@
 { stdenv, makeWrapper, runCommandNoCC
+, ag
 , codex
 , dhall
 , emacs
@@ -30,6 +31,7 @@ in
     mkdir -p $out/bin
     makeWrapper ${emacs}/bin/emacs $out/bin/mx \
       --suffix PATH : ${stdenv.lib.makeBinPath [
+        ag
         apply-refact
         cask
         codex
