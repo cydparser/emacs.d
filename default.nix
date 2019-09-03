@@ -5,7 +5,7 @@ let
 
   inherit (pkgs) callPackage;
 
-  fetchPinnedGitHub = path: pkgs.fetchFromGitHub (readJSON path);
+  fetchPinnedGitHub = path: pkgs.fetchFromGitHub ((readJSON path) // { fetchSubmodules = true; });
 
   fetchPinnedUrl = path: builtins.fetchurl (readJSON path);
 
