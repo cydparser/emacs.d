@@ -10,7 +10,7 @@ cd "$(dirname "$0")"/..
 if [[ "$#" -gt 0 ]]; then
   packages=( "$@" )
 else
-  packages=( dhall jdt-language-server )
+  packages=( jdt-language-server )
 fi
 
 from-url() {
@@ -34,8 +34,6 @@ for p in "${packages[@]}"; do
   case "$p" in
     codex)
       nix-prefetch-github aloiscochard codex > nix/codex.json ;;
-    dhall)
-      cabal2nix cabal://dhall > nix/dhall.nix ;;
     jdt-language-server)
       from-url 'jdt-language-server' \
                "https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)" ;;

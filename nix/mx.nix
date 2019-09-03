@@ -1,7 +1,6 @@
 { stdenv, makeWrapper, runCommandNoCC
 , ag
 , codex
-, dhall
 , emacs
 , emacsPackages
 , espeak
@@ -21,7 +20,7 @@
 }:
 let
   inherit (emacsPackages) cask;
-  inherit (haskellPackages) apply-refact hasktags hlint;
+  inherit (haskellPackages) apply-refact dhall hasktags hlint;
 
   flycheck-yaml = ruby;
 

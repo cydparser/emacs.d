@@ -16,8 +16,6 @@ in
 rec {
   codex = hs.callCabal2nix "codex" (fetchPinnedGitHub nix/codex.json) {};
 
-  dhall = skipTests (hs.callPackage nix/dhall.nix {});
-
   emacs =
     let epkgs = pkgs.emacsPackagesNg.overrideScope' (self: super: {
       emacs = super.emacs.override {
@@ -31,12 +29,12 @@ rec {
 
   mwebster-1913 = callPackage nix/mwebster-1913.nix {};
 
-  mx = callPackage nix/mx.nix { inherit
-    codex
-    dhall
-    emacs
-    jdt-language-server
-    mwebster-1913
+  mx = callPackage nix/mx.nix {
+    inherit
+      codex
+      emacs
+      jdt-language-server
+      mwebster-1913
     ;
     ripgrep = pkgs.ripgrep.override { withPCRE2 = true; };
   };
