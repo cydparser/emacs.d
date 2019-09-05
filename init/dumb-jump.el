@@ -16,14 +16,16 @@
     (setq dumb-jump-find-rules
           (seq-concatenate
            'list
-           '((:type "top-level" :supports ("rg") :language "haskell"
-                    :regex "^JJJ($|(\\s+((::[^-]+->\\s)|([^:=|-]*[=|]))))")
+           '((:type "top-level binding" :supports ("rg") :language "haskell"
+                    :regex "^JJJ($|(\\s+(::|([^:=|-]*(= |[|])))))")
+             (:type "local binding" :supports ("rg") :language "haskell"
+                    :regex "^\\s+((let|where)\\s+)?JJJ($|(\\s+(::|([^:=|-]*(= |[|])))))")
              (:type "data constructor" :supports ("rg") :language "haskell"
-                    :regex "^(data|newtype)\\s+.*(([=|]\\s+JJJ($|\\s)))")
+                    :regex "^(data|newtype)\\s+.*(((= |[|])\\s+JJJ($|\\s)))")
              (:type "data constructor newline" :supports ("rg") :language "haskell"
                     :regex "^\\s+[=|]\\s+(forall\\s+[^.]+\\.\\s+)?JJJ(\\s|$)")
              (:type "record field" :supports ("rg") :language "haskell"
-                    :regex "^((data|newtype)\\s+.*([=|]\\s+[^{]+[{]\\s+JJJ\\s+::))|(\\s+[,{]\\s+JJJ\\s+::)")
+                    :regex "^((data|newtype)\\s+.*((= |[|])\\s+[^{]+[{]\\s+JJJ\\s+::))|(\\s+[,{]\\s+JJJ\\s+::)")
              (:type "GADT constructor" :supports ("rg") :language "haskell"
                     :regex "^\\s+JJJ\\s+::\\s")
              (:type "module" :supports ("rg") :language "haskell"
