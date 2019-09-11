@@ -223,6 +223,9 @@
              (setq-local company-dabbrev-downcase nil)
              (setq-local company-dabbrev-ignore-case :ignore-case)
              (setq-local projectile-tags-command "codex update")
+             (let ((columns 120))
+               (setq-local fill-column columns)
+               (setq-local whitespace-line-column columns))
 
              (add-hook 'hack-local-variables-hook #'init-haskell--after-locals nil :local))))
 
