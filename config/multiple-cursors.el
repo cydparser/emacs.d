@@ -18,6 +18,8 @@
         sp-kill-hybrid-sexp
         sp-kill-word
         sp-splice-sexp
+        sp-up-sexp
+        string-inflection-lower-camelcase
         transpose-sexps
         yaml-electric-dash-and-dot
         ))
