@@ -2,8 +2,9 @@
 
 (use-package whitespace
   :demand
-  :diminish ((whitespace-mode . "")
-             (global-whitespace-mode . ""))
+  :diminish ((whitespace-mode . "□")
+             (global-whitespace-mode . "□"))
+  :hook (after-init-hook . global-whitespace-mode)
   :init
   (progn
     (setq whitespace-global-modes '(not
@@ -13,5 +14,4 @@
                                     magit-status-mode
                                     twittering-mode)
           whitespace-line-column fill-column
-          whitespace-style '(empty face lines-tail tabs trailing))
-    (global-whitespace-mode)))
+          whitespace-style '(empty face lines-tail tabs trailing))))
