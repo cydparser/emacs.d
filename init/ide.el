@@ -76,7 +76,7 @@
 
     (defun init-projectile-test-suffix (project-type)
       (cond
-       ((seq-contains '(haskell-cabal haskell-stack) project-type)
+       ((string-prefix-p "haskell-" (symbol-name project-type))
         (let ((root (projectile-project-root)))
           (cond
            ((projectile-file-exists-p (expand-file-name "test/Spec.hs" root)) "Spec")
@@ -102,5 +102,29 @@
             ("gpg"  . (""))
             ;; GWT
             ("java" . ("ui.xml"))
-            ("ui.xml" . ("java"))
-            ))))
+            ("ui.xml" . ("java")))))
+  :config
+  (progn
+    (setq projectile-project-types
+          (seq-filter (lambda (type) (member (car type) '(racket
+                                                     rust-cargo
+                                                     r
+                                                     emacs-cask
+                                                     maven
+                                                     cmake
+                                                     make
+                                                     nix
+                                                     )))
+                      projectile-project-types))
+
+    (defun projectile-cabal-project-p () t)
+
+    (projectile-register-project-type 'haskell-nix-cabal-v1 '("shell.nix" "dist/cabal-config-flags")
+                                      :compile "nix-shell --run 'cabal v1-build'"
+                                      :test "nix-shell --run 'cabal v1-test'"
+                                      :test-suffix "Spec")
+
+    (projectile-register-project-type 'haskell-nix-cabal '("shell.nix" "dist-newstyle")
+                                      :compile "hal build"
+                                      :test "hal test"
+                                      :test-suffix "Spec")))
