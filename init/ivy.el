@@ -19,10 +19,12 @@
 
 (use-package counsel-projectile
   :after projectile
+  :demand
   :hook (after-init-hook . counsel-projectile-mode))
 
 (use-package ivy
   :diminish ""
+  :demand
   :bind (("C-c z" . ivy-resume)
          ("C-x b" . ivy-switch-buffer)
          :map ivy-minibuffer-map
