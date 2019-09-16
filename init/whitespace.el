@@ -7,11 +7,13 @@
   :hook (after-init-hook . global-whitespace-mode)
   :init
   (progn
-    (setq whitespace-global-modes '(not
-                                    compilation-mode
-                                    csv-mode
-                                    erc-mode
-                                    magit-status-mode
-                                    twittering-mode)
+    (setq whitespace-global-modes ()
           whitespace-line-column fill-column
-          whitespace-style '(empty face lines-tail tabs trailing))))
+          whitespace-style '(empty face lines-tail tabs trailing)))
+  :config
+  (progn
+    (defun init-whitespace-enable-predicate ()
+      (and (derived-mode-p 'prog-mode 'text-mode)
+           (not noninteractive)))
+
+    (setq whitespace-enable-predicate #'init-whitespace-enable-predicate)))
