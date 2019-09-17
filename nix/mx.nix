@@ -1,10 +1,12 @@
-{ stdenv, makeWrapper, runCommandNoCC
+{ stdenv, makeFontsConf, makeWrapper, runCommandNoCC
 , ag
 , codex
 , emacs
+, emacs-all-the-icons-fonts
 , emacsPackages
 , espeak
 , haskellPackages
+, hasklig
 , hunspell
 , hunspellDicts
 , jdt-language-server
@@ -15,6 +17,8 @@
 , ruby
 , sdcv
 , shellcheck
+, source-code-pro
+, symbola
 , wordnet
 , z3
 }:
@@ -23,6 +27,15 @@ let
   inherit (haskellPackages) apply-refact dhall hasktags hlint;
 
   flycheck-yaml = ruby;
+
+  fontsConf = makeFontsConf {
+    fontDirectories = [
+      emacs-all-the-icons-fonts
+      hasklig
+      source-code-pro
+      symbola
+    ];
+  };
 
   xmllint = libxml2.bin;
 in
@@ -52,6 +65,7 @@ in
       ]} \
       --set CODEX_DISABLE_WORKSPACE true \
       --set DICPATH "${hunspellDicts.en-us}/share/hunspell" \
+      --set FONTCONFIG_FILE "${fontsConf}" \
       --set JDT_LSP "${jdt-language-server}" \
       --set STARDICT_DATA_DIR "${mwebster-1913}" \
       --set WORDLIST "$XDG_CONFIG_HOME/ispell/words"
