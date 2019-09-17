@@ -123,6 +123,10 @@
               ("M-g M-t" . haskell-cabal-goto-test-suite-section))
   :config
   (progn
+    (dolist (f '(("[ \t]+\\([0-9.]+\\)" (1 font-lock-constant-face))
+                 ("[ \t]+\\([><=^&|]+\\)" (1 font-lock-builtin-face))))
+      (add-to-list 'haskell-cabal-font-lock-keywords f :append))
+
     (defun init-haskell-cabal ()
       (setq-local indent-line-function 'init-haskell-cabal-indent-line))
 
