@@ -28,6 +28,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(hl-todo ((t (:foreground "#cc9393" :weight semi-bold))))
+ '(smerge-refined-added ((t (:inherit smerge-refined-change :background "#113311"))))
  '(smerge-refined-removed ((t (:inherit smerge-refined-change :background "#331f21"))))
  '(whitespace-empty ((t (:background "#191919"))))
  '(whitespace-line ((t (:background "#282a2e" :foreground nil)))))
