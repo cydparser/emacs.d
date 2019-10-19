@@ -17,3 +17,9 @@
            (not noninteractive)))
 
     (setq whitespace-enable-predicate #'init-whitespace-enable-predicate)))
+
+(use-package whitespace-cleanup-mode
+  :demand
+  :after whitespace
+  :diminish ""
+  :hook (after-init-hook . global-whitespace-cleanup-mode))
