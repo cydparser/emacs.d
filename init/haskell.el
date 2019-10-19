@@ -16,6 +16,7 @@
 (defconst init-haskell-dev-extensions '("NamedWildCards" "PartialTypeSignatures"))
 (defconst init-haskell-repl-flags
   (let* ((opt-flags '("-O0"
+                      "-Wno-missing-home-modules"
                       "-Wno-type-defaults"
                       "-fdefer-type-errors"
                       "-ferror-spans"
