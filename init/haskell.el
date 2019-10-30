@@ -1,7 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-;; stack install apply-refact codex hasktags hlint
-
 (require 'init-hasklig)
 
 (eval-when-compile
