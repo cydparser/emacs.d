@@ -161,6 +161,11 @@ ARG determines the direction and number of sexps."
   :hook (after-init-hook . async-bytecomp-package-mode)
   :init (setq async-bytecomp-allowed-packages '(all)))
 
+(use-package autorevert
+  :ensure nil
+  :init (setq auto-revert-verbose nil
+              auto-revert-tail-mode-text " ⭛"))
+
 (use-package bookmark
   :ensure nil
   :init (setq bookmark-default-file (expand-file-name "bookmarks" init-var-directory)
