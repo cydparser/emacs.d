@@ -16,10 +16,10 @@ let
   skipTests = pkgs.haskell.lib.dontCheck;
 in
 rec {
-  codex = allowNewer (hs.callCabal2nix "codex" (fetchPinnedGitHub nix/codex.json) {});
+  codex = callPackage nix/codex.nix { inherit fetchPinnedGitHub; };
 
   emacs =
-    let epkgs = pkgs.emacsPackagesNg.overrideScope' (self: super: {
+    let epkgs = pkgs.emacsPackages.overrideScope' (self: super: {
       emacs = super.emacs.override {
         inherit (pkgs) webkitgtk;
         withXwidgets = true;
