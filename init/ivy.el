@@ -76,8 +76,10 @@
   :init
   (progn
     (setq ivy-posframe-display-functions-alist
-          '((swiper . nil)
-            (t      . ivy-posframe-display-at-point)))))
+          '((swiper            . nil)
+            (counsel-find-file . nil)
+            (counsel-rg        . nil)
+            (t                 . ivy-posframe-display-at-point)))))
 
 (use-package ivy-xref
   :ensure t
