@@ -25,7 +25,8 @@
                                                 org-mode
                                                 python-mode
                                                 sh-mode
-                                                sql-mode))
+                                                sql-mode
+                                                yaml-mode))
   :config
   (progn
     (require 'smartparens-config)
