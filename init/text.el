@@ -49,3 +49,7 @@ Source: http://stackoverflow.com/a/22116480/1231408"
       (defun init-text ()
         (flyspell-mode)
         (set (make-local-variable 'company-backends) backends)))))
+
+(use-package pdf-tools
+  :ensure nil
+  :hook (after-init-hook . pdf-tools-install))
