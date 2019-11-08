@@ -1,5 +1,9 @@
 ;;; -*- lexical-binding: t -*-
 
+(use-package dired
+  :ensure nil
+  :init (setq dired-listing-switches "-alht"))
+
 (use-package dired-subtree
   :bind (:map dired-mode-map
               ("i" . dired-subtree-insert)
