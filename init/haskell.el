@@ -22,7 +22,9 @@
                       "-fomit-interface-pragmas"
                       "-j"))
          (ext-flags (seq-map (lambda (s) (format "-X%s" s)) init-haskell-dev-extensions))
-         (rts '("-A128m"))
+         (rts '("-A128m" ; Increase allocation area (generation 0) size
+                "-qg"    ; Disable parallel GC
+                ))
          (rts-flags `("+RTS" ,@rts "-RTS")))
     (seq-concatenate 'list opt-flags ext-flags rts-flags)))
 
