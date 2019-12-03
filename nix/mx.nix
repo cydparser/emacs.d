@@ -5,6 +5,7 @@
 , emacs-all-the-icons-fonts
 , emacsPackages
 , espeak
+, gnutls
 , haskellPackages
 , hasklig
 , hunspell
@@ -13,6 +14,7 @@
 , libxml2
 , mwebster-1913
 , nixpkgs-lint
+, openssl
 , ripgrep
 , ruby
 , sdcv
