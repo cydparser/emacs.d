@@ -5,24 +5,14 @@
   :init (setq dired-listing-switches "-alht"))
 
 (use-package dired-subtree
+  :demand
+  :after dired
   :bind (:map dired-mode-map
-              ("i" . dired-subtree-insert)
-              ;; ("k" . dired-subtree-remove)
-              ("C-d" . dired-subtree-remove)
-              ;; ("TAB" . dired-subtree-toggle)
+              ("e" . dired-subtree-toggle)
               ("<tab>" . dired-subtree-cycle)
               ("TAB" . dired-subtree-cycle)
-              ;; dired-subtree-revert
-              ;; dired-subtree-narrow
               ("C-M-u" . dired-subtree-up)
-              ("C-M-d" . dired-subtree-down)
-              ;; dired-subtree-next-sibling
-              ;; dired-subtree-previous-sibling
-              ;; dired-subtree-beginning
-              ;; dired-subtree-end
-              ;; dired-subtree-unmark-subtree
-              ;; dired-subtree-only-this-directory
-              ))
+              ("C-M-d" . dired-subtree-down)))
 
 (use-package dired-x
   :ensure nil
