@@ -12,7 +12,7 @@
          ,@body))
       (t (message "Package %s may no longer be broken" ,package)))))
 
-(init-patch 'counsel '(20190624 1444)
+(with-eval-after-load "counsel"
   (defun counsel-rg (&optional initial-input initial-directory extra-rg-args rg-prompt)
     (interactive)
     (let ((counsel-ag-base-command counsel-rg-base-command)
