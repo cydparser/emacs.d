@@ -32,8 +32,8 @@
          ("C-w" . ivy-backward-kill-word)
          ("M-h" . hydra-ivy/body)
          :map ivy-occur-mode-map
-         ("n" . ivy-occur-next-line)
-         ("p" . ivy-occur-previous-line)
+         ("n" . init-ivy-occur-next-line)
+         ("p" . init-ivy-occur-previous-line)
          ("C-o" . ivy-occur-press)
          :map ivy-occur-grep-mode-map
          ("n" . init-ivy-occur-next-line)
