@@ -274,6 +274,8 @@
                ("C-c C-t" . haskell-mode-show-type-at)
                ("C-c r t" . init-haskell-insert-type-sig))
 
+    (setq haskell-font-lock-keywords (delete "proc" haskell-font-lock-keywords))
+
     (defcustom haskell-process-types-alist
       '((cabal-new-repl "cabal" "dist-newstyle")
         (stack          "stack" ".stack-work")
@@ -307,7 +309,6 @@ This function also sets the `inferior-haskell-root-dir'"
             (if root (setq inferior-haskell-root-dir root)
               (error "Unable to determine inferior-haskell-root-dir")))))
       haskell-process-type)
-    (setq haskell-font-lock-keywords (delete "proc" haskell-font-lock-keywords))
 
     (defun init-interactive-haskell ()
       (interactive-haskell-mode))
