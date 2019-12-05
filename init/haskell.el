@@ -116,17 +116,35 @@
   :ensure nil
   :after haskell-mode
   :hook (haskell-cabal-mode-hook . init-haskell-cabal)
+  :mode "/cabal.project\\|/\\.cabal/config\\'"
   :bind (:map haskell-cabal-mode-map
               ("M-g M-b" . haskell-cabal-goto-benchmark-section)
               ("M-g M-e" . haskell-cabal-goto-executable-section)
               ("M-g M-l" . haskell-cabal-goto-library-section)
               ("M-g M-t" . haskell-cabal-goto-test-suite-section))
+  :init
+  (progn
+    (setq haskell-cabal-font-lock-keywords
+          '(("^[ \t]*--.*" . font-lock-comment-face)
+            ("^ *\\([^ \t:]+\\):" (1 font-lock-keyword-face))
+            ("^\\(Library\\)[ \t]*\\({\\|$\\)" (1 font-lock-keyword-face))
+            ("^\\(Executable\\|Test-Suite\\|Benchmark\\|Common\\|package\\)[ \t]+\\([^\n \t]*\\)"
+             (1 font-lock-keyword-face) (2 font-lock-function-name-face))
+            ("^\\(Flag\\|install-dirs\\|repository\\)[ \t]+\\([^\n \t]*\\)"
+             (1 font-lock-keyword-face) (2 font-lock-constant-face))
+            ("^\\(Source-Repository\\)[ \t]+\\(head\\|this\\)"
+             (1 font-lock-keyword-face) (2 font-lock-constant-face))
+            ("^\\(haddock\\|source-repository-package\\|program-locations\\|program-default-options\\)\\([ \t]\\|$\\)"
+             (1 font-lock-keyword-face))
+            ("^ *\\(if\\)[ \t]+.*\\({\\|$\\)" (1 font-lock-keyword-face))
+            ("^ *\\(}[ \t]*\\)?\\(else\\)[ \t]*\\({\\|$\\)"
+             (2 font-lock-keyword-face))
+            ("[ \t]+\\([0-9.]+\\)" (1 font-lock-constant-face))
+            ("[ \t]+\\([><=^&|]+\\)" (1 font-lock-builtin-face))
+            ("\\<\\(?:True\\|False\\)\\>"
+             (0 font-lock-constant-face)))))
   :config
   (progn
-    (dolist (f '(("[ \t]+\\([0-9.]+\\)" (1 font-lock-constant-face))
-                 ("[ \t]+\\([><=^&|]+\\)" (1 font-lock-builtin-face))))
-      (add-to-list 'haskell-cabal-font-lock-keywords f :append))
-
     (defun init-haskell-cabal ()
       (setq-local indent-line-function 'init-haskell-cabal-indent-line))
 
