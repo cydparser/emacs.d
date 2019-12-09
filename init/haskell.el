@@ -116,7 +116,6 @@
   :ensure nil
   :after haskell-mode
   :hook (haskell-cabal-mode-hook . init-haskell-cabal)
-  :mode "/cabal.project\\|/\\.cabal/config\\'"
   :bind (:map haskell-cabal-mode-map
               ("M-g M-b" . haskell-cabal-goto-benchmark-section)
               ("M-g M-e" . haskell-cabal-goto-executable-section)
@@ -183,7 +182,8 @@
              (interactive-haskell-mode . " λ")
              ;; haskell-menu : LIST SESSION BUFFERS
              )
-  :mode "\\.hs-boot\\'"
+  :mode (("\\.hs-boot\\'" . haskell-mode)
+         ("/cabal.project\\|/\\.cabal/config\\'" . haskell-cabal-mode))
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
               ("C-c r i" . init-haskell-format-imports)
