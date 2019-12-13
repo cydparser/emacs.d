@@ -16,6 +16,8 @@ let
   skipTests = pkgs.haskell.lib.dontCheck;
 in
 rec {
+  all-hies = import (fetchPinnedGitHub nix/all-hies.json) {};
+
   codex = callPackage nix/codex.nix { inherit fetchPinnedGitHub; };
 
   emacs =
@@ -33,6 +35,7 @@ rec {
 
   mx = callPackage nix/mx.nix {
     inherit
+      all-hies
       codex
       emacs
       jdt-language-server

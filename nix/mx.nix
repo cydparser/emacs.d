@@ -1,5 +1,6 @@
 { stdenv, makeFontsConf, makeWrapper, runCommandNoCC
 , ag
+, all-hies
 , codex
 , emacs
 , emacs-all-the-icons-fonts
@@ -39,6 +40,8 @@ let
     ];
   };
 
+  hies = all-hies.bios.selection { selector = p: { inherit (p) ghc865; }; };
+
   xmllint = libxml2.bin;
 in
   runCommandNoCC "mx" { name = "emacs+"; buildInputs = [ makeWrapper ]; } ''
@@ -53,6 +56,7 @@ in
         espeak
         flycheck-yaml
         hasktags
+        hies
         hlint
         hunspell
         jdt-language-server
