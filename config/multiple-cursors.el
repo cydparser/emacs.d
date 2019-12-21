@@ -3,6 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        c-electric-delete-forward
+        c-electric-semi&comma
         counsel-M-x
         haskell-indentation-common-electric-command
         init-delete-excess-whitespace
