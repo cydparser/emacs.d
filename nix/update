@@ -32,6 +32,8 @@ from-gh-release() {
 
 for p in "${packages[@]}"; do
   case "$p" in
+    hies)
+      nix-prefetch-github Infinisil all-hies > nix/all-hies.json ;;
     codex)
       nix-prefetch-github --rev hack cydparser codex > nix/codex.json ;;
     jdt-language-server)
