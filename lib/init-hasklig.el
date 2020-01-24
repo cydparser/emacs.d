@@ -8,9 +8,11 @@
     (nconc rule (list ?\s '(Br . Br) lig))
     (cons replace rule)))
 
+(defconst init-lig-padding ?⁓)
+
 (defun init-lig-rule-pad (replace lig &optional padding)
   (let ((len (string-width replace))
-        (pad (or padding ?ׅ)))
+        (pad (or padding init-lig-padding)))
     (let ((rule (list ?\s '(Bl . Bl) lig)))
       (dotimes (_n (- len 1))
         (nconc rule (list '(Br . Bl) pad)))
@@ -22,7 +24,7 @@
 (defun init-lig-rule-center (replace char &optional padding)
   (let* ((len (string-width replace))
          (half (/ len 2))
-         (pad (or padding ?ׅ))
+         (pad (or padding init-lig-padding))
          (rule (list pad)))
     (if (< len 2)
         (init-lig-rule-replace replace char)
