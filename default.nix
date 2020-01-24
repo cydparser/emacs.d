@@ -29,6 +29,8 @@ rec {
     });
     in epkgs.emacsWithPackages (p: with p.melpaStablePackages; [ p.pdf-tools ]);
 
+  hlint = skipTests (import nix/hlint.nix { inherit pkgs fetchPinnedGitHub; });
+
   jdt-language-server = callPackage nix/jdt-language-server.nix { jdk = pkgs.jdk; inherit fetchPinnedUrl; };
 
   mwebster-1913 = callPackage nix/mwebster-1913.nix {};
@@ -38,6 +40,7 @@ rec {
       all-hies
       codex
       emacs
+      hlint
       jdt-language-server
       mwebster-1913
     ;

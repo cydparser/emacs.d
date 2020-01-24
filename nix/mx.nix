@@ -9,6 +9,7 @@
 , gnutls
 , haskellPackages
 , hasklig
+, hlint
 , hunspell
 , hunspellDicts
 , jdt-language-server
@@ -27,7 +28,7 @@
 }:
 let
   inherit (emacsPackages) cask;
-  inherit (haskellPackages) apply-refact dhall hasktags hlint;
+  inherit (haskellPackages) apply-refact dhall hasktags;
 
   flycheck-yaml = ruby;
 
