@@ -15,6 +15,7 @@
         sp-backward-delete-char
         sp-backward-kill-word
         sp-backward-sexp
+        sp-backward-up-sexp
         sp-delete-char
         sp-forward-sexp
         sp-kill-hybrid-sexp
