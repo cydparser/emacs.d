@@ -6,6 +6,7 @@
 , emacs-all-the-icons-fonts
 , emacsPackages
 , espeak
+, ghcide
 , gnutls
 , haskellPackages
 , hasklig
@@ -56,6 +57,7 @@ in
         dhall
         espeak
         flycheck-yaml
+        ghcide.hie-bios
         hasktags
         hies
         hlint

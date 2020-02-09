@@ -29,6 +29,8 @@ rec {
     });
     in epkgs.emacsWithPackages (p: with p.melpaStablePackages; [ p.pdf-tools ]);
 
+  ghcide = import (fetchPinnedGitHub nix/ghcide.json) {};
+
   hlint = skipTests (import nix/hlint.nix { inherit pkgs fetchPinnedGitHub; });
 
   jdt-language-server = callPackage nix/jdt-language-server.nix { jdk = pkgs.jdk; inherit fetchPinnedUrl; };
@@ -40,6 +42,7 @@ rec {
       all-hies
       codex
       emacs
+      ghcide
       hlint
       jdt-language-server
       mwebster-1913
