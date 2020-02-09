@@ -32,6 +32,11 @@
   :demand
   :hook (company-mode-hook . company-quickhelp-mode))
 
+(use-package eglot
+  :config
+  (progn
+    (add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp")))))
+
 (use-package flycheck
   :demand
   :diminish ""
