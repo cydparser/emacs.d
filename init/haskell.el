@@ -354,10 +354,17 @@ This function also sets the `inferior-haskell-root-dir'"
 (use-package lsp-haskell
   :if (executable-find "hie-wrapper")
   :commands (init-hie)
-  :init (setq lsp-haskell-process-wrapper-function
-              (lambda (argv)
-                `("nix-shell" "--run" ,(mapconcat 'identity argv " ") ,(concat (lsp-haskell--get-root) "/shell.nix"))))
+  :init
   :config
   (progn
+    (defun init-lsp-haskell-process-wrapper (argv)
+      (let* ((pr (project-current))
+             (shell (and pr (expand-file-name "shell.nix" (cdr pr)))))
+        (if (and pr (file-exists-p (print shell)))
+            `("nix-shell" "--run" ,(mapconcat 'identity argv " ") ,shell)
+          argv)))
+
+    (setq lsp-haskell-process-wrapper-function #'init-lsp-haskell-process-wrapper)
+
     (defun init-hie ()
       (lsp))))
