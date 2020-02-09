@@ -58,8 +58,7 @@
 
 (use-package lsp-mode
   :bind (("C-c b ?" . lsp-describe-session))
-  :init (setq lsp-auto-guess-root t
-              lsp-prefer-flymake nil))
+  :init (setq lsp-auto-guess-root t))
 
 (use-package lsp-ui
   :hook (lsp-mode-hook . lsp-ui-mode)
