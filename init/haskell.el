@@ -5,7 +5,7 @@
 (eval-when-compile
   (require 'cl))
 
-(defconst init-haskell-backends '("dante" "hie" "interactive-haskell"))
+(defconst init-haskell-backends '("dante" "ghcide" "hie" "interactive-haskell"))
 
 (setq-default init-haskell-backend "dante")
 (put 'init-haskell-backend 'safe-local-variable
@@ -353,7 +353,7 @@ This function also sets the `inferior-haskell-root-dir'"
 
 (use-package lsp-haskell
   :if (executable-find "hie-wrapper")
-  :commands (init-hie)
+  :commands (init-ghcide init-hie)
   :init
   :config
   (progn
@@ -365,6 +365,11 @@ This function also sets the `inferior-haskell-root-dir'"
           argv)))
 
     (setq lsp-haskell-process-wrapper-function #'init-lsp-haskell-process-wrapper)
+
+    (defun init-ghcide ()
+      (setq-local lsp-haskell-process-path-hie "ghcide")
+      (setq-local lsp-haskell-process-args-hie '())
+      (lsp))
 
     (defun init-hie ()
       (lsp))))

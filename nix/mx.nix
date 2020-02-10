@@ -57,7 +57,7 @@ in
         dhall
         espeak
         flycheck-yaml
-        ghcide.hie-bios
+        ghcide.ghcide-ghc865
         hasktags
         hies
         hlint
