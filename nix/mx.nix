@@ -42,7 +42,7 @@ let
     ];
   };
 
-  hies = all-hies.bios.selection { selector = p: { inherit (p) ghc865; }; };
+  hies = all-hies.selection { selector = p: { inherit (p) ghc865; }; };
 
   xmllint = libxml2.bin;
 in
