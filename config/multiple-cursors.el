@@ -7,13 +7,15 @@
         c-electric-delete-forward
         c-electric-paren
         c-electric-semi&comma
+        c-electric-slash
         counsel-M-x
         haskell-indentation-common-electric-command
         init-delete-excess-whitespace
         init-sp-kill-region-or-backward-word
         kill-sexp
         mark-sexp
-        outshine-self-insert-command
+        org-end-of-line
+        org-self-insert-command
         sp-backward-delete-char
         sp-backward-kill-word
         sp-backward-sexp
