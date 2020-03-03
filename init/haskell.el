@@ -75,7 +75,8 @@
 
     (defun init-dante-check-target (target)
       (string-match-p
-       "^\\([[:alpha:]][-[:alnum:]]+\\)?\\(:\\(lib\\|flib\\|exe\\|test\\|bench\\)\\)?\\(:[[:alpha:]][-[:alnum:]]+\\)?$"
+       ;; [package:][ctype:]component
+       "^\\([[:alpha:]][-[:alnum:]]+:\\)?\\(\\(lib\\|flib\\|exe\\|test\\|bench\\):\\)?\\([[:alpha:]][-[:alnum:]]*\\)?$"
        target))
     (put 'dante-target 'safe-local-variable #'init-dante-check-target))
   :config
