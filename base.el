@@ -208,6 +208,24 @@ ARG determines the direction and number of sexps."
 (use-package hydra
   :demand)
 
+(use-package smerge-mode
+  :ensure nil
+  :after hydra
+  :config
+  (progn
+    (defhydra hydra-smerge (smerge-mode-map "C-c m h" :foreign-keys run)
+      "smerge"
+      ("n" smerge-next "next")
+      ("p" smerge-prev "prev")
+      ("e" smerge-ediff "ediff")
+      ("r" smerge-refine "refine")
+      ("a" smerge-keep-all "keep-all")
+      ("c" smerge-keep-current "keep-current")
+      ("l" smerge-keep-lower "keep-lower")
+      ("u" smerge-keep-upper "keep-upper")
+      ("w" save-buffer "done" :color blue)
+      ("q" nil "quit"))))
+
 (use-package mwheel
   :ensure nil
   :init (setq mouse-wheel-flip-direction t
