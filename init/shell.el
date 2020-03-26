@@ -8,8 +8,10 @@
               ("x b" . better-shell-for-projectile-root)))
 
 (use-package direnv
+  :demand
   :if (executable-find "direnv")
-  :hook (after-init-hook . direnv-mode))
+  :hook (after-init-hook . direnv-mode)
+  :init (setq direnv-always-show-summary nil))
 
 (use-package shell
   :ensure nil
