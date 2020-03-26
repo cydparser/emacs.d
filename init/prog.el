@@ -42,6 +42,8 @@
                                      (ruby-mode . inf-ruby))))
 
 (use-package string-inflection
+  :commands (string-inflection-lower-camelcase-function
+             string-inflection-underscore-function)
   :bind (("C-c r c -" . string-inflection-kebab-case)      ; kebab-case
          ("C-c r c c" . string-inflection-camelcase)       ; CamelCase
          ("C-c r c l" . string-inflection-lower-camelcase) ; lowerCamelCase
