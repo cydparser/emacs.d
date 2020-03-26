@@ -13,10 +13,9 @@
          ("M-J" . sp-join-sexp)
          ("M-N" . sp-next-sexp)
          ("M-P" . sp-previous-sexp)
-         :map smartparens-strict-mode-map
          (")" . sp-up-sexp))
   :hook (((org-mode-hook text-mode-hook) . turn-on-smartparens-mode)
-         (prog-mode-hook . turn-on-smartparens-strict-mode))
+         (prog-mode-hook . turn-on-smartparens-mode))
   :init (setq sp-base-key-bindings 'paredit
               sp-no-reindent-after-kill-modes '(asm-mode
                                                 haskell-mode
