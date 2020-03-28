@@ -196,9 +196,25 @@ ARG determines the direction and number of sexps."
 
 (use-package flymake
   :ensure nil
+  :after hydra
   :bind (:map flymake-mode-map
-              ("M-n" . flymake-goto-next-error)
-              ("M-p" . flymake-goto-prev-error)))
+              ("M-n" . hydra-flymake/flymake-goto-next-error)
+              ("M-p" . hydra-flymake/flymake-goto-prev-error))
+  :config
+  (progn
+    (defhydra hydra-flymake ()
+      "flymake"
+      ("M-n" flymake-goto-next-error nil)
+      ("M-p" flymake-goto-prev-error nil)
+
+      ("n" flymake-goto-next-error "next")
+      ("p" flymake-goto-prev-error "previous")
+
+      ("c" flymake-proc-compile "compile")
+
+      ("d" (seq-map #'flymake--disable-backend (flymake-running-backends)) "disable" :color blue)
+
+      ("q" nil "quit"))))
 
 (use-package hippie-exp
   :ensure nil
@@ -213,7 +229,7 @@ ARG determines the direction and number of sexps."
   :after hydra
   :config
   (progn
-    (defhydra hydra-smerge (smerge-mode-map "C-c m h" :foreign-keys run)
+    (defhydra hydra-smerge (smerge-mode-map "C-c m h" :foreign-keys run :bind nil)
       "smerge"
       ("n" smerge-next "next")
       ("p" smerge-prev "prev")
@@ -238,7 +254,8 @@ ARG determines the direction and number of sexps."
   :config
   (progn
     (defhydra hydra-rectangle (:color pink :post (deactivate-mark))
-      ("m" rectangle-mark-mode "mode")
+      "rect"
+      ("m" rectangle-mark-mode nil)
 
       ("b" rectangle-backward-char "backward")
       ("f" rectangle-forward-char "forward")

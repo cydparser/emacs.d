@@ -59,7 +59,26 @@
            (apply (list f))))
 
     (advice-add 'flycheck-may-enable-mode :around
-                #'init-flycheck-may-enable-mode)))
+                #'init-flycheck-may-enable-mode)
+
+    (defhydra hydra-flycheck ()
+      "flycheck"
+      ("M-n" flycheck-next-error nil)
+      ("M-p" flycheck-previous-error nil)
+
+      ("<" flycheck-first-error "first")
+      ("n" flycheck-next-error "next")
+      ("p" flycheck-previous-error "previous")
+
+      ("c" flycheck-compile "compile")
+      ("v" flycheck-verify-setup "verify")
+
+      ("d" flycheck-disable-checker "disable" :color blue)
+      ("k" flycheck-clear "clear" :color blue)
+      ("l" flycheck-list-errors "list" :color blue)
+      ("w" flycheck-copy-errors-as-kill "copy" :color blue)
+
+      ("q" nil "quit"))))
 
 (use-package lsp-mode
   :bind (("C-c b ?" . lsp-describe-session))
