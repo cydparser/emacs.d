@@ -8,6 +8,7 @@
         c-electric-paren
         c-electric-semi&comma
         c-electric-slash
+        c-indent-line-or-region
         counsel-M-x
         haskell-indentation-common-electric-command
         init-delete-excess-whitespace
