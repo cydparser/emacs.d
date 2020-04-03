@@ -39,10 +39,11 @@
 
 (use-package flycheck
   :demand
+  :after hydra
   :diminish ""
   :bind (:map flycheck-mode-map
-              ("M-n" . flycheck-next-error)
-              ("M-p" . flycheck-previous-error))
+              ("M-n" . hydra-flycheck/flycheck-next-error)
+              ("M-p" . hydra-flycheck/flycheck-previous-error))
   :hook (after-init-hook . global-flycheck-mode)
   :init
   (progn
