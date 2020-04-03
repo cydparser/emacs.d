@@ -10,6 +10,7 @@
         c-electric-slash
         c-indent-line-or-region
         counsel-M-x
+        forward-sexp
         haskell-indentation-common-electric-command
         init-delete-excess-whitespace
         init-sp-kill-region-or-backward-word
