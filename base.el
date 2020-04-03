@@ -273,6 +273,7 @@ ARG determines the direction and number of sexps."
       ("r" copy-rectangle-to-register "to-register" :color blue)
       ("k" kill-rectangle "kill" :color blue)
       ("y" yank-rectangle "yank" :color blue)
-      ("w" copy-rectangle-as-kill "copy" :color blue)
+      ("w" kill-ring-save "copy" :color blue)
+      ("M-w" kill-ring-save nil :color blue)
 
       ("q" nil "quit"))))
