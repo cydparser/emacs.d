@@ -166,8 +166,7 @@
              (interactive-haskell-mode . " λ")
              ;; haskell-menu : LIST SESSION BUFFERS
              )
-  :mode (("\\.hs-boot\\'" . haskell-mode)
-         ("/cabal.project\\|/\\.cabal/config\\'" . haskell-cabal-mode))
+  :mode (("\\.hs-boot\\'" . haskell-mode))
   :bind (:map haskell-mode-map
               ("C-c C-," . init-haskell-format-imports)
               ("C-c r i" . init-haskell-format-imports)
