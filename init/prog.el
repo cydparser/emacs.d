@@ -21,6 +21,8 @@
   :hook (prog-mode-hook . init-prog-mode)
   :init
   (progn
+    (setq prettify-symbols-unprettify-at-point 'right-edge)
+
     (defun init-prettify-symbols ()
       (unless (derived-mode-p 'haskell-mode)
         (setq-local prettify-symbols-alist
