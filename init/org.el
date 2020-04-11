@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package org
+  :hook (org-mode-hook . init-org)
   :init
   (progn
     (setq org-adapt-indentation nil
@@ -13,11 +14,33 @@
           org-startup-truncated nil))
   :config
   (progn
-    (progn
-      (org-babel-do-load-languages
-       'org-babel-load-languages
-       '((emacs-lisp . t)
-         (shell . t))))))
+    (defconst init-org-prettify-symbols-alist
+      '(("[ ]" . "☐")
+        ("[X]" . "☑")
+
+        ("#+BEGIN_EXAMPLE" . "‘")
+        ("#+END_EXAMPLE"   . "’")
+
+        ("#+BEGIN_EXPORT" . "«")
+        ("#+END_EXPORT"   . "»")
+
+        ("#+BEGIN_SRC" . "(")
+        ("#+END_SRC"   . ")")
+
+        ("#+BEGIN_QUOTE" . "“")
+        ("#+END_QUOTE"   . "”")
+
+        ("#+RESULTS:"  . "≅")
+        ("#+PROPERTY:" . "≔")))
+
+    (defun init-org ()
+      (setq-local prettify-symbols-alist init-org-prettify-symbols-alist)
+      (prettify-symbols-mode))
+
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((emacs-lisp . t)
+       (shell . t)))))
 
 (use-package org-bullets
   :hook (org-mode-hook . org-bullets-mode)
