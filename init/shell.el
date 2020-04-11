@@ -4,8 +4,7 @@
 
 (use-package better-shell
   :after projectile
-  :bind (:map projectile-command-map
-              ("x b" . better-shell-for-projectile-root)))
+  :bind (("C-c p x b" . better-shell-for-projectile-root)))
 
 (use-package direnv
   :demand

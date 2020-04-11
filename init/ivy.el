@@ -13,9 +13,8 @@
          ("C-x r b" . counsel-bookmark)
          ("M-x" . counsel-M-x)
          ("M-X" . counsel-command-history)
-         :map projectile-command-map
-         ("s g" . counsel-git-grep)
-         ("s r" . counsel-rg)))
+         ("C-c p s g" . counsel-git-grep)
+         ("C-c p s r" . counsel-rg)))
 
 (use-package counsel-projectile
   :after projectile
