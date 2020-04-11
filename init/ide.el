@@ -171,7 +171,9 @@
             ("lock" . (""))
             ("gpg"  . (""))
             ;; GWT
-            ("java" . ("ui.xml"))
+            ("java"   . ("css" "gss" "ui.xml"))
+            ("css"    . ("java"))
+            ("gss"    . ("java"))
             ("ui.xml" . ("java")))))
   :config
   (progn
