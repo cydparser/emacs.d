@@ -1,5 +1,6 @@
 { stdenv, makeFontsConf, makeWrapper, runCommandNoCC
 , ag
+, apply-refact
 , codex
 , emacs
 , emacs-all-the-icons-fonts
@@ -8,7 +9,6 @@
 , gnutls
 , haskellPackages
 , hasklig
-, hlint
 , hunspell
 , hunspellDicts
 , jdt-language-server
@@ -27,7 +27,7 @@
 }:
 let
   inherit (emacsPackages) cask;
-  inherit (haskellPackages) apply-refact dhall hasktags;
+  inherit (haskellPackages) dhall hasktags hlint;
 
   flycheck-yaml = ruby;
 

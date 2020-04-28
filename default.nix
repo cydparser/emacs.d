@@ -9,7 +9,11 @@ let
 
   fetchPinnedUrl = path: builtins.fetchurl (readJSON path);
 
-  hs = pkgs.haskellPackages;
+  hs = pkgs.haskell.packages.ghc8101.extend (self: super: {
+    ghc-exactprint = skipTests (super.callPackage ./nix/ghc-exactprint.nix {});
+  });
+
+  inherit (hs) apply-refact;
 
   allowNewer = pkgs.haskell.lib.doJailbreak;
 
@@ -27,17 +31,15 @@ rec {
     });
     in epkgs.emacsWithPackages (p: with p.melpaStablePackages; [ p.pdf-tools ]);
 
-  hlint = skipTests (import nix/hlint.nix { inherit pkgs fetchPinnedGitHub; });
-
   jdt-language-server = callPackage nix/jdt-language-server.nix { jdk = pkgs.jdk; inherit fetchPinnedUrl; };
 
   mwebster-1913 = callPackage nix/mwebster-1913.nix {};
 
   mx = callPackage nix/mx.nix {
     inherit
+      apply-refact
       codex
       emacs
-      hlint
       jdt-language-server
       mwebster-1913
     ;

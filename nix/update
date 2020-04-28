@@ -34,8 +34,6 @@ for p in "${packages[@]}"; do
   case "$p" in
     codex)
       nix-prefetch-github --rev hack cydparser codex > nix/codex.json ;;
-    hlint)
-      nix-prefetch-github ndmitchell hlint > nix/hlint.json ;;
     jdt-language-server)
       from-url 'jdt-language-server' \
                "https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)" ;;
