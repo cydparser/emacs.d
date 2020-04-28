@@ -32,10 +32,6 @@ from-gh-release() {
 
 for p in "${packages[@]}"; do
   case "$p" in
-    ghcide)
-      nix-prefetch-github cachix ghcide-nix > nix/ghcide.json ;;
-    hies)
-      nix-prefetch-github Infinisil all-hies > nix/all-hies.json ;;
     codex)
       nix-prefetch-github --rev hack cydparser codex > nix/codex.json ;;
     hlint)

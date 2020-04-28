@@ -16,8 +16,6 @@ let
   skipTests = pkgs.haskell.lib.dontCheck;
 in
 rec {
-  all-hies = import (fetchPinnedGitHub nix/all-hies.json) {};
-
   codex = callPackage nix/codex.nix { inherit fetchPinnedGitHub; };
 
   emacs =
@@ -29,8 +27,6 @@ rec {
     });
     in epkgs.emacsWithPackages (p: with p.melpaStablePackages; [ p.pdf-tools ]);
 
-  ghcide = import (fetchPinnedGitHub nix/ghcide.json) {};
-
   hlint = skipTests (import nix/hlint.nix { inherit pkgs fetchPinnedGitHub; });
 
   jdt-language-server = callPackage nix/jdt-language-server.nix { jdk = pkgs.jdk; inherit fetchPinnedUrl; };
@@ -39,10 +35,8 @@ rec {
 
   mx = callPackage nix/mx.nix {
     inherit
-      all-hies
       codex
       emacs
-      ghcide
       hlint
       jdt-language-server
       mwebster-1913
