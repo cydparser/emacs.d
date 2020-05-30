@@ -227,9 +227,14 @@ ARG determines the direction and number of sexps."
 (use-package smerge-mode
   :ensure nil
   :after hydra
+  :bind (:map smerge-mode-map
+              ("C-c m n" . hydra-smerge/smerge-next)
+              ("C-c m p" . hydra-smerge/smerge-prev)
+              ("C-c m l" . hydra-smerge/smerge-keep-lower)
+              ("C-c m u" . hydra-smerge/smerge-keep-upper))
   :config
   (progn
-    (defhydra hydra-smerge (smerge-mode-map "C-c m h" :foreign-keys run :bind nil)
+    (defhydra hydra-smerge ()
       "smerge"
       ("n" smerge-next "next")
       ("p" smerge-prev "prev")
