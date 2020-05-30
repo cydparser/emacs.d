@@ -37,6 +37,27 @@
              (dotimes (_ (- half 1)) (nconc rule (list '(Br . Bl) pad)))))
       (cons replace rule))))
 
+(defun init-lig-rule-bracket (replace char &optional padding left-bracket right-bracket)
+  (let* ((len (string-width replace))
+         (half (/ len 2))
+         (pad (or padding ?\s))
+         (lb (or left-bracket ?⸢))
+         (rb (or right-bracket ?⸥))
+         (rule (list pad)))
+    (cond ((< len 2)
+           (init-lig-rule-replace replace char))
+          (t
+           (nconc rule (list '(Bl . Bl) lb))
+           (dotimes (_ (- half 1)) (nconc rule (list '(Br . Bl) pad)))
+           (cond ((cl-oddp len)
+                  (nconc rule (list '(Br . Bl) ?\s '(Br . Br) char))
+                  (dotimes (_ (- half 1)) (nconc rule (list '(Br . Bl) pad))))
+                 (t
+                  (nconc rule (list '(Br . Bc) char '(Br . Bc) pad))
+                  (dotimes (_ (- half 1)) (nconc rule (list '(Br . Bl) pad)))))
+           (nconc rule (list '(Br . Bl) rb))
+           (cons replace rule)))))
+
 (defconst init-hasklig-prettify-symbols-alist
   (when (member "Hasklig" (font-family-list))
     (let ((codepoint #Xe100))
