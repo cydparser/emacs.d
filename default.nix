@@ -1,23 +1,23 @@
 let
   readJSON = path: builtins.fromJSON (builtins.readFile path);
 
+  fetchPinnedUrl = path: builtins.fetchurl (readJSON path);
+
   pkgs = import (builtins.fetchTarball (readJSON nix/nixpkgs.json)) {};
 
   inherit (pkgs) callPackage;
 
   fetchPinnedGitHub = path: pkgs.fetchFromGitHub ((readJSON path) // { fetchSubmodules = true; });
 
-  fetchPinnedUrl = path: builtins.fetchurl (readJSON path);
+  haskell-nix =
+    let
+      hn = import (fetchPinnedGitHub ./nix/haskell-nix.json) {};
+        # import (builtins.fetchTarball (readJSON ./nix/haskell-nix.json)) {};
+    in (import hn.sources.nixpkgs-2003 hn.nixpkgsArgs).haskell-nix;
 
-  hs = pkgs.haskell.packages.ghc8101.extend (self: super: {
-    ghc-exactprint = skipTests (super.callPackage ./nix/ghc-exactprint.nix {});
-  });
 
-  inherit (hs) apply-refact;
+  inherit (pkgs.haskellPackages) apply-refact hlint;
 
-  allowNewer = pkgs.haskell.lib.doJailbreak;
-
-  skipTests = pkgs.haskell.lib.dontCheck;
 in
 rec {
   codex = callPackage nix/codex.nix { inherit fetchPinnedGitHub; };
@@ -40,6 +40,7 @@ rec {
       apply-refact
       codex
       emacs
+      hlint
       jdt-language-server
       mwebster-1913
     ;

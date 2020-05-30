@@ -9,12 +9,14 @@
 , gnutls
 , haskellPackages
 , hasklig
+, hlint
 , hunspell
 , hunspellDicts
 , jdt-language-server
 , libxml2
 , mwebster-1913
 , nixpkgs-lint
+, noto-fonts
 , openssl
 , ripgrep
 , ruby
@@ -27,7 +29,7 @@
 }:
 let
   inherit (emacsPackages) cask;
-  inherit (haskellPackages) dhall hasktags hlint;
+  inherit (haskellPackages) dhall hasktags;
 
   flycheck-yaml = ruby;
 
@@ -36,6 +38,7 @@ let
       emacs-all-the-icons-fonts
       hasklig
       source-code-pro
+      noto-fonts
       symbola
     ];
   };
