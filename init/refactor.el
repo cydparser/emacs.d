@@ -10,12 +10,13 @@
               ("C-o" . iedit-show/hide-unmatched-lines)))
 
 (use-package multiple-cursors
+  :bind (("C-:" . init-multiple-cursors-edit))
   :init
   (progn
     (setq mc/list-file (expand-file-name "multiple-cursors.el" init-config-directory)))
   :config
   (progn
-    (defun init-refactor-mark-dwim ()
+    (defun init-multiple-cursors-edit ()
       (interactive)
       (if (region-active-p)
           (mc/edit-lines)
