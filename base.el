@@ -252,6 +252,10 @@ ARG determines the direction and number of sexps."
   :init (setq mouse-wheel-flip-direction t
               mouse-wheel-tilt-scroll t))
 
+(use-package newcomment
+  :ensure nil
+  :bind ("M-;" . comment-line))
+
 (use-package rect
   :ensure nil
   :after hydra
