@@ -191,12 +191,12 @@
 
     (defun projectile-cabal-project-p () t)
 
-    (projectile-register-project-type 'haskell-nix-cabal-v1 '("shell.nix" "dist/cabal-config-flags")
-                                      :compile "nix-shell --run 'cabal v1-build'"
-                                      :test "nix-shell --run 'cabal v1-test'"
+    (projectile-register-project-type 'haskell-cabal-v1 '("dist/cabal-config-flags")
+                                      :compile "cabal v1-build"
+                                      :test "cabal v1-test"
                                       :test-suffix "Spec")
 
-    (projectile-register-project-type 'haskell-nix-cabal '("shell.nix" "dist-newstyle")
-                                      :compile "hal build"
-                                      :test "hal test"
+    (projectile-register-project-type 'haskell-cabal '("dist-newstyle")
+                                      :compile "cabal build"
+                                      :test "cabal test"
                                       :test-suffix "Spec")))

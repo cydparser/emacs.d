@@ -59,13 +59,11 @@
                   (lambda (p) (file-exists-p (expand-file-name p root))) (vector ,@paths))))
 
     (setq dante-methods-alist
-          `((nix-v1 ,(init-dante-files-exist-p "shell.nix" "dist/cabal-config-flags")
-                    ("nix-shell" "--run" (concat "cabal v1-repl -O0 " (or dante-target "") " " (init-dante-build-dir) " " ,init-haskell-ghc-options)))
-            (nix-v2 ,(init-dante-files-exist-p "shell.nix" "dist-newstyle")
+          `((nix-v2 ,(init-dante-files-exist-p "shell.nix" "dist-newstyle")
                     ("nix-shell" "--run" (concat "cabal v2-repl " (or dante-target "") " " (init-dante-build-dir) " " ,init-haskell-ghc-options)))
-            (stack ".stack-work"
-                   ("stack" "repl" dante-target ,@init-haskell-ghci-options-list))
-            (nix-ghci ,(init-dante-files-exist-p "default.nix" "shell.nix")
+            (nix-v1 ,(init-dante-files-exist-p "shell.nix" "dist/cabal-config-flags")
+                    ("nix-shell" "--run" (concat "cabal v1-repl " (or dante-target "") " " (init-dante-build-dir) " " ,init-haskell-ghc-options)))
+            (nix-ghci ,(init-dante-files-exist-p "shell.nix")
                       ("nix-shell" "--pure" "--run" (concat "ghci -isrc:test -Wall -Wno-missing-signatures " ,init-haskell-ghc-options)))
             (cabal ,(lambda (d) (directory-files d t ".cabal$"))
                    ("cabal" "v2-repl" dante-target (init-dante-build-dir) ,init-haskell-ghc-options))
@@ -184,7 +182,6 @@
           haskell-process-args-cabal-new-repl init-haskell-ghc-options-list
           haskell-process-args-cabal-repl init-haskell-ghc-options-list
           haskell-process-args-ghci (cons "-fshow-loaded-modules" init-haskell-repl-flags)
-          haskell-process-args-stack-ghci `("--no-build" "--no-load" ,@init-haskell-ghci-options-list)
           haskell-process-auto-import-loaded-modules t
           haskell-process-load-or-reload-prompt t
           haskell-process-log t
