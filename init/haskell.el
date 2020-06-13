@@ -17,8 +17,6 @@
                       "-Wno-type-defaults"
                       "-fdefer-type-errors"
                       "-ferror-spans"
-                      "-fobject-code"
-                      "-fomit-interface-pragmas"
                       "-j"))
          (ext-flags (seq-map (lambda (s) (format "-X%s" s)) init-haskell-dev-extensions))
          (rts '("-A128m" ; Increase allocation area (generation 0) size
