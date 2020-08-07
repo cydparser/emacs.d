@@ -24,7 +24,7 @@
              ;; (:type "local binding" :supports ("rg") :language "haskell"
              ;;        :regex "^\\s+((let|where)\\s+)?JJJ($|(\\s+(::|([^:=|-]*(= |[|])))))")
              (:type "type" :supports ("rg") :language "haskell"
-                    :regex "^type\\s+(family\\s+)?JJJ")
+                    :regex "^(data|type)\\s+(family\\s+)?JJJ(\\s|$)")
              (:type "data constructor" :supports ("rg") :language "haskell"
                     :regex "^(data|newtype)\\s+.*(((=|[|])\\s+JJJ($|\\s)))")
              (:type "data constructor newline" :supports ("rg") :language "haskell"
