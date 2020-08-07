@@ -1,13 +1,15 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package dumb-jump
-  :bind (("C-c j j" . dumb-jump-go)
-         ("C-c j 4 j" . dumb-jump-go-other-window)
-         ("C-c j p" . dumb-jump-back)
-         ("C-c j l" . dumb-jump-quick-look))
-  :init (setq dumb-jump-force-searcher 'rg
-              dumb-jump-rg-search-args ""
-              dumb-jump-selector 'ivy)
+  :after xref
+  :init
+  (progn
+    (setq dumb-jump-fallback-search nil
+          dumb-jump-force-searcher 'rg
+          dumb-jump-rg-search-args "--multiline"
+          dumb-jump-selector 'ivy)
+
+    (add-hook 'xref-backend-functions 'dumb-jump-xref-activate))
   :config
   (progn
     (unbind-key "C-M-g" dumb-jump-mode-map)
