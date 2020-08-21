@@ -3,9 +3,9 @@
 (require 'init-hasklig)
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl-lib))
 
-(defconst init-haskell-backends '("dante" "ghcide" "hie" "interactive-haskell"))
+(defconst init-haskell-backends '("dante" "ghcide" "hie" "interactive-haskell" "none"))
 
 (setq-default init-haskell-backend "dante")
 (put 'init-haskell-backend 'safe-local-variable
@@ -230,8 +230,8 @@
              (add-hook 'hack-local-variables-hook #'init-haskell--after-locals nil :local))))
 
     (defun init-haskell--after-locals ()
-      (cond (init-haskell-backend
-             (setq-local eldoc-documentation-function nil)
+      (cond ((and init-haskell-backend (not (string-equal init-haskell-backend "none")))
+             (setq-local eldoc-documentation-function #'ignore)
              (funcall (intern (concat "init-" init-haskell-backend))))
             (t
              (setq-local eldoc-documentation-function #'haskell-doc-current-info)))))
