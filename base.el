@@ -77,6 +77,7 @@ ARG determines the direction and number of sexps."
 
 ;; Reduce noise.
 (setq auto-revert-mode-text ""
+      confirm-kill-processes nil
       confirm-nonexistent-file-or-buffer nil
       inhibit-splash-screen t
       inhibit-startup-echo-area-message t
