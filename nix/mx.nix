@@ -47,6 +47,8 @@ let
 in
   runCommandNoCC "mx" { name = "emacs+"; buildInputs = [ makeWrapper ]; } ''
     mkdir -p $out/bin
+    ln -s ${emacs}/bin/emacsclient $out/bin/
+
     makeWrapper ${emacs}/bin/emacs $out/bin/mx \
       --suffix PATH : ${stdenv.lib.makeBinPath [
         ag
@@ -54,6 +56,7 @@ in
         cask
         codex
         dhall
+        emacs
         espeak
         flycheck-yaml
         hasktags
