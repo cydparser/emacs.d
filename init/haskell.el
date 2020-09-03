@@ -12,23 +12,22 @@
      (lambda (s) (seq-contains init-haskell-backends s)))
 
 (defconst init-haskell-dev-extensions '("NamedWildCards" "PartialTypeSignatures"))
+(defconst init-haskell-dev-extension-flags (seq-map (lambda (s) (format "-X%s" s))
+                                                    init-haskell-dev-extensions))
+(defconst init-haskell-dev-rts-flags '("+RTS"
+                                       "-A128m" ; Increase allocation area (generation 0) size
+                                       "-qg"    ; Disable parallel GC
+                                       "-RTS"))
 (defconst init-haskell-repl-flags
   (let* ((opt-flags '("-Wno-missing-home-modules"
                       "-Wno-type-defaults"
                       "-fdefer-type-errors"
                       "-ferror-spans"
-                      "-j"))
-         (ext-flags (seq-map (lambda (s) (format "-X%s" s)) init-haskell-dev-extensions))
-         (rts '("-A128m" ; Increase allocation area (generation 0) size
-                "-qg"    ; Disable parallel GC
-                ))
-         (rts-flags `("+RTS" ,@rts "-RTS")))
-    (seq-concatenate 'list opt-flags ext-flags rts-flags)))
+                      "-j")))
+    (seq-concatenate 'list opt-flags init-haskell-dev-extension-flags init-haskell-dev-rts-flags)))
 
 (defconst init-haskell-ghc-options-arg (mapconcat 'identity init-haskell-repl-flags " "))
 (defconst init-haskell-ghc-options-list `("--ghc-options" ,init-haskell-ghc-options-arg))
-(defconst init-haskell-ghc-options (concat "--ghc-options='" init-haskell-ghc-options-arg "'"))
-(defconst init-haskell-ghci-options-list `("--ghci-options" ,init-haskell-ghc-options-arg))
 
 (use-package cmm-mode)
 
@@ -48,26 +47,15 @@
               ("C-c C-i" . dante-info)
               ("C-c C-t" . dante-type-at))
   :commands (init-dante)
+  :custom
+  (dante-methods '(new-impure-nix
+                   new-flake
+                   bare-ghci))
   :init
   (progn
-    (defun init-dante-build-dir ()
-      (concat "--builddir=" (make-temp-name
-                             (concat "/tmp/dante-" (file-name-nondirectory (substring (dante-project-root) 0 -1)) "-"))))
-
-    (defmacro init-dante-files-exist-p (&rest paths)
-      `(lambda (root) (seq-every-p
-                  (lambda (p) (file-exists-p (expand-file-name p root))) (vector ,@paths))))
-
-    (setq dante-methods-alist
-          `((nix-v2 ,(init-dante-files-exist-p "shell.nix" "dist-newstyle")
-                    ("nix-shell" "--run" (concat "cabal v2-repl " (or dante-target "") " " (init-dante-build-dir) " " ,init-haskell-ghc-options)))
-            (nix-v1 ,(init-dante-files-exist-p "shell.nix" "dist/cabal-config-flags")
-                    ("nix-shell" "--run" (concat "cabal v1-repl " (or dante-target "") " " (init-dante-build-dir) " " ,init-haskell-ghc-options)))
-            (nix-ghci ,(init-dante-files-exist-p "shell.nix")
-                      ("nix-shell" "--pure" "--run" (concat "ghci -isrc:test -Wall -Wno-missing-signatures " ,init-haskell-ghc-options)))
-            (cabal ,(lambda (d) (directory-files d t ".cabal$"))
-                   ("cabal" "v2-repl" dante-target (init-dante-build-dir) ,init-haskell-ghc-options))
-            (ghci ,(lambda (_) t) ("ghci" "-Wall" ,@init-haskell-repl-flags))))
+    (put 'dante-methods 'safe-local-variable
+         (lambda (meths) (and (listp meths)
+                         (seq-reduce (lambda (meth acc) (and acc (symbolp meth))) meths t))))
 
     (defun init-dante-check-target (target)
       (string-match-p
@@ -77,6 +65,8 @@
     (put 'dante-target 'safe-local-variable #'init-dante-check-target))
   :config
   (progn
+    (setq-default dante-load-flags (seq-concatenate 'list dante-load-flags init-haskell-dev-extension-flags))
+
     (defun init-dante ()
       (setq-local haskell-process-show-overlays nil)
       (interactive-haskell-mode)
