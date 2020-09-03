@@ -62,16 +62,6 @@ ARG determines the direction and number of sexps."
 ;; Disable lock files.
 (setq create-lockfiles nil)
 
-(let ((fonts (font-family-list)))
-  (when (member "Symbola" fonts)
-    ;; Use Symbola for mathematical operators.
-    (set-fontset-font t '(#x2200 . #x22FF) "Symbola 12"))
-
-  (cond ((member "Hasklig" fonts)
-         (set-frame-font "Hasklig 12"))
-        ((member "Inconsolata" fonts)
-         (set-frame-font "Inconsolata 12"))))
-
 ;; Simplify prompts.
 (fset 'yes-or-no-p #'y-or-n-p)
 

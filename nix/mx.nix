@@ -1,7 +1,9 @@
 { stdenv, makeFontsConf, makeWrapper, runCommandNoCC
 , ag
 , apply-refact
+, cascadia-code
 , codex
+, dejavu_fonts
 , emacs
 , emacs-all-the-icons-fonts
 , emacsPackages
@@ -35,9 +37,10 @@ let
 
   fontsConf = makeFontsConf {
     fontDirectories = [
+      cascadia-code
+      dejavu_fonts
       emacs-all-the-icons-fonts
       hasklig
-      source-code-pro
       noto-fonts
       symbola
     ];
