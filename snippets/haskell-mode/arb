@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: instance Arbitrary
+# key: arb
+# --
+instance Arbitrary ${1:Type} where
+  arbitrary = do
+    ${2:field} <- arbitrary
+    $0
+    pure $1{..}
