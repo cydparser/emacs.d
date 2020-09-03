@@ -90,6 +90,10 @@
   :hook (lsp-mode-hook . lsp-ui-mode)
   :init (setq lsp-ui-doc-use-webkit t))
 
+(use-package project
+  :ensure nil
+  :custom (project-list-file (expand-file-name "projects" init-var-directory)))
+
 (use-package projectile
   :demand
   :diminish ""
@@ -142,6 +146,7 @@
               ("C-c p x v" . projectile-run-vterm)
               ("C-c p z i" . projectile-invalidate-cache)
               ("C-c p z z" . projectile-cache-current-file))
+  :custom (projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" init-var-directory))
   :init
   (progn
     (defun init-projectile-ignored-project-p (project-root)
