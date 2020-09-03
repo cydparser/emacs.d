@@ -55,6 +55,7 @@
 (use-package sql
   :ensure nil
   :hook (sql-mode-hook . init-sql)
+  :custom (sql-product 'postgres)
   :init
   (progn
     (defun init-sql ()

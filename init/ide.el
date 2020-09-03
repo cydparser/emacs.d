@@ -45,6 +45,7 @@
               ("M-n" . hydra-flycheck/flycheck-next-error)
               ("M-p" . hydra-flycheck/flycheck-previous-error))
   :hook (after-init-hook . global-flycheck-mode)
+  :custom (flycheck-disabled-checkers '(haskell-ghc haskell-stack-ghc))
   :init
   (progn
     (init-when-file-exists (init-xdg-config "ruby/ruby-lint.yml")
