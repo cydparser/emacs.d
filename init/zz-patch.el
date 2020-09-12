@@ -19,13 +19,3 @@
           (counsel--grep-tool-look-around nil)) ; Removed --pcre2
       (counsel-ag initial-input initial-directory extra-rg-args rg-prompt
                   :caller 'counsel-rg))))
-
-(with-eval-after-load "dante" ; init-patch 'dante '(20190629 652)
-  (defun dante-schedule-next (buffer)
-    "If no sub-session is running, run the next queued sub-session for BUFFER, if any.
-Note that sub-sessions are not interleaved."
-    (lcr-scheduler)
-    (with-current-buffer buffer
-      (if lcr-process-callback (force-mode-line-update t)
-        (let ((req (pop dante-queue)))
-          (when req (funcall req buffer)))))))
