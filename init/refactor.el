@@ -3,11 +3,10 @@
 (require 'init-utils)
 
 (use-package iedit
-  :demand
+  :ensure nil
   :diminish "🙾"
   :bind (:map iedit-mode-keymap
-              ("<return>" . iedit-quit)
-              ("C-o" . iedit-show/hide-unmatched-lines)))
+              ("<return>" . iedit-quit)))
 
 (use-package multiple-cursors
   :bind (("C-:" . init-multiple-cursors-edit))
