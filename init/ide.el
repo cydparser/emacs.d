@@ -208,3 +208,46 @@
                                       :compile "cabal build"
                                       :test "cabal test"
                                       :test-suffix "Spec")))
+
+(use-package xref
+  :ensure nil
+  :bind (("M-." . init-xref-find-definitions))
+  :init
+  (progn
+    (defun init-xref-show-definitions-function (fetcher alist)
+      (let ((xrefs (funcall fetcher)))
+        (cond
+         ((not (cdr xrefs))
+          (xref-pop-to-location (car xrefs)
+                                (assoc-default 'display-action alist)))
+         (t
+          (xref--show-xref-buffer fetcher
+                                  (cons (cons 'fetched-xrefs xrefs)
+                                        alist))))
+        xrefs))
+
+    (setq xref-show-definitions-function #'init-xref-show-definitions-function)
+
+    (defun init-xref-find-definitions ()
+      (interactive)
+      (let ((original-backend-functions xref-backend-functions)
+            (message-log-max nil)
+            (result nil))
+
+        (unwind-protect
+            (while (and (null result) (not (null xref-backend-functions)))
+              (ignore-errors
+                (setq result (call-interactively 'xref-find-definitions)))
+              (unless result
+                (setq-local xref-backend-functions
+                            (let ((backend (xref-find-backend))
+                                  (drop t))
+                              (seq-drop-while (lambda (b) (let ((d drop))
+                                                       (setq drop (eq backend b))
+                                                       d))
+                                              xref-backend-functions)
+                              ))
+                )
+              result)
+
+          (setq-local xref-backend-functions original-backend-functions))))))
