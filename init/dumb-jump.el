@@ -2,6 +2,7 @@
 
 (use-package dumb-jump
   :after xref
+  :demand
   :init
   (progn
     (setq dumb-jump-fallback-search nil
@@ -33,6 +34,11 @@
                     :regex "^(((data|newtype)\\s+.*((=|[|])\\s+[^{]+[{]\\s+JJJ\\s+::))|(\\s+[,{]\\s+JJJ\\s+::))")
              (:type "GADT constructor" :supports ("rg") :language "haskell"
                     :regex "^\\s+JJJ\\s+::\\s")
+             (:type "pattern synonym" :supports ("rg") :language "haskell"
+                    :regex "^pattern\\s+JJJ\\s"
+                    :tests ("pattern Foo :: a -> Bar"
+                            "pattern Foo a = Bar a"
+                            "pattern Foo a = Bar a"))
              (:type "module" :supports ("rg") :language "haskell"
                     :regex "^module\\s+JJJ(\\s|$)"
                     :tests ("module Test (exportA, exportB) where"
