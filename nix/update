@@ -16,8 +16,9 @@ fi
 from-url() {
   local _name="${1:? Missing name}"
   local _url="${2:? Missing url}"
-  _sha="$(nix-prefetch-url "$_url")"
-  echo "{ \"_url\": \"$_url\", \"sha256\": \"$_sha\" }" > "nix/$name.json"
+  set -x
+  _sha="$(nix-prefetch-url --unpack "$_url")"
+  echo "{ \"url\": \"$_url\", \"sha256\": \"$_sha\" }" > "nix/$_name.json"
 }
 
 from-gh-release() {
@@ -39,6 +40,8 @@ for p in "${packages[@]}"; do
     jdt-language-server)
       from-url 'jdt-language-server' \
                "https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)" ;;
+    rnix-lsp)
+      from-url rnix-lsp 'https://github.com/elkowar/rnix-lsp/archive/master.tar.gz' ;;
     *)
       echo "ERROR: Unknown package: $p" >&2
       exit 1

@@ -15,6 +15,7 @@ let
         # import (builtins.fetchTarball (readJSON ./nix/haskell-nix.json)) {};
     in (import hn.sources.nixpkgs-2003 hn.nixpkgsArgs).haskell-nix;
 
+  rnix-lsp = import (builtins.fetchTarball (readJSON ./nix/rnix-lsp.json)) { inherit pkgs; };
 
   inherit (pkgs.haskellPackages) apply-refact hlint;
 
@@ -42,6 +43,7 @@ rec {
       emacs
       hlint
       jdt-language-server
+      rnix-lsp
       mwebster-1913
     ;
     ripgrep = pkgs.ripgrep.override { withPCRE2 = true; };

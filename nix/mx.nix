@@ -21,6 +21,7 @@
 , noto-fonts
 , openssl
 , ripgrep
+, rnix-lsp
 , ruby
 , sdcv
 , shellcheck
@@ -69,6 +70,7 @@ in
         mwebster-1913
         nixpkgs-lint
         ripgrep
+        rnix-lsp
         sdcv
         shellcheck
         wordnet

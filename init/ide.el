@@ -17,16 +17,10 @@
                              company-files
                              (company-dabbrev-code company-etags company-keywords)
                              company-dabbrev))
-    (setq company-idle-delay 0.3)
+    (setq company-idle-delay 0.1
+          company-minimum-prefix-length 1)
     (setq-default company-dabbrev-downcase nil
                   company-dabbrev-ignore-case nil)))
-
-(use-package company-lsp
-  :hook (lsp-mode-hook . init-company-lsp)
-  :init
-  (progn
-    (defun init-company-lsp ()
-      (add-to-list (make-local-variable 'company-backends) #'company-lsp))))
 
 (use-package company-quickhelp
   :demand
@@ -88,11 +82,17 @@
       ("q" nil "quit"))))
 
 (use-package lsp-mode
-  :bind (("C-c b ?" . lsp-describe-session))
+  :hook ((lsp-mode . lsp-enable-which-key-integration)
+         (lsp-mode . lsp-modeline-code-actions-mode)
+         (nix-mode-hook . lsp-deferred))
+  :bind (("C-c b ?" . lsp-describe-session)
+         ("C-c l" . lsp-keymap-prefix))
   :init (setq lsp-auto-guess-root t))
 
+(use-package lsp-ivy
+  :after (ivy lsp-mode))
+
 (use-package lsp-ui
-  :hook (lsp-mode-hook . lsp-ui-mode)
   :init (setq lsp-ui-doc-use-webkit t))
 
 (use-package project
