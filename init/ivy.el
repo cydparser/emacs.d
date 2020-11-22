@@ -48,6 +48,8 @@
           ivy-use-virtual-buffers t))
   :config
   (progn
+    (unbind-key "S-SPC" ivy-minibuffer-map)
+
     (defun init-ivy-occur-next-line (&optional arg)
       "Move to next line and open item in other window."
       (interactive "p")
