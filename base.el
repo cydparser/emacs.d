@@ -62,6 +62,9 @@ ARG determines the direction and number of sexps."
 ;; Disable lock files.
 (setq create-lockfiles nil)
 
+;; Split windows horizontally.
+(setq split-height-threshold nil)
+
 ;; Simplify prompts.
 (fset 'yes-or-no-p #'y-or-n-p)
 
