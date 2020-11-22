@@ -93,7 +93,10 @@
   :after (ivy lsp-mode))
 
 (use-package lsp-ui
-  :init (setq lsp-ui-doc-use-webkit t))
+  :init (setq lsp-ui-doc-alignment 'frame
+              lsp-ui-doc-include-signature t
+              lsp-ui-doc-position 'at-point
+              lsp-ui-doc-use-webkit t))
 
 (use-package project
   :ensure nil
