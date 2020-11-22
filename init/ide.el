@@ -63,6 +63,11 @@
     (advice-add 'flycheck-may-enable-mode :around
                 #'init-flycheck-may-enable-mode)
 
+    (defun init-flycheck-list-errors ()
+      (interactive)
+      (flycheck-list-errors)
+      (pop-to-buffer flycheck-error-list-buffer))
+
     (defhydra hydra-flycheck ()
       "flycheck"
       ("M-n" flycheck-next-error nil)
@@ -77,7 +82,7 @@
 
       ("d" flycheck-disable-checker "disable" :color blue)
       ("k" flycheck-clear "clear" :color blue)
-      ("l" flycheck-list-errors "list" :color blue)
+      ("l" init-flycheck-list-errors "list" :color blue)
       ("w" flycheck-copy-errors-as-kill "copy" :color blue)
 
       ("q" nil "quit"))))
