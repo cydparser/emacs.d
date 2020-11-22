@@ -12,11 +12,14 @@
         counsel-M-x
         forward-sexp
         haskell-indentation-common-electric-command
+        hydra--negative-argument
         init-delete-excess-whitespace
         init-sp-kill-region-or-backward-word
         kill-sexp
         mark-sexp
+        org-delete-char
         org-end-of-line
+        org-force-self-insert
         org-self-insert-command
         sp-backward-delete-char
         sp-backward-kill-word
