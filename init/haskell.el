@@ -319,12 +319,7 @@ This function also sets the `inferior-haskell-root-dir'"
       "Reload file and switch to the REPL."
       (interactive)
       (haskell-process-load-or-reload)
-      (haskell-interactive-switch))
-
-    (defun init-haskell-process-wrapper (args)
-      "Executes ARGS in nix-shell."
-      (list "nix-shell" "--command"
-            (mapconcat 'identity (mapcar (lambda (a) (concat "'" a "'")) args) " ")))))
+      (haskell-interactive-switch))))
 
 (use-package haskell-snippets)
 
@@ -342,15 +337,6 @@ This function also sets the `inferior-haskell-root-dir'"
   :init
   :config
   (progn
-    (defun init-lsp-haskell-process-wrapper (argv)
-      (let* ((pr (project-current))
-             (shell (and pr (expand-file-name "shell.nix" (cdr pr)))))
-        (if (and pr (file-exists-p (print shell)))
-            `("nix-shell" "--run" ,(mapconcat 'identity argv " ") ,shell)
-          argv)))
-
-    (setq lsp-haskell-process-wrapper-function #'init-lsp-haskell-process-wrapper)
-
     (defun init-ghcide ()
       (setq-local lsp-haskell-process-path-hie "ghcide")
       (setq-local lsp-haskell-process-args-hie '())

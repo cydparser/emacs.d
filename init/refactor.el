@@ -4,7 +4,6 @@
 
 (use-package iedit
   :demand
-  :ensure nil
   :diminish "🙾"
   :bind (:map iedit-mode-keymap
               ("<return>" . iedit-quit)))
