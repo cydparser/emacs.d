@@ -87,7 +87,8 @@
          (nix-mode-hook . lsp-deferred))
   :bind (("C-c b ?" . lsp-describe-session)
          ("C-c l" . lsp-keymap-prefix))
-  :init (setq lsp-auto-guess-root t))
+  :init (setq lsp-auto-guess-root t
+              lsp-session-file (expand-file-name "lsp-session" init-var-directory)))
 
 (use-package lsp-ivy
   :after (ivy lsp-mode))
