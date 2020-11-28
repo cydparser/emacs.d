@@ -16,7 +16,7 @@ fi
 from-url() {
   local _name="${1:? Missing name}"
   local _url="${2:? Missing url}"
-  set -x
+
   _sha="$(nix-prefetch-url --unpack "$_url")"
   echo "{ \"url\": \"$_url\", \"sha256\": \"$_sha\" }" > "nix/$_name.json"
 }
