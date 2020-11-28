@@ -41,7 +41,7 @@ for p in "${packages[@]}"; do
       from-url 'jdt-language-server' \
                "https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)" ;;
     rnix-lsp)
-      from-url rnix-lsp 'https://github.com/elkowar/rnix-lsp/archive/master.tar.gz' ;;
+      from-url rnix-lsp 'https://github.com/nix-community/rnix-lsp/archive/master.tar.gz' ;;
     *)
       echo "ERROR: Unknown package: $p" >&2
       exit 1
