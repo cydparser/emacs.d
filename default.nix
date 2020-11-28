@@ -23,6 +23,8 @@ in
 rec {
   codex = callPackage nix/codex.nix { inherit fetchPinnedGitHub; };
 
+  delta = pkgs.gitAndTools.delta;
+
   emacs =
     let epkgs = pkgs.emacsPackages.overrideScope' (self: super: {
       emacs = super.emacs.override {
@@ -40,6 +42,7 @@ rec {
     inherit
       apply-refact
       codex
+      delta
       emacs
       hlint
       jdt-language-server

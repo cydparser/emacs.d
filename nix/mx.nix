@@ -4,6 +4,7 @@
 , cascadia-code
 , codex
 , dejavu_fonts
+, delta
 , emacs
 , emacs-all-the-icons-fonts
 , emacsPackages
@@ -59,6 +60,7 @@ in
         apply-refact
         cask
         codex
+        delta
         dhall
         emacs
         espeak

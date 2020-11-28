@@ -13,3 +13,7 @@
   :hook (git-commit-mode-hook . flyspell-mode)
   :init (setq magit-push-always-verify nil
               magit-revert-buffers t))
+
+(use-package magit-delta
+  :after magit
+  :hook (magit-mode-hook . (lambda () (magit-delta-mode 1))))
