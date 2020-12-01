@@ -332,9 +332,10 @@ This function also sets the `inferior-haskell-root-dir'"
               ("C-c r h h" . hlint-refactor-refactor-at-point)))
 
 (use-package lsp-haskell
-  :if (executable-find "hie-wrapper")
   :commands (init-ghcide init-hie)
-  :init
+  :custom
+  (lsp-haskell-formatting-provider "none")
+  (lsp-haskell-server-path "haskell-language-server")
   :config
   (progn
     (defun init-ghcide ()
