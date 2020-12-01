@@ -9,7 +9,7 @@
 
 (setq-default init-haskell-backend "dante")
 (put 'init-haskell-backend 'safe-local-variable
-     (lambda (s) (seq-contains init-haskell-backends s)))
+     (lambda (s) (or (not s) (seq-contains-p init-haskell-backends s))))
 
 (defconst init-haskell-dev-extensions '("NamedWildCards" "PartialTypeSignatures"))
 (defconst init-haskell-dev-extension-flags (seq-map (lambda (s) (format "-X%s" s))
