@@ -254,9 +254,7 @@
                               (seq-drop-while (lambda (b) (let ((d drop))
                                                        (setq drop (eq backend b))
                                                        d))
-                                              xref-backend-functions)
-                              ))
-                )
+                                              xref-backend-functions))))
               result)
 
           (setq-local xref-backend-functions original-backend-functions))))))

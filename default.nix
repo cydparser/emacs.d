@@ -15,7 +15,7 @@ let
         # import (builtins.fetchTarball (readJSON ./nix/haskell-nix.json)) {};
     in (import hn.sources.nixpkgs-2003 hn.nixpkgsArgs).haskell-nix;
 
-  rnix-lsp = import (builtins.fetchTarball (readJSON ./nix/rnix-lsp.json)) { inherit pkgs; };
+  rnix-lsp = import (builtins.fetchTarball (readJSON ./nix/rnix-lsp.json));
 
   inherit (pkgs.haskellPackages) apply-refact hlint;
 
