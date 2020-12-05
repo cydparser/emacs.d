@@ -69,19 +69,6 @@
               ("n" . ivy-next-line)
               ("p" . ivy-previous-line)))
 
-(use-package ivy-posframe
-  :after ivy
-  :demand
-  :diminish ""
-  :hook (after-init-hook . ivy-posframe-mode)
-  :init
-  (progn
-    (setq ivy-posframe-display-functions-alist
-          '((swiper            . nil)
-            (counsel-find-file . nil)
-            (counsel-rg        . nil)
-            (t                 . ivy-posframe-display-at-point)))))
-
 (use-package ivy-xref
   :ensure t
   :init (setq ivy-xref-use-file-path t
