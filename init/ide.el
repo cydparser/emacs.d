@@ -26,6 +26,9 @@
   :demand
   :hook (company-mode-hook . company-quickhelp-mode))
 
+(use-package dap-mode
+  :init (setq dap-breakpoints-file (expand-file-name "dap-breakpoints" init-var-directory)))
+
 (use-package eglot
   :config
   (progn
