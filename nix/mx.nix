@@ -21,6 +21,7 @@
 , nixpkgs-lint
 , noto-fonts
 , openssl
+, python3
 , ripgrep
 , rnix-lsp
 , ruby
@@ -71,6 +72,7 @@ in
         jdt-language-server
         mwebster-1913
         nixpkgs-lint
+        python3
         ripgrep
         rnix-lsp
         sdcv
