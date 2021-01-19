@@ -15,7 +15,6 @@
 , hlint
 , hunspell
 , hunspellDicts
-, jdt-language-server
 , libxml2
 , mwebster-1913
 , nixpkgs-lint
@@ -69,7 +68,6 @@ in
         hasktags
         hlint
         hunspell
-        jdt-language-server
         mwebster-1913
         nixpkgs-lint
         python3
@@ -84,7 +82,6 @@ in
       --set CODEX_DISABLE_WORKSPACE true \
       --set DICPATH "${hunspellDicts.en-us}/share/hunspell" \
       --set FONTCONFIG_FILE "${fontsConf}" \
-      --set JDT_LSP "${jdt-language-server}" \
       --set STARDICT_DATA_DIR "${mwebster-1913}" \
       --set WORDLIST "$XDG_CONFIG_HOME/ispell/words"
   ''

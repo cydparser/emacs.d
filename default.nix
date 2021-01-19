@@ -29,8 +29,6 @@ rec {
       pdf-tools
     ]);
 
-  jdt-language-server = callPackage nix/jdt-language-server.nix { jdk = pkgs.jdk; inherit fetchPinnedUrl; };
-
   mwebster-1913 = callPackage nix/mwebster-1913.nix {};
 
   mx = callPackage nix/mx.nix {
@@ -40,7 +38,6 @@ rec {
       delta
       emacs
       hlint
-      jdt-language-server
       rnix-lsp
       mwebster-1913
     ;

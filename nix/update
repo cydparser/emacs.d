@@ -10,7 +10,7 @@ cd "$(dirname "$0")"/..
 if [[ "$#" -gt 0 ]]; then
   packages=( "$@" )
 else
-  packages=( haskell-nix jdt-language-server )
+  packages=( rnix-lsp )
 fi
 
 from-url() {
@@ -35,11 +35,6 @@ for p in "${packages[@]}"; do
   case "$p" in
     codex)
       nix-prefetch-github --rev hack cydparser codex > nix/codex.json ;;
-    haskell-nix)
-      nix-prefetch-github input-output-hk haskell.nix > nix/haskell-nix.json ;;
-    jdt-language-server)
-      from-url 'jdt-language-server' \
-               "https://download.eclipse.org/jdtls/snapshots/$(curl --fail https://download.eclipse.org/jdtls/snapshots/latest.txt)" ;;
     rnix-lsp)
       from-url rnix-lsp 'https://github.com/nix-community/rnix-lsp/archive/master.tar.gz' ;;
     *)
