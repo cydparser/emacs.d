@@ -26,13 +26,14 @@ rec {
   delta = pkgs.gitAndTools.delta;
 
   emacs =
-    let epkgs = pkgs.emacsPackages.overrideScope' (self: super: {
-      emacs = super.emacs.override {
-        inherit (pkgs) webkitgtk;
+    let
+      emacsWithXwidets = pkgs.emacs.override {
+        webkitgtk = pkgs.webkitgtk;
         withXwidgets = true;
       };
-    });
-    in epkgs.emacsWithPackages (p: with p.melpaStablePackages; [ p.pdf-tools ]);
+    in (pkgs.emacsPackagesFor emacsWithXwidets).emacsWithPackages (epkgs: with epkgs.melpaStablePackages; [
+      pdf-tools
+    ]);
 
   jdt-language-server = callPackage nix/jdt-language-server.nix { jdk = pkgs.jdk; inherit fetchPinnedUrl; };
 
