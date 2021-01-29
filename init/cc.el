@@ -23,7 +23,6 @@
 
 (use-package lsp-java
   :after lsp-mode
-  :hook (java-mode-hook . lsp)
   :init
   (progn
     (let ((workspace (expand-file-name "lsp-java/" init-var-directory)))
