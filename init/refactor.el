@@ -6,7 +6,7 @@
   :demand
   :diminish "🙾"
   :bind (:map iedit-mode-keymap
-              ("<return>" . iedit-quit)))
+              ("<return>" . iedit--quit)))
 
 (use-package multiple-cursors
   :bind (("C-:" . init-multiple-cursors-edit))
