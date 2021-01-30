@@ -17,6 +17,7 @@
         init-sp-kill-region-or-backward-word
         kill-sexp
         mark-sexp
+        markdown-outdent-or-delete
         org-delete-char
         org-end-of-line
         org-force-self-insert
