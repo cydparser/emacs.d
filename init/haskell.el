@@ -5,7 +5,7 @@
 (eval-when-compile
   (require 'cl-lib))
 
-(defconst init-haskell-backends '("dante" "ghcide" "hls" "interactive-haskell" "none"))
+(defconst init-haskell-backends '("dante" "hls" "interactive-haskell" "none"))
 
 (setq-default init-haskell-backend "hls")
 (put 'init-haskell-backend 'safe-local-variable
@@ -332,16 +332,11 @@ This function also sets the `inferior-haskell-root-dir'"
               ("C-c r h h" . hlint-refactor-refactor-at-point)))
 
 (use-package lsp-haskell
-  :commands (init-ghcide init-hls)
+  :commands (init-hls)
   :custom
   (lsp-haskell-formatting-provider "none")
   (lsp-haskell-server-path "haskell-language-server")
   :config
   (progn
-    (defun init-ghcide ()
-      (setq-local lsp-haskell-process-path-hie "ghcide")
-      (setq-local lsp-haskell-process-args-hie '())
-      (lsp))
-
     (defun init-hls ()
       (lsp))))
