@@ -338,7 +338,7 @@ This function also sets the `inferior-haskell-root-dir'"
   (lsp-haskell-server-path "haskell-language-server")
   (lsp-haskell-server-wrapper-function
    (lambda (argv)
-     `("nix-shell" ,(concat (lsp-haskell--get-root) "shell.nix")
+     `("nix-shell" ,(concat (lsp-haskell--get-root) "/shell.nix")
        "--run" ,(mapconcat 'identity argv " "))))
   :config
   (progn
