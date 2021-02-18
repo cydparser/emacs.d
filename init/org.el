@@ -33,6 +33,8 @@
         ("#+RESULTS:"  . "≅")
         ("#+PROPERTY:" . "≔")))
 
+    (add-to-list 'org-modules 'org-tempo t)
+
     (defun init-org ()
       (setq-local prettify-symbols-alist init-org-prettify-symbols-alist)
       (prettify-symbols-mode))
