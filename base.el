@@ -169,7 +169,7 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :config
   (progn
-    (unbind-key "M-o" diff-mode-map)))
+    (unbind-key "o" diff-mode-shared-map)))
 
 (use-package eldoc
   :ensure nil
