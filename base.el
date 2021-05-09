@@ -121,7 +121,6 @@ ARG determines the direction and number of sexps."
 (bind-key "M-R" #'repeat)
 (bind-key "M-SPC" #'init-delete-excess-whitespace)
 (bind-key "M-U" #'init-sexp-upcase)
-(bind-key "M-o" #'other-window)
 
 (delete-selection-mode 1)
 
