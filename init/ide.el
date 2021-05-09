@@ -93,9 +93,6 @@
   :init (setq lsp-auto-guess-root t
               lsp-session-file (expand-file-name "lsp-session" init-var-directory)))
 
-(use-package lsp-ivy
-  :after (ivy lsp-mode))
-
 (use-package lsp-ui
   :init (setq lsp-ui-doc-alignment 'window
               lsp-ui-doc-include-signature t
