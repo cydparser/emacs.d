@@ -1,4 +1,4 @@
-{ stdenv, makeFontsConf, makeWrapper, runCommandNoCC
+{ lib, makeFontsConf, makeWrapper, runCommandNoCC
 , ag
 , apply-refact
 , cascadia-code
@@ -55,7 +55,7 @@ in
     ln -s ${emacs}/bin/emacsclient $out/bin/
 
     makeWrapper ${emacs}/bin/emacs $out/bin/mx \
-      --suffix PATH : ${stdenv.lib.makeBinPath [
+      --suffix PATH : ${lib.makeBinPath [
         ag
         apply-refact
         cask
