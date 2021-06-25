@@ -23,8 +23,10 @@
       (erc-track-mode))
 
     (defun init-erc-tls (&optional server port)
-      (interactive '("irc://irc.libera.chat" 6667))
-      (erc-tls :server server :port port))))
+      (interactive '("irc.libera.chat" 6697))
+      (erc-tls :server server :port port
+               :nick erc-nick :password erc-password
+               :full-name erc-user-full-name))))
 
 (use-package erc-hl-nicks
   :hook (erc-mode-hook . erc-hl-nicks-mode))
