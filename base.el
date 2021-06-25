@@ -164,6 +164,10 @@ ARG determines the direction and number of sexps."
   :init (setq bookmark-default-file (expand-file-name "bookmarks" init-var-directory)
               bookmark-save-flag 1))
 
+(use-package calendar
+  :ensure nil
+  :custom (calendar-week-start-day 1))
+
 (use-package diff-mode
   :ensure nil
   :config
