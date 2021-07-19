@@ -5,7 +5,7 @@
 (eval-when-compile
   (require 'cl-lib))
 
-(defconst init-haskell-backends '("dante" "hls" "interactive-haskell" "none"))
+(defconst init-haskell-backends '("hls" "interactive-haskell" "none"))
 
 (setq-default init-haskell-backend "hls")
 (put 'init-haskell-backend 'safe-local-variable
@@ -37,67 +37,6 @@
   (progn
     (defun init-company-cabal ()
       (add-to-list (make-local-variable 'company-backends) #'company-cabal))))
-
-(use-package dante
-  :diminish " Δ"
-  :bind (:map dante-mode-map
-              ("C-c b ?" . dante-diagnose)
-              ("C-c b t" . init-dante-change-target)
-              ("C-c c b" . dante-eval-block)
-              ("C-c C-i" . dante-info)
-              ("C-c C-t" . dante-type-at))
-  :commands (init-dante)
-  :custom
-  (dante-methods '(new-impure-nix
-                   new-flake
-                   bare-ghci))
-  :init
-  (progn
-    (put 'dante-methods 'safe-local-variable
-         (lambda (meths) (and (listp meths)
-                         (seq-reduce (lambda (meth acc) (and acc (symbolp meth))) meths t))))
-
-    (defun init-dante-check-target (target)
-      (string-match-p
-       ;; [package:][ctype:]component
-       "^\\([[:alpha:]][-[:alnum:]]+:\\)?\\(\\(lib\\|flib\\|exe\\|test\\|bench\\):\\)?\\([[:alpha:]][-[:alnum:]]*\\)?$"
-       target))
-    (put 'dante-target 'safe-local-variable #'init-dante-check-target))
-  :config
-  (progn
-    (setq-default dante-load-flags (seq-concatenate 'list dante-load-flags init-haskell-dev-extension-flags))
-
-    (defun init-dante ()
-      (setq-local haskell-process-show-overlays nil)
-      (interactive-haskell-mode)
-      (dante-mode))
-
-    (defun init-dante-change-target (target)
-      "Change GHCi target to TARGET and restart, if changed."
-      (interactive (list (completing-read "Choose target: "
-                                          (haskell-cabal-enum-targets (haskell-process-type))
-                                          nil nil nil
-                                          'init-dante-cabal-targets-history)))
-      (unless (string-equal target dante-target)
-        (setq-local dante-target target)
-        (dante-restart)
-        (haskell-session-change-target target)))
-
-    (defun init-dante-repl-by-files (root paths cmd)
-      (when (seq-every-p (lambda (p)
-                           (file-exists-p (expand-file-name p root))) paths)
-        cmd))
-
-    (unbind-key "C-c ." dante-mode-map)
-    (unbind-key "C-c ," dante-mode-map)
-    (unbind-key "C-c /" dante-mode-map)
-    (unbind-key "C-c \"" dante-mode-map)
-
-    (flycheck-add-next-checker 'haskell-dante '(t . haskell-hlint))
-    ;; Dante's backend is too slow on large projects.
-    (remove-hook 'xref-backend-functions 'dante--xref-backend)
-    ;; Dante has trouble with operators.
-    (fset 'dante-ident-at-point #'haskell-ident-at-point)))
 
 (use-package haskell-cabal
   :ensure nil
