@@ -14,4 +14,9 @@
 
     (setq logview-additional-submodes
           '(("Tripshot" . ((format . "TIMESTAMP LEVEL (ThreadId THREAD) NAME :")
-                           (levels . "SLF4J")))))))
+                           (levels . "SLF4J"))))))
+  :config
+  (progn
+    (when (member "Iosevka Term" (font-family-list))
+      (add-hook 'logview-mode-hook
+                (lambda () (buffer-face-set :family "Iosevka Term"))))))
