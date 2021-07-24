@@ -59,7 +59,7 @@
            (cons replace rule)))))
 
 (defconst init-hasklig-prettify-symbols-alist
-  (when (member "Hasklig" (font-family-list))
+  (when (or (member "Hasklug Nerd Font" (font-family-list)) (member "Hasklig" (font-family-list)))
     (let ((codepoint #Xe100))
       (mapcar
        (lambda (replace)
