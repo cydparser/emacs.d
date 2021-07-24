@@ -252,33 +252,3 @@ ARG determines the direction and number of sexps."
 (use-package newcomment
   :ensure nil
   :bind ("M-;" . comment-line))
-
-(use-package rect
-  :ensure nil
-  :after hydra
-  :bind ("C-x SPC" . hydra-rectangle/rectangle-mark-mode)
-  :config
-  (progn
-    (defhydra hydra-rectangle (:color pink :post (deactivate-mark))
-      "rect"
-      ("m" rectangle-mark-mode nil)
-
-      ("b" rectangle-backward-char "backward")
-      ("f" rectangle-forward-char "forward")
-      ("n" rectangle-next-line "next")
-      ("p" rectangle-previous-line "previous")
-      ("e" rectangle-exchange-point-and-mark "exchange")
-
-      ("0" (rectangle-number-lines (region-beginning) (region-end) 0) "0" :color blue)
-      ("1" rectangle-number-lines "1" :color blue)
-      ("s" string-rectangle "string" :color blue)
-      ("o" open-rectangle "open" :color blue)
-      ("c" clear-rectangle "clear" :color blue)
-      ("d" delete-rectangle "delete" :color blue)
-
-      ("r" copy-rectangle-to-register "to-register" :color blue)
-      ("k" kill-rectangle "kill" :color blue)
-      ("y" yank-rectangle "yank" :color blue)
-      ("w" copy-rectangle-as-kill "XXX" :color blue)
-
-      ("q" nil "quit"))))
