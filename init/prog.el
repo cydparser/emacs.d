@@ -43,6 +43,8 @@
                                      (lisp-interaction-mode . ielm)
                                      (ruby-mode . inf-ruby))))
 
+(use-package rustic)
+
 (use-package string-inflection
   :commands (string-inflection-lower-camelcase-function
              string-inflection-underscore-function)
