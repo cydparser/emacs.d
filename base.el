@@ -178,6 +178,10 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :diminish (eldoc-mode . ""))
 
+(use-package electric
+  :ensure nil
+  :init (setq-default electric-indent-inhibit t))
+
 (use-package etags
   :ensure nil
   :init (setq tags-add-tables nil
