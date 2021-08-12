@@ -99,6 +99,10 @@
               lsp-ui-doc-position 'bottom
               lsp-ui-doc-use-webkit nil))
 
+(use-package move-text
+  :bind (("<M-down>" . move-text-down)
+         ("<M-up>"   . move-text-up)))
+
 (use-package project
   :ensure nil
   :custom (project-list-file (expand-file-name "projects" init-var-directory)))

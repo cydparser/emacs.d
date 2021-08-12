@@ -39,4 +39,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        init-multiple-cursors-edit
+        mc/mark-next-lines
+        mc/mark-previous-lines
         ))
