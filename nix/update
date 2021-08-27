@@ -36,7 +36,7 @@ for p in "${packages[@]}"; do
     codex)
       nix-prefetch-github --rev hack cydparser codex > nix/codex.json ;;
     rnix-lsp)
-      from-tarball rnix-lsp 'https://github.com/nix-community/rnix-lsp/archive/master.tar.gz' ;;
+      nix-prefetch-git https://github.com/nix-community/rnix-lsp.git > nix/rnix-lsp.json ;;
     *)
       echo "ERROR: Unknown package: $p" >&2
       exit 1

@@ -9,7 +9,7 @@ let
 
   fetchPinnedGitHub = path: pkgs.fetchFromGitHub ((readJSON path) // { fetchSubmodules = true; });
 
-  rnix-lsp = import (builtins.fetchTarball (readJSON ./nix/rnix-lsp.json));
+  rnix-lsp = import (builtins.fetchGit { inherit (readJSON ./nix/rnix-lsp.json) url rev; });
 
   inherit (pkgs.haskellPackages) apply-refact hlint;
 

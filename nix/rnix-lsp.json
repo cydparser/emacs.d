@@ -1,1 +1,10 @@
-{ "url": "https://github.com/nix-community/rnix-lsp/archive/master.tar.gz", "sha256": "1izjzw8r9cb40dbhw25zq6yk4p2jjljw8fmq4drgwz5hdp13f5f6" }
+{
+  "url": "https://github.com/nix-community/rnix-lsp.git",
+  "rev": "8a00223428f3fcc9dbe639fb0d1d4a062c341b98",
+  "date": "2021-08-21T13:49:49+02:00",
+  "path": "/nix/store/mkdyqja8a5azw5vvc1ydmi8a2w4angz1-rnix-lsp",
+  "sha256": "0ppmv3ikhdhhqkk79yvp3d5jcfpkpgcsafwr4yyk4swgsyysr4ga",
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}
