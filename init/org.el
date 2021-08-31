@@ -25,7 +25,10 @@
         ("#+END_EXPORT"   . "»")
 
         ("#+BEGIN_SRC" . "(")
+        ("#+begin_src" . "(")
         ("#+END_SRC"   . ")")
+        ("#+end_src"   . ")")
+
 
         ("#+BEGIN_QUOTE" . "“")
         ("#+END_QUOTE"   . "”")
