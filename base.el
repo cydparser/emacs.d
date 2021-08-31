@@ -197,56 +197,14 @@ ARG determines the direction and number of sexps."
 
 (use-package flymake
   :ensure nil
-  :after hydra
   :bind (:map flymake-mode-map
-              ("M-n" . hydra-flymake/flymake-goto-next-error)
-              ("M-p" . hydra-flymake/flymake-goto-prev-error))
-  :config
-  (progn
-    (defhydra hydra-flymake ()
-      "flymake"
-      ("M-n" flymake-goto-next-error nil)
-      ("M-p" flymake-goto-prev-error nil)
-
-      ("n" flymake-goto-next-error "next")
-      ("p" flymake-goto-prev-error "previous")
-
-      ("c" flymake-proc-compile "compile")
-
-      ("d" (seq-map #'flymake--disable-backend (flymake-running-backends)) "disable" :color blue)
-
-      ("q" nil "quit"))))
+              ("M-n" . flymake-goto-next-error)
+              ("M-p" . flymake-goto-prev-error)))
 
 (use-package hippie-exp
   :ensure nil
   :init (setq hippie-expand-try-functions-list (seq-difference hippie-expand-try-functions-list
                                                                '(try-expand-line try-expand-list))))
-
-(use-package hydra
-  :demand)
-
-(use-package smerge-mode
-  :ensure nil
-  :after hydra
-  :bind (:map smerge-mode-map
-              ("C-c m n" . hydra-smerge/smerge-next)
-              ("C-c m p" . hydra-smerge/smerge-prev)
-              ("C-c m l" . hydra-smerge/smerge-keep-lower)
-              ("C-c m u" . hydra-smerge/smerge-keep-upper))
-  :config
-  (progn
-    (defhydra hydra-smerge ()
-      "smerge"
-      ("n" smerge-next "next")
-      ("p" smerge-prev "prev")
-      ("e" smerge-ediff "ediff")
-      ("r" smerge-refine "refine")
-      ("a" smerge-keep-all "keep-all")
-      ("c" smerge-keep-current "keep-current")
-      ("l" smerge-keep-lower "keep-lower")
-      ("u" smerge-keep-upper "keep-upper")
-      ("w" save-buffer "done" :color blue)
-      ("q" nil "quit"))))
 
 (use-package mwheel
   :ensure nil
@@ -256,3 +214,8 @@ ARG determines the direction and number of sexps."
 (use-package newcomment
   :ensure nil
   :bind ("M-;" . comment-line))
+
+(use-package simple
+  :ensure nil
+  :bind (("M-n" . next-error)
+         ("M-p" . previous-error)))

@@ -36,11 +36,10 @@
 
 (use-package flycheck
   :demand
-  :after hydra
   :diminish ""
   :bind (:map flycheck-mode-map
-              ("M-n" . hydra-flycheck/flycheck-next-error)
-              ("M-p" . hydra-flycheck/flycheck-previous-error))
+              ("M-n" . flycheck-next-error)
+              ("M-p" . flycheck-previous-error))
   :hook (after-init-hook . global-flycheck-mode)
   :custom (flycheck-disabled-checkers '(haskell-ghc haskell-stack-ghc))
   :init
@@ -63,26 +62,7 @@
     (defun init-flycheck-list-errors ()
       (interactive)
       (flycheck-list-errors)
-      (pop-to-buffer flycheck-error-list-buffer))
-
-    (defhydra hydra-flycheck ()
-      "flycheck"
-      ("M-n" flycheck-next-error nil)
-      ("M-p" flycheck-previous-error nil)
-
-      ("<" flycheck-first-error "first")
-      ("n" flycheck-next-error "next")
-      ("p" flycheck-previous-error "previous")
-
-      ("c" flycheck-compile "compile")
-      ("v" flycheck-verify-setup "verify")
-
-      ("d" flycheck-disable-checker "disable" :color blue)
-      ("k" flycheck-clear "clear" :color blue)
-      ("l" init-flycheck-list-errors "list" :color blue)
-      ("w" flycheck-copy-errors-as-kill "copy" :color blue)
-
-      ("q" nil "quit"))))
+      (pop-to-buffer flycheck-error-list-buffer))))
 
 (use-package lsp-mode
   :hook ((lsp-mode . lsp-enable-which-key-integration)

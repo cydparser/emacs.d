@@ -29,7 +29,6 @@
          :map ivy-minibuffer-map
          ("C-o" . ivy-occur)
          ("C-w" . ivy-backward-kill-word)
-         ("M-h" . hydra-ivy/body)
          :map ivy-occur-mode-map
          ("n" . init-ivy-occur-next-line)
          ("p" . init-ivy-occur-previous-line)
@@ -61,13 +60,6 @@
       (interactive "p")
       (ivy-occur-previous-line arg)
       (ivy-occur-press))))
-
-(use-package ivy-hydra
-  :demand
-  :after ivy
-  :bind (:map hydra-ivy/keymap
-              ("n" . ivy-next-line)
-              ("p" . ivy-previous-line)))
 
 (use-package ivy-xref
   :ensure t

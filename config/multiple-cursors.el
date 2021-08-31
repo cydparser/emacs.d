@@ -12,7 +12,6 @@
         counsel-M-x
         forward-sexp
         haskell-indentation-common-electric-command
-        hydra--negative-argument
         init-delete-excess-whitespace
         init-sp-kill-region-or-backward-word
         kill-sexp
