@@ -106,7 +106,6 @@
     ;; "-fshow-loaded-modules" ; Needed for >= ghc-8.2.2
     (setq flycheck-hlint-language-extensions init-haskell-dev-extensions)
     (setq haskell-font-lock-symbols t
-          haskell-font-lock-symbols-alist '(("." [?\s (Bc . Bc) ?∘] haskell-font-lock-dot-is-not-composition))
           haskell-interactive-mode-eval-mode nil
           haskell-process-args-cabal-new-repl init-haskell-ghc-options-list
           haskell-process-args-cabal-repl init-haskell-ghc-options-list
@@ -116,27 +115,80 @@
           haskell-process-log t
           haskell-process-wrapper-function 'init-haskell-process-wrapper)
 
-    (defconst init-haskell-prettify-symbols-alist
-      (let ((exclude '("&&" "||")))
-        (append
-         (list
-          (init-lig-rule-replace "\\" ?λ)
-          (init-lig-rule-replace "forall" ?∀)
-          (init-lig-rule-replace "undefined" ?⊥)
-          (init-lig-rule-bracket "error" ?⊥)
-          (init-lig-rule-center "&&" ?∧ ? )
-          (init-lig-rule-center "||" ?∨ ? )
-          (init-lig-rule-bracket "empty" ?∅)
-          (init-lig-rule-bracket "elem" ?∈)
-          (init-lig-rule-bracket "notElem" ?∉)
-          (init-lig-rule-bracket "member" ?∈)
-          (init-lig-rule-bracket "notMember" ?∉)
-          (init-lig-rule-bracket "isSubsetOf" ?⊆)
-          (init-lig-rule-bracket "isProperSubsetOf" ?⊂)
-          (init-lig-rule-bracket "intersection" ?∩)
-          (init-lig-rule-bracket "union" ?∪))
-         (seq-remove (lambda (pair) (member (car pair) exclude))
-                     init-hasklig-prettify-symbols-alist))))
+    ;; "^\\([[:space:]]+\\|[^[:space:]]+.*\\)::[[:space:]]*\\<forall\\>"
+
+    (defun init-haskell-font-lock-rankn-p (start)
+      (or (eql ?\( (char-before start))
+          (save-excursion
+            (goto-char start)
+            (re-search-backward "[(][[:space:]]*\\=" (line-beginning-position) t))))
+
+    (defun init-haskell-font-lock-existential-p (start)
+      (save-excursion
+        (goto-char start)
+        (re-search-backward "=[[:space:]]*\\=" (line-beginning-position) t)))
+
+    (defun init-haskell-font-lock-universal-p (start)
+      (save-excursion
+        (goto-char start)
+        (re-search-backward "::[[:space:]]*\\=" (line-beginning-position) t)))
+
+    (setq haskell-font-lock-symbols-alist
+          `(("." [?\s (Bc . Bc) ?∘] haskell-font-lock-dot-is-not-composition)
+            ("forall" "∀ⁿ" ,(lambda (s) (or (init-haskell-font-lock-universal-p s)
+                                       (init-haskell-font-lock-existential-p s) )))
+            ("forall" "∀" ,(lambda (s) (or (init-haskell-font-lock-rankn-p s)
+                                      (init-haskell-font-lock-existential-p s))))
+            ("forall" "∃" ,(lambda (s) (or (init-haskell-font-lock-universal-p s)
+                                      (init-haskell-font-lock-rankn-p s))))))
+
+    (let ((s (point))) (or (init-haskell-font-lock-universal-p s)
+                           (init-haskell-font-lock-existential-p s) ))
+
+    (let ((s (point))) (or (init-haskell-font-lock-universal-p s)
+                           (init-haskell-font-lock-rankn-p s)))
+
+    ;; (haskell-font-lock-compose-symbol haskell-font-lock-symbols-alist)
+
+    ;; (haskell-font-lock-symbols-keywords)
+    ;; (("\\(\\.\\|forall\\)" (0 (haskell-font-lock-compose-symbol '(
+    ;;                                                               ("." [32 (Bc . Bc) 8728] haskell-font-lock-dot-is-not-composition)
+    ;;                                                               ("forall" "∀" (closure (t) (start) (not (init-haskell-font-lock-universal-p start))))
+    ;;                                                               ("forall" "∃" init-haskell-font-lock-universal-p))) keep)))
+
+    ;; (haskell-font-lock-keywords)
+    ;; (haskell-font-lock-defaults-create)
+
+    ;; (("\\(\\.\\|forall\\)"
+    ;;   (0 (haskell-font-lock-compose-symbol
+    ;;       '( ("." [32 (Bc . Bc) 8728] haskell-font-lock-dot-is-not-composition)
+    ;;          ("forall" "∀" (closure (t) (start) (not (init-haskell-font-lock-universal-p start))))
+    ;;          ("forall" "∃" init-haskell-font-lock-universal-p)
+    ;;          )
+    ;;       )
+    ;;      keep)
+    ;;   ))
+
+    (setq init-haskell-prettify-symbols-alist
+          (let ((exclude '("&&" "||")))
+            (append
+             (list
+              (init-lig-rule-replace "\\" ?λ)
+              (init-lig-rule-replace "undefined" ?⊥)
+              (init-lig-rule-bracket "error" ?⊥)
+              (init-lig-rule-center "&&" ?∧ ? )
+              (init-lig-rule-center "||" ?∨ ? )
+              (init-lig-rule-bracket "empty" ?∅)
+              (init-lig-rule-bracket "elem" ?∈)
+              (init-lig-rule-bracket "notElem" ?∉)
+              (init-lig-rule-bracket "member" ?∈)
+              (init-lig-rule-bracket "notMember" ?∉)
+              (init-lig-rule-bracket "isSubsetOf" ?⊆)
+              (init-lig-rule-bracket "isProperSubsetOf" ?⊂)
+              (init-lig-rule-bracket "intersection" ?∩)
+              (init-lig-rule-bracket "union" ?∪))
+             (seq-remove (lambda (pair) (member (car pair) exclude))
+                         init-hasklig-prettify-symbols-alist))))
 
     (defun init-haskell ()
       (haskell-collapse-mode)
