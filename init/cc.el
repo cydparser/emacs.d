@@ -4,14 +4,11 @@
 
 (use-package cc-mode
   :ensure nil
-  :hook ((c-mode-common-hook . init-cc)
+  :hook ((c-mode-common-hook . google-set-c-style)
          (java-mode-hook . init-java))
   :init
   (progn
     (require 'google-c-style)
-
-    (defun init-cc ()
-      (c-add-style "Google" google-c-style t))
 
     (defun init-java ()
       (c-set-offset 'arglist-cont 0)
