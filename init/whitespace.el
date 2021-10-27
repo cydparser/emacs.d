@@ -1,7 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package whitespace
-  :demand
+  :ensure nil
   :diminish ((whitespace-mode . "□")
              (global-whitespace-mode . "□"))
   :hook (after-init-hook . global-whitespace-mode)

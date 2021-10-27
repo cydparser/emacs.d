@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package js
+  :ensure nil
   :init
   (progn
     (setq js-indent-level 2)))

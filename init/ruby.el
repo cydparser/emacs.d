@@ -7,6 +7,7 @@
   :hook (ruby-mode-hook . inf-ruby-minor-mode))
 
 (use-package ruby-mode
+  :ensure nil
   :init (setq ruby-align-to-stmt-keywords t
               ruby-deep-indent-paren nil
               ruby-use-smie nil)

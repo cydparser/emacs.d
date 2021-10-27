@@ -3,6 +3,7 @@
 (require 'init-utils)
 
 (use-package ispell
+  :ensure nil
   :init
   (progn
     (setq ispell-dictionary "en_US"
@@ -12,6 +13,7 @@
       (setq ispell-personal-dictionary))))
 
 (use-package flyspell
+  :ensure nil
   :bind (:map flyspell-mode-map
               ("C-M-." . init-flyspell-save-word))
   :diminish "_"
