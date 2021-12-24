@@ -17,8 +17,6 @@
                              company-files
                              (company-dabbrev-code company-etags company-keywords)
                              company-dabbrev))
-    (setq company-idle-delay 0.1
-          company-minimum-prefix-length 1)
     (setq-default company-dabbrev-downcase nil
                   company-dabbrev-ignore-case nil)))
 
