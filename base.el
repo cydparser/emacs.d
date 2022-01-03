@@ -219,3 +219,7 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :bind (("M-n" . next-error)
          ("M-p" . previous-error)))
+
+(use-package xt-mouse
+  :ensure nil
+  :hook (after-init-hook . xterm-mouse-mode))
