@@ -1,0 +1,9 @@
+** Use this config
+#+begin_src sh
+  git clone https://github.com/cydparser/emacs.d.git ~/.config/emacs
+#+end_src
+
+** Install Emacs plus tools (=mx= executable)
+#+begin_src sh
+  nix-env -f . -iA mx
+#+end_src
