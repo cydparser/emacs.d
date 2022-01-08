@@ -2,10 +2,6 @@
 
 (require 'init-utils)
 
-(use-package attrap
-  :after flycheck
-  :bind (("C-c r f" . attrap-attrap)))
-
 (use-package company
   :demand
   :diminish ""
