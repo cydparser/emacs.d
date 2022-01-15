@@ -14,6 +14,11 @@
           org-startup-truncated nil))
   :config
   (progn
+    (unbind-key "<M-S-down>" org-mode-map)
+    (unbind-key "<M-S-up>" org-mode-map)
+    (unbind-key "<M-down>" org-mode-map)
+    (unbind-key "<M-up>" org-mode-map)
+
     (defconst init-org-prettify-symbols-alist
       '(("[ ]" . "☐")
         ("[X]" . "☑")
