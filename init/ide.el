@@ -63,7 +63,8 @@
          (lsp-mode . lsp-modeline-code-actions-mode)
          (nix-mode-hook . lsp-deferred))
   :bind (("C-c b ?" . lsp-describe-session)
-         ("C-c l" . lsp-keymap-prefix))
+         ("C-c l" . lsp-keymap-prefix)
+         ("C-." . lsp-execute-code-action))
   :init (setq lsp-auto-guess-root t
               lsp-session-file (expand-file-name "lsp-session" init-var-directory)))
 
