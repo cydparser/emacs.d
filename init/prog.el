@@ -13,8 +13,8 @@
             ("FIXME" . "#de935f")
             ("HACK"  . "#de935f")
             ("TODO"  . "#f0c674")
-            ("NB"    . "#8abeb7")
-            ("NOTE"  . "#8abeb7")))))
+            ("NB"    . "#81a2be")
+            ("NOTE"  . "#81a2be")))))
 
 (use-package prog-mode
   :ensure nil
