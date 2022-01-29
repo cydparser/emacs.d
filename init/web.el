@@ -5,6 +5,7 @@
 (use-package css-mode
   :ensure nil
   :hook (web-mode-hook . init-css)
+  :mode (("\\.gss\\'" . css-mode))
   :init
   (progn
     (defun init-css ()
