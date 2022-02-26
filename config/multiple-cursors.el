@@ -39,7 +39,13 @@
 
 (setq mc/cmds-to-run-once
       '(
+        ace-window
+        dap-tooltip-mouse-motion
+        handle-switch-frame
         init-multiple-cursors-edit
+        lsp-ui-doc--handle-mouse-movement
         mc/mark-next-lines
         mc/mark-previous-lines
+        mc/toggle-cursor-on-click
+        mouse-start-secondary
         ))
