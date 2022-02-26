@@ -326,6 +326,8 @@ This function also sets the `inferior-haskell-root-dir'"
   :commands (init-hls)
   :custom
   (lsp-haskell-formatting-provider "none")
+  (lsp-haskell-plugin-import-lens-code-lens-on nil)
+  (lsp-haskell-plugin-refine-imports-global-on nil)
   (lsp-haskell-server-args '("-j" "5" "-d" "-l" "/tmp/hls.log"))
   (lsp-haskell-server-wrapper-function
    (lambda (argv)
