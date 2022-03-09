@@ -5,7 +5,7 @@
 (eval-when-compile
   (require 'cl-lib))
 
-(defconst init-haskell-backends '("hls" "interactive-haskell" "none"))
+(defconst init-haskell-backends '("eglot" "lsp" "interactive-haskell" "none"))
 
 (setq-default init-haskell-backend "hls")
 (put 'init-haskell-backend 'safe-local-variable
@@ -99,7 +99,7 @@
               ("M-g i" . haskell-navigate-imports))
   :bind (:map interactive-haskell-mode-map
               ("C-c b t" . haskell-session-change-target))
-  :commands (init-haskell-change-backend init-interactive-haskell)
+  :commands (init-haskell-change-backend init-haskell-interactive-haskell)
   :hook (haskell-mode-hook . init-haskell)
   :init
   (progn
@@ -213,7 +213,7 @@
     (defun init-haskell--after-locals ()
       (cond ((and init-haskell-backend (not (string-equal init-haskell-backend "none")))
              (setq-local eldoc-documentation-function #'ignore)
-             (funcall (intern (concat "init-" init-haskell-backend))))
+             (funcall (intern (concat "init-haskell-" init-haskell-backend))))
             (t
              (setq-local eldoc-documentation-function #'haskell-doc-current-info)))))
   :config
@@ -269,7 +269,7 @@ This function also sets the `inferior-haskell-root-dir'"
               (error "Unable to determine inferior-haskell-root-dir")))))
       haskell-process-type)
 
-    (defun init-interactive-haskell ()
+    (defun init-haskell-interactive-haskell ()
       (interactive-haskell-mode))
 
     (defun init-haskell-change-backend (backend)
@@ -314,16 +314,8 @@ This function also sets the `inferior-haskell-root-dir'"
 
 (use-package haskell-snippets)
 
-(use-package hlint-refactor
-  :if (executable-find "refactor")
-  :diminish ""
-  :hook (haskell-mode-hook . hlint-refactor-mode)
-  :bind (:map hlint-refactor-mode-map
-              ("C-c r h b" . hlint-refactor-refactor-buffer)
-              ("C-c r h h" . hlint-refactor-refactor-at-point)))
-
 (use-package lsp-haskell
-  :commands (init-hls)
+  :commands (init-haskell-lsp)
   :custom
   (lsp-haskell-formatting-provider "none")
   (lsp-haskell-plugin-import-lens-code-lens-on nil)
@@ -335,5 +327,8 @@ This function also sets the `inferior-haskell-root-dir'"
        "--run" ,(mapconcat 'identity argv " "))))
   :config
   (progn
-    (defun init-hls ()
+    (defun init-haskell-lsp ()
       (lsp))))
+
+(defun init-haskell-eglot ()
+  (eglot-ensure))

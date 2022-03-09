@@ -24,9 +24,20 @@
   :init (setq dap-breakpoints-file (expand-file-name "dap-breakpoints" init-var-directory)))
 
 (use-package eglot
+  :hook (eglot-mode-hook . init-eglot)
+  :bind (:map eglot-mode-map
+              ("C-." . eglot-code-actions))
+  :commands (init-eglot)
+  :custom
+  (eglot-autoshutdown t)
   :config
   (progn
-    (add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp")))))
+    (dolist (mode '(haskell-mode literate-haskell-mode))
+      (add-to-list 'eglot-server-programs
+                   `(,mode . ("nix-shell" "--run" "haskell-language-server-wrapper --lsp -j 4 -l /tmp/eglot-hls.log"))))
+
+    (defun init-eglot ()
+      (flycheck-mode 0))))
 
 (use-package flycheck
   :demand
@@ -35,7 +46,13 @@
               ("M-n" . flycheck-next-error)
               ("M-p" . flycheck-previous-error))
   :hook (after-init-hook . global-flycheck-mode)
-  :custom (flycheck-disabled-checkers '(haskell-ghc haskell-stack-ghc))
+  :custom
+  (flycheck-global-modes
+   '(not haskell-mode
+        literate-haskell-mode
+        nix-mode
+        rustic-mode
+        ))
   :init
   (progn
     (init-when-file-exists (init-xdg-config "ruby/ruby-lint.yml")
@@ -62,11 +79,14 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode)
          (nix-mode-hook . lsp-deferred))
-  :bind (("C-c b ?" . lsp-describe-session)
-         ("C-c l" . lsp-keymap-prefix)
-         ("C-." . lsp-execute-code-action))
-  :init (setq lsp-auto-guess-root t
-              lsp-session-file (expand-file-name "lsp-session" init-var-directory)))
+  :bind (:map lsp-mode-map
+              ("C-c b ?" . lsp-describe-session)
+              ("C-c l" . lsp-keymap-prefix)
+              ("C-." . lsp-execute-code-action))
+  :custom
+  (lsp-enable-suggest-server-download nil)
+  (lsp-auto-guess-root t)
+  (lsp-session-file (expand-file-name "lsp-session" init-var-directory)))
 
 (use-package lsp-ui
   :init (setq lsp-ui-doc-alignment 'window
