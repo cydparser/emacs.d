@@ -1,9 +1,9 @@
 {
   "url": "https://github.com/nix-community/rnix-lsp.git",
-  "rev": "9462b0d20325a06f7e43b5a0469ec2c92e60f5fe",
-  "date": "2021-11-15T13:01:29+01:00",
-  "path": "/nix/store/4w7xf5vnk668xq2z8drriq4rp81b7a2x-rnix-lsp",
-  "sha256": "0mhzm4k7jkrq8r06mi49i04zvg0j1j6b54aqwyy104k8l32802d5",
+  "rev": "41eb2f3366e3f351bf2563c2a7c46fd17e78dfe0",
+  "date": "2022-01-31T00:47:30+01:00",
+  "path": "/nix/store/b06ndf6iqvyir9q9ysx0dr96n32ijhaw-rnix-lsp",
+  "sha256": "0n4vq9l4bn2kq2n1vfh8mvyvsmczys5nw4pn4jjz8smkgxrh04h5",
   "fetchLFS": false,
   "fetchSubmodules": false,
   "deepClone": false,
