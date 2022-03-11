@@ -1,5 +1,4 @@
 { lib, makeFontsConf, makeWrapper, runCommandNoCC
-, ag
 , apply-refact
 , codex
 , delta
@@ -21,6 +20,7 @@
 , ruby
 , sdcv
 , shellcheck
+, silver-searcher
 , wordnet
 , z3
 }:
@@ -37,7 +37,6 @@ in
 
     makeWrapper ${emacs}/bin/emacs $out/bin/mx \
       --suffix PATH : ${lib.makeBinPath [
-        ag
         apply-refact
         cask
         codex
@@ -56,6 +55,7 @@ in
         rnix-lsp
         sdcv
         shellcheck
+        silver-searcher
         wordnet
         xmllint
         z3
