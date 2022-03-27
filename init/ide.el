@@ -77,8 +77,7 @@
 
 (use-package lsp-mode
   :hook ((lsp-mode . lsp-enable-which-key-integration)
-         (lsp-mode . lsp-modeline-code-actions-mode)
-         (nix-mode-hook . lsp-deferred))
+         (lsp-mode . lsp-modeline-code-actions-mode))
   :bind (:map lsp-mode-map
               ("C-c b ?" . lsp-describe-session)
               ("C-c l" . lsp-keymap-prefix)
