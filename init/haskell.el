@@ -7,7 +7,7 @@
 
 (defconst init-haskell-backends '("eglot" "lsp" "interactive-haskell" "none"))
 
-(setq-default init-haskell-backend "hls")
+(setq-default init-haskell-backend "eglot")
 (put 'init-haskell-backend 'safe-local-variable
      (lambda (s) (or (not s) (seq-contains-p init-haskell-backends s))))
 
