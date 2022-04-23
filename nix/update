@@ -33,8 +33,6 @@ from-gh-release() {
 
 for p in "${packages[@]}"; do
   case "$p" in
-    codex)
-      nix-prefetch-github --rev hack cydparser codex > nix/codex.json ;;
     rnix-lsp)
       nix-prefetch-git https://github.com/nix-community/rnix-lsp.git > nix/rnix-lsp.json ;;
     *)

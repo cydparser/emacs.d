@@ -15,8 +15,6 @@ let
 
 in
 rec {
-  codex = callPackage nix/codex.nix { inherit fetchPinnedGitHub; };
-
   delta = pkgs.gitAndTools.delta;
 
   emacs =
@@ -34,7 +32,6 @@ rec {
   mx = callPackage nix/mx.nix {
     inherit
       apply-refact
-      codex
       delta
       emacs
       hlint

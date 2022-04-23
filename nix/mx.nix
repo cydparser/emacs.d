@@ -1,6 +1,5 @@
 { lib, makeFontsConf, makeWrapper, runCommandNoCC
 , apply-refact
-, codex
 , delta
 , emacs
 , emacsPackages
@@ -39,7 +38,6 @@ in
       --suffix PATH : ${lib.makeBinPath [
         apply-refact
         cask
-        codex
         delta
         dhall
         emacs
@@ -60,7 +58,6 @@ in
         xmllint
         z3
       ]} \
-      --set CODEX_DISABLE_WORKSPACE true \
       --set DICPATH "${hunspellDicts.en-us}/share/hunspell" \
       --set STARDICT_DATA_DIR "${mwebster-1913}" \
       --set WORDLIST "$XDG_CONFIG_HOME/ispell/words"
