@@ -34,7 +34,7 @@
   (progn
     (dolist (mode '(haskell-mode literate-haskell-mode))
       (add-to-list 'eglot-server-programs
-                   `(,mode . ("nix-shell" "--run" "haskell-language-server-wrapper --lsp -j 4 -l /tmp/eglot-hls.log"))))
+                   `(,mode . ("haskell-language-server-wrapper" "--lsp" "-j" "4" "-l" "/tmp/eglot-hls.log"))))
 
     (defun init-eglot ()
       (flycheck-mode 0))))
