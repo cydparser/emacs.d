@@ -155,6 +155,7 @@
               ("C-c p z z" . projectile-cache-current-file))
   :custom
   (projectile-cache-file (expand-file-name "projectile.cache" init-var-directory))
+  (projectile-create-missing-test-files t)
   (projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" init-var-directory))
   :init
   (progn
