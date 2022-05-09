@@ -1,9 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-(use-package paren
-  :ensure nil
-  :hook (after-init-hook . show-paren-mode))
-
 (use-package smartparens
   :diminish "$"
   :bind (("C-w" . init-sp-kill-region-or-backward-word)

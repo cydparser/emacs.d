@@ -66,7 +66,7 @@ ARG determines the direction and number of sexps."
 (setq split-height-threshold nil)
 
 ;; Simplify prompts.
-(fset 'yes-or-no-p #'y-or-n-p)
+(setq use-short-answers t)
 
 ;; Reduce noise.
 (setq auto-revert-mode-text ""
@@ -195,16 +195,37 @@ ARG determines the direction and number of sexps."
           exec-path-from-shell-variables '("DICPATH" "PATH" "MANPATH"))
     (exec-path-from-shell-initialize)))
 
+(use-package files
+  :ensure nil
+  :custom
+  (save-some-buffers-default-predicate 'save-some-buffers-root))
+
 (use-package flymake
   :ensure nil
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error)))
 
+(use-package help
+  :ensure nil
+  :custom
+  (describe-bindings-outline t))
+
+(use-package help-fns
+  :ensure nil
+  :custom
+  (help-enable-symbol-autoload t))
+
 (use-package hippie-exp
   :ensure nil
   :init (setq hippie-expand-try-functions-list (seq-difference hippie-expand-try-functions-list
                                                                '(try-expand-line try-expand-list))))
+
+(use-package minibuffer
+  :ensure nil
+  :custom
+  (completions-detailed t)
+  (read-minibuffer-restore-windows nil))
 
 (use-package mwheel
   :ensure nil
@@ -218,7 +239,9 @@ ARG determines the direction and number of sexps."
 (use-package simple
   :ensure nil
   :bind (("M-n" . next-error)
-         ("M-p" . previous-error)))
+         ("M-p" . previous-error))
+  :custom
+  (next-error-message-highlight t))
 
 (use-package xt-mouse
   :ensure nil
