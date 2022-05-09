@@ -6,11 +6,10 @@
   :after projectile
   :bind (("C-c p x b" . better-shell-for-projectile-root)))
 
-(use-package direnv
+(use-package envrc
   :demand
   :if (executable-find "direnv")
-  :hook (after-init-hook . direnv-mode)
-  :init (setq direnv-always-show-summary nil))
+  :hook (after-init-hook . envrc-global-mode))
 
 (use-package shell
   :ensure nil
