@@ -12,6 +12,7 @@
         counsel-M-x
         forward-sexp
         haskell-indentation-common-electric-command
+        indent-for-tab-command
         init-delete-excess-whitespace
         init-sp-kill-region-or-backward-word
         kill-sexp
@@ -21,6 +22,7 @@
         org-end-of-line
         org-force-self-insert
         org-self-insert-command
+        org-yank
         sp-backward-delete-char
         sp-backward-kill-word
         sp-backward-sexp
