@@ -19,11 +19,14 @@ rec {
 
   emacs =
     let
-      emacsWithXwidets = pkgs.emacs.override {
+      emacsCustom = pkgs.emacs.override {
+        nativeComp = true;
         webkitgtk = pkgs.webkitgtk;
+        # withPgtk = true;
+        withXinput2 = true;
         withXwidgets = true;
       };
-    in (pkgs.emacsPackagesFor emacsWithXwidets).emacsWithPackages (epkgs: with epkgs.melpaStablePackages; [
+    in (pkgs.emacsPackagesFor emacsCustom).emacsWithPackages (epkgs: with epkgs.melpaStablePackages; [
       pdf-tools
     ]);
 

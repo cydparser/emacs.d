@@ -2,7 +2,9 @@
 
 (use-package dired
   :ensure nil
-  :init (setq dired-listing-switches "-alht"))
+  :custom
+  (dired-do-revert-buffer t)
+  (dired-listing-switches "-alht"))
 
 (use-package dired-subtree
   :demand
@@ -25,4 +27,5 @@
 ;; Type C-x C-q in a dired buffer.
 (use-package wdired
   :ensure nil
-  :init (setq wdired-allow-to-change-permissions t))
+  :custom
+  (wdired-allow-to-change-permissions t))

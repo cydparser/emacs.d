@@ -6,7 +6,8 @@
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
-(setq package-archive-priorities '(("melpa" . 10)))
+(setq package-archive-priorities '(("melpa" . 10))
+      package-native-compile (native-comp-available-p))
 
 ;;; Initialize use-package
 

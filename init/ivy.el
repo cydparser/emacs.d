@@ -63,8 +63,12 @@
 
 (use-package ivy-xref
   :ensure t
-  :init (setq ivy-xref-use-file-path t
-              xref-show-xrefs-function #'ivy-xref-show-xrefs))
+  :custom
+  (ivy-xref-use-file-path t)
+  :init
+  (progn
+    (setq xref-show-definitions-function #'ivy-xref-show-defs
+          xref-show-xrefs-function #'ivy-xref-show-xrefs)))
 
 (use-package swiper
   :demand
