@@ -255,8 +255,8 @@ This function also sets the `inferior-haskell-root-dir'"
                   (let ((exe  (nth 1 list))
                         (root (locate-dominating-file default-directory (nth 2 list))))
                     (when (and root (or (not exe) (executable-find exe)))
-                      (return (setq inferior-haskell-root-dir root
-                                    haskell-process-type (nth 0 list))))))
+                      (cl-return (setq inferior-haskell-root-dir root
+                                       haskell-process-type (nth 0 list))))))
           (error "Unable to determine haskell-process-type")))
 
       (unless inferior-haskell-root-dir
