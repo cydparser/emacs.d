@@ -106,6 +106,7 @@ ARG determines the direction and number of sexps."
 (defalias 'sl #'sort-lines)
 
 (define-key input-decode-map [(control ?I)] (kbd "<backtab>"))
+(define-key input-decode-map [(control ?\[)] (kbd "<C-[>"))
 
 (bind-key "C-S-C" #'kill-ring-save)
 (bind-key "C-S-V" #'yank)
