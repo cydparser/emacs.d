@@ -212,11 +212,6 @@ ARG determines the direction and number of sexps."
   :custom
   (help-enable-symbol-autoload t))
 
-(use-package hippie-exp
-  :ensure nil
-  :init (setq hippie-expand-try-functions-list (seq-difference hippie-expand-try-functions-list
-                                                               '(try-expand-line try-expand-list))))
-
 (use-package minibuffer
   :ensure nil
   :custom
