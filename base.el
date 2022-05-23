@@ -130,6 +130,13 @@ ARG determines the direction and number of sexps."
 
 ;;; Packages
 
+(use-package abbrev
+  :ensure nil
+  :diminish ""
+  :custom
+  (abbrev-file-name (expand-file-name "abbrev_defs" init-config-directory))
+  :init (setq-default abbrev-mode t))
+
 (use-package align
   :ensure nil
   :config
