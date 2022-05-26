@@ -925,3 +925,8 @@
     ("yuo" "you" nil :count 0)
     ("yuor" "your" nil :count 0)
    ))
+
+(define-abbrev-table 'text-mode-abbrev-table
+  '(
+    ("i" "I" nil :count 0)
+   ))
