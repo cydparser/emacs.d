@@ -35,8 +35,8 @@ Source: http://stackoverflow.com/a/22116480/1231408"
 (use-package flyspell-correct-ivy
   :after flyspell
   :bind (:map flyspell-mode-map
-              ("C-." . flyspell-correct-word-generic)
-              ("C-c r s" . flyspell-correct-word-generic)))
+              ("C-." . flyspell-correct-wrapper)
+              ("C-c r s" . flyspell-correct-wrapper)))
 
 (use-package text-mode
   :ensure nil
