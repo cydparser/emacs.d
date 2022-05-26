@@ -236,8 +236,8 @@
 
     (setq xref-show-definitions-function #'init-xref-show-definitions-function)
 
-    (defun init-xref-find-definitions ()
-      (interactive)
+    (defun init-xref-find-definitions (identifier)
+      (interactive (list (xref--read-identifier "Find definitions of: ")))
       (let ((original-backend-functions xref-backend-functions)
             (message-log-max nil)
             (result nil))
@@ -245,7 +245,7 @@
         (unwind-protect
             (while (and (null result) (not (null xref-backend-functions)))
               (ignore-errors
-                (setq result (call-interactively 'xref-find-definitions)))
+                (setq result (xref-find-definitions identifier)))
               (unless result
                 (setq-local xref-backend-functions
                             (let ((backend (xref-find-backend))
