@@ -314,6 +314,7 @@ This function also sets the `inferior-haskell-root-dir'"
 (use-package haskell-snippets)
 
 (use-package lsp-haskell
+  :ensure nil
   :commands (init-haskell-lsp)
   :custom
   (lsp-haskell-formatting-provider "none")

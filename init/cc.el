@@ -19,6 +19,7 @@
 (use-package cmake-mode)
 
 (use-package lsp-java
+  :ensure nil
   :after lsp-mode
   :init
   (progn
