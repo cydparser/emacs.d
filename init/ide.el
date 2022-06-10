@@ -21,6 +21,7 @@
   :hook (company-mode-hook . company-quickhelp-mode))
 
 (use-package dap-mode
+  :ensure nil
   :init (setq dap-breakpoints-file (expand-file-name "dap-breakpoints" init-var-directory)))
 
 (use-package eglot
