@@ -224,6 +224,9 @@
 (use-package xref
   :ensure nil
   :bind (("M-." . init-xref-find-definitions))
+  :custom
+  (xref-auto-jump-to-first-definition t)
+  (xref-search-program 'ripgrep)
   :init
   (progn
     (defun init-xref-show-definitions-function (fetcher alist)
