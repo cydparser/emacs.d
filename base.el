@@ -89,9 +89,6 @@ ARG determines the direction and number of sexps."
 ;; Collect garbage less frequently.
 (setq gc-cons-threshold 104857600)
 
-;; Delete the trailing newline.
-(setq kill-whole-line t)
-
 ;; Adjust indentation and line wrapping.
 (let ((spaces 2)
       (max-line-length 80))
