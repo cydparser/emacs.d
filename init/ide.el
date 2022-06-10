@@ -102,6 +102,7 @@
 
 (use-package project
   :ensure nil
+  :hook (after-init-hook . project-forget-zombie-projects)
   :custom (project-list-file (expand-file-name "projects" init-var-directory)))
 
 (use-package projectile
