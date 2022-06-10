@@ -1,10 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-(use-package fancy-battery
-  :demand
-  :hook (after-init-hook . fancy-battery-mode)
-  :init (setq fancy-battery-show-percentage t))
-
 (use-package spaceline
   :demand
   :after projectile

@@ -159,6 +159,12 @@ ARG determines the direction and number of sexps."
   :init (setq auto-revert-verbose nil
               auto-revert-tail-mode-text " ⭛"))
 
+(use-package battery
+  :ensure nil
+  :custom
+  (battery-mode-line-format "🔋%b%p٪ ")
+  :hook (after-init-hook . display-battery-mode))
+
 (use-package bookmark
   :ensure nil
   :init (setq bookmark-default-file (expand-file-name "bookmarks" init-var-directory)
