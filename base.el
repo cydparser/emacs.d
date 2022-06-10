@@ -174,6 +174,15 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :custom (calendar-week-start-day 1))
 
+(use-package compile
+  :ensure nil
+  :diminish (compilation-shell-minor-mode . "©")
+  :bind (:map compilation-mode-map
+              ("n" . next-error)
+              ("p" . previous-error))
+  :custom
+  (compilation-scroll-output 'first-error))
+
 (use-package diff-mode
   :ensure nil
   :config
