@@ -9,6 +9,7 @@
 
 (use-package shell
   :ensure nil
+  :hook (shell-mode-hook . compilation-shell-minor-mode)
   :bind (:map shell-mode-map
               ("SPC" . comint-magic-space))
   :init
