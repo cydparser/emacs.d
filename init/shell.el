@@ -2,10 +2,6 @@
 
 (require 'init-utils)
 
-(use-package better-shell
-  :after projectile
-  :bind (("C-c p x b" . better-shell-for-projectile-root)))
-
 (use-package envrc
   :demand
   :if (executable-find "direnv")
