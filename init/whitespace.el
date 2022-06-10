@@ -9,7 +9,7 @@
   (progn
     (setq whitespace-global-modes ()
           whitespace-line-column fill-column
-          whitespace-style '(empty face lines-tail tabs trailing)))
+          whitespace-style '(empty face lines-tail missing-newline-at-eof tabs trailing)))
   :config
   (progn
     (defun init-whitespace-enable-predicate ()
