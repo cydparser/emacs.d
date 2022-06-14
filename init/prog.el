@@ -40,8 +40,7 @@
               rtog/mode-repl-alist '((dhall-mode . dhall-repl-show)
                                      (emacs-lisp-mode . ielm)
                                      (js-mode . nodejs-repl)
-                                     (lisp-interaction-mode . ielm)
-                                     (ruby-mode . inf-ruby))))
+                                     (lisp-interaction-mode . ielm))))
 
 (use-package rustic)
 

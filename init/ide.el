@@ -54,12 +54,6 @@
         nix-mode
         rustic-mode
         ))
-  :init
-  (progn
-    (init-when-file-exists (init-xdg-config "ruby/ruby-lint.yml")
-      (setq flycheck-rubylintrc))
-    (init-when-file-exists (init-xdg-config "ruby/rubocop.yml")
-      (setq flycheck-rubocoprc)))
   :config
   (progn
     (defun init-flycheck-may-enable-mode (f)

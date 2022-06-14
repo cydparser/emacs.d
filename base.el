@@ -138,7 +138,7 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :config
   (progn
-    (dolist (mode '(haskell-mode ruby-mode))
+    (dolist (mode '(haskell-mode))
       (add-to-list 'align-open-comment-modes mode))
 
     (dolist (tr '((haskell-types       . "\\(\\s-+\\)\\(::\\|∷\\)\\s-+")
