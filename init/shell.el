@@ -2,6 +2,11 @@
 
 (require 'init-utils)
 
+(use-package comint
+  :ensure nil
+  :hook (comint-output-filter-functions . comint-osc-process-output)
+  :init (setq comint-input-ring-separator "\n\\(: \\([0-9]+\\):\\([0-9]+\\);\\)?"))
+
 (use-package envrc
   :demand
   :if (executable-find "direnv")
@@ -14,8 +19,6 @@
               ("SPC" . comint-magic-space))
   :init
   (progn
-    (setq comint-input-ring-separator "\n\\(: \\([0-9]+\\):\\([0-9]+\\);\\)?")
-
     (let ((hist (init-xdg-data "zsh/history")))
       (when (and (file-exists-p hist)
                  (not (getenv "HISTFILE")))
