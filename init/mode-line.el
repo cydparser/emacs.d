@@ -1,5 +1,11 @@
 ;;; -*- lexical-binding: t -*-
 
+(use-package battery
+  :ensure nil
+  :custom
+  (battery-mode-line-format "🔋%b%p٪ ")
+  :hook (after-init-hook . display-battery-mode))
+
 (use-package spaceline
   :demand
   :after projectile
