@@ -149,6 +149,11 @@ ARG determines the direction and number of sexps."
                    `(,(car tr) (regexp . ,(cdr tr))
                      (modes . '(haskell-mode literate-haskell-mode)))))))
 
+(use-package auth-source
+  :ensure nil
+  :custom
+  (auth-sources '("secrets:Login" (abbrev-file-name (init-xdg-config "authinfo.gpg")))))
+
 (use-package async
   :demand
   :hook (after-init-hook . async-bytecomp-package-mode)
