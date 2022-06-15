@@ -15,6 +15,8 @@
         (when (and pr (seq-some (lambda (dir) (file-exists-p (expand-file-name ".cask" dir))) (project-roots pr)))
           (flycheck-elsa-setup))))))
 
+(use-package font-lock-studio)
+
 (use-package lisp-mode
   :ensure nil
   :hook (emacs-lisp-mode-hook . init-emacs-lisp-mode)
