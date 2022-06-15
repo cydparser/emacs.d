@@ -3,6 +3,7 @@
 (use-package sdcv
   :if (executable-find "sdcv")
   :bind (("C-c d" . init-define-word)
+         ("C-c i d" . sdcv-search-pointer+)
          :map sdcv-mode-map
          ("<RET>" . sdcv-search-pointer))
   :commands (init-define-word)
