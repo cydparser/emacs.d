@@ -8,23 +8,29 @@
   :commands (init-define-word)
   :init
   (progn
-    (defvar sdcv-mode-font-lock-keywords
-      '(
-        ;; Dictionary name
-        ("^-->\\(.*\\)\n-" . (1 font-lock-type-face))
-        ;; Search word
-        ("^-->\\(.*\\)[ \t\n]*" . (1 font-lock-function-name-face))
-        ;; Serial number
-        ("\\(^[0-9] \\|[0-9]+:\\|[0-9]+\\.\\)" . (1 font-lock-constant-face))
-        ;; Type name
-        ("^<<\\([^>]*\\)>>$" . (1 font-lock-comment-face))
-        ;; Phonetic symbol
-        ("^[^[:space:]]+[[:space:]]+[\\]\\([^[\\]*\\)[\\]" . (1 font-lock-string-face)) ; new
-        ("^\\/\\([^>]*\\)\\/$" . (1 font-lock-string-face))
-        ("^\\[\\([^]]*\\)\\]$" . (1 font-lock-string-face))
-        )))
+    (setq
+     sdcv-mode-font-lock-keywords
+     '(
+       ;; Dictionary name
+       ("^-->\\(.*\\)\n-" . (1 font-lock-type-face))
+       ;; Search word
+       ("^-->\\(.*\\)[ \t\n]*" . (1 font-lock-function-name-face))
+       ;; Serial number
+       ("\\(^[0-9] \\|[0-9]+:\\|[0-9]+\\.\\)" . (1 font-lock-constant-face))
+       ;; Type name
+       ("^<<\\([^>]*\\)>>$" . (1 font-lock-comment-face))
+       ;; Phonetic symbol
+       ("^[^[:space:]]+[[:space:]]+[\\]\\([^\\]+\\)[\\]" . (1 font-lock-string-face)) ; new
+       ("^\\/\\([^>]*\\)\\/$" . (1 font-lock-string-face))
+       ("^\\[\\([^]]*\\)\\]$" . (1 font-lock-string-face))
+       )))
   :config
   (progn
+    (define-derived-mode sdcv-mode nil "sdcv"
+      (setq font-lock-defaults '(sdcv-mode-font-lock-keywords :keywords-only)) ; modified
+      (setq buffer-read-only t)
+      (set (make-local-variable 'outline-regexp) "^-->.*\n-->"))
+
     (defun init-define-word (input)
       (interactive "P")
       (if input
