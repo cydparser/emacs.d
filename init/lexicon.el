@@ -2,7 +2,8 @@
 
 (use-package sdcv
   :if (executable-find "sdcv")
-  :bind (("C-c d" . init-define-word)
+  :after popup
+  :bind (("C-c d" . sdcv-search-pointer)
          ("C-c i d" . sdcv-search-pointer+)
          :map sdcv-mode-map
          ("<RET>" . sdcv-search-pointer))
@@ -32,11 +33,7 @@
       (setq buffer-read-only t)
       (set (make-local-variable 'outline-regexp) "^-->.*\n-->"))
 
-    (defun init-define-word (input)
-      (interactive "P")
-      (if input
-          (sdcv-search-input)
-        (sdcv-search-pointer)))))
+    ))
 
 (use-package synosaurus
   :if (executable-find "wn")
