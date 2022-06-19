@@ -38,10 +38,5 @@
 (use-package synosaurus
   :if (executable-find "wn")
   :diminish ""
-  :bind (("C-c C-s l" . synosaurus-lookup)
-         ("C-c C-s r" . synosaurus-choose-and-replace)
-         ("C-c C-s i" . synosaurus-choose-and-insert))
-  :init
-  (progn
-    (setq synosaurus-choose-method 'default
-          synosaurus-prefix "C-c C-s C-s")))
+  :custom
+  (synosaurus-choose-method 'default))
