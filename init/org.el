@@ -24,22 +24,30 @@
         ("[X]" . "☑")
 
         ("#+BEGIN_EXAMPLE" . "‘")
+        ("#+begin_example" . "‘")
         ("#+END_EXAMPLE"   . "’")
+        ("#+end_example"   . "’")
 
         ("#+BEGIN_EXPORT" . "«")
+        ("#+begin_export" . "«")
         ("#+END_EXPORT"   . "»")
+        ("#+end_export"   . "»")
 
         ("#+BEGIN_SRC" . "(")
         ("#+begin_src" . "(")
         ("#+END_SRC"   . ")")
         ("#+end_src"   . ")")
 
-
         ("#+BEGIN_QUOTE" . "“")
+        ("#+begin_quote" . "“")
         ("#+END_QUOTE"   . "”")
+        ("#+end_quote"   . "”")
 
         ("#+RESULTS:"  . "≅")
-        ("#+PROPERTY:" . "≔")))
+        ("#+results:"  . "≅")
+        ("#+PROPERTY:" . "≔")
+        ("#+property:" . "≔")
+        ))
 
     (add-to-list 'org-modules 'org-tempo t)
 
