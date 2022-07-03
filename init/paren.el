@@ -5,7 +5,7 @@
   :bind (("C-w" . init-sp-kill-region-or-backward-word)
          :map smartparens-mode-map
          ("C-S-c" . sp-convolute-sexp)
-         ("C-S-i" . sp-splice-sexp)
+         ("C-S-e" . sp-splice-sexp)
          ("C-S-j" . sp-join-sexp)
          ("C-S-k" . sp-kill-whole-line)
          ("C-S-r" . sp-splice-sexp-killing-around)
