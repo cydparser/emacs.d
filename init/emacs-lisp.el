@@ -10,9 +10,11 @@
   :hook (emacs-lisp-mode-hook . init-flycheck-elsa)
   :init
   (progn
+    (require 'project)
+
     (defun init-flycheck-elsa ()
       (let ((pr (project-current)))
-        (when (and pr (seq-some (lambda (dir) (file-exists-p (expand-file-name ".cask" dir))) (project-roots pr)))
+        (when (and pr (file-exists-p (expand-file-name ".cask" (project-root pr))))
           (flycheck-elsa-setup))))))
 
 (use-package font-lock-studio)
