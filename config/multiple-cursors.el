@@ -42,6 +42,7 @@
 (setq mc/cmds-to-run-once
       '(
         ace-window
+        c-electric-colon
         dap-tooltip-mouse-motion
         handle-switch-frame
         init-multiple-cursors-edit
