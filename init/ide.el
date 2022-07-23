@@ -31,6 +31,7 @@
   :commands (init-eglot)
   :custom
   (eglot-autoshutdown t)
+  (eglot-confirm-server-initiated-edits nil)
   :config
   (progn
     (dolist (mode '(haskell-mode literate-haskell-mode))
