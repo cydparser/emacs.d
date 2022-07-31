@@ -113,7 +113,7 @@ ARG determines the direction and number of sexps."
 (bind-key "C-h C-v" #'find-variable-at-point)
 (bind-key "C-w" #'init-kill-region-or-backward-word)
 (bind-key "C-x C-b" #'ibuffer)
-(bind-key "C-x C-k" #'init-kill-buffer-current)
+(bind-key "C-x k" #'init-kill-buffer-current)
 (bind-key "M-/" #'hippie-expand)
 (bind-key "M-L" #'init-sexp-downcase)
 (bind-key "M-R" #'repeat)
