@@ -230,6 +230,13 @@ ARG determines the direction and number of sexps."
   :custom
   (help-enable-symbol-autoload t))
 
+(use-package kmacro
+  :ensure nil
+  :config
+  (progn
+    (defalias 'kmacro-insert-macro #'insert-kbd-macro)
+    (define-key kmacro-keymap (kbd "i") #'kmacro-insert-macro)))
+
 (use-package minibuffer
   :ensure nil
   :custom
