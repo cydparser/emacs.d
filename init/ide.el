@@ -250,11 +250,12 @@
                 (setq result (xref-find-definitions identifier)))
               (unless result
                 (setq-local xref-backend-functions
-                            (let ((backend (xref-find-backend))
-                                  (drop t))
-                              (seq-drop-while (lambda (b) (let ((d drop))
-                                                       (setq drop (eq backend b))
-                                                       d))
+                            (let ((prev-backend (xref-find-backend))
+                                  (drop-next t))
+                              (seq-drop-while (lambda (backend)
+                                                (let ((drop-this drop-next))
+                                                  (setq drop-next (eq prev-backend (funcall backend)))
+                                                  drop-this))
                                               xref-backend-functions))))
               result)
 
