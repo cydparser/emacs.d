@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t -*-
 
 (require 'init-utils)
+(require 'multi-xref)
 
 (use-package company
   :demand
@@ -39,6 +40,7 @@
                    `(,mode . ("haskell-language-server-wrapper" "--lsp" "-j" "4" "-l" "/tmp/eglot-hls.log"))))
 
     (defun init-eglot ()
+      (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local)
       (flycheck-mode 0))))
 
 (use-package flycheck
