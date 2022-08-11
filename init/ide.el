@@ -25,10 +25,10 @@
   :init (setq dap-breakpoints-file (expand-file-name "dap-breakpoints" init-var-directory)))
 
 (use-package eglot
-  :hook (eglot-mode-hook . init-eglot)
+  :commands (init-eglot)
+  :hook (eglot-managed-mode-hook . init-eglot)
   :bind (:map eglot-mode-map
               ("C-." . eglot-code-actions))
-  :commands (init-eglot)
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
