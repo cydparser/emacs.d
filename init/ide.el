@@ -218,45 +218,7 @@
 
 (use-package xref
   :ensure nil
-  :bind (("M-." . init-xref-find-definitions))
   :custom
   (xref-auto-jump-to-first-definition t)
   (xref-search-program 'ripgrep)
-  :init
-  (progn
-    (defun init-xref-show-definitions-function (fetcher alist)
-      (let ((xrefs (funcall fetcher)))
-        (cond
-         ((not (cdr xrefs))
-          (xref-pop-to-location (car xrefs)
-                                (assoc-default 'display-action alist)))
-         (t
-          (xref--show-xref-buffer fetcher
-                                  (cons (cons 'fetched-xrefs xrefs)
-                                        alist))))
-        xrefs))
-
-    (setq xref-show-definitions-function #'init-xref-show-definitions-function)
-
-    (defun init-xref-find-definitions (identifier)
-      (interactive (list (xref--read-identifier "Find definitions of: ")))
-      (let ((original-backend-functions xref-backend-functions)
-            (message-log-max nil)
-            (result nil))
-
-        (unwind-protect
-            (while (and (null result) (not (null xref-backend-functions)))
-              (ignore-errors
-                (setq result (xref-find-definitions identifier)))
-              (unless result
-                (setq-local xref-backend-functions
-                            (let ((prev-backend (xref-find-backend))
-                                  (drop-next t))
-                              (seq-drop-while (lambda (backend)
-                                                (let ((drop-this drop-next))
-                                                  (setq drop-next (eq prev-backend (funcall backend)))
-                                                  drop-this))
-                                              xref-backend-functions))))
-              result)
-
-          (setq-local xref-backend-functions original-backend-functions))))))
+  )
