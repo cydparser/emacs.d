@@ -16,7 +16,7 @@
  '(safe-local-variable-values
    '((flycheck-emacs-lisp-load-path . inherit)
      (flycheck-disabled-checkers emacs-lisp-checkdoc)))
- '(smerge-command-prefix "m"))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
