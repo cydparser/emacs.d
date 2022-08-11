@@ -188,6 +188,13 @@ ARG determines the direction and number of sexps."
   (progn
     (unbind-key "o" diff-mode-shared-map)))
 
+(use-package editorconfig
+  :demand
+  :hook (after-init-hook . editorconfig-mode)
+  :custom
+  (editorconfig-mode-lighter "")
+  )
+
 (use-package eldoc
   :ensure nil
   :diminish (eldoc-mode . ""))
