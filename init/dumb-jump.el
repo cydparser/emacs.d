@@ -10,7 +10,8 @@
           dumb-jump-rg-search-args "--multiline"
           dumb-jump-selector 'ivy)
 
-    (add-hook 'xref-backend-functions 'dumb-jump-xref-activate))
+    ;; Add dumb-jump to global xref-backend-functions before etags--xref-backend.
+    (add-hook 'xref-backend-functions 'dumb-jump-xref-activate 89))
   :config
   (progn
     (unbind-key "C-M-g" dumb-jump-mode-map)
