@@ -61,15 +61,6 @@
       (ivy-occur-previous-line arg)
       (ivy-occur-press))))
 
-(use-package ivy-xref
-  :ensure t
-  :custom
-  (ivy-xref-use-file-path t)
-  :init
-  (progn
-    (setq xref-show-definitions-function #'ivy-xref-show-defs
-          xref-show-xrefs-function #'ivy-xref-show-xrefs)))
-
 (use-package swiper
   :demand
   :bind (("C-M-s" . swiper)))
