@@ -106,6 +106,7 @@ ARG determines the direction and number of sexps."
 (define-key input-decode-map [(control ?\[)] (kbd "<C-[>"))
 
 (bind-key "C-S-C" #'kill-ring-save)
+(bind-key "C-S-SPC" #'init-delete-excess-whitespace)
 (bind-key "C-S-V" #'yank)
 (bind-key "C-c C-SPC" #'delete-trailing-whitespace)
 (bind-key "C-h C-f" #'find-function-at-point)
@@ -117,7 +118,6 @@ ARG determines the direction and number of sexps."
 (bind-key "M-/" #'hippie-expand)
 (bind-key "M-L" #'init-sexp-downcase)
 (bind-key "M-R" #'repeat)
-(bind-key "M-SPC" #'init-delete-excess-whitespace)
 (bind-key "M-U" #'init-sexp-upcase)
 
 (delete-selection-mode 1)
