@@ -10,7 +10,6 @@
          ("C-S-k" . sp-kill-whole-line)
          ("C-S-r" . sp-splice-sexp-killing-around)
          ("C-S-s" . sp-split-sexp)
-         ("C-k" . sp-kill-hybrid-sexp)
          (")" . sp-up-sexp))
   :hook (((org-mode-hook text-mode-hook) . turn-on-smartparens-mode)
          (prog-mode-hook . turn-on-smartparens-mode))
