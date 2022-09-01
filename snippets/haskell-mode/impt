@@ -2,5 +2,5 @@
 # name: import qualified and type
 # key: impt
 # --
-import           ${1:Data.Map.Strict} (${2:${1:$(car (last (seq-difference (split-string yas-text "\\\.") '("Lazy" "Strict"))))}})
-import qualified $1 as $2$0
+import ${1:Data.Map.Strict} (${2:${1:$(car (last (seq-difference (split-string yas-text "\\\.") '("Lazy" "Strict"))))}})
+import $1 qualified as $2$0
