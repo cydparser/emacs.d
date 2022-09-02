@@ -179,6 +179,8 @@
               (init-lig-rule-center "&&" ?∧ ? )
               (init-lig-rule-center "||" ?∨ ? )
               (init-lig-rule-bracket "empty" ?∅)
+              (init-lig-rule-bracket "mempty" ?∅)
+              (init-lig-rule-bracket "mzero" ?∅)
               (init-lig-rule-bracket "elem" ?∈)
               (init-lig-rule-bracket "notElem" ?∉)
               (init-lig-rule-bracket "member" ?∈)
