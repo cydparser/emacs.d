@@ -39,6 +39,8 @@
       (add-to-list 'eglot-server-programs
                    `(,mode . ("haskell-language-server-wrapper" "--lsp" "-j" "4" "-l" "/tmp/eglot-hls.log"))))
 
+    (add-to-list 'eglot-server-programs '(nix-mode . ("rnix-lsp")))
+
     (defun init-eglot ()
       (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local)
       (flycheck-mode 0))))
