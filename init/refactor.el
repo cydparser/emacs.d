@@ -14,3 +14,23 @@
          ("<M-down-mouse-1>" . mc/toggle-cursor-on-click))
   :custom
   (mc/list-file (expand-file-name "multiple-cursors.el" init-config-directory)))
+
+(use-package reformatter
+  :commands (init-format-buffer)
+  :bind (("C-c r f" . init-format-buffer)
+         ("C-c C-f" . init-format-buffer))
+  :config
+  (progn
+    (defun init-format-buffer ()
+      (interactive)
+      (let ((f (intern (concat
+                        (replace-regexp-in-string "-mode$" "" (symbol-name major-mode))
+                        "-format-buffer"))))
+        (if (functionp f)
+            (funcall f)
+          (message "Missing formatter %s" f))))
+
+    (with-eval-after-load "haskell-cabal"
+      (reformatter-define haskell-cabal-format
+        :program "cabal-fmt"))
+    ))
