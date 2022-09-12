@@ -9,8 +9,6 @@ let
 
   fetchPinnedGitHub = path: pkgs.fetchFromGitHub ((readJSON path) // { fetchSubmodules = true; });
 
-  rnix-lsp = import (builtins.fetchGit { inherit (readJSON ./nix/rnix-lsp.json) url rev; });
-
   inherit (pkgs.haskellPackages) apply-refact hlint;
 
 in
@@ -38,7 +36,6 @@ rec {
       delta
       emacs
       hlint
-      rnix-lsp
       mwebster-1913
     ;
     ripgrep = pkgs.ripgrep.override { withPCRE2 = true; };

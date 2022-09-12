@@ -15,7 +15,6 @@
 , openssl
 , python3
 , ripgrep
-, rnix-lsp
 , ruby
 , sdcv
 , shellcheck
@@ -50,7 +49,6 @@ in
         nixpkgs-lint
         python3
         ripgrep
-        rnix-lsp
         sdcv
         shellcheck
         silver-searcher
