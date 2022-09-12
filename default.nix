@@ -21,8 +21,6 @@ rec {
         nativeComp = true;
         webkitgtk = pkgs.webkitgtk;
         # withPgtk = true;
-        withXinput2 = true;
-        withXwidgets = true;
       };
     in (pkgs.emacsPackagesFor emacsCustom).emacsWithPackages (epkgs: with epkgs.melpaStablePackages; [
       pdf-tools
