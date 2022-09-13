@@ -27,7 +27,10 @@
 
 (use-package eglot
   :commands (init-eglot)
-  :hook (eglot-managed-mode-hook . init-eglot)
+  :hook ((eglot-managed-mode-hook . init-eglot)
+         (nix-mode . eglot-ensure)
+         (toml-mode . eglot-ensure)
+         (yaml-mode . eglot-ensure))
   :bind (:map eglot-mode-map
               ("C-." . eglot-code-actions))
   :custom
@@ -39,7 +42,7 @@
       (add-to-list 'eglot-server-programs
                    `(,mode . ("haskell-language-server-wrapper" "--lsp" "-j" "4" "-l" "/tmp/eglot-hls.log"))))
 
-    (add-to-list 'eglot-server-programs '(nix-mode . ("rnix-lsp")))
+    (add-to-list 'eglot-server-programs '(toml-mode . ("taplo" "lsp" "stdio")))
 
     (defun init-eglot ()
       (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local)
@@ -58,6 +61,8 @@
         literate-haskell-mode
         nix-mode
         rustic-mode
+        toml-mode
+        yaml-mode
         ))
   :config
   (progn
