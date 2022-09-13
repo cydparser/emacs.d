@@ -130,9 +130,16 @@ ARG determines the direction and number of sexps."
 (use-package abbrev
   :ensure nil
   :diminish ""
+  :hook (minibuffer-setup-hook . init-abbrev-minibuffer-setup)
   :custom
   (abbrev-file-name (expand-file-name "abbrev_defs" init-config-directory))
-  :init (setq-default abbrev-mode t))
+  :init
+  (progn
+    (setq-default abbrev-mode t)
+
+    (defun init-abbrev-minibuffer-setup ()
+      (abbrev-mode -1))
+    ))
 
 (use-package align
   :ensure nil
