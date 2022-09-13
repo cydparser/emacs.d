@@ -47,6 +47,9 @@
               ("M-g M-e" . haskell-cabal-goto-executable-section)
               ("M-g M-l" . haskell-cabal-goto-library-section)
               ("M-g M-t" . haskell-cabal-goto-test-suite-section))
+  :init
+  (progn
+    (unbind-key "C-c C-f" haskell-cabal-mode-map))
   :config
   (progn
     (dolist (kw '(("\\<\\([0-9.]+\\)\\>" (1 font-lock-constant-face))
