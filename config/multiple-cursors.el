@@ -44,6 +44,7 @@
         ace-window
         c-electric-colon
         dap-tooltip-mouse-motion
+        end-of-defun
         handle-switch-frame
         init-multiple-cursors-edit
         lsp-ui-doc--handle-mouse-movement
