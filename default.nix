@@ -13,8 +13,6 @@ let
 
 in
 rec {
-  delta = pkgs.gitAndTools.delta;
-
   emacs =
     let
       emacsCustom = pkgs.emacs.override {
@@ -30,12 +28,8 @@ rec {
 
   mx = callPackage nix/mx.nix {
     inherit
-      apply-refact
-      delta
       emacs
-      hlint
       mwebster-1913
     ;
-    ripgrep = pkgs.ripgrep.override { withPCRE2 = true; };
   };
 }
