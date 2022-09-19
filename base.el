@@ -283,6 +283,11 @@ ARG determines the direction and number of sexps."
   (smerge-command-prefix (kbd "C-c m"))
   )
 
+(use-package window
+  :ensure nil
+  :custom
+  (switch-to-buffer-obey-display-actions t))
+
 (use-package xt-mouse
   :ensure nil
   :hook (after-init-hook . xterm-mouse-mode))
