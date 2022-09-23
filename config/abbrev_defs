@@ -3073,7 +3073,6 @@
     ("omniverous" "omnivorous" nil :count 0)
     ("omniverously" "omnivorously" nil :count 0)
     ("omre" "more" nil :count 0)
-    ("oneof" "one of" nil :count 0)
     ("onepoint" "one point" nil :count 0)
     ("online" "on-line" nil :count 0)
     ("onot" "note" nil :count 0)
@@ -3310,7 +3309,7 @@
     ("pleasent" "pleasant" nil :count 0)
     ("plebicite" "plebiscite" nil :count 0)
     ("plesant" "pleasant" nil :count 0)
-    ("plugin" "plug-in" nil :count 0)
+
     ("poenis" "penis" nil :count 0)
     ("poeoples" "peoples" nil :count 0)
     ("poeple" "people" nil :count 0)
@@ -4886,4 +4885,6 @@
   '(
     ("i" "I" nil :count 0)
     ("lookup" "look up" nil :count 0)
+    ("oneof" "one of" nil :count 0)
+    ("plugin" "plug-in" nil :count 0)
    ))
