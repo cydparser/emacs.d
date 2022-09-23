@@ -17,6 +17,9 @@
     (setq-default company-dabbrev-downcase nil
                   company-dabbrev-ignore-case nil)))
 
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
 (use-package company-quickhelp
   :demand
   :hook (company-mode-hook . company-quickhelp-mode))
