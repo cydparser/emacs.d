@@ -43,7 +43,7 @@
   (progn
     (dolist (mode '(haskell-mode literate-haskell-mode))
       (add-to-list 'eglot-server-programs
-                   `(,mode . ("haskell-language-server-wrapper" "--lsp" "-j" "4" "-l" "/tmp/eglot-hls.log"))))
+                   `(,mode . ("haskell-language-server-wrapper" "--lsp" "-j" "4"))))
 
     (add-to-list 'eglot-server-programs '(toml-mode . ("taplo" "lsp" "stdio")))
 
