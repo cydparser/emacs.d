@@ -2,4 +2,4 @@
 # name: xxx
 # key: xxx
 # --
-return null; // XXX $0
+null; // XXX $0
