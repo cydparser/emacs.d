@@ -31,9 +31,9 @@
 (use-package eglot
   :commands (init-eglot)
   :hook ((eglot-managed-mode-hook . init-eglot)
-         (nix-mode . eglot-ensure)
-         (toml-mode . eglot-ensure)
-         (yaml-mode . eglot-ensure))
+         (nix-mode-hook . eglot-ensure)
+         (toml-mode-hook . eglot-ensure)
+         (yaml-mode-hook . eglot-ensure))
   :bind (:map eglot-mode-map
               ("C-." . eglot-code-actions))
   :custom
