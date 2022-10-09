@@ -38,5 +38,7 @@
 (use-package synosaurus
   :if (executable-find "wn")
   :diminish ""
+  :hook ((text-mode . synosaurus-mode)
+         (prog-mode . synosaurus-mode))
   :custom
   (synosaurus-choose-method 'default))
