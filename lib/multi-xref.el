@@ -25,7 +25,8 @@
          ((functionp f)
           (let ((backend (funcall f)))
             (or (and backend (not (member backend ignore))
-                     (setq xrefs (funcall method backend arg)))
+                     (setq xrefs (ignore-errors
+                                   (funcall method backend arg))))
                 (setq functions (cdr functions)
                       ignore (cons backend ignore)))))
          ((eq t f)
