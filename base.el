@@ -189,6 +189,13 @@ ARG determines the direction and number of sexps."
   :custom
   (compilation-scroll-output 'first-error))
 
+(use-package dictionary
+  :ensure nil
+  :bind (("M-#" . dictionary-lookup-definition))
+  :custom
+  (dictionary-use-single-buffer t)
+  )
+
 (use-package diff-mode
   :ensure nil
   :config
