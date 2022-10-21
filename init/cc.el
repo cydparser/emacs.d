@@ -14,6 +14,9 @@
       (c-set-offset 'arglist-cont 0)
       (c-set-offset 'arglist-cont-nonempty '++)
       (c-set-offset 'arglist-intro '++)
-      (c-set-offset 'arglist-close 0))))
+      (c-set-offset 'arglist-close 0)))
+  :config
+  (progn
+    (unbind-key ":" c-mode-base-map)))
 
 (use-package cmake-mode)
