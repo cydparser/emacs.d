@@ -26,6 +26,7 @@
         sp-backward-delete-char
         sp-backward-kill-word
         sp-backward-sexp
+        sp-backward-slurp-sexp
         sp-backward-up-sexp
         sp-delete-char
         sp-forward-sexp
@@ -42,7 +43,6 @@
 (setq mc/cmds-to-run-once
       '(
         ace-window
-        c-electric-colon
         dap-tooltip-mouse-motion
         end-of-defun
         handle-switch-frame
