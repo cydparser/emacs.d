@@ -33,4 +33,16 @@
     (with-eval-after-load "haskell-cabal"
       (reformatter-define haskell-cabal-format
         :program "cabal-fmt"))
+
+    (reformatter-define nix-format
+      :program "alejandra"
+      :args '("-"))
+
+    (reformatter-define nxml-format
+      :program "xmllint"
+      :args '("--format" "-"))
+
+    (reformatter-define web-format
+      :program "xmllint"
+      :args '("--html" "--format" "-"))
     ))
