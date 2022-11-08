@@ -5,8 +5,7 @@
 (use-package logview
   :init
   (progn
-    (setq logview-auto-revert-mode 'auto-revert-mode
-          logview-cache-filename (expand-file-name "logview-cache.extmap" init-var-directory)
+    (setq logview-cache-filename (expand-file-name "logview-cache.extmap" init-var-directory)
           logview-views-file (expand-file-name "logview.views" init-config-directory))
 
     (setq logview-additional-timestamp-formats
