@@ -6,4 +6,7 @@
   :init
   (progn
     (defun init-nxml ()
-      (add-to-list (make-local-variable 'company-backends) #'company-nxml))))
+      (add-to-list (make-local-variable 'company-backends) #'company-nxml)))
+  :config
+  (progn
+    (unbind-key "C-c C-f" nxml-mode-map)))

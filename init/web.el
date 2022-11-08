@@ -20,4 +20,8 @@
   :init
   (progn
     (defun init-web ()
-      (add-to-list (make-local-variable 'company-backends) #'company-nxml))))
+      (add-to-list (make-local-variable 'company-backends) #'company-nxml)))
+  :config
+  (progn
+    (unbind-key "C-c C-f" web-mode-map)
+    ))
