@@ -15,7 +15,7 @@
 (use-package flyspell
   :ensure nil
   :bind (:map flyspell-mode-map
-              ("C-M-." . init-flyspell-save-word))
+              ("C->" . init-flyspell-save-word))
   :diminish "_"
   :config
   (progn
