@@ -30,6 +30,9 @@
             (funcall f)
           (message "Missing formatter %s" f))))
 
+    (reformatter-define haskell-format
+      :program "stylish-haskell")
+
     (with-eval-after-load "haskell-cabal"
       (reformatter-define haskell-cabal-format
         :program "cabal-fmt"))
