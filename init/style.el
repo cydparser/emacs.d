@@ -21,7 +21,7 @@
 
 (use-package menu-bar
   :ensure nil
-  :custom (menu-bar-mode nil))
+  :hook (after-init-hook . (lambda () (menu-bar-mode -1))))
 
 (use-package rainbow-mode
   :diminish (rainbow-mode . "🌈"))
@@ -32,7 +32,7 @@
 
 (use-package tool-bar
   :ensure nil
-  :custom (tool-bar-mode nil))
+  :init (tool-bar-mode -1))
 
 (use-package unicode-fonts
   :hook (after-init-hook . unicode-fonts-setup)
