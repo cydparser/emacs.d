@@ -9,6 +9,9 @@
 (use-package git-link
   )
 
+(use-package git-timemachine
+  )
+
 (use-package magit
   :hook (git-commit-mode-hook . flyspell-mode)
   :init (setq magit-push-always-verify nil
