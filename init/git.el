@@ -17,6 +17,7 @@
   :init (setq magit-push-always-verify nil
               magit-revert-buffers t)
   :custom
+  (magit-log-margin '(t "%Y-%m-%d" magit-log-margin-width t 18))
   (magit-module-sections-nested nil)
   :config
   (progn
