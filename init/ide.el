@@ -48,6 +48,7 @@
     (add-to-list 'eglot-server-programs '(toml-mode . ("taplo" "lsp" "stdio")))
 
     (defun init-eglot ()
+      (setq eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly)
       (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local)
       (flycheck-mode 0))))
 

@@ -214,8 +214,10 @@ ARG determines the direction and number of sexps."
   :diminish (eldoc-mode . "")
   :init
   (progn
-    (setq-default eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly)
-    ))
+    (setq-default eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly))
+  :config
+  (progn
+    (eldoc-add-command-completions "sp-")))
 
 (use-package electric
   :ensure nil
