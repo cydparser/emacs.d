@@ -44,6 +44,10 @@
 
 (use-package rustic)
 
+(use-package separedit
+  :bind (:map prog-mode-map
+              ("C-c '" . separedit)))
+
 (use-package string-inflection
   :commands (string-inflection-lower-camelcase-function
              string-inflection-underscore-function)
