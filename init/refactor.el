@@ -34,6 +34,10 @@
     (reformatter-define haskell-format
       :program "stylish-haskell")
 
+    (reformatter-define haskell-format
+      :program "fourmolu"
+      :args (list "--stdin-input-file" input-file))
+
     (with-eval-after-load "haskell-cabal"
       (reformatter-define haskell-cabal-format
         :program "cabal-fmt"))
