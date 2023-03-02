@@ -11,11 +11,3 @@
        (with-eval-after-load (symbol-name ,package)
          ,@body))
       (t (message "Package %s may no longer be broken" ,package)))))
-
-(with-eval-after-load "counsel"
-  (defun counsel-rg (&optional initial-input initial-directory extra-rg-args rg-prompt)
-    (interactive)
-    (let ((counsel-ag-base-command counsel-rg-base-command)
-          (counsel--grep-tool-look-around nil)) ; Removed --pcre2
-      (counsel-ag initial-input initial-directory extra-rg-args rg-prompt
-                  :caller 'counsel-rg))))
