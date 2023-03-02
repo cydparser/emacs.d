@@ -23,11 +23,12 @@
   (progn
     (defun init-format-buffer ()
       (interactive)
-      (let ((f (intern (concat
-                        (replace-regexp-in-string "-mode$" "" (symbol-name major-mode))
-                        "-format-buffer"))))
+      (let* ((region-active (region-active-p))
+             (f (intern (concat
+                         (replace-regexp-in-string "-mode$" "" (symbol-name major-mode))
+                         "-format-" (if region-active "region" "buffer")))))
         (if (functionp f)
-            (funcall f)
+            (call-interactively f)
           (message "Missing formatter %s" f))))
 
     (reformatter-define haskell-format
