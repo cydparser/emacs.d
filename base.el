@@ -239,7 +239,12 @@ ARG determines the direction and number of sexps."
 (use-package files
   :ensure nil
   :custom
-  (save-some-buffers-default-predicate 'save-some-buffers-root))
+  (backup-by-copying t)
+  (delete-old-versions t)
+  (delete-old-versions t)
+  (kept-new-versions 8)
+  (save-some-buffers-default-predicate 'save-some-buffers-root)
+  (version-control t))
 
 (use-package flymake
   :ensure nil
