@@ -208,7 +208,7 @@
             (t
              (setq-local company-dabbrev-downcase nil)
              (setq-local company-dabbrev-ignore-case :ignore-case)
-             (let ((columns 120))
+             (let ((columns 100))
                (setq-local fill-column columns)
                (setq-local whitespace-line-column columns))
 
