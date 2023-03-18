@@ -254,6 +254,13 @@ ARG determines the direction and number of sexps."
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error)))
 
+(use-package frame
+  :ensure nil
+  :config
+  (progn
+    (unbind-key "C-z")
+    (unbind-key "C-x C-z")))
+
 (use-package help
   :ensure nil
   :custom
