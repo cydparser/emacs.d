@@ -84,17 +84,19 @@
       (flycheck-list-errors)
       (pop-to-buffer flycheck-error-list-buffer))))
 
+(setenv "LSP_USE_PLISTS" "true")
+
 (use-package lsp-mode
   :ensure nil
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode))
   :bind (:map lsp-mode-map
               ("C-c b ?" . lsp-describe-session)
-              ("C-c l" . lsp-keymap-prefix)
               ("C-." . lsp-execute-code-action))
   :custom
-  (lsp-enable-suggest-server-download nil)
   (lsp-auto-guess-root t)
+  (lsp-enable-suggest-server-download nil)
+  (lsp-keymap-prefix "C-c l")
   (lsp-session-file (expand-file-name "lsp-session" init-var-directory)))
 
 (use-package lsp-ui
