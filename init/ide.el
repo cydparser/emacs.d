@@ -45,6 +45,7 @@
       (add-to-list 'eglot-server-programs
                    `(,mode . ("haskell-language-server-wrapper" "--lsp" "-j" "4"))))
 
+    (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
     (add-to-list 'eglot-server-programs '(toml-mode . ("taplo" "lsp" "stdio")))
 
     (defun init-eglot ()
