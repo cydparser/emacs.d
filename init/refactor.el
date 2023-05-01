@@ -2,6 +2,28 @@
 
 (require 'init-utils)
 
+(use-package apheleia
+  :config
+  (progn
+    (setq apheleia-formatters
+          (seq-concatenate
+           'list
+           '((alejandra . ("alejandra" "-"))
+             (cabal-fmt . ("cabal-fmt"))
+             (fourmolu . ("fourmolu" "--stdin-input-file" filepath))
+             (stylish-haskell . ("stylish-haskell"))
+             )
+           apheleia-formatters))
+
+    (setq apheleia-mode-alist
+          (seq-concatenate
+           'list
+           '((haskell-mode . fourmolu)
+             (haskell-cabal-mode . cabal-fmt)
+             (nix-mode . alejandra)
+             )
+           apheleia-mode-alist))))
+
 (use-package iedit
   :demand
   :diminish "🙾"
