@@ -7,4 +7,6 @@
 
 (use-package json-mode)
 
+(use-package nickel-mode)
+
 (use-package yaml-mode)
