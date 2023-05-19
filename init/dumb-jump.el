@@ -18,10 +18,14 @@
     (unbind-key "C-M-p" dumb-jump-mode-map)
     (unbind-key "C-M-q" dumb-jump-mode-map)
 
+    ;; XXX upstream this
     (setq dumb-jump-find-rules
           (seq-concatenate
            'list
-           '((:type "top-level binding" :supports ("rg") :language "haskell"
+           '(
+             (:type "module" :supports ("rg") :language "haskell"
+                    :regex "^module\\s+JJJ($|\\s)")
+             (:type "top-level binding" :supports ("rg") :language "haskell"
                     :regex "^JJJ($|(\\s+(::|([^:=|-]*(=|[|])))))")
              ;; (:type "local binding" :supports ("rg") :language "haskell"
              ;;        :regex "^\\s+((let|where)\\s+)?JJJ($|(\\s+(::|([^:=|-]*(= |[|])))))")
@@ -36,14 +40,7 @@
              (:type "GADT constructor" :supports ("rg") :language "haskell"
                     :regex "^\\s+JJJ\\s+::\\s")
              (:type "pattern synonym" :supports ("rg") :language "haskell"
-                    :regex "^pattern\\s+JJJ\\s"
-                    :tests ("pattern Foo :: a -> Bar"
-                            "pattern Foo a = Bar a"
-                            "pattern Foo a = Bar a"))
-             (:type "module" :supports ("rg") :language "haskell"
-                    :regex "^module\\s+JJJ(\\s|$)"
-                    :tests ("module Test (exportA, exportB) where"
-                            "module Test"))
+                    :regex "^pattern\\s+JJJ\\s")
              (:type "typeclass" :supports ("rg") :language "haskell"
                     :regex "^class\\s+([^=]+=>\\s+)?JJJ(\\s|$)")
              (:type "associated type family" :supports ("rg") :language "haskell"
