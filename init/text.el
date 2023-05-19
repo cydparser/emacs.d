@@ -16,7 +16,7 @@
   :ensure nil
   :bind (:map flyspell-mode-map
               ("C->" . init-flyspell-save-word))
-  :diminish "_"
+  :diminish "⍶"
   :config
   (progn
     (unbind-key "C-;" flyspell-mode-map)
