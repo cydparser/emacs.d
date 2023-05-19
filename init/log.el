@@ -13,6 +13,6 @@
   (logview-views-file (expand-file-name "logview.views" init-config-directory))
   :config
   (progn
-    (when (member "Iosevka Term" (font-family-list))
+    (when (member "Inconsolata" (font-family-list))
       (add-hook 'logview-mode-hook
-                (lambda () (buffer-face-set :family "Iosevka Term"))))))
+                (lambda () (buffer-face-set :family "Inconsolata"))))))
