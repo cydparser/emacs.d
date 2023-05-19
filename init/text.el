@@ -47,9 +47,12 @@ Source: http://stackoverflow.com/a/22116480/1231408"
                       company-files
                       company-dabbrev
                       company-etags
-                      company-ispell)))
+                      company-ispell))
+          (not-flyspell-modes
+           '(yaml-mode)))
       (defun init-text ()
-        (flyspell-mode)
+        (unless (memq major-mode not-flyspell-modes)
+          (flyspell-mode))
         (set (make-local-variable 'company-backends) backends)))))
 
 (use-package pdf-tools
