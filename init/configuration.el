@@ -5,3 +5,6 @@
 
 ;; TODO Use 'dhall lint'
 
+(use-package json-mode)
+
+(use-package yaml-mode)
