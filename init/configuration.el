@@ -7,6 +7,8 @@
 
 (use-package json-mode)
 
+(use-package just-mode)
+
 (use-package nickel-mode)
 
 (use-package yaml-mode)
