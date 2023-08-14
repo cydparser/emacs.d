@@ -7,6 +7,7 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
 (setq package-archive-priorities '(("melpa" . 10))
+      package-menu-use-current-if-no-marks nil
       package-native-compile (native-comp-available-p))
 
 ;;; Initialize use-package
