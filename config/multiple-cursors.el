@@ -9,6 +9,7 @@
         c-electric-semi&comma
         c-electric-slash
         c-indent-line-or-region
+        comment-line
         counsel-M-x
         forward-sexp
         haskell-indentation-common-electric-command
@@ -48,6 +49,7 @@
         end-of-defun
         handle-switch-frame
         init-multiple-cursors-edit
+        ivy-switch-buffer
         lsp-ui-doc--handle-mouse-movement
         mc/mark-next-lines
         mc/mark-previous-lines
