@@ -165,8 +165,7 @@ ARG determines the direction and number of sexps."
 
 (use-package async
   :demand
-  :hook (after-init-hook . async-bytecomp-package-mode)
-  :init (setq async-bytecomp-allowed-packages '(all)))
+  :hook (after-init-hook . async-bytecomp-package-mode))
 
 (use-package autorevert
   :ensure nil
@@ -177,6 +176,11 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :init (setq bookmark-default-file (expand-file-name "bookmarks" init-var-directory)
               bookmark-save-flag 1))
+
+(use-package browse-url
+  :ensure nil
+  :custom
+  (browse-url-default-scheme "https"))
 
 (use-package calendar
   :ensure nil
@@ -203,6 +207,13 @@ ARG determines the direction and number of sexps."
   :config
   (progn
     (unbind-key "o" diff-mode-shared-map)))
+
+(use-package dnd
+  :ensure nil
+  :custom
+  (dnd-indicate-insertion-point t)
+  (dnd-scroll-margin 1)
+  )
 
 (use-package editorconfig
   :demand
@@ -252,7 +263,9 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :bind (:map flymake-mode-map
               ("M-n" . flymake-goto-next-error)
-              ("M-p" . flymake-goto-prev-error)))
+              ("M-p" . flymake-goto-prev-error))
+  :custom
+  (flymake-mode-line-lighter "⚙"))
 
 (use-package frame
   :ensure nil
