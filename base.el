@@ -306,6 +306,11 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :bind ("M-;" . comment-line))
 
+(use-package paren
+  :ensure nil
+  :custom
+  (show-paren-context-when-offscreen 'overlay))
+
 (use-package simple
   :ensure nil
   :bind (("M-n" . next-error)
