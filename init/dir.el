@@ -4,6 +4,7 @@
   :ensure nil
   :custom
   (dired-do-revert-buffer t)
+  (dired-mouse-drag-files t)
   (dired-listing-switches "-alht"))
 
 (use-package dired-subtree
