@@ -93,7 +93,7 @@ ARG determines the direction and number of sexps."
 
 ;; Adjust indentation and line wrapping.
 (let ((spaces 2)
-      (max-line-length 80))
+      (max-line-length 100))
   (setq-default fill-column max-line-length
                 indent-tabs-mode nil
                 standard-indent spaces
@@ -283,6 +283,10 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :custom
   (help-enable-symbol-autoload t))
+
+(use-package hideshow
+  :ensure nil
+  :diminish (hs-minor-mode . "…"))
 
 (use-package kmacro
   :ensure nil

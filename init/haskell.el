@@ -90,7 +90,7 @@
                 #'init-haskell-cabal-subsection)))
 
 (use-package haskell-mode
-  :diminish ((haskell-collapse-mode . "…")
+  :diminish ((haskell-collapse-mode . "")
              (interactive-haskell-mode . " λ")
              ;; haskell-menu : LIST SESSION BUFFERS
              )
