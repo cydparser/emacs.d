@@ -49,7 +49,8 @@ Source: http://stackoverflow.com/a/22116480/1231408"
                       company-etags
                       company-ispell))
           (not-flyspell-modes
-           '(yaml-mode)))
+           '(haskell-cabal-mode
+             yaml-mode)))
       (defun init-text ()
         (unless (memq major-mode not-flyspell-modes)
           (flyspell-mode))
