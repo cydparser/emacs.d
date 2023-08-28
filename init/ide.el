@@ -41,16 +41,14 @@
   (eglot-confirm-server-initiated-edits nil)
   :config
   (progn
-    (dolist (mode '(haskell-mode literate-haskell-mode))
+    (dolist (mode '(haskell-cabal-mode haskell-mode literate-haskell-mode))
       (add-to-list 'eglot-server-programs
                    `(,mode . ("haskell-language-server-wrapper" "--lsp" "-j" "4"))))
 
     (add-to-list 'eglot-server-programs '(nickel-mode . ("nls")))
     (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
     (add-to-list 'eglot-server-programs '(toml-mode . ("taplo" "lsp" "stdio")))
-
     (defun init-eglot ()
-      (setq eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly)
       (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local)
       (flycheck-mode 0))))
 
@@ -63,13 +61,15 @@
   :hook (after-init-hook . global-flycheck-mode)
   :custom
   (flycheck-global-modes
-   '(not haskell-mode
-        literate-haskell-mode
-        nix-mode
-        rustic-mode
-        toml-mode
-        yaml-mode
-        ))
+   '(not
+     haskell-cabal-mode
+     haskell-mode
+     literate-haskell-mode
+     nix-mode
+     rustic-mode
+     toml-mode
+     yaml-mode
+     ))
   :config
   (progn
     (defun init-flycheck-may-enable-mode (f)
