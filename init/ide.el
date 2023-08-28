@@ -235,6 +235,7 @@
 
 (use-package xref
   :ensure nil
+  :hook (xref-after-update-hook . outline-minor-mode)
   :custom
   (xref-auto-jump-to-first-definition t)
   (xref-search-program 'ripgrep)
