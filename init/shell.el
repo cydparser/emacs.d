@@ -17,6 +17,8 @@
   :hook (shell-mode-hook . compilation-shell-minor-mode)
   :bind (:map shell-mode-map
               ("SPC" . comint-magic-space))
+  :custom
+  (shell-highlight-undef-enable t)
   :init
   (progn
     (let ((hist (init-xdg-data "zsh/history")))
