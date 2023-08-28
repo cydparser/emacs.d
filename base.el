@@ -315,6 +315,11 @@ ARG determines the direction and number of sexps."
   :custom
   (show-paren-context-when-offscreen 'overlay))
 
+(use-package proced
+  :ensure nil
+  :custom
+  (proced-enable-color-flag t))
+
 (use-package simple
   :ensure nil
   :bind (("M-n" . next-error)
