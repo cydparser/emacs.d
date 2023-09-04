@@ -12,7 +12,7 @@
          ("C-x C-f" . counsel-find-file)
          ("C-x r b" . counsel-bookmark)
          ("M-x" . counsel-M-x)
-         ("M-X" . counsel-command-history)
+         ("C-M-x" . counsel-command-history)
          ("C-c p s g" . counsel-git-grep)
          ("C-c p s r" . counsel-rg)))
 
