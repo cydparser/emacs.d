@@ -57,7 +57,9 @@
       (add-to-list 'haskell-cabal-font-lock-keywords kw :append))
 
     (defun init-haskell-cabal ()
-      (setq-local indent-line-function 'init-haskell-cabal-indent-line))
+      (setq-local indent-line-function 'init-haskell-cabal-indent-line)
+      (flyspell-prog-mode)
+      (eglot-ensure))
 
     ;; Copied from haskell-mode.
     (defun init-haskell-cabal-indent-line ()
