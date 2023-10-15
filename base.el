@@ -294,6 +294,9 @@ ARG determines the direction and number of sexps."
   :ensure nil
   :diminish (hs-minor-mode . "…"))
 
+(use-package hydra
+  :demand)
+
 (use-package kmacro
   :ensure nil
   :config
@@ -335,9 +338,29 @@ ARG determines the direction and number of sexps."
 
 (use-package smerge-mode
   :ensure nil
+  :after hydra
+  :bind (:map smerge-mode-map
+              ("C-c m n" . hydra-smerge/smerge-next)
+              ("C-c m p" . hydra-smerge/smerge-prev)
+              ("C-c m a" . hydra-smerge/smerge-keep-all)
+              ("C-c m l" . hydra-smerge/smerge-keep-lower)
+              ("C-c m u" . hydra-smerge/smerge-keep-upper))
   :custom
   (smerge-command-prefix (kbd "C-c m"))
-  )
+  :config
+  (progn
+    (defhydra hydra-smerge ()
+      "smerge"
+      ("n" smerge-next "next")
+      ("p" smerge-prev "prev")
+      ("e" smerge-ediff "ediff")
+      ("r" smerge-refine "refine")
+      ("a" smerge-keep-all "keep-all")
+      ("c" smerge-keep-current "keep-current")
+      ("l" smerge-keep-lower "keep-lower")
+      ("u" smerge-keep-upper "keep-upper")
+      ("w" save-buffer "done" :color blue)
+      ("q" nil "quit"))))
 
 (use-package window
   :ensure nil
