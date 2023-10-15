@@ -3,7 +3,9 @@
 (require 'init-hasklig)
 
 (use-package hl-todo
-  :hook (prog-mode-hook . hl-todo-mode)
+  :hook ((prog-mode-hook . hl-todo-mode)
+         (haskell-cabal-mode-hook . hl-todo-mode)
+         (yaml-mode-hook . hl-todo-mode))
   :init
   (progn
     (setq hl-todo-keyword-faces
