@@ -101,6 +101,7 @@ ARG determines the direction and number of sexps."
       (max-line-length 100))
   (setq-default fill-column max-line-length
                 indent-tabs-mode nil
+                sentence-end-double-space nil
                 standard-indent spaces
                 tab-width spaces))
 
