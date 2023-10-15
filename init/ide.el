@@ -8,14 +8,15 @@
   :diminish ""
   :bind ("M-C-/" . company-complete)
   :hook (after-init-hook . global-company-mode)
-  :init
-  (progn
-    (setq company-backends '(company-capf
-                             company-files
-                             (company-dabbrev-code company-etags company-keywords)
-                             company-dabbrev))
-    (setq-default company-dabbrev-downcase nil
-                  company-dabbrev-ignore-case nil)))
+  :custom
+  (company-backends
+   '(company-capf
+     company-files
+     (company-dabbrev-code company-etags company-keywords)
+     company-dabbrev))
+  (company-dabbrev-downcase nil)
+  (company-dabbrev-ignore-case nil)
+  (company-idle-delay 0.5))
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
