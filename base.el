@@ -43,6 +43,9 @@ ARG determines the direction and number of sexps."
 
 ;;; Global Configuration
 
+;; Disable implicit frame resizing.
+(setq frame-inhibit-implied-resize t)
+
 ;; Store customizations in a separate file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
