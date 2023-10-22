@@ -133,6 +133,11 @@ ARG determines the direction and number of sexps."
 (global-subword-mode 1)
 (diminish 'subword-mode "")
 
+;; Use tree-sitter modes.
+(setq major-mode-remap-alist
+      '((dockerfile-mode . dockerfile-ts-mode)
+        ))
+
 ;;; Packages
 
 (use-package abbrev
