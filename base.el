@@ -204,6 +204,7 @@ ARG determines the direction and number of sexps."
               ("n" . next-error)
               ("p" . previous-error))
   :custom
+  (compilation-environment '("TERM=xterm-256color"))
   (compilation-scroll-output 'first-error))
 
 (use-package dictionary
