@@ -38,7 +38,8 @@
 (use-package synosaurus
   :if (executable-find "wn")
   :diminish ""
-  :hook ((text-mode . synosaurus-mode)
-         (prog-mode . synosaurus-mode))
+  :hook ((text-mode-hook . synosaurus-mode)
+         (prog-mode-hook . synosaurus-mode))
   :custom
-  (synosaurus-choose-method 'default))
+  (synosaurus-choose-method 'default)
+  (synosaurus-prefix (kbd "C-c l s")))
