@@ -62,7 +62,10 @@
 
     (with-eval-after-load "haskell-cabal"
       (reformatter-define haskell-cabal-format
-        :program "cabal-fmt"))
+        :program "cabal-fmt"
+        :args (list buffer-file-name)
+        :stdin nil
+        ))
 
     (with-eval-after-load "nix-format"
       (reformatter-define nix-format
