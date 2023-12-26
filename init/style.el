@@ -53,3 +53,16 @@
                                                      fonts)
                                          fonts))))
                            unicode-fonts-block-font-mapping))))
+
+(use-package xterm-color
+  :init
+  (progn
+    (setenv "TERM" "xterm-256color")
+
+    (require 'compile)
+
+    (defun init-xterm-color-compilation-filter (f proc string)
+      (funcall f proc (xterm-color-filter string)))
+
+    (advice-add 'compilation-filter
+                :around #'init-xterm-color-compilation-filter)))
