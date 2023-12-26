@@ -37,6 +37,12 @@
          (yaml-mode-hook . eglot-ensure))
   :bind (:map eglot-mode-map
               ("C-." . eglot-code-actions))
+  :init
+  (progn
+    (setq-default eglot-workspace-configuration
+                  '(:yaml
+                    (:keyOrdering :json-false
+                                  :format (:enable t)))))
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
