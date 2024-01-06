@@ -135,7 +135,8 @@ ARG determines the direction and number of sexps."
 
 ;; Use tree-sitter modes.
 (setq major-mode-remap-alist
-      '((dockerfile-mode . dockerfile-ts-mode)
+      '((sh-mode . bash-ts-mode)
+        (dockerfile-mode . dockerfile-ts-mode)
         ))
 
 ;;; Packages
