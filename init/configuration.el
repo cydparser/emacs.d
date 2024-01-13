@@ -11,4 +11,6 @@
 
 (use-package nickel-mode)
 
-(use-package yaml-mode)
+(use-package yaml-ts-mode
+  :ensure nil
+  :mode "\\.yamlfmt\\'")
