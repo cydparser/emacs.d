@@ -13,4 +13,5 @@
 
 (use-package yaml-ts-mode
   :ensure nil
-  :mode "\\.yamlfmt\\'")
+  :mode ("\\.ya?ml\\'"
+         "\\.yamlfmt\\'"))

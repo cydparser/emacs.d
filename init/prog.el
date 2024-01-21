@@ -5,7 +5,7 @@
 (use-package hl-todo
   :hook ((prog-mode-hook . hl-todo-mode)
          (haskell-cabal-mode-hook . hl-todo-mode)
-         (yaml-mode-hook . hl-todo-mode))
+         (yaml-ts-mode-hook . hl-todo-mode))
   :init
   (progn
     (setq hl-todo-keyword-faces

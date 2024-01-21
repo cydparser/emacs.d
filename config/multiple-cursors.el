@@ -39,8 +39,6 @@
         sp-up-sexp
         string-inflection-lower-camelcase
         transpose-sexps
-        yaml-electric-backspace
-        yaml-electric-dash-and-dot
         ))
 
 (setq mc/cmds-to-run-once

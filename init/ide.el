@@ -34,7 +34,7 @@
   :hook ((eglot-managed-mode-hook . init-eglot)
          (nix-mode-hook . eglot-ensure)
          (toml-mode-hook . eglot-ensure)
-         (yaml-mode-hook . eglot-ensure))
+         (yaml-ts-mode-hook . eglot-ensure))
   :bind (:map eglot-mode-map
               ("C-." . eglot-code-actions))
   :init
@@ -75,7 +75,7 @@
      nix-mode
      rustic-mode
      toml-mode
-     yaml-mode
+     yaml-ts-mode
      ))
   :config
   (progn
