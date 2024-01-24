@@ -94,6 +94,12 @@ ARG determines the direction and number of sexps."
 ;; Collect garbage less frequently.
 (setq gc-cons-threshold 104857600)
 
+;; Increase undo history.
+(let ((mib (expt 2 20)))
+  (setq undo-limit (* 1 mib)
+        undo-strong-limit (* 16 mib)
+        undo-outer-limit (* 128 mib)))
+
 (setq read-process-output-max (* 1024 1024))
 
 ;; Adjust indentation and line wrapping.
