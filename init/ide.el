@@ -221,28 +221,28 @@
   :config
   (progn
     (setq projectile-project-types
-          (seq-filter (lambda (type) (member (car type) '(racket
-                                                     rust-cargo
-                                                     r
-                                                     emacs-cask
-                                                     maven
-                                                     cmake
-                                                     make
-                                                     nix
-                                                     )))
-                      projectile-project-types))
+          (seq-filter
+           (lambda (type)
+             (member (car type)
+                     '(
+                       emacs-cask
+                       make
+                       maven
+                       nix
+                       nix-flake
+                       r
+                       racket
+                       rust-cargo
+                       )))
+           projectile-project-types))
 
-    (defun projectile-cabal-project-p () t)
-
-    (projectile-register-project-type 'haskell-cabal-v1 '("dist/cabal-config-flags")
-                                      :compile "cabal v1-build"
-                                      :test "cabal v1-test"
-                                      :test-suffix "Spec")
-
-    (projectile-register-project-type 'haskell-cabal '("dist-newstyle")
-                                      :compile "cabal build"
-                                      :test "cabal test"
-                                      :test-suffix "Spec")))
+    (projectile-register-project-type
+     'haskell-cabal '("cabal.project" "dist-newstyle")
+     :compile "cabal build"
+     :test "cabal test"
+     :run "cabal run"
+     :test-suffix "Spec")
+    ))
 
 (use-package xref
   :ensure nil
