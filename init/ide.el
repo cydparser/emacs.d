@@ -48,9 +48,12 @@
   (eglot-confirm-server-initiated-edits nil)
   :config
   (progn
-    (dolist (mode '(haskell-cabal-mode haskell-mode literate-haskell-mode))
-      (add-to-list 'eglot-server-programs
-                   `(,mode . ("haskell-language-server-wrapper" "--lsp" "-j" "4"))))
+    (let ((exe (if (executable-find "haskell-language-server-wrapper")
+                   "haskell-language-server-wrapper"
+                 "haskell-language-server")))
+      (dolist (mode '(haskell-cabal-mode haskell-mode literate-haskell-mode))
+        (add-to-list 'eglot-server-programs
+                     `(,mode . (,exe "--lsp" "-j" "4")))))
 
     (add-to-list 'eglot-server-programs '(nickel-mode . ("nls")))
     (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
