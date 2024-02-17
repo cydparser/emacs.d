@@ -46,6 +46,7 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
+  (eglot-report-progress nil)
   :config
   (progn
     (let ((exe (if (executable-find "haskell-language-server-wrapper")
