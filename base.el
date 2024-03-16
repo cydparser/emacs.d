@@ -375,6 +375,11 @@ ARG determines the direction and number of sexps."
       ("w" save-buffer "done" :color blue)
       ("q" nil "quit"))))
 
+(use-package time
+  :ensure nil
+  :custom
+  (world-clock-time-format "%a %d %b %R %Z"))
+
 (use-package window
   :ensure nil
   :custom
