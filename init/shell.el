@@ -12,6 +12,8 @@
   :if (executable-find "direnv")
   :hook (after-init-hook . envrc-global-mode))
 
+(use-package nushell-ts-mode)
+
 (use-package shell
   :ensure nil
   :hook (shell-mode-hook . compilation-shell-minor-mode)
