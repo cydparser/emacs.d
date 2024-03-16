@@ -11,6 +11,8 @@
   :config
   (progn
     (unbind-key "<M-S-down>" outshine-mode-map)
+    (unbind-key "<M-down>" outshine-mode-map)
+    (unbind-key "<M-up>" outshine-mode-map)
     (unbind-key "@" outshine-mode-map)))
 
 (use-package poporg)
