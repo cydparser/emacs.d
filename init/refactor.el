@@ -79,4 +79,9 @@
     (reformatter-define web-format
       :program "xmllint"
       :args '("--html" "--format" "-"))
-    ))
+    )
+
+  (reformatter-define yaml-ts-format
+    :program "yamlfmt"
+    :args '("-in"))
+  )
