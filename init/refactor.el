@@ -53,6 +53,14 @@
             (call-interactively f)
           (message "Missing formatter %s" f))))
 
+    (reformatter-define bash-ts-format
+      :program "shfmt"
+      :args '("-language-dialect" "bash"
+              "--indent" "2"
+              "--binary-next-line"
+              "--case-indent"
+              "--space-redirects"))
+
     (reformatter-define haskell-format
       :program "stylish-haskell")
 
