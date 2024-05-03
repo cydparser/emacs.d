@@ -34,6 +34,8 @@
     (unbind-key "M-r" smartparens-mode-map)
     (unbind-key "M-s" smartparens-mode-map)
 
+    (defalias 'sp--syntax-class-to-char 'syntax-class-to-char)
+
     (defun init-sp-kill-region-or-backward-word (arg)
       "Kill selected region or backward word."
       (interactive "p")
