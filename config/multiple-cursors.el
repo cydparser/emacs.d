@@ -18,6 +18,7 @@
         init-sp-kill-region-or-backward-word
         kill-sexp
         mark-sexp
+        markdown-end-of-line
         markdown-outdent-or-delete
         org-beginning-of-line
         org-delete-char
@@ -36,6 +37,8 @@
         sp-kill-hybrid-sexp
         sp-kill-word
         sp-splice-sexp
+        sp-splice-sexp-killing-around
+        sp-split-sexp
         sp-up-sexp
         string-inflection-lower-camelcase
         transpose-sexps
