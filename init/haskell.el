@@ -46,12 +46,19 @@
               ("M-g M-b" . haskell-cabal-goto-benchmark-section)
               ("M-g M-e" . haskell-cabal-goto-executable-section)
               ("M-g M-l" . haskell-cabal-goto-library-section)
+              ("M-g M-o" . haskell-cabal-goto-common-section)
               ("M-g M-t" . haskell-cabal-goto-test-suite-section))
-  :init
-  (progn
-    (unbind-key "C-c C-f" haskell-cabal-mode-map))
   :config
   (progn
+    (unbind-key "C-<down>" haskell-cabal-mode-map)
+    (unbind-key "C-<up>" haskell-cabal-mode-map)
+    (unbind-key "C-M-n" haskell-cabal-mode-map)
+    (unbind-key "C-M-p" haskell-cabal-mode-map)
+    (unbind-key "C-c C-f" haskell-cabal-mode-map)
+    (unbind-key "C-c C-s" haskell-cabal-mode-map)
+    (unbind-key "M-n" haskell-cabal-mode-map)
+    (unbind-key "M-p" haskell-cabal-mode-map)
+
     (dolist (kw '(("\\<\\([0-9.]+\\)\\>" (1 font-lock-constant-face))
                   ("\\<\\([><=^&|]+\\)\\>" (1 font-lock-builtin-face))))
       (add-to-list 'haskell-cabal-font-lock-keywords kw :append))
