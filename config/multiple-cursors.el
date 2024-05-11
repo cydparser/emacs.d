@@ -18,6 +18,7 @@
         init-sp-kill-region-or-backward-word
         kill-sexp
         mark-sexp
+        markdown-beginning-of-line
         markdown-end-of-line
         markdown-outdent-or-delete
         org-beginning-of-line
