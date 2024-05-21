@@ -14,7 +14,10 @@
          ("M-x" . counsel-M-x)
          ("C-M-x" . counsel-command-history)
          ("C-c p s g" . counsel-git-grep)
-         ("C-c p s r" . counsel-rg)))
+         ("C-c p s r" . counsel-rg))
+  :config
+  (progn
+    (add-to-list 'counsel-rg-base-command "--hidden" :append)))
 
 (use-package counsel-projectile
   :after projectile
