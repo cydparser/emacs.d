@@ -12,7 +12,10 @@
   :if (executable-find "direnv")
   :hook (after-init-hook . envrc-global-mode))
 
-(use-package nushell-ts-mode)
+(use-package nushell-ts-mode
+  :custom
+  (progn
+    (add-to-list 'interpreter-mode-alist '("nu" . nushell-ts-mode))))
 
 (use-package shell
   :ensure nil
