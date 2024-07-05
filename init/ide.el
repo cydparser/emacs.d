@@ -40,7 +40,9 @@
   :init
   (progn
     (setq-default eglot-workspace-configuration
-                  '(:yaml
+                  '(:haskell
+                    (:sessionLoading "multipleComponents")
+                    :yaml
                     (:keyOrdering :json-false
                                   :format (:enable t)))))
   :custom
