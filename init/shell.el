@@ -13,7 +13,7 @@
   :hook (after-init-hook . envrc-global-mode))
 
 (use-package nushell-ts-mode
-  :custom
+  :init
   (progn
     (add-to-list 'interpreter-mode-alist '("nu" . nushell-ts-mode))))
 
