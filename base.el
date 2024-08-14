@@ -48,6 +48,8 @@ ARG determines the direction and number of sexps."
 
 ;; Store customizations in a separate file.
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(unless (file-exists-p custom-file)
+  (make-empty-file custom-file))
 (load custom-file)
 
 (set-default-coding-systems 'utf-8)
