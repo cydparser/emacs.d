@@ -21,8 +21,10 @@
 
 (use-package lisp-mode
   :ensure nil
+  :after (company rainbow-delimiters-mode)
+  :commands (init-emacs-lisp)
   :hook (emacs-lisp-mode-hook . init-emacs-lisp-mode)
-  :init
+  :config
   (progn
     (defun init-emacs-lisp-mode ()
       (setq mode-name "elisp")
