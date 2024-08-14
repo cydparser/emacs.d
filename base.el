@@ -277,6 +277,9 @@ ARG determines the direction and number of sexps."
   (delete-old-versions t)
   (delete-old-versions t)
   (kept-new-versions 8)
+  (safe-local-variable-values
+   '((flycheck-emacs-lisp-load-path . inherit)
+     (flycheck-disabled-checkers emacs-lisp-checkdoc)))
   (save-some-buffers-default-predicate 'save-some-buffers-root)
   (version-control t))
 
