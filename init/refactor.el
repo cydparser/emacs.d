@@ -10,6 +10,7 @@
            'list
            '((alejandra . ("alejandra" "-"))
              (cabal-fmt . ("cabal-fmt"))
+             (cabal-gild . ("cabal-gild"))
              (fourmolu . ("fourmolu" "--stdin-input-file" filepath))
              (stylish-haskell . ("stylish-haskell"))
              )
@@ -19,8 +20,7 @@
           (seq-concatenate
            'list
            '((haskell-mode . fourmolu)
-             (haskell-cabal-mode . cabal-fmt)
-             (nix-mode . alejandra)
+             (haskell-cabal-mode . cabal-gild)
              )
            apheleia-mode-alist))))
 
