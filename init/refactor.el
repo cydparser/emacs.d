@@ -13,6 +13,7 @@
              (cabal-gild . ("cabal-gild"))
              (fourmolu . ("fourmolu" "--stdin-input-file" filepath))
              (stylish-haskell . ("stylish-haskell"))
+             (taplo . ("taplo" "format" "-"))
              )
            apheleia-formatters))
 
@@ -21,6 +22,7 @@
            'list
            '((haskell-mode . fourmolu)
              (haskell-cabal-mode . cabal-gild)
+             (conf-toml-mode . taplo)
              )
            apheleia-mode-alist))))
 
