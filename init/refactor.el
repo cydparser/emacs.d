@@ -3,6 +3,8 @@
 (require 'init-utils)
 
 (use-package apheleia
+  :bind (("C-c r f" . apheleia-format-buffer)
+         ("C-c C-f" . apheleia-format-buffer))
   :config
   (progn
     (setq apheleia-formatters
@@ -40,9 +42,8 @@
   (mc/list-file (expand-file-name "multiple-cursors.el" init-config-directory)))
 
 (use-package reformatter
+  :disabled
   :commands (init-format-buffer)
-  :bind (("C-c r f" . init-format-buffer)
-         ("C-c C-f" . init-format-buffer))
   :config
   (progn
     (defun init-format-buffer ()
