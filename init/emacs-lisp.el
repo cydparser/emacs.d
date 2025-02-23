@@ -5,6 +5,12 @@
 (use-package aggressive-indent
   :diminish "⃕")
 
+(use-package elisp-mode
+  :ensure nil
+  :config
+  (progn
+    (unbind-key "C-c C-f" emacs-lisp-mode-map)))
+
 (use-package flycheck-elsa
   :after flycheck
   :hook (emacs-lisp-mode-hook . init-flycheck-elsa)
