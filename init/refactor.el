@@ -78,11 +78,6 @@
         :stdin nil
         ))
 
-    (with-eval-after-load "nix-format"
-      (reformatter-define nix-format
-        :program "alejandra"
-        :args '("-")))
-
     (reformatter-define nxml-format
       :program "xmllint"
       :args '("--format" "-"))
