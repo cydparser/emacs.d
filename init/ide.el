@@ -79,7 +79,6 @@
      haskell-mode
      literate-haskell-mode
      nix-mode
-     rustic-mode
      toml-mode
      yaml-ts-mode
      ))
@@ -102,7 +101,6 @@
 (setenv "LSP_USE_PLISTS" "true")
 
 (use-package lsp-mode
-  :ensure nil
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-modeline-code-actions-mode))
   :bind (:map lsp-mode-map
@@ -115,7 +113,6 @@
   (lsp-session-file (expand-file-name "lsp-session" init-var-directory)))
 
 (use-package lsp-ui
-  :ensure nil
   :init (setq lsp-ui-doc-alignment 'window
               lsp-ui-doc-include-signature t
               lsp-ui-doc-position 'bottom

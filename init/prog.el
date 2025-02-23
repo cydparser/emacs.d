@@ -44,7 +44,13 @@
                                      (js-mode . nodejs-repl)
                                      (lisp-interaction-mode . ielm))))
 
-(use-package rustic)
+(use-package rust-mode
+  :init
+  (progn
+    (setq rust-mode-treesitter-derive t)))
+
+(use-package rustic
+  :after (rust-mode))
 
 (use-package separedit
   :bind (:map prog-mode-map
