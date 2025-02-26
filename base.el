@@ -144,6 +144,9 @@ ARG determines the direction and number of sexps."
 ;; Use tree-sitter modes.
 (setq major-mode-remap-alist
       '((sh-mode . bash-ts-mode)
+        (c++-mode . c++-ts-mode)
+        (c-mode . c-ts-mode)
+        (c-or-c++-mode . c-or-c++-ts-mode)
         (dockerfile-mode . dockerfile-ts-mode)
         ))
 
@@ -285,7 +288,8 @@ ARG determines the direction and number of sexps."
               ("M-n" . flymake-goto-next-error)
               ("M-p" . flymake-goto-prev-error))
   :custom
-  (flymake-mode-line-lighter "⚙"))
+  (flymake-mode-line-lighter "⚙")
+  (flymake-show-diagnostics-at-end-of-line t))
 
 (use-package frame
   :ensure nil
@@ -293,6 +297,10 @@ ARG determines the direction and number of sexps."
   (progn
     (unbind-key "C-z")
     (unbind-key "C-x C-z")))
+
+(use-package indent-aux
+  :ensure nil
+  :hook (after-init-hook . kill-ring-deindent-mode))
 
 (use-package help
   :ensure nil

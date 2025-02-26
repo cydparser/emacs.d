@@ -4,7 +4,9 @@
   :ensure nil
   :custom
   (dired-do-revert-buffer t)
+  (dired-filename-display-length 'window)
   (dired-mouse-drag-files t)
+  (dired-movement-style 'cycle)
   (dired-listing-switches "-alht"))
 
 (use-package dired-subtree
