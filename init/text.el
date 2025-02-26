@@ -59,3 +59,16 @@ Source: http://stackoverflow.com/a/22116480/1231408"
 (use-package pdf-tools
   :ensure nil
   :hook (after-init-hook . pdf-tools-install))
+
+(use-package typst-ts-mode
+  :vc (:url "https://codeberg.org/meow_king/typst-ts-mode.git" :rev :newest)
+  :hook (typst-ts-mode-hook . lsp-deferred)
+  :config
+  (progn
+    (with-eval-after-load 'lsp-mode
+      (add-to-list 'lsp-language-id-configuration '(typst-ts-mode . "typst"))
+
+      (lsp-register-client (make-lsp-client
+                            :new-connection (lsp-stdio-connection '("tinymist" "lsp"))
+                            :activation-fn (lsp-activate-on "typst")
+                            :server-id 'tinymist)))))
