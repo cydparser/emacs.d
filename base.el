@@ -351,6 +351,11 @@ ARG determines the direction and number of sexps."
   :custom
   (proced-enable-color-flag t))
 
+(use-package project
+  :ensure nil
+  :custom
+  (project-list-file (expand-file-name "projects" init-var-directory)))
+
 (use-package simple
   :ensure nil
   :bind (("M-n" . next-error)
