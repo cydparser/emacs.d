@@ -32,6 +32,7 @@
         (prettify-symbols-mode)))
 
     (defun init-prog-mode ()
+      (electric-indent-local-mode)
       (init-prettify-symbols))))
 
 (use-package repl-toggle

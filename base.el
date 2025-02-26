@@ -253,10 +253,6 @@ ARG determines the direction and number of sexps."
   (progn
     (eldoc-add-command-completions "sp-")))
 
-(use-package electric
-  :ensure nil
-  :init (setq-default electric-indent-inhibit t))
-
 (use-package etags
   :ensure nil
   :init (setq tags-add-tables nil

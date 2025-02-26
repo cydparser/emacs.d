@@ -153,6 +153,7 @@
 
     (defun init-haskell ()
       (haskell-collapse-mode)
+      (setq electric-indent-inhibit t)
       (setq prettify-symbols-alist init-haskell-prettify-symbols-alist)
       (prettify-symbols-mode)
       (cond ((and buffer-file-name
