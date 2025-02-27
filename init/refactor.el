@@ -24,7 +24,7 @@
            'list
            '((haskell-mode . fourmolu)
              (haskell-cabal-mode . cabal-gild)
-             (conf-toml-mode . taplo)
+             (toml-ts-mode . taplo)
              )
            apheleia-mode-alist))))
 

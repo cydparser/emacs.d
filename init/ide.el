@@ -33,7 +33,7 @@
   :commands (init-eglot)
   :hook ((eglot-managed-mode-hook . init-eglot)
          (nix-mode-hook . eglot-ensure)
-         (toml-mode-hook . eglot-ensure)
+         (toml-ts-mode-hook . eglot-ensure)
          (yaml-ts-mode-hook . eglot-ensure))
   :bind (:map eglot-mode-map
               ("C-." . eglot-code-actions))
@@ -60,7 +60,7 @@
 
     (add-to-list 'eglot-server-programs '(nickel-mode . ("nls")))
     (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
-    (add-to-list 'eglot-server-programs '(toml-mode . ("taplo" "lsp" "stdio")))
+    (add-to-list 'eglot-server-programs '(toml-ts-mode . ("taplo" "lsp" "stdio")))
     (defun init-eglot ()
       (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local)
       (flycheck-mode 0))))
@@ -79,7 +79,7 @@
      haskell-mode
      literate-haskell-mode
      nix-mode
-     toml-mode
+     toml-ts-mode
      yaml-ts-mode
      ))
   :config

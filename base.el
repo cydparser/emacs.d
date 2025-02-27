@@ -148,6 +148,7 @@ ARG determines the direction and number of sexps."
         (c-mode . c-ts-mode)
         (c-or-c++-mode . c-or-c++-ts-mode)
         (dockerfile-mode . dockerfile-ts-mode)
+        (conf-toml-mode . toml-ts-mode)
         ))
 
 ;;; Packages
