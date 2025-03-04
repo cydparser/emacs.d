@@ -253,6 +253,12 @@
                        )))
            projectile-project-types))
 
+    (projectile-update-project-type
+     'rust-cargo
+     :src-dir "src"
+     :test-dir "src"
+     :test-suffix "/test")
+
     (projectile-register-project-type
      'haskell-cabal '("cabal.project" "dist-newstyle")
      :compile "cabal build"
