@@ -182,11 +182,29 @@
   :custom
   (projectile-cache-file (expand-file-name "projectile.cache" init-var-directory))
   (projectile-create-missing-test-files t)
+  (projectile-globally-ignored-directories
+   '(".build"
+     ".cache"
+     ".ccls-cache"
+     ".clangd"
+     ".direnv"
+     ".git"
+     ".idea"
+     ".jj"
+     ".vscode"
+     "_build"
+     "del"
+     "dist"
+     "dist-newstyle"
+     "target"
+     "tmp"
+     ))
   (projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" init-var-directory))
   :init
   (progn
     (defun init-projectile-ignored-project-p (project-root)
-      (string-prefix-p "/nix/store/" project-root))
+      (or (string-prefix-p "/nix/store/" project-root)
+          (string-match-p "/\\(.cabal\\|.cargo\\)/" project-root)))
 
     (defun init-projectile-test-suffix (project-type)
       (cond
@@ -200,7 +218,7 @@
     (setq projectile-completion-system 'ivy
           projectile-create-missing-test-files t
           projectile-ignored-project-function #'init-projectile-ignored-project-p
-          projectile-ignored-projects '("~/src/emacs.d/elpa/")
+          projectile-ignored-projects '("~/src/emacs.d/elpa/" "~/.config/emacs/elpa/")
           ;; `call-process` uses a different path.
           projectile-tags-command (concat "PATH=" (getenv "PATH") " ctags -Re -f \"%s\" %s")
           projectile-test-suffix-function #'init-projectile-test-suffix
