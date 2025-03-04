@@ -19,7 +19,8 @@
   (company-idle-delay 0.5))
 
 (use-package company-box
-  :hook (company-mode . company-box-mode))
+  :hook (company-mode-hook . company-box-mode)
+  :diminish "")
 
 (use-package company-quickhelp
   :demand
