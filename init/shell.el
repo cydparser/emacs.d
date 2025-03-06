@@ -31,3 +31,8 @@
                  (not (getenv "HISTFILE")))
         (setenv "HISTFILE" hist)
         (setenv "HISTSIZE" "4096")))))
+
+(use-package vterm
+  :ensure nil
+  :custom
+  (vterm-shell "nu"))
