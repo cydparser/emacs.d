@@ -257,7 +257,7 @@
      'rust-cargo
      :src-dir "src"
      :test-dir "src"
-     :test-suffix "/test")
+     :test-suffix "/tests")
 
     (projectile-register-project-type
      'haskell-cabal '("cabal.project" "dist-newstyle")
