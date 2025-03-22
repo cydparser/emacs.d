@@ -290,7 +290,7 @@ ARG determines the direction and number of sexps."
               ("M-p" . flymake-goto-prev-error))
   :custom
   (flymake-mode-line-lighter "⚙")
-  (flymake-show-diagnostics-at-end-of-line t))
+  (flymake-show-diagnostics-at-end-of-line nil))
 
 (use-package frame
   :ensure nil
