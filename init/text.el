@@ -50,6 +50,7 @@ Source: http://stackoverflow.com/a/22116480/1231408"
                       company-ispell))
           (not-flyspell-modes
            '(haskell-cabal-mode
+             toml-ts-mode
              yaml-ts-mode)))
       (defun init-text ()
         (unless (memq major-mode not-flyspell-modes)
