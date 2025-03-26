@@ -253,11 +253,17 @@
                        )))
            projectile-project-types))
 
+    (defun init-projectile-rust-related-files-fn (file)
+      (if (string-equal "tests.rs" (file-name-nondirectory file))
+          (list :impl (replace-regexp-in-string "[/]?$" ".rs" (file-name-directory file)))
+        (list :test (replace-regexp-in-string "[.]rs$" "/tests.rs" file))))
+
     (projectile-update-project-type
      'rust-cargo
      :src-dir "src"
      :test-dir "src"
-     :test-suffix "/tests")
+     :test-suffix "/tests"
+     :related-files-fn #'init-projectile-rust-related-files-fn)
 
     (projectile-register-project-type
      'haskell-cabal '("cabal.project" "dist-newstyle")
