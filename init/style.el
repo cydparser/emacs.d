@@ -19,20 +19,8 @@
   (whitespace-empty ((t (:background "#191919"))))
   (whitespace-line ((t (:background "#282a2e" :foreground unspecified)))))
 
-(use-package menu-bar
-  :ensure nil
-  :hook (after-init-hook . (lambda () (menu-bar-mode -1))))
-
 (use-package rainbow-mode
   :diminish (rainbow-mode . "🌈"))
-
-(use-package scroll-bar
-  :ensure nil
-  :custom (scroll-bar-mode nil))
-
-(use-package tool-bar
-  :ensure nil
-  :init (tool-bar-mode -1))
 
 (use-package unicode-fonts
   :hook (after-init-hook . unicode-fonts-setup)

@@ -79,10 +79,6 @@ ARG determines the direction and number of sexps."
 (setq auto-revert-mode-text ""
       confirm-kill-processes nil
       confirm-nonexistent-file-or-buffer nil
-      inhibit-splash-screen t
-      inhibit-startup-echo-area-message t
-      inhibit-startup-message t
-      initial-scratch-message nil
       kill-buffer-query-functions (remq 'process-kill-buffer-query-function kill-buffer-query-functions)
       ring-bell-function #'ignore
       xref-prompt-for-identifier nil)
@@ -94,7 +90,9 @@ ARG determines the direction and number of sexps."
 (setq column-number-mode t)
 
 ;; Collect garbage less frequently.
-(setq gc-cons-threshold 104857600)
+(add-hook 'after-init-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 32 1024 1024))))
 
 ;; Increase undo history.
 (let ((mib (expt 2 20)))
