@@ -22,7 +22,9 @@
 (use-package counsel-projectile
   :after projectile
   :demand
-  :hook (after-init-hook . counsel-projectile-mode))
+  :hook (after-init-hook . counsel-projectile-mode)
+  :custom
+  (counsel-projectile-remove-current-project t))
 
 (use-package ivy
   :diminish ""
