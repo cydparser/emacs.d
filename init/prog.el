@@ -48,7 +48,21 @@
 (use-package rust-mode
   :init
   (progn
-    (setq rust-mode-treesitter-derive t)))
+    (setq rust-mode-treesitter-derive t))
+  :config
+  (progn
+    (require 'rust-compile)
+
+    (add-to-list 'compilation-error-regexp-alist-alist
+                 (cons 'rustc-arrow
+                       (cons (concat "^ +--> " rustc-compilation-location) '(2 3 4 0 1))))
+    (add-to-list 'compilation-error-regexp-alist-alist
+                 (cons 'rustc-backtrace
+                       (cons (concat "^ +at " rustc-compilation-location) '(2 3 4 0 1))))
+    (add-to-list 'compilation-error-regexp-alist-alist
+                 (cons 'rustc-dbg
+                       (cons (concat "^\\[" rustc-compilation-location "\\]") '(2 3 4 0 1))))
+    ))
 
 (use-package rustic
   :after (rust-mode))
