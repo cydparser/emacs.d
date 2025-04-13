@@ -43,13 +43,12 @@
          ("p" . init-ivy-occur-previous-line)
          ("C-o" . ivy-occur-press))
   :hook (after-init-hook . ivy-mode)
-  :init
-  (progn
-    (setq ivy-initial-inputs-alist nil
-          ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create
-          ivy-re-builders-alist '((t . ivy--regex-ignore-order))
-          ivy-use-selectable-prompt t
-          ivy-use-virtual-buffers t))
+  :custom
+  (ivy-initial-inputs-alist nil)
+  (ivy-magic-slash-non-match-action 'ivy-magic-slash-non-match-create)
+  (ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
+  (ivy-use-selectable-prompt t)
+  (ivy-use-virtual-buffers t)
   :config
   (progn
     (unbind-key "S-SPC" ivy-minibuffer-map)

@@ -5,10 +5,11 @@
 (use-package erc
   :ensure nil
   :hook (erc-mode-hook . init-erc-mode)
+  :custom
+  (erc-hide-list '("JOIN" "MODE" "PART" "QUIT"))
   :init
   (progn
-    (setq erc-hide-list '("JOIN" "MODE" "PART" "QUIT")
-          erc-track-enable-keybindings nil
+    (setq erc-track-enable-keybindings nil
           erc-track-when-inactive t)
 
     ;; (let ((ca (init-xdg-config "ssl/local-ca.pem"))

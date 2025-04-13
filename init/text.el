@@ -4,13 +4,15 @@
 
 (use-package ispell
   :ensure nil
+  :custom
+  (ispell-program-name (executable-find "hunspell"))
+  (ispell-silently-savep t)
   :init
   (progn
-    (setq ispell-dictionary "en_US"
-          ispell-program-name (executable-find "hunspell")
-          ispell-silently-savep t)
+    (setopt ispell-dictionary "en_US")
+
     (init-when-file-exists (init-xdg-config (concat "hunspell/" ispell-dictionary))
-      (setq ispell-personal-dictionary))))
+      (setopt ispell-personal-dictionary))))
 
 (use-package flyspell
   :ensure nil

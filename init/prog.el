@@ -6,24 +6,24 @@
   :hook ((prog-mode-hook . hl-todo-mode)
          (haskell-cabal-mode-hook . hl-todo-mode)
          (yaml-ts-mode-hook . hl-todo-mode))
-  :init
-  (progn
-    (setq hl-todo-keyword-faces
-          '(("WTF"   . "#c82829")
-            ("XXX"   . "#c82829")
-            ("FAIL"  . "#cc6666")
-            ("FIXME" . "#de935f")
-            ("HACK"  . "#de935f")
-            ("TODO"  . "#f0c674")
-            ("NB"    . "#81a2be")
-            ("NOTE"  . "#81a2be")))))
+  :custom
+  (hl-todo-keyword-faces
+   '(("WTF"   . "#c82829")
+     ("XXX"   . "#c82829")
+     ("FAIL"  . "#cc6666")
+     ("FIXME" . "#de935f")
+     ("HACK"  . "#de935f")
+     ("TODO"  . "#f0c674")
+     ("NB"    . "#81a2be")
+     ("NOTE"  . "#81a2be"))))
 
 (use-package prog-mode
   :ensure nil
   :hook (prog-mode-hook . init-prog-mode)
+  :custom
+  (prettify-symbols-unprettify-at-point 'right-edge)
   :init
   (progn
-    (setq prettify-symbols-unprettify-at-point 'right-edge)
 
     (defun init-prettify-symbols ()
       (unless (derived-mode-p 'haskell-mode)
@@ -46,9 +46,8 @@
                                      (lisp-interaction-mode . ielm))))
 
 (use-package rust-mode
-  :init
-  (progn
-    (setq rust-mode-treesitter-derive t))
+  :custom
+  (rust-mode-treesitter-derive t)
   :config
   (progn
     (require 'rust-compile)

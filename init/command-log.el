@@ -2,8 +2,6 @@
 
 (use-package command-log-mode
   :diminish (command-log-mode . "log")
-  :init
-  (progn
-    (setq
-     command-log-mode-is-global t
-     command-log-mode-key-binding-open-log "C-c l")))
+  :custom
+  (command-log-mode-is-global t)
+  (command-log-mode-key-binding-open-log "C-c l"))

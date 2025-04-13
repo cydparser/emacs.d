@@ -2,9 +2,8 @@
 
 (use-package js
   :ensure nil
-  :init
-  (progn
-    (setq js-indent-level 2)))
+  :custom
+  (js-indent-level 2))
 
 (use-package nodejs-repl
   :if (executable-find "node")

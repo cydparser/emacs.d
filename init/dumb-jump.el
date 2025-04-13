@@ -3,13 +3,13 @@
 (use-package dumb-jump
   :after xref
   :demand
+  :custom
+  (dumb-jump-fallback-search nil)
+  (dumb-jump-force-searcher 'rg)
+  (dumb-jump-rg-search-args "--multiline")
+  (dumb-jump-selector 'ivy)
   :init
   (progn
-    (setq dumb-jump-fallback-search nil
-          dumb-jump-force-searcher 'rg
-          dumb-jump-rg-search-args "--multiline"
-          dumb-jump-selector 'ivy)
-
     ;; Add dumb-jump to global xref-backend-functions before etags--xref-backend.
     (add-hook 'xref-backend-functions 'dumb-jump-xref-activate 89))
   :config

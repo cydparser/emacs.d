@@ -2,4 +2,5 @@
 
 (use-package epa
   :ensure nil
-  :init (setq epa-pinentry-mode 'loopback))
+  :custom
+  (epg-pinentry-mode 'loopback))

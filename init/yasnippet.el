@@ -4,10 +4,11 @@
   :demand
   :diminish (yas-minor-mode . "")
   :hook (after-init-hook . yas-global-mode)
+  :custom
+  (yas-snippet-dirs (seq-map (lambda (dir) (expand-file-name dir user-emacs-directory))
+                             '("snippets" "local-snippets")))
   :init
   (progn
-    (setq yas-snippet-dirs (seq-map (lambda (dir) (expand-file-name dir user-emacs-directory))
-                                    '("snippets" "local-snippets")))
     (setq-default yas-indent-line 'fixed)
     (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand))
   :config

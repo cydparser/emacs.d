@@ -5,11 +5,10 @@
   :diminish ((whitespace-mode . "□")
              (global-whitespace-mode . "□"))
   :hook (after-init-hook . global-whitespace-mode)
-  :init
-  (progn
-    (setq whitespace-global-modes ()
-          whitespace-line-column fill-column
-          whitespace-style '(empty face lines-tail missing-newline-at-eof tabs trailing)))
+  :custom
+  (whitespace-global-modes ())
+  (whitespace-line-column fill-column)
+  (whitespace-style '(empty face lines-tail missing-newline-at-eof tabs trailing))
   :config
   (progn
     (defun init-whitespace-enable-predicate ()

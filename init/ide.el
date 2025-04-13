@@ -114,10 +114,11 @@
   (lsp-session-file (expand-file-name "lsp-session" init-var-directory)))
 
 (use-package lsp-ui
-  :init (setq lsp-ui-doc-alignment 'window
-              lsp-ui-doc-include-signature t
-              lsp-ui-doc-position 'bottom
-              lsp-ui-doc-use-webkit nil))
+  :custom
+  (lsp-ui-doc-alignment 'window)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-position 'bottom)
+  (lsp-ui-doc-use-webkit nil))
 
 (use-package move-text
   :bind (("<M-down>" . move-text-down)
@@ -200,6 +201,27 @@
      "tmp"
      ))
   (projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" init-var-directory))
+  :custom
+  (projectile-completion-system 'ivy)
+  (projectile-create-missing-test-files t)
+  (projectile-ignored-project-function #'init-projectile-ignored-project-p)
+  (projectile-ignored-projects '("~/src/emacs.d/elpa/" "~/.config/emacs/elpa/"))
+  ;; `call-process` uses a different path.
+  (projectile-tags-command (concat "PATH=" (getenv "PATH") " ctags -Re -f \"%s\" %s"))
+  (projectile-test-suffix-function #'init-projectile-test-suffix)
+  (projectile-use-git-grep t)
+  (projectile-other-file-alist
+   '(;; From projectile's default list
+     ("c"    . ("h"))
+     ("h"    . ("c"))
+     (nil    . ("lock" "gpg"))
+     ("lock" . (""))
+     ("gpg"  . (""))
+     ;; GWT
+     ("java"   . ("css" "gss" "ui.xml"))
+     ("css"    . ("java"))
+     ("gss"    . ("java"))
+     ("ui.xml" . ("java"))))
   :init
   (progn
     (defun init-projectile-ignored-project-p (project-root)
@@ -214,27 +236,7 @@
            ((projectile-file-exists-p (expand-file-name "test/Spec.hs" root)) "Spec")
            (t "Test"))))
        (t (projectile-test-suffix project-type))))
-
-    (setq projectile-completion-system 'ivy
-          projectile-create-missing-test-files t
-          projectile-ignored-project-function #'init-projectile-ignored-project-p
-          projectile-ignored-projects '("~/src/emacs.d/elpa/" "~/.config/emacs/elpa/")
-          ;; `call-process` uses a different path.
-          projectile-tags-command (concat "PATH=" (getenv "PATH") " ctags -Re -f \"%s\" %s")
-          projectile-test-suffix-function #'init-projectile-test-suffix
-          projectile-use-git-grep t)
-    (setq projectile-other-file-alist
-          '(;; From projectile's default list
-            ("c"    . ("h"))
-            ("h"    . ("c"))
-            (nil    . ("lock" "gpg"))
-            ("lock" . (""))
-            ("gpg"  . (""))
-            ;; GWT
-            ("java"   . ("css" "gss" "ui.xml"))
-            ("css"    . ("java"))
-            ("gss"    . ("java"))
-            ("ui.xml" . ("java")))))
+    )
   :config
   (progn
     (setq projectile-project-types

@@ -2,16 +2,15 @@
 
 (use-package org
   :hook (org-mode-hook . init-org)
-  :init
-  (progn
-    (setq org-adapt-indentation nil
-          org-ellipsis "…"
-          org-hide-emphasis-markers t
-          org-imenu-depth 3
-          org-list-description-max-indent 5
-          org-log-done 'time
-          org-src-fontify-natively t
-          org-startup-truncated nil))
+  :custom
+  (org-adapt-indentation nil)
+  (org-ellipsis "…")
+  (org-hide-emphasis-markers t)
+  (org-imenu-depth 3)
+  (org-list-description-max-indent 5)
+  (org-log-done 'time)
+  (org-src-fontify-natively t)
+  (org-startup-truncated nil)
   :config
   (progn
     (unbind-key "<M-S-down>" org-mode-map)

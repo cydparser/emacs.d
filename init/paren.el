@@ -13,16 +13,18 @@
          (")" . sp-up-sexp))
   :hook (((org-mode-hook text-mode-hook) . turn-on-smartparens-mode)
          (prog-mode-hook . turn-on-smartparens-mode))
-  :init (setq sp-base-key-bindings 'paredit
-              sp-no-reindent-after-kill-modes '(asm-mode
-                                                haskell-mode
-                                                makefile-gmake-mode
-                                                nix-mode
-                                                org-mode
-                                                python-mode
-                                                sh-mode
-                                                sql-mode
-                                                yaml-ts-mode))
+  :custom
+  (sp-base-key-bindings 'paredit)
+  (sp-no-reindent-after-kill-modes
+   '(asm-mode
+     haskell-mode
+     makefile-gmake-mode
+     nix-mode
+     org-mode
+     python-mode
+     sh-mode
+     sql-mode
+     yaml-ts-mode))
   :config
   (progn
     (require 'smartparens-config)

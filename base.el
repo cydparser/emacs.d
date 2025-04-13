@@ -62,29 +62,30 @@ ARG determines the direction and number of sexps."
       (bdir (expand-file-name "backups/" init-var-directory)))
   (make-directory adir t)
   (make-directory bdir t)
-  (setq auto-save-file-name-transforms `((".*" ,(concat adir "\\1") t))
-        auto-save-list-file-prefix (concat ldir "/saves-")
-        backup-directory-alist `((".*" . ,bdir))))
+  (setopt
+   auto-save-file-name-transforms `((".*" ,(concat adir "\\1") t))
+   auto-save-list-file-prefix (concat ldir "/saves-")
+   backup-directory-alist `((".*" . ,bdir))))
 
 ;; Disable lock files.
 (setq create-lockfiles nil)
 
 ;; Split windows horizontally.
-(setq split-height-threshold nil)
+(setopt split-height-threshold nil)
 
 ;; Simplify prompts.
 (setq use-short-answers t)
 
 ;; Reduce noise.
-(setq auto-revert-mode-text ""
-      confirm-kill-processes nil
-      confirm-nonexistent-file-or-buffer nil
-      kill-buffer-query-functions (remq 'process-kill-buffer-query-function kill-buffer-query-functions)
-      ring-bell-function #'ignore
-      xref-prompt-for-identifier nil)
+(setopt auto-revert-mode-text ""
+        confirm-kill-processes nil
+        confirm-nonexistent-file-or-buffer nil
+        xref-prompt-for-identifier nil)
+(setq kill-buffer-query-functions (remq 'process-kill-buffer-query-function kill-buffer-query-functions)
+      ring-bell-function #'ignore)
 
 ;; Prevent accidental closure.
-(setq confirm-kill-emacs #'y-or-n-p)
+(setopt confirm-kill-emacs #'y-or-n-p)
 
 ;; Display column number in modeline.
 (setq column-number-mode t)
@@ -140,14 +141,14 @@ ARG determines the direction and number of sexps."
 (diminish 'subword-mode "")
 
 ;; Use tree-sitter modes.
-(setq major-mode-remap-alist
-      '((sh-mode . bash-ts-mode)
-        (c++-mode . c++-ts-mode)
-        (c-mode . c-ts-mode)
-        (c-or-c++-mode . c-or-c++-ts-mode)
-        (dockerfile-mode . dockerfile-ts-mode)
-        (conf-toml-mode . toml-ts-mode)
-        ))
+(setopt
+ major-mode-remap-alist
+ '((sh-mode . bash-ts-mode)
+   (c++-mode . c++-ts-mode)
+   (c-mode . c-ts-mode)
+   (c-or-c++-mode . c-or-c++-ts-mode)
+   (dockerfile-mode . dockerfile-ts-mode)
+   (conf-toml-mode . toml-ts-mode)))
 
 ;;; Packages
 
@@ -191,13 +192,15 @@ ARG determines the direction and number of sexps."
 
 (use-package autorevert
   :ensure nil
-  :init (setq auto-revert-verbose nil
-              auto-revert-tail-mode-text " ⭛"))
+  :custom
+  (auto-revert-verbose nil)
+  (auto-revert-tail-mode-text " ⭛"))
 
 (use-package bookmark
   :ensure nil
-  :init (setq bookmark-default-file (expand-file-name "bookmarks" init-var-directory)
-              bookmark-save-flag 1))
+  :custom
+  (bookmark-default-file (expand-file-name "bookmarks" init-var-directory))
+  (bookmark-save-flag 1))
 
 (use-package browse-url
   :ensure nil
@@ -257,8 +260,9 @@ ARG determines the direction and number of sexps."
 
 (use-package etags
   :ensure nil
-  :init (setq tags-add-tables nil
-              tags-revert-without-query t))
+  :custom
+  (tags-add-tables nil)
+  (tags-revert-without-query t))
 
 (use-package exec-path-from-shell
   :if (memq window-system '(mac ns))
@@ -333,8 +337,9 @@ ARG determines the direction and number of sexps."
 
 (use-package mwheel
   :ensure nil
-  :init (setq mouse-wheel-flip-direction t
-              mouse-wheel-tilt-scroll t))
+  :custom
+  (mouse-wheel-flip-direction t)
+  (mouse-wheel-tilt-scroll t))
 
 (use-package newcomment
   :ensure nil
