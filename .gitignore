@@ -16,4 +16,5 @@
 /var
 eww-bookmarks
 local*
+!local-snippets
 recentf
