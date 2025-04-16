@@ -10,5 +10,12 @@
   (setenv "SHELL" shell-file-name)
   (add-hook 'comint-output-filter-functions 'comint-strip-ctrl-m))
 
+(when (file-exists-p "/etc/wsl.conf")
+  (defun wsl-copy (start end)
+    (interactive "r")
+    (if (use-region-p)
+        (let ((text (buffer-substring-no-properties start end)))
+          (shell-command (concat "echo '" text  "' | clip.exe"))))))
+
 (use-package powershell
   :if init-os-win)
