@@ -47,4 +47,9 @@
 
     (with-eval-after-load "smartparens-haskell"
       (sp-with-modes '(haskell-mode haskell-interactive-mode)
-        (sp-local-pair "'" nil :actions nil)))))
+        (sp-local-pair "'" nil :actions nil)))
+
+    (with-eval-after-load "smartparens-rust"
+      (sp-with-modes '(rust-mode rust-ts-mode rustic-mode)
+        (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
+                                                  ("* ||\n[i]" "RET")))))))
