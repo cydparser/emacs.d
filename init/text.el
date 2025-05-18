@@ -65,7 +65,7 @@ Source: http://stackoverflow.com/a/22116480/1231408"
 
 (use-package typst-ts-mode
   :vc (:url "https://codeberg.org/meow_king/typst-ts-mode.git" :rev :newest)
-  :hook (typst-ts-mode-hook . lsp-deferred)
+  :hook (typst-ts-mode-hook . eglot-ensure)
   :config
   (progn
     (with-eval-after-load 'lsp-mode

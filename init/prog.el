@@ -64,7 +64,9 @@
     ))
 
 (use-package rustic
-  :after (rust-mode))
+  :after (rust-mode)
+  :custom
+  (rustic-lsp-client 'eglot))
 
 (use-package separedit
   :bind (:map prog-mode-map
