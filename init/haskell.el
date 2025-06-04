@@ -1,7 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-(require 'init-hasklig)
-
 (eval-when-compile
   (require 'cl-lib))
 
@@ -128,28 +126,27 @@
           haskell-process-log t
           haskell-process-wrapper-function 'init-haskell-process-wrapper)
 
+    (require 'init-font)
+
     (setq init-haskell-prettify-symbols-alist
-          (let ((exclude '("&&" "||")))
-            (append
-             (list
-              (init-lig-rule-replace "\\" ?λ)
-              (init-lig-rule-replace "undefined" ?⊥)
-              (init-lig-rule-bracket "error" ?⊥)
-              (init-lig-rule-center "&&" ?∧ ? )
-              (init-lig-rule-center "||" ?∨ ? )
-              (init-lig-rule-bracket "empty" ?∅)
-              (init-lig-rule-bracket "mempty" ?∅)
-              (init-lig-rule-bracket "mzero" ?∅)
-              (init-lig-rule-bracket "elem" ?∈)
-              (init-lig-rule-bracket "notElem" ?∉)
-              (init-lig-rule-bracket "member" ?∈)
-              (init-lig-rule-bracket "notMember" ?∉)
-              (init-lig-rule-bracket "isSubsetOf" ?⊆)
-              (init-lig-rule-bracket "isProperSubsetOf" ?⊂)
-              (init-lig-rule-bracket "intersection" ?∩)
-              (init-lig-rule-bracket "union" ?∪))
-             (seq-remove (lambda (pair) (member (car pair) exclude))
-                         init-hasklig-prettify-symbols-alist))))
+          (list
+           (init-font-lig-rule-replace "\\" ?λ)
+           (init-font-lig-rule-replace "undefined" ?⊥)
+           (init-font-lig-rule-bracket "error" ?⊥)
+           (init-font-lig-rule-center "&&" ?∧ ? )
+           (init-font-lig-rule-center "||" ?∨ ? )
+           (init-font-lig-rule-center "not" ?￢)
+           (init-font-lig-rule-bracket "empty" ?∅)
+           (init-font-lig-rule-bracket "mempty" ?∅)
+           (init-font-lig-rule-bracket "mzero" ?∅)
+           (init-font-lig-rule-bracket "elem" ?∈)
+           (init-font-lig-rule-bracket "notElem" ?∉)
+           (init-font-lig-rule-bracket "member" ?∈)
+           (init-font-lig-rule-bracket "notMember" ?∉)
+           (init-font-lig-rule-bracket "isSubsetOf" ?⊆)
+           (init-font-lig-rule-bracket "isProperSubsetOf" ?⊂)
+           (init-font-lig-rule-bracket "intersection" ?∩)
+           (init-font-lig-rule-bracket "union" ?∪)))
 
     (defun init-haskell ()
       (haskell-collapse-mode)

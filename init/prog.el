@@ -1,7 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-(require 'init-hasklig)
-
 (use-package hl-todo
   :hook ((prog-mode-hook . hl-todo-mode)
          (haskell-cabal-mode-hook . hl-todo-mode)
@@ -24,16 +22,8 @@
   (prettify-symbols-unprettify-at-point 'right-edge)
   :init
   (progn
-
-    (defun init-prettify-symbols ()
-      (unless (derived-mode-p 'haskell-mode)
-        (setq-local prettify-symbols-alist
-                    init-hasklig-prettify-symbols-common-alist)
-        (prettify-symbols-mode)))
-
     (defun init-prog-mode ()
-      (electric-indent-local-mode)
-      (init-prettify-symbols))))
+      (electric-indent-local-mode))))
 
 (use-package repl-toggle
   :diminish ""
