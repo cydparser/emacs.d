@@ -58,4 +58,9 @@
            (nconc rule (list '(Br . Bl) rb))
            (cons replace rule)))))
 
+(defmacro init-font-for-buffer (family)
+  (if (seq-contains-p (font-family-list) family)
+      `(buffer-face-set :family ,family)
+    (warn "Missing font %s" family)))
+
 (provide 'init-font)
