@@ -15,4 +15,6 @@
  '(scroll-bar-mode nil)
  '(tool-bar-mode nil)
 
- '(default-frame-alist '((background-color . "#1d1f21"))))
+ '(default-frame-alist
+   '((background-color . "#1d1f21")
+     (font . "FiraCode Nerd Font-14"))))
