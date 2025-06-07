@@ -15,6 +15,22 @@
      ("NB"    . "#81a2be")
      ("NOTE"  . "#81a2be"))))
 
+(use-package lisp-mode
+  :hook ((emacs-lisp-mode-hook . init-lisp)
+         (lisp-mode-hook . init-lisp))
+  :ensure nil
+  :config
+  (progn
+    (require 'init-font)
+
+    (defconst init-lisp-prettify-symbols
+      (list
+       (init-font-lig-rule-replace "lambda" ?λ)))
+
+    (defun init-lisp ()
+      (setq-local prettify-symbols-alist init-lisp-prettify-symbols)
+      (prettify-symbols-mode))))
+
 (use-package prog-mode
   :ensure nil
   :hook (prog-mode-hook . init-prog-mode)
