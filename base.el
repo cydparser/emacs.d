@@ -365,7 +365,22 @@ ARG determines the direction and number of sexps."
   :bind (("M-n" . next-error)
          ("M-p" . previous-error))
   :custom
-  (next-error-message-highlight t))
+  (next-error-message-highlight t)
+  :config
+  (progn
+    (defun init-keyboard-quit ()
+      "Like `keyboard-quit', but will close the minibuffer if open.
+
+       Source: https://emacsredux.com/blog/2025/06/01/let-s-make-keyboard-quit-smarter/
+      "
+      (interactive)
+      (if (active-minibuffer-window)
+          (if (minibufferp)
+              (minibuffer-keyboard-quit)
+            (abort-recursive-edit))
+        (keyboard-quit)))
+
+    (global-set-key [remap keyboard-quit] #'init-keyboard-quit)))
 
 (use-package smerge-mode
   :ensure nil
