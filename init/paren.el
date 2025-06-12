@@ -54,5 +54,28 @@
         (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
                                                   ("* ||\n[i]" "RET")))))
 
+    (with-eval-after-load 'typst-ts-mode
+      (require 'smartparens-markdown)
+
+      (defun init-paren-typst-math-or-raw-p (_id _action _context)
+        (treesit-parent-until
+         (treesit-node-at (point) 'typst)
+         (lambda (node)
+           (let ((type (treesit-node-type node)))
+             (or (string-equal type "math")
+                 (string-equal type "raw_blck")
+                 (string-equal type "raw_span"))
+             ))))
+
+      ;; Modified from smartparens-markdown.
+      (sp-with-modes 'typst-ts-mode
+        (sp-local-pair "*" "*"
+                       :unless '(init-paren-typst-math-or-raw-p sp--gfm-point-after-word-p sp-point-at-bol-p)
+                       :post-handlers '(("[d1]" "SPC"))
+                       :skip-match 'sp--gfm-skip-asterisk)
+        (sp-local-pair "_" "_" :unless '(init-paren-typst-math-or-raw-p sp-point-after-word-p))
+        (sp-local-pair "$" "$" :unless '(init-paren-typst-math-or-raw-p))
+        (sp-local-pair "`'" "`'" :unless '(init-paren-typst-math-or-raw-p))
+        (sp-local-pair "```" "```")
         (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
                                                   ("* ||\n[i]" "RET")))))))
