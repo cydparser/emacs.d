@@ -52,4 +52,7 @@
     (with-eval-after-load "smartparens-rust"
       (sp-with-modes '(rust-mode rust-ts-mode rustic-mode)
         (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
+                                                  ("* ||\n[i]" "RET")))))
+
+        (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
                                                   ("* ||\n[i]" "RET")))))))
