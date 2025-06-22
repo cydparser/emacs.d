@@ -55,7 +55,7 @@
                                      (lisp-interaction-mode . ielm))))
 
 (use-package rust-mode
-  :load-path "/Users/cyd/src/rust-mode/"
+  :bind (("C-c C-f" . rust-format-buffer))
   :custom
   (rust-mode-treesitter-derive t))
 
