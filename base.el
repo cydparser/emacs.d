@@ -72,6 +72,7 @@ ARG determines the direction and number of sexps."
 
 ;; Split windows horizontally.
 (setopt split-height-threshold nil)
+(setopt split-width-threshold 220)
 
 ;; Simplify prompts.
 (setq use-short-answers t)
