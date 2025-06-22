@@ -62,6 +62,9 @@
     (add-to-list 'eglot-server-programs '(nickel-mode . ("nls")))
     (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
     (add-to-list 'eglot-server-programs '(toml-ts-mode . ("taplo" "lsp" "stdio")))
+    (add-to-list 'eglot-server-programs
+                 '(typst-ts-mode . ("tinymist" "lsp")))
+
     (defun init-eglot ()
       (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local)
       (flycheck-mode 0))))
