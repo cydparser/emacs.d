@@ -3,6 +3,9 @@
 (use-package hl-todo
   :hook ((prog-mode-hook . hl-todo-mode)
          (haskell-cabal-mode-hook . hl-todo-mode)
+         (org-mode-hook . hl-todo-mode)
+         (toml-ts-mode-hook . hl-todo-mode)
+         (typst-ts-mode-hook . hl-todo-mode)
          (yaml-ts-mode-hook . hl-todo-mode))
   :custom
   (hl-todo-keyword-faces
