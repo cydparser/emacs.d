@@ -52,22 +52,9 @@
                                      (lisp-interaction-mode . ielm))))
 
 (use-package rust-mode
+  :load-path "/Users/cyd/src/rust-mode/"
   :custom
-  (rust-mode-treesitter-derive t)
-  :config
-  (progn
-    (require 'rust-compile)
-
-    (add-to-list 'compilation-error-regexp-alist-alist
-                 (cons 'rustc-arrow
-                       (cons (concat "^ +--> " rustc-compilation-location) '(2 3 4 0 1))))
-    (add-to-list 'compilation-error-regexp-alist-alist
-                 (cons 'rustc-backtrace
-                       (cons (concat "^ +at " rustc-compilation-location) '(2 3 4 0 1))))
-    (add-to-list 'compilation-error-regexp-alist-alist
-                 (cons 'rustc-dbg
-                       (cons (concat "^\\[" rustc-compilation-location "\\]") '(2 3 4 0 1))))
-    ))
+  (rust-mode-treesitter-derive t))
 
 (use-package rustic
   :after (rust-mode)
