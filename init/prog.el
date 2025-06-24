@@ -34,6 +34,11 @@
       (setq-local prettify-symbols-alist init-lisp-prettify-symbols)
       (prettify-symbols-mode))))
 
+(use-package lua-mode
+  :custom
+  (lua-indent-level 2)
+  :config (setq-default lua-electric-flag nil))
+
 (use-package prog-mode
   :ensure nil
   :hook (prog-mode-hook . init-prog-mode)
