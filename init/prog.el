@@ -60,7 +60,8 @@
                                      (lisp-interaction-mode . ielm))))
 
 (use-package rust-mode
-  :bind (("C-c C-f" . rust-format-buffer))
+  :bind (:map rust-mode-map
+              ("C-c C-f" . rust-format-buffer))
   :custom
   (rust-mode-treesitter-derive t))
 
