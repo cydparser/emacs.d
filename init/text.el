@@ -63,21 +63,3 @@ Source: http://stackoverflow.com/a/22116480/1231408"
   :ensure nil
   :hook (after-init-hook . pdf-tools-install))
 
-(use-package typst-ts-mode
-  :vc (:url "https://codeberg.org/meow_king/typst-ts-mode.git" :rev :newest)
-  :hook (typst-ts-mode-hook . eglot-ensure)
-  :bind (:map typst-ts-mode-map
-              ("C-c c c" . typst-ts-compile)
-              ("C-c c p" . typst-ts-compile-and-preview)
-              ("C-c c w" . typst-ts-watch-mode))
-  :custom
-  (typst-ts-enable-raw-blocks-highlight t)
-  :config
-  (progn
-    (with-eval-after-load 'lsp-mode
-      (add-to-list 'lsp-language-id-configuration '(typst-ts-mode . "typst"))
-
-      (lsp-register-client (make-lsp-client
-                            :new-connection (lsp-stdio-connection '("tinymist" "lsp"))
-                            :activation-fn (lsp-activate-on "typst")
-                            :server-id 'tinymist)))))
