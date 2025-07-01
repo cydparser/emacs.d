@@ -66,6 +66,10 @@ Source: http://stackoverflow.com/a/22116480/1231408"
 (use-package typst-ts-mode
   :vc (:url "https://codeberg.org/meow_king/typst-ts-mode.git" :rev :newest)
   :hook (typst-ts-mode-hook . eglot-ensure)
+  :bind (:map typst-ts-mode-map
+              ("C-c c c" . typst-ts-compile)
+              ("C-c c p" . typst-ts-compile-and-preview)
+              ("C-c c w" . typst-ts-watch-mode))
   :custom
   (typst-ts-enable-raw-blocks-highlight t)
   :config
