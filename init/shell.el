@@ -32,6 +32,12 @@
         (setenv "HISTFILE" hist)
         (setenv "HISTSIZE" "4096")))))
 
+(use-package sticky-shell
+  :hook ((eshell-mode-hook . sticky-shell-mode)
+         (comint-mode-hook . sticky-shell-mode)
+         (term-mode-hook . sticky-shell-mode)
+         (vterm-mode-hook . sticky-shell-mode)))
+
 (use-package vterm
   :ensure nil
   :custom

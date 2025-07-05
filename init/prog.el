@@ -102,3 +102,6 @@
                ((looking-at-p "^[a-zA-Z\\]") standard-indent)
                (t (back-to-indentation)
                   (max (current-column) standard-indent))))))))
+
+(use-package sticky-scroll-mode
+  :hook (prog-mode-hook . sticky-scroll-mode))

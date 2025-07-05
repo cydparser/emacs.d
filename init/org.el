@@ -64,3 +64,8 @@
   :config
   (progn
     (setcdr org-bullets-bullet-map nil)))
+
+(use-package org-sticky-header
+  :hook (org-mode-hook . org-sticky-header-mode)
+  :custom
+  (org-sticky-header-full-path 'reversed))
