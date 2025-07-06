@@ -20,5 +20,5 @@
   (let ((duplicate-line-final-position 1))
     (duplicate-line n)))
 
-(bind-key "<C-M-S-down>" #'init-duplicate-line-down)
-(bind-key "<C-M-S-up>"   #'duplicate-line)
+(bind-key "<M-S-down>" #'init-duplicate-line-down)
+(bind-key "<M-S-up>"   #'duplicate-line)
