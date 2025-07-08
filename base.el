@@ -275,10 +275,15 @@ ARG determines the direction and number of sexps."
      "GPG_TTY"
      "MANPATH"
      "NIX_PATH"
+     "NIX_PROFILES"
      "NIX_SSL_CERT_FILE"
+     "NIX_USER_PROFILE_DIR"
      "PATH"
      "XDG_CONFIG_DIRS"
      "XDG_DATA_DIRS"
+     "__HM_SESS_VARS_SOURCED"
+     "__HM_ZSH_SESS_VARS_SOURCED"
+     "__NIX_DARWIN_SET_ENVIRONMENT_DONE"
      ))
   :init
   (progn
