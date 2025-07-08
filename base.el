@@ -266,11 +266,22 @@ ARG determines the direction and number of sexps."
   (tags-revert-without-query t))
 
 (use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
+  :if (eq window-system 'ns)
+  :custom
+  (exec-path-from-shell-variables
+   '(
+     "CABAL_DIR"
+     "GNUPGHOME"
+     "GPG_TTY"
+     "MANPATH"
+     "NIX_PATH"
+     "NIX_SSL_CERT_FILE"
+     "PATH"
+     "XDG_CONFIG_DIRS"
+     "XDG_DATA_DIRS"
+     ))
   :init
   (progn
-    (setq exec-path-from-shell-check-startup-files nil
-          exec-path-from-shell-variables '("DICPATH" "PATH" "MANPATH"))
     (exec-path-from-shell-initialize)))
 
 (use-package files
