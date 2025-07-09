@@ -13,6 +13,11 @@
            '((alejandra . ("alejandra" "-"))
              (cabal-fmt . ("cabal-fmt"))
              (cabal-gild . ("cabal-gild"))
+             (shfmt . ("shfmt" "-filename" filepath "--indent=2" "--binary-next-line" "--case-indent"
+                       "--language-dialect" (cl-case (bound-and-true-p sh-shell)
+                                              (sh "posix")
+                                              (t "bash"))
+                       "-"))
              (stylish-haskell . ("stylish-haskell"))
              (taplo . ("taplo" "format" "-"))
              )
