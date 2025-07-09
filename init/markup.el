@@ -2,6 +2,8 @@
 
 (use-package auctex)
 
+(use-package edit-indirect)
+
 (use-package markdown-mode)
 
 (use-package nxml-mode
@@ -24,6 +26,7 @@
 
 (use-package typst-ts-mode
   :vc (:url "https://codeberg.org/meow_king/typst-ts-mode.git" :rev :newest)
+  :after edit-indirect
   :hook (typst-ts-mode-hook . eglot-ensure)
   :bind (:map typst-ts-mode-map
               ("C-c c c" . typst-ts-compile)
