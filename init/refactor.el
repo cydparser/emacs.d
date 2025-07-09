@@ -13,7 +13,6 @@
            '((alejandra . ("alejandra" "-"))
              (cabal-fmt . ("cabal-fmt"))
              (cabal-gild . ("cabal-gild"))
-             (fourmolu . ("fourmolu" "--stdin-input-file" filepath))
              (stylish-haskell . ("stylish-haskell"))
              (taplo . ("taplo" "format" "-"))
              )
@@ -22,8 +21,7 @@
     (setq apheleia-mode-alist
           (seq-concatenate
            'list
-           '((haskell-mode . fourmolu)
-             (haskell-cabal-mode . cabal-gild)
+           '((haskell-cabal-mode . cabal-gild)
              (toml-ts-mode . taplo)
              )
            apheleia-mode-alist))))
