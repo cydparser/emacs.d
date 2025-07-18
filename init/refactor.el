@@ -19,7 +19,7 @@
                                               (t "bash"))
                        "-"))
              (stylish-haskell . ("stylish-haskell"))
-             (taplo . ("taplo" "format" "-"))
+             (taplo . ("taplo" "format" "--stdin-filepath" filepath "-"))
              )
            apheleia-formatters))
 
