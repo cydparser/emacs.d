@@ -17,6 +17,8 @@
     (unbind-key "<M-S-up>" org-mode-map)
     (unbind-key "<M-down>" org-mode-map)
     (unbind-key "<M-up>" org-mode-map)
+    (unbind-key "<C-S-down>" org-mode-map)
+    (unbind-key "<C-S-up>" org-mode-map)
 
     (defconst init-org-prettify-symbols-alist
       '(("[ ]" . "☐")
