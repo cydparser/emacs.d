@@ -34,6 +34,7 @@
               ("C-c c w" . typst-ts-watch-mode))
   :custom
   (typst-ts-enable-raw-blocks-highlight t)
+  (typst-ts-indent-offset 2)
   :config
   (progn
     (with-eval-after-load 'lsp-mode
