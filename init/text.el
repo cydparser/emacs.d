@@ -23,6 +23,11 @@
   (progn
     (unbind-key "C-;" flyspell-mode-map)
 
+    (put 'typst-ts-mode 'flyspell-mode-predicate 'init-flyspell-typst-verify)
+    (defun init-flyspell-typst-verify (&optional parser-or-lang)
+      (if-let (node (treesit-node-at (point) parser-or-lang))
+          (string-equal "text" (treesit-node-type node))))
+
     (defun init-flyspell-save-word ()
       "Add word at point to dictionary.
 Source: http://stackoverflow.com/a/22116480/1231408"
