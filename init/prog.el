@@ -7,6 +7,14 @@
          (toml-ts-mode-hook . hl-todo-mode)
          (typst-ts-mode-hook . hl-todo-mode)
          (yaml-ts-mode-hook . hl-todo-mode))
+  :init
+  (progn
+    (with-eval-after-load 'magit
+      (require 'hl-todo)
+      (add-hook 'magit-log-wash-summary-hook
+                #'hl-todo-search-and-highlight 90)
+      (add-hook 'magit-revision-wash-message-hook
+                #'hl-todo-search-and-highlight 90)))
   :custom
   (hl-todo-keyword-faces
    '(("WTF"   . "#c82829")
