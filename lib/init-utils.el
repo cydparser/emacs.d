@@ -37,4 +37,21 @@
      (when (file-exists-p file)
        (,@sexp file))))
 
+(defun init-treesit-print-node (&optional parser-or-lang)
+  (interactive)
+  (if-let ((node (treesit-node-at (point) parser-or-lang)))
+      (treesit-node-type node)))
+
+(defun init-treesit-print-path (&optional parser-or-lang)
+  (interactive)
+  (let ((path nil))
+    (treesit-parent-while
+     (treesit-node-at (point) parser-or-lang)
+     (lambda (node)
+       (let ((type (treesit-node-type node)))
+         (if (null path)
+             (setq path type)
+           (setq path (format "%s <- %s" path type))))))
+    path))
+
 (provide 'init-utils)
