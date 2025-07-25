@@ -40,12 +40,13 @@
               ("C-." . eglot-code-actions))
   :init
   (progn
-    (setq-default eglot-workspace-configuration
-                  '(:haskell
-                    (:sessionLoading "multipleComponents")
-                    :yaml
-                    (:keyOrdering :json-false
-                                  :format (:enable t)))))
+    (setq-default
+     eglot-workspace-configuration
+     '((haskell
+        . ((sessionLoading . "multipleComponents")))
+       (yaml
+        . ((keyOrdering . :json-false)
+           (format . ((enable . t))))))))
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
