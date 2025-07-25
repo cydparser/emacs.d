@@ -40,13 +40,17 @@
               ("C-." . eglot-code-actions))
   :init
   (progn
+    ;; View JSON with (jsonrpc--json-encode eglot-workspace-configuration)
     (setq-default
      eglot-workspace-configuration
      '((haskell
         . ((sessionLoading . "multipleComponents")))
+       (rust-analyzer
+        . ((check . (command "clippy"))
+           (diagnostics . (disabled ["inactive-code"]))))
        (yaml
         . ((keyOrdering . :json-false)
-           (format . ((enable . t))))))))
+           (format . (enable t)))))))
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
