@@ -22,3 +22,7 @@
   (progn
     (magit-add-section-hook 'magit-status-sections-hook
                             'magit-insert-modules nil :append)))
+
+(use-package magit-todos
+  :after magit
+  :hook (after-init-hook . magit-todos-mode))
