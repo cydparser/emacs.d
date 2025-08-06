@@ -380,11 +380,17 @@ ARG determines the direction and number of sexps."
 (use-package simple
   :ensure nil
   :bind (("M-n" . next-error)
-         ("M-p" . previous-error))
+         ("M-p" . previous-error)
+         ("M-Y" . init-yank-pop-reverse))
   :custom
   (next-error-message-highlight t)
   :config
   (progn
+    (defun init-yank-pop-reverse (&optional arg)
+      "Run `yank-pop' with a negative argument."
+      (interactive "p")
+      (yank-pop (- (or arg 1))))
+
     (defun init-keyboard-quit ()
       "Like `keyboard-quit', but will close the minibuffer if open.
 
