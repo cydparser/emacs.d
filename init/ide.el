@@ -47,7 +47,9 @@
         . ((sessionLoading . "multipleComponents")))
        (rust-analyzer
         . ((check . (command "clippy"))
-           (diagnostics . (disabled ["inactive-code"]))))
+           (diagnostics . (disabled ["inactive-code"]))
+           (imports . ((granularity . (group "module"))
+                       (prefix . "crate")))))
        (yaml
         . ((keyOrdering . :json-false)
            (format . (enable t)))))))
