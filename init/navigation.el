@@ -4,4 +4,5 @@
   :bind (("M-o" . ace-window)))
 
 (use-package imenu-anywhere
-  :bind ("C-c g m" . ivy-imenu-anywhere))
+  :bind (("C-c g I" . ivy-imenu-anywhere)
+         ("M-g I" . ivy-imenu-anywhere)))

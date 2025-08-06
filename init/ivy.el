@@ -3,6 +3,8 @@
 (use-package counsel
   :after projectile
   :bind (("C-M-y" . counsel-yank-pop)
+         ("M-g i" . counsel-imenu)
+         ("C-c g i" . counsel-imenu)
          ("C-h C-l" . counsel-find-library)
          ("C-h S" . counsel-info-lookup-symbol)
          ("C-h a" . counsel-apropos)
