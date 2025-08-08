@@ -76,6 +76,13 @@
       (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local)
       (flycheck-mode 0))))
 
+(use-package eglot-x
+  :vc (:url "https://github.com/nemethf/eglot-x" :rev :newest)
+  :after eglot
+  :bind (:map rust-ts-mode-map
+              ("<return>" . eglot-x-on-enter))
+  :init (eglot-x-setup))
+
 (use-package flycheck
   :demand
   :diminish ""
