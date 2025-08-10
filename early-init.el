@@ -17,4 +17,5 @@
 
  '(default-frame-alist
    '((background-color . "#1d1f21")
+     (foreground-color . "#c5c8c6")
      (font . "FiraCode Nerd Font-14"))))
