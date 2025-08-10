@@ -79,8 +79,7 @@
 (use-package eglot-x
   :vc (:url "https://github.com/nemethf/eglot-x" :rev :newest)
   :after eglot
-  :bind (:map rust-ts-mode-map
-              ("<return>" . eglot-x-on-enter))
+  :commands (eglot-x-setup eglot-x-on-enter)
   :init (eglot-x-setup))
 
 (use-package flycheck

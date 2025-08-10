@@ -69,9 +69,17 @@
 
 (use-package rust-mode
   :bind (:map rust-mode-map
+              ("<return>" . eglot-x-on-enter)
               ("C-c C-f" . rust-format-buffer))
   :custom
-  (rust-mode-treesitter-derive t))
+  (rust-mode-treesitter-derive t)
+  :config
+  (progn
+    (require 'rust-compile)
+
+    (add-to-list 'compilation-error-regexp-alist-alist
+                 (cons 'rustc-arrow
+                       (cons (concat "^ +--> " rustc-compilation-location) '(2 3 4 0 1))))))
 
 (use-package rustic
   :after (rust-mode)
