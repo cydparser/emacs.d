@@ -69,12 +69,31 @@
 
 (use-package rust-mode
   :bind (:map rust-mode-map
-              ("<return>" . eglot-x-on-enter)
+              (":" . init-rust-insert-colon)
+              ("M-<return>" . eglot-x-on-enter)
               ("C-c C-f" . rust-format-buffer))
   :custom
   (rust-mode-treesitter-derive t)
   :config
   (progn
+    (defun init-rust-insert-colon ()
+      "Insert a colon unless the previous character is a colon or the following
+character is a space or colon"
+      (interactive)
+      (let ((prev-char (char-before)))
+        (insert-char ?:)
+        (unless (char-equal ?: prev-char)
+          (let ((char (read-key nil :disable)))
+            (when char
+              (cond ((or (char-equal ?: char)
+                         (char-equal ?\s char))
+                     (insert-char char))
+                    ((event-modifiers char)
+                     (setq unread-command-events (list char)))
+                    (t
+                     (insert-char ?:)
+                     (insert-char char))))))))
+
     (require 'rust-compile)
 
     (add-to-list 'compilation-error-regexp-alist-alist
