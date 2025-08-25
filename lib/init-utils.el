@@ -37,6 +37,8 @@
      (when (file-exists-p file)
        (,@sexp file))))
 
+(require 'treesit)
+
 (defun init-treesit-print-node (&optional parser-or-lang)
   (interactive)
   (if-let ((node (treesit-node-at (point) parser-or-lang)))
@@ -53,5 +55,16 @@
              (setq path type)
            (setq path (format "%s <- %s" path type))))))
     path))
+
+(defmacro init-treesit-first-ancestor-with-type (types &optional include-node parser-or-lang)
+  `(treesit-parent-until
+    (treesit-node-at (point) ,(or parser-or-lang (quote (treesit-language-at (point)))))
+    (lambda (node)
+      (let ((type (treesit-node-type node)))
+        (or ,@(seq-map
+               (lambda (ty)
+                 `(string-equal type ,(symbol-name ty)))
+               types))))
+    ,(and include-node :include-node)))
 
 (provide 'init-utils)

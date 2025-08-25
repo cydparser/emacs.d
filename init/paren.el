@@ -27,7 +27,9 @@
      yaml-ts-mode))
   :config
   (progn
+    (require 'init-utils)
     (require 'smartparens-config)
+
     (unbind-key "<M-down>" smartparens-mode-map)
     (unbind-key "<M-up>" smartparens-mode-map)
     (unbind-key "M-?" smartparens-mode-map)
@@ -58,14 +60,10 @@
       (require 'smartparens-markdown)
 
       (defun init-paren-typst-math-or-raw-p (_id _action _context)
-        (treesit-parent-until
-         (treesit-node-at (point) 'typst)
-         (lambda (node)
-           (let ((type (treesit-node-type node)))
-             (or (string-equal type "math")
-                 (string-equal type "raw_blck")
-                 (string-equal type "raw_span"))
-             ))))
+        (init-treesit-first-ancestor-with-type
+         [math raw_blck raw_span]
+         nil
+         'typst))
 
       ;; Modified from smartparens-markdown.
       (sp-with-modes 'typst-ts-mode
