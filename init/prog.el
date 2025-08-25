@@ -76,13 +76,18 @@
   (rust-mode-treesitter-derive t)
   :config
   (progn
+    (require 'init-utils)
+
     (defun init-rust-insert-colon ()
       "Insert a colon unless the previous character is a colon or the following
 character is a space or colon"
       (interactive)
       (let ((prev-char (char-before)))
         (insert-char ?:)
-        (unless (char-equal ?: prev-char)
+        (unless (or (char-equal ?: prev-char)
+                    (char-equal ?{ prev-char)
+                    (init-treesit-first-ancestor-with-type
+                     [token_tree_pattern string_content] :include-node 'rust))
           (let ((char (read-key nil :disable)))
             (when char
               (cond ((or (char-equal ?: char)
