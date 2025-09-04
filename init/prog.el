@@ -90,16 +90,33 @@ character is a space or colon"
                      [token_tree_pattern string_content] :include-node 'rust))
           (let ((char (read-key nil :disable)))
             (when char
-              (cond ((or (char-equal ?: char)
+              (cond ((not
+                      (and (characterp char)
+                           (<= ?\s char)
+                           (or (>= ?z char)
+                               ;; The only modifier pressed is shift.
+                               (= 0 (logand char
+                                            ;; Codes extracted from `event-modifiers'.
+                                            (logior ?\M-\0 ; meta
+                                                    ?\C-\0 ; ctrl
+                                                    ?\H-\0 ; hyper
+                                                    ?\s-\0 ; super
+                                                    ?\A-\0 ; alt
+                                                    ))))))
+                     (setq unread-command-events (list char)))
+                    ((or (char-equal ?: char)
                          (char-equal ?\s char))
                      (insert-char char))
-                    ((event-modifiers char)
-                     (setq unread-command-events (list char)))
                     (t
                      (insert-char ?:)
                      (insert-char char))))))))
 
     (require 'rust-compile)
+
+    ;; thread 'tests::test_div_ceil2' (1769198) panicked at bitfield/impl/src/lib.rs:80:9:
+    (add-to-list 'compilation-error-regexp-alist-alist
+                 (cons 'rustc-thread-panicked
+                       (cons (concat "^thread [^ ]+ [^ ]+ panicked at " rustc-compilation-location) '(2 3 4 0 1))))
 
     (add-to-list 'compilation-error-regexp-alist-alist
                  (cons 'rustc-arrow
