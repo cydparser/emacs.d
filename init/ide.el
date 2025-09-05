@@ -151,6 +151,7 @@
   :diminish ""
   :hook (after-init-hook . projectile-mode)
   :bind (:map projectile-mode-map
+              ("C-`" . projectile-run-shell)
               ("C-c p !" . projectile-run-shell-command-in-root)
               ("C-c p &" . projectile-run-async-shell-command-in-root)
               ("C-c p 4 D" . projectile-dired-other-window)
