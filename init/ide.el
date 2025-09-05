@@ -12,7 +12,7 @@
   (company-backends
    '(company-capf
      company-files
-     (company-dabbrev-code company-etags company-keywords)
+     (company-dabbrev-code company-keywords)
      company-dabbrev))
   (company-dabbrev-downcase nil)
   (company-dabbrev-ignore-case nil)
