@@ -86,6 +86,7 @@ character is a space or colon"
         (insert-char ?:)
         (unless (or (char-equal ?: prev-char)
                     (char-equal ?{ prev-char)
+                    (and (symbolp multiple-cursors-mode) multiple-cursors-mode)
                     (init-treesit-first-ancestor-with-type
                      [token_tree_pattern string_content] :include-node 'rust))
           (let ((char (read-key nil :disable)))
