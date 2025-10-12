@@ -3,7 +3,7 @@
 (use-package sdcv
   :if (executable-find "sdcv")
   :after popup
-  :bind (("C-c d" . sdcv-search-pointer)
+  :bind (("C-c d w" . sdcv-search-pointer)
          ("C-c i d" . sdcv-search-pointer+)
          :map sdcv-mode-map
          ("<RET>" . sdcv-search-pointer))

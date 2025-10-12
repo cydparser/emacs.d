@@ -82,6 +82,13 @@
   :commands (eglot-x-setup eglot-x-on-enter)
   :init (eglot-x-setup))
 
+(use-package eldoc-mouse
+  :vc (:url "https://github.com/huangfeiyu/eldoc-mouse.git" :rev :newest)
+  :after eglot
+  :bind (:map eglot-mode-map
+              ("C-c d ." . eldoc-mouse-pop-doc-at-cursor))
+  :hook (eglot-managed-mode-hook . eldoc-mouse-mode))
+
 (use-package flycheck
   :demand
   :diminish ""
