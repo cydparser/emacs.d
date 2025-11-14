@@ -107,10 +107,10 @@ character is a space or colon"
                      (setq unread-command-events (list char)))
                     ((or (char-equal ?: char)
                          (char-equal ?\s char))
-                     (insert-char char))
+                     (self-insert-command 1 char))
                     (t
                      (insert-char ?:)
-                     (insert-char char))))))))
+                     (self-insert-command 1 char))))))))
 
     (require 'rust-compile)
 
