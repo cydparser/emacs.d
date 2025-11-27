@@ -100,4 +100,4 @@
       (sp-local-pair "<" ">" :unless '(init-paren-typst-math-or-raw-p))
       (sp-local-pair "```" "```")
       (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
-                                                ("* ||\n[i]" "RET")))))))
+                                                ("* ||\n[i]" "RET"))))))
