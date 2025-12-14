@@ -20,6 +20,7 @@
                        "-"))
              (stylish-haskell . ("stylish-haskell"))
              (taplo . ("taplo" "format" "--stdin-filepath" filepath "-"))
+             (tombi . ("tombi" "format" "--stdin-filename" filepath "-"))
              )
            apheleia-formatters))
 
