@@ -318,10 +318,6 @@ ARG determines the direction and number of sexps."
     (unbind-key "C-z")
     (unbind-key "C-x C-z")))
 
-(use-package indent-aux
-  :ensure nil
-  :hook (after-init-hook . kill-ring-deindent-mode))
-
 (use-package help
   :ensure nil
   :custom
