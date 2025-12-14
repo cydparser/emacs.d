@@ -375,7 +375,8 @@ ARG determines the direction and number of sexps."
 
 (use-package simple
   :ensure nil
-  :bind (("M-n" . next-error)
+  :bind (("M-m" . init-back-to-indentation-or-bol)
+         ("M-n" . next-error)
          ("M-p" . previous-error)
          ("M-Y" . init-yank-pop-reverse))
   :custom
@@ -398,6 +399,15 @@ ARG determines the direction and number of sexps."
               (minibuffer-keyboard-quit)
             (abort-recursive-edit))
         (keyboard-quit)))
+
+    (defun init-back-to-indentation-or-bol ()
+      "Move point to the first indented character or, if already at that
+character, to the beginning of the line."
+      (interactive)
+      (let ((prev-point (point)))
+        (back-to-indentation)
+        (if (= prev-point (point))
+            (beginning-of-line 1))))
 
     (global-set-key [remap keyboard-quit] #'init-keyboard-quit)))
 
