@@ -14,6 +14,7 @@
         forward-sexp
         haskell-indentation-common-electric-command
         indent-for-tab-command
+        init-back-to-indentation-or-bol
         init-delete-excess-whitespace
         init-rust-insert-colon
         init-sp-kill-region-or-backward-word
