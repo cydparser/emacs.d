@@ -17,7 +17,15 @@
   (smerge-refined-added ((t (:inherit smerge-refined-change :background "#113311"))))
   (smerge-refined-removed ((t (:inherit smerge-refined-change :background "#331f21"))))
   (whitespace-empty ((t (:background "#191919"))))
-  (whitespace-line ((t (:background "#282a2e" :foreground unspecified)))))
+  (whitespace-line ((t (:background "#282a2e" :foreground unspecified))))
+  :config
+  (progn
+    (let ((night (copy-sequence (alist-get 'night color-theme-sanityinc-tomorrow-colors))))
+      (setf (alist-get 'background night) "#000000")
+      (setf (alist-get 'alt-background night) "#101010")
+      (setf (alist-get 'selection night) "#171b21")
+      (setq color-theme-sanityinc-tomorrow-colors `((night . ,night) . ,color-theme-sanityinc-tomorrow-colors))
+      )))
 
 (use-package rainbow-mode
   :diminish (rainbow-mode . "🌈"))
