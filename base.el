@@ -300,7 +300,13 @@ ARG determines the direction and number of sexps."
    '((flycheck-emacs-lisp-load-path . inherit)
      (flycheck-disabled-checkers emacs-lisp-checkdoc)))
   (save-some-buffers-default-predicate 'save-some-buffers-root)
-  (version-control t))
+  (version-control t)
+  :config
+  (progn
+    ;; https://github.com/d12frosted/homebrew-emacs-plus/issues/383
+    (when (and (eq system-type 'darwin)
+               (not (string-equal insert-directory-program "gls")))
+      (setq insert-directory-program "gls"))))
 
 (use-package flymake
   :ensure nil
