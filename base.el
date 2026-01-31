@@ -267,6 +267,7 @@ ARG determines the direction and number of sexps."
 
 (use-package exec-path-from-shell
   :if (eq window-system 'ns)
+  :demand
   :custom
   (exec-path-from-shell-variables
    '(
