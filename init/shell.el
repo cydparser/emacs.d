@@ -9,7 +9,6 @@
 
 (use-package envrc
   :demand
-  :if (executable-find "direnv")
   :hook (after-init-hook . envrc-global-mode))
 
 (use-package nushell-ts-mode
