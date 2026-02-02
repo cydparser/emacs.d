@@ -220,10 +220,12 @@
      ".idea"
      ".jj"
      ".vscode"
+     ".zed"
      "_build"
      "del"
      "dist"
      "dist-newstyle"
+     "elpa"
      "target"
      "tmp"
      ))
