@@ -233,10 +233,7 @@
   :custom
   (projectile-completion-system 'ivy)
   (projectile-create-missing-test-files t)
-  (projectile-ignored-project-function #'init-projectile-ignored-project-p)
-  (projectile-ignored-projects '("~/src/emacs.d/elpa/" "~/.config/emacs/elpa/"))
-  ;; `call-process` uses a different path.
-  (projectile-tags-command (concat "PATH=" (getenv "PATH") " ctags -Re -f \"%s\" %s"))
+  (projectile-global-ignore-file-patterns '("^/nix/" "/[.]\\(cabal\\|cargo\\|rustup\\)/"))
   (projectile-test-suffix-function #'init-projectile-test-suffix)
   (projectile-use-git-grep t)
   (projectile-other-file-alist
@@ -253,10 +250,6 @@
      ("ui.xml" . ("java"))))
   :init
   (progn
-    (defun init-projectile-ignored-project-p (project-root)
-      (or (string-prefix-p "/nix/store/" project-root)
-          (string-match-p "/\\(.cabal\\|.cargo\\)/" project-root)))
-
     (defun init-projectile-test-suffix (project-type)
       (cond
        ((string-prefix-p "haskell-" (symbol-name project-type))
