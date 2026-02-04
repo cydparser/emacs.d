@@ -233,7 +233,7 @@
   :custom
   (projectile-completion-system 'ivy)
   (projectile-create-missing-test-files t)
-  (projectile-global-ignore-file-patterns '("^/nix/" "/[.]\\(cabal\\|cargo\\|rustup\\)/"))
+  (projectile-ignored-project-function #'init-projectile-ignored-project-p)
   (projectile-test-suffix-function #'init-projectile-test-suffix)
   (projectile-use-git-grep t)
   (projectile-other-file-alist
@@ -250,6 +250,10 @@
      ("ui.xml" . ("java"))))
   :init
   (progn
+    (defun init-projectile-ignored-project-p (project-root)
+      (or (string-prefix-p "/nix/" project-root)
+          (string-match-p "/\\(\\([.]cabal\\|[.]cargo\\|[.]rustup\\)\\|elpa\\)/" project-root)))
+
     (defun init-projectile-test-suffix (project-type)
       (cond
        ((string-prefix-p "haskell-" (symbol-name project-type))
