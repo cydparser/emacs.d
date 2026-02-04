@@ -126,7 +126,11 @@ character is a space or colon"
 (use-package rustic
   :after (rust-mode)
   :custom
-  (rustic-lsp-client 'eglot))
+  (rustic-lsp-client 'eglot)
+  :config
+  (progn
+    (remove-hook 'rustic-mode-hook 'flycheck-mode)
+    (remove-hook 'rustic-mode-hook 'flymake-mode-off)))
 
 (use-package separedit
   :bind (:map prog-mode-map
