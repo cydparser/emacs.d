@@ -97,18 +97,8 @@
   :bind (:map flycheck-mode-map
               ("M-n" . flycheck-next-error)
               ("M-p" . flycheck-previous-error))
-  :custom
   :config
   (progn
-    (defun init-flycheck-may-enable-mode (f)
-      "Disallow flycheck in special buffers."
-      (interactive)
-      (and (not (init-special-buffer-p))
-           (apply (list f))))
-
-    (advice-add 'flycheck-may-enable-mode :around
-                #'init-flycheck-may-enable-mode)
-
     (defun init-flycheck-list-errors ()
       (interactive)
       (flycheck-list-errors)
