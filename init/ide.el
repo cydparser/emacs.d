@@ -73,8 +73,7 @@
                  '(typst-ts-mode . ("tinymist" "lsp")))
 
     (defun init-eglot ()
-      (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local)
-      (flycheck-mode 0))))
+      (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local))))
 
 (use-package eglot-x
   :vc (:url "https://github.com/nemethf/eglot-x" :rev :newest)
@@ -93,20 +92,12 @@
 (use-package flycheck
   :demand
   :diminish ""
+  :hook ((emacs-lisp-mode-hook . flycheck-mode)
+         (sh-base-mode-hook . flycheck-mode))
   :bind (:map flycheck-mode-map
               ("M-n" . flycheck-next-error)
               ("M-p" . flycheck-previous-error))
-  :hook (after-init-hook . global-flycheck-mode)
   :custom
-  (flycheck-global-modes
-   '(not
-     haskell-cabal-mode
-     haskell-mode
-     literate-haskell-mode
-     nix-mode
-     toml-ts-mode
-     yaml-ts-mode
-     ))
   :config
   (progn
     (defun init-flycheck-may-enable-mode (f)
