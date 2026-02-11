@@ -10,7 +10,7 @@
          ("C-S-k" . sp-kill-whole-line)
          ("C-S-r" . sp-splice-sexp-killing-around)
          ("C-S-s" . sp-split-sexp)
-         (")" . sp-up-sexp))
+         ("C-M-SPC" . sp-mark-sexp))
   :hook (((org-mode-hook text-mode-hook) . turn-on-smartparens-mode)
          (prog-mode-hook . turn-on-smartparens-mode))
   :custom
