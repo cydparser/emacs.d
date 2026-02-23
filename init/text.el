@@ -66,5 +66,5 @@ Source: http://stackoverflow.com/a/22116480/1231408"
 
 (use-package pdf-tools
   :ensure nil
+  :if (not (eq window-system 'w32))
   :hook (after-init-hook . pdf-tools-install))
-
