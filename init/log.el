@@ -12,4 +12,4 @@
     (require 'init-font)
 
     (defun init-logview ()
-      (init-font-for-buffer "IosevkaTerm Nerd Font"))))
+      (init-font-for-buffer "IosevkaTerm Nerd Font" "IosevkaTerm NF"))))
