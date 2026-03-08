@@ -382,12 +382,16 @@ ARG determines the direction and number of sexps."
 
 (use-package simple
   :ensure nil
+  :diminish (visual-line-mode . "⏎")
   :bind (("M-m" . init-back-to-indentation-or-bol)
          ("M-n" . next-error)
          ("M-p" . previous-error)
          ("M-Y" . init-yank-pop-reverse))
   :custom
   (next-error-message-highlight t)
+  :init
+  (progn
+    (global-visual-line-mode 1))
   :config
   (progn
     (defun init-yank-pop-reverse (&optional arg)
@@ -448,6 +452,14 @@ character, to the beginning of the line."
   :ensure nil
   :custom
   (world-clock-time-format "%a %d %b %R %Z"))
+
+(use-package visual-wrap
+  :ensure nil
+  :init
+  (progn
+    (global-visual-wrap-prefix-mode 1))
+  :custom
+  (visual-wrap-extra-indent 2))
 
 (use-package window
   :ensure nil
