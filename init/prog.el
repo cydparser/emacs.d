@@ -130,7 +130,15 @@ character is a space or colon"
   :config
   (progn
     (remove-hook 'rustic-mode-hook 'flycheck-mode)
-    (remove-hook 'rustic-mode-hook 'flymake-mode-off)))
+    (remove-hook 'rustic-mode-hook 'flymake-mode-off)
+
+    (defun init-rustic-mode ()
+      "Disable LSP for /nix and .cargo directories."
+      (when (and buffer-file-name
+                 (string-match "\\(^/nix/\\|/\\(target\\|\\.cargo\\)/\\)" buffer-file-name))
+        (setq-local rustic-lsp-client nil)))
+
+    (add-hook 'rustic-mode-hook #'init-rustic-mode -100)))
 
 (use-package separedit
   :bind (:map prog-mode-map
