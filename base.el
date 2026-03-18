@@ -399,18 +399,6 @@ ARG determines the direction and number of sexps."
       (interactive "p")
       (yank-pop (- (or arg 1))))
 
-    (defun init-keyboard-quit ()
-      "Like `keyboard-quit', but will close the minibuffer if open.
-
-       Source: https://emacsredux.com/blog/2025/06/01/let-s-make-keyboard-quit-smarter/
-      "
-      (interactive)
-      (if (active-minibuffer-window)
-          (if (minibufferp)
-              (minibuffer-keyboard-quit)
-            (abort-recursive-edit))
-        (keyboard-quit)))
-
     (defun init-back-to-indentation-or-bol ()
       "Move point to the first indented character or, if already at that
 character, to the beginning of the line."
@@ -418,9 +406,7 @@ character, to the beginning of the line."
       (let ((prev-point (point)))
         (back-to-indentation)
         (if (= prev-point (point))
-            (beginning-of-line 1))))
-
-    (global-set-key [remap keyboard-quit] #'init-keyboard-quit)))
+            (beginning-of-line 1))))))
 
 (use-package smerge-mode
   :ensure nil
