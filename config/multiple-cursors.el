@@ -11,14 +11,18 @@
         c-indent-line-or-region
         comment-line
         counsel-M-x
+        downcase-region
+        end-of-visual-line
         forward-sexp
         haskell-indentation-common-electric-command
+        ignore-preserving-kill-region
         indent-for-tab-command
         init-back-to-indentation-or-bol
         init-delete-excess-whitespace
         init-rust-insert-colon
         init-sp-kill-region-or-backward-word
         kill-sexp
+        kill-visual-line
         mark-sexp
         markdown-beginning-of-line
         markdown-end-of-line
@@ -39,6 +43,7 @@
         sp-forward-slurp-sexp
         sp-kill-hybrid-sexp
         sp-kill-word
+        sp-mark-sexp
         sp-splice-sexp
         sp-splice-sexp-killing-around
         sp-split-sexp
@@ -51,13 +56,16 @@
       '(
         ace-window
         dap-tooltip-mouse-motion
+        eldoc-mouse-doc-on-mouse
         end-of-defun
         handle-switch-frame
         init-multiple-cursors-edit
         ivy-switch-buffer
+        keyboard-escape-quit
         lsp-ui-doc--handle-mouse-movement
         mc/mark-next-lines
         mc/mark-previous-lines
         mc/toggle-cursor-on-click
+        mouse-set-secondary
         mouse-start-secondary
         ))
