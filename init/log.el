@@ -12,4 +12,5 @@
     (require 'init-font)
 
     (defun init-logview ()
+      (setq-local isearch-lazy-count nil)
       (init-font-for-buffer "IosevkaTerm Nerd Font" "IosevkaTerm NF"))))

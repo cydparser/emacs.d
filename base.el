@@ -342,6 +342,13 @@ ARG determines the direction and number of sexps."
 (use-package hydra
   :demand)
 
+(use-package isearch
+  :ensure nil
+  :custom
+  (isearch-lazy-count t)
+  (lazy-count-prefix-format nil)
+  (lazy-count-suffix-format " [%s/%s]"))
+
 (use-package kmacro
   :ensure nil
   :config
