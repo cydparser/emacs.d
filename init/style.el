@@ -6,18 +6,26 @@
   :demand
   :hook (after-init-hook . (lambda () (load-theme 'sanityinc-tomorrow-night 'no-confirm)))
   :custom-face
-  (hl-todo ((t (:foreground "#cc9393" :weight semi-bold))))
+  (hl-todo ((t (:foreground "#f0c674" :weight semi-bold))))
   (logview-edit-filters-type-prefix ((t (:background "#de935f" :weight bold))))
-  (logview-error-entry ((t (:background "#181818"))))
+  (logview-error-entry ((t (:background "#282a2e"))))
   (logview-highlight ((t (:background "#282a2e"))))
   (logview-information-entry ((t nil)))
   (logview-pulse ((t (:background "#373b41"))))
   (logview-trace-entry ((t nil)))
-  (logview-warning-entry ((t (:background "#181818"))))
-  (smerge-refined-added ((t (:inherit smerge-refined-change :background "#113311"))))
-  (smerge-refined-removed ((t (:inherit smerge-refined-change :background "#331f21"))))
-  (whitespace-empty ((t (:background "#191919"))))
-  (whitespace-line ((t (:background "#282a2e" :foreground unspecified)))))
+  (logview-warning-entry ((t (:background "#1d1f21"))))
+  (smerge-refined-added ((t (:inherit smerge-refined-change :background "#154d48"))))
+  (smerge-refined-removed ((t (:inherit smerge-refined-change :background "#5e131f"))))
+  (whitespace-empty ((t (:background "#282a2e"))))
+  (whitespace-line ((t (:background "#282a2e" :foreground unspecified))))
+  :config
+  (progn
+    (let ((night (copy-sequence (alist-get 'night color-theme-sanityinc-tomorrow-colors))))
+      (setf (alist-get 'background night) "#121212")
+      (setf (alist-get 'alt-background night) "#1d1f21")
+      (setf (alist-get 'selection night) "#282a2e")
+      (setq color-theme-sanityinc-tomorrow-colors
+            `((night . ,night) . ,color-theme-sanityinc-tomorrow-colors)))))
 
 (use-package rainbow-mode
   :diminish (rainbow-mode . "🌈"))
