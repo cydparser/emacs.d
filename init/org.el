@@ -67,6 +67,9 @@
   (progn
     (setcdr org-bullets-bullet-map nil)))
 
+(use-package org-expose-emphasis-markers
+  :hook (org-mode-hook . org-expose-emphasis-markers-mode))
+
 (use-package org-sticky-header
   :hook (org-mode-hook . org-sticky-header-mode)
   :custom
