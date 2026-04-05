@@ -441,6 +441,15 @@ character, to the beginning of the line."
       ("w" save-buffer "done" :color blue)
       ("q" nil "quit"))))
 
+(use-package super-save
+  :diminish ""
+  :hook (after-init-hook . super-save-mode)
+  :custom
+  (auto-save-default nil)
+  (super-save-auto-save-when-idle t)
+  (super-save-idle-duration 30)
+  (super-save-silent t))
+
 (use-package time
   :ensure nil
   :custom
