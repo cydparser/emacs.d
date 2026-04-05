@@ -45,6 +45,9 @@
   :custom
   (mc/list-file (expand-file-name "multiple-cursors.el" init-config-directory)))
 
+;; Support incremental search with multiple-cursors.
+(use-package phi-search)
+
 (use-package reformatter
   :disabled
   :commands (init-format-buffer)
