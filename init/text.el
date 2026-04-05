@@ -53,7 +53,6 @@ Source: http://stackoverflow.com/a/22116480/1231408"
     (let ((backends '(company-capf
                       company-files
                       company-dabbrev
-                      company-etags
                       company-ispell))
           (not-flyspell-modes
            '(haskell-cabal-mode
