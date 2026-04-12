@@ -263,9 +263,17 @@
            projectile-project-types))
 
     (defun init-projectile-rust-related-files-fn (file)
-      (if (string-equal "tests.rs" (file-name-nondirectory file))
-          (list :impl (replace-regexp-in-string "[/]?$" ".rs" (file-name-directory file)))
-        (list :test (replace-regexp-in-string "[.]rs$" "/tests.rs" file))))
+      (let ((file-name (file-name-nondirectory file))
+            (dir (file-name-directory file)))
+        (cond
+         ((string-equal "tests.rs" file-name)
+          (list :impl (if (string-equal "src" (file-name-nondirectory (directory-file-name dir)))
+                          (file-name-concat dir "lib.rs")
+                        (replace-regexp-in-string "[/]?$" ".rs" dir))))
+         ((string-equal "lib.rs" file-name)
+          (list :test (file-name-concat dir "tests.rs")))
+         (t
+          (list :test (replace-regexp-in-string "[.]rs$" "/tests.rs" file))))))
 
     (projectile-update-project-type
      'rust-cargo
