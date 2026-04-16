@@ -1,6 +1,11 @@
 ;;; -*- lexical-binding: t -*-
 
-(use-package expand-region
-  :bind (("C-=" . er/expand-region)
-         ("<M-S-right>" . er/expand-region)
-         ("<M-S-left>" . er/contract-region)))
+(use-package expreg
+  :bind (("M-]" . expreg-expand)
+         ("M-[" . expreg-contract))
+  :config
+  (progn
+    (defvar-keymap expreg-repeat-map
+      :repeat t
+      "]" #'expreg-expand
+      "[" #'expreg-contract)))

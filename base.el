@@ -387,6 +387,12 @@ ARG determines the direction and number of sexps."
   :custom
   (project-list-file (expand-file-name "projects" init-var-directory)))
 
+(use-package repeat
+  :ensure nil
+  :hook (after-init-hook . repeat-mode)
+  :custom
+  (repeat-exit-timeout 5))
+
 (use-package simple
   :ensure nil
   :diminish (visual-line-mode . "⏎")
