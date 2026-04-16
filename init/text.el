@@ -50,18 +50,21 @@ Source: http://stackoverflow.com/a/22116480/1231408"
   :hook (text-mode-hook . init-text)
   :init
   (progn
-    (let ((backends '(company-capf
-                      company-files
-                      company-dabbrev
-                      company-ispell))
-          (not-flyspell-modes
-           '(haskell-cabal-mode
-             toml-ts-mode
-             yaml-ts-mode)))
-      (defun init-text ()
-        (unless (memq major-mode not-flyspell-modes)
-          (flyspell-mode))
-        (set (make-local-variable 'company-backends) backends)))))
+    (defconst init-text-company-backends
+      '(company-capf
+        company-files
+        company-dabbrev
+        company-ispell))
+
+    (defconst init-text-flyspell-disabled-modes
+      '(haskell-cabal-mode
+        toml-ts-mode
+        yaml-ts-mode))
+
+    (defun init-text ()
+      (unless (memq major-mode init-text-flyspell-disabled-modes)
+        (flyspell-mode))
+      (set (make-local-variable 'company-backends) init-text-company-backends))))
 
 (use-package pdf-tools
   :ensure nil
