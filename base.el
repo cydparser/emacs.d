@@ -402,6 +402,7 @@ ARG determines the direction and number of sexps."
          ("M-Y" . init-yank-pop-reverse))
   :custom
   (next-error-message-highlight t)
+  (read-extended-command-predicate command-completion-default-include-p)
   :init
   (progn
     (global-visual-line-mode 1))
