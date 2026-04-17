@@ -43,6 +43,11 @@ ARG determines the direction and number of sexps."
 
 ;;; Global Configuration
 
+;; Disable bidirectional text scanning.
+(setq-default bidi-display-reordering t)
+(setq-default bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+
 ;; Disable implicit frame resizing.
 (setq frame-inhibit-implied-resize t)
 
@@ -102,7 +107,7 @@ ARG determines the direction and number of sexps."
         undo-strong-limit (* 16 mib)
         undo-outer-limit (* 128 mib)))
 
-(setq read-process-output-max (* 1024 1024))
+(setq read-process-output-max (* 4 1024 1024))
 
 ;; Adjust indentation and line wrapping.
 (let ((spaces 2)
@@ -150,6 +155,13 @@ ARG determines the direction and number of sexps."
    (c-or-c++-mode . c-or-c++-ts-mode)
    (dockerfile-mode . dockerfile-ts-mode)
    (conf-toml-mode . toml-ts-mode)))
+
+(setq redisplay-skip-fontification-on-input t)
+
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
+
+(setq window-combination-resize t)
 
 ;;; Packages
 
@@ -290,6 +302,15 @@ ARG determines the direction and number of sexps."
   (progn
     (exec-path-from-shell-initialize)))
 
+(use-package executable
+  :ensure nil
+  :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p))
+
+(use-package ffap
+  :ensure nil
+  :custom
+  (ffap-machine-p-known 'reject))
+
 (use-package files
   :ensure nil
   :custom
@@ -328,7 +349,8 @@ ARG determines the direction and number of sexps."
 (use-package help
   :ensure nil
   :custom
-  (describe-bindings-outline t))
+  (describe-bindings-outline t)
+  (help-window-select t))
 
 (use-package help-fns
   :ensure nil
@@ -387,11 +409,25 @@ ARG determines the direction and number of sexps."
   :custom
   (project-list-file (expand-file-name "projects" init-var-directory)))
 
+(use-package re-builder
+  :ensure nil
+  :custom
+  (reb-re-syntax 'string))
+
 (use-package repeat
   :ensure nil
   :hook (after-init-hook . repeat-mode)
   :custom
   (repeat-exit-timeout 5))
+
+(use-package saveplace
+  :ensure nil
+  :config
+  (progn
+    (defun init-save-place-recenter ()
+      (when buffer-file-name (ignore-errors (recenter))))
+
+    (add-hook 'save-place-after-find-file-hook #'init-save-place-recenter)))
 
 (use-package simple
   :ensure nil
@@ -401,8 +437,11 @@ ARG determines the direction and number of sexps."
          ("M-p" . previous-error)
          ("M-Y" . init-yank-pop-reverse))
   :custom
+  (kill-do-not-save-duplicates t)
   (next-error-message-highlight t)
-  (read-extended-command-predicate command-completion-default-include-p)
+  (read-extended-command-predicate 'command-completion-default-include-p)
+  (save-interprogram-paste-before-kill t)
+  (set-mark-command-repeat-pop t)
   :init
   (progn
     (global-visual-line-mode 1))
