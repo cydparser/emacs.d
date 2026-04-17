@@ -43,16 +43,17 @@
     ;; View JSON with (jsonrpc--json-encode eglot-workspace-configuration)
     (setq-default
      eglot-workspace-configuration
-     '((haskell
-        . ((sessionLoading . "multipleComponents")))
-       (rust-analyzer
-        . ((check . (command "clippy"))
-           (diagnostics . (disabled ["inactive-code"]))
-           (imports . ((granularity . (group "module"))
-                       (prefix . "crate")))))
-       (yaml
-        . ((keyOrdering . :json-false)
-           (format . (enable t)))))))
+     '( :haskell
+        (:sessionLoading "multipleComponents")
+        :rust-analyzer
+        ( :check (:command "clippy")
+          :diagnostics (:disabled ["inactive-code"])
+          :imports (:granularity (:group "module")
+                                 :prefix "crate"))
+        :yaml
+        ( :keyOrdering :json-false
+          :format (:enable t))
+        )))
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
