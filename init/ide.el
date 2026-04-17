@@ -66,7 +66,6 @@
         (add-to-list 'eglot-server-programs
                      `(,mode . (,exe "--lsp" "-j" "4")))))
 
-    (add-to-list 'eglot-server-programs '(nickel-mode . ("nls")))
     (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
     (add-to-list 'eglot-server-programs '(toml-ts-mode . ("taplo" "lsp" "stdio")))
     (add-to-list 'eglot-server-programs
