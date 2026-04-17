@@ -47,7 +47,10 @@
         (:sessionLoading "multipleComponents")
         :rust-analyzer
         ( :check (:command "clippy")
+          :completion (:fullFunctionSignatures (:enable t))
           :diagnostics (:disabled ["inactive-code"])
+          :hover  (:memoryLayout (:niches t))
+          :interpret (:tests t)
           :imports (:granularity (:group "module")
                                  :prefix "crate"))
         :yaml
