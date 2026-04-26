@@ -51,8 +51,9 @@
           :diagnostics (:disabled ["inactive-code"])
           :hover  (:memoryLayout (:niches t))
           :interpret (:tests t)
-          :imports (:granularity (:group "module")
-                                 :prefix "crate"))
+          :imports
+          ( :granularity (:group "module")
+            :prefix "crate"))
         :yaml
         ( :keyOrdering :json-false
           :format (:enable t))
