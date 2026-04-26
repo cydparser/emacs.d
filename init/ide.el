@@ -65,6 +65,10 @@
   (eglot-report-progress nil)
   :config
   (progn
+    (defun eglot--post-self-insert-hook ()
+      "Set `eglot--last-inserted-char' and do not format."
+      (setq eglot--last-inserted-char last-command-event))
+
     (let ((exe (if (executable-find "haskell-language-server-wrapper")
                    "haskell-language-server-wrapper"
                  "haskell-language-server")))
