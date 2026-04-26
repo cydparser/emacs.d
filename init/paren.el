@@ -96,7 +96,7 @@
       (init-smartparens-add-return-posthandler modes)
       (sp-with-modes modes
         (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
-                                                  ("* ||\n[i]" "RET"))))))
+                                                  ("||\n" "RET"))))))
 
   (with-eval-after-load 'typst-ts-mode
     (require 'smartparens-markdown)
