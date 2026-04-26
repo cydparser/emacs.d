@@ -88,6 +88,8 @@
   :vc (:url "https://github.com/nemethf/eglot-x" :rev :newest)
   :after eglot
   :commands (eglot-x-setup eglot-x-on-enter)
+  :custom
+  (eglot-x-enable-colored-diagnostics nil)
   :init (eglot-x-setup))
 
 (use-package eldoc-mouse
