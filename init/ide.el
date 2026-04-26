@@ -61,6 +61,7 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
+  (eglot-events-buffer-config '(:size 0))
   (eglot-report-progress nil)
   :config
   (progn
