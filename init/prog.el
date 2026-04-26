@@ -86,9 +86,15 @@ character is a space or colon"
         (insert-char ?:)
         (unless (or (char-equal ?: prev-char)
                     (char-equal ?{ prev-char)
-                    (and (boundp 'multiple-cursors-mode) multiple-cursors-mode)
+                    (bound-and-true-p multiple-cursors-mode)
                     (init-treesit-first-ancestor-with-type
-                     [token_tree_pattern string_content] :include-node 'rust))
+                     [token_tree_pattern string_content] :include-node 'rust)
+                    ;; Tree-sitter produces error nodes for some partial patterns like `($tt:)'.
+                    (let ((p (point)))
+                      (re-search-backward "[)] *=>" (line-beginning-position) :noerror)
+                      (let ((match (re-search-forward "[$][[:alnum:]]+:" p t)))
+                        (goto-char p)
+                        match)))
           (let ((char (read-key nil :disable)))
             (when char
               (cond ((not
