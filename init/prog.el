@@ -129,6 +129,7 @@ character is a space or colon"
   (rustic-lsp-client 'eglot)
   :config
   (progn
+    (remove-hook 'flycheck-mode-hook 'rustic-flycheck-setup)
     (remove-hook 'rustic-mode-hook 'flycheck-mode)
     (remove-hook 'rustic-mode-hook 'flymake-mode-off)
 
