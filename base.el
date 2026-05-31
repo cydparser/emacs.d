@@ -302,10 +302,6 @@ ARG determines the direction and number of sexps."
   (progn
     (exec-path-from-shell-initialize)))
 
-(use-package executable
-  :ensure nil
-  :hook (after-save-hook . executable-make-buffer-file-executable-if-script-p))
-
 (use-package ffap
   :ensure nil
   :custom
