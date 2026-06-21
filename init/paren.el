@@ -100,6 +100,10 @@
           (or
            (= ?> char)
            (= ?\" char)))
+        (when-let ((char (char-before (point))))
+          (or
+           (= ?, char)
+           (= ?< char)))
         (when-let ((char (char-before (- (point) 1))))
           (= ?& char))
         (when-let ((node (treesit-node-at (point) 'rust)))
@@ -109,7 +113,10 @@
                        "doc_comment"
                        "line_comment"
                        "string_content"
-                       ]))))))
+                       "type_identifier"
+                       ])))
+        (init-treesit-first-ancestor-with-type
+         [type_arguments type_parameters] :include-node 'rust))))
 
     (let ((modes '(rust-mode rust-ts-mode rustic-mode)))
       (init-smartparens-add-return-posthandler modes)
