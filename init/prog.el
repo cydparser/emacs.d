@@ -130,7 +130,6 @@ character is a space or colon"
                        (cons (concat "^ +--> " rustc-compilation-location) '(2 3 4 0 1))))))
 
 (use-package rustic
-  :after (rust-mode)
   :custom
   (rustic-lsp-client 'eglot)
   :config
