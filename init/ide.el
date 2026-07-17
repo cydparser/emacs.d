@@ -202,6 +202,7 @@
   :custom
   (projectile-cache-file (expand-file-name "projectile.cache" init-var-directory))
   (projectile-create-missing-test-files t)
+  (projectile-frecency-file (expand-file-name "projectile-frecency.eld" init-var-directory))
   (projectile-globally-ignored-directories
    '(".build"
      ".cache"
