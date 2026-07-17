@@ -16,6 +16,7 @@
 
 (use-package flyspell
   :ensure nil
+  :if init-os-win
   :bind (:map flyspell-mode-map
               ("C->" . init-flyspell-save-word))
   :diminish "⍶"
@@ -41,9 +42,17 @@ Source: http://stackoverflow.com/a/22116480/1231408"
 
 (use-package flyspell-correct-ivy
   :after flyspell
+  :if init-os-win
   :bind (:map flyspell-mode-map
               ("C-." . flyspell-correct-wrapper)
               ("C-c r s" . flyspell-correct-wrapper)))
+
+(use-package jinx
+  :ensure nil
+  :if (not init-os-win)
+  :hook (((conf-mode-hook prog-mode-hook text-mode-hook) . jinx-mode))
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
 
 (use-package text-mode
   :ensure nil
@@ -68,5 +77,5 @@ Source: http://stackoverflow.com/a/22116480/1231408"
 
 (use-package pdf-tools
   :ensure nil
-  :if (not (eq window-system 'w32))
+  :if (not init-os-win)
   :hook (after-init-hook . pdf-tools-install))

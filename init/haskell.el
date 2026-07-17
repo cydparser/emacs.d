@@ -63,7 +63,8 @@
 
     (defun init-haskell-cabal ()
       (setq-local indent-line-function 'init-haskell-cabal-indent-line)
-      (flyspell-prog-mode)
+      (when init-os-win
+        (flyspell-prog-mode))
       (eglot-ensure))
 
     ;; Copied from haskell-mode.
