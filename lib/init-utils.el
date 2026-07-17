@@ -2,6 +2,9 @@
 
 ;;; Utilities
 
+(defconst init-os-win (memq window-system '(pc w32))
+  "True when running on Windows.")
+
 (defconst init-config-directory
   (expand-file-name "config" user-emacs-directory)
   "Directory for config files created by Emacs.")

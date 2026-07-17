@@ -1,8 +1,5 @@
 ;;; -*- lexical-binding: t -*-
 
-(defconst init-os-win (memq window-system '(pc w32))
-  "True when running on Windows.")
-
 (when init-os-win
   (setq explicit-bash-args '("--noediting" "--login" "-i")
         explicit-shell-file-name "C:/msys64/usr/bin/bash.exe"
