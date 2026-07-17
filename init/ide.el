@@ -85,6 +85,7 @@
       (add-hook 'xref-backend-functions #'multi-xref-backend -99 :local))))
 
 (use-package eglot-x
+  :disabled
   :vc (:url "https://github.com/nemethf/eglot-x" :rev :newest)
   :after eglot
   :commands (eglot-x-setup eglot-x-on-enter)
