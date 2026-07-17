@@ -56,6 +56,7 @@
 (setq mc/cmds-to-run-once
       '(
         ace-window
+        apheleia-format-buffer
         dap-tooltip-mouse-motion
         eldoc-mouse-doc-on-mouse
         end-of-defun
