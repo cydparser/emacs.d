@@ -8,6 +8,8 @@
   :hook (Info-selection-hook . info-colors-fontify-node))
 
 (use-package which-key
-  :demand
+  :ensure nil
   :diminish ""
-  :hook (after-init-hook . which-key-mode))
+  :hook (after-init-hook . which-key-mode)
+  :custom
+  (which-key-idle-delay 0.5))
