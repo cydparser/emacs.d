@@ -29,6 +29,46 @@
        :test-dir "src"
        :test-suffix "/tests"
        :related-files-fn #'init-projectile-rust-related-files-fn))
+
+    (with-eval-after-load 'smartparens-rust
+      (defun init-smartparens-rust-single-quote-p (_id action _context)
+        (and
+         (eq action 'insert)
+         (or
+          (when-let ((char (char-after)))
+            (or
+             (= ?> char)
+             (= ?\" char)))
+          (when-let ((char (char-before (point))))
+            (or
+             (= ?+ char)
+             (= ?, char)
+             (= ?< char)))
+          (when-let ((char (char-before (- (point) 1))))
+            (or
+             (= ?& char)
+             (= ?+ char)))
+          (when-let ((node (treesit-node-at (point) 'rust)))
+            (let ((type (treesit-node-type node)))
+              (seq-some (lambda (name) (string-equal name type))
+                        [">"
+                         "doc_comment"
+                         "line_comment"
+                         "string_content"
+                         "type_identifier"
+                         ])))
+          (init-treesit-first-ancestor-with-type
+           [type_arguments type_parameters] :include-node 'rust))))
+
+      (let ((modes '(rust-mode rust-ts-mode rustic-mode)))
+        (init-smartparens-add-return-posthandler modes)
+        (sp-with-modes modes
+          (sp-local-pair "'" "'"
+                         :unless '((:add init-smartparens-rust-single-quote-p) (:rem sp-in-comment-p sp-in-string-quotes-p))
+                         :post-handlers'(:rem sp-escape-quotes-after-insert))
+
+          (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
+                                                    ("* ||\n[i]" "RET"))))))
     )
   :config
   (progn
@@ -103,41 +143,4 @@ character is a space or colon"
         (setq-local rustic-lsp-client nil)))
 
     (add-hook 'rustic-mode-hook #'init-rustic-mode -100)
-
-    (with-eval-after-load 'smartparens-rust
-      (defun init-smartparens-rust-single-quote-p (_id action _context)
-        (and
-         (eq action 'insert)
-         (or
-          (when-let ((char (char-after)))
-            (or
-             (= ?> char)
-             (= ?\" char)))
-          (when-let ((char (char-before (point))))
-            (or
-             (= ?, char)
-             (= ?< char)))
-          (when-let ((char (char-before (- (point) 1))))
-            (= ?& char))
-          (when-let ((node (treesit-node-at (point) 'rust)))
-            (let ((type (treesit-node-type node)))
-              (seq-some (lambda (name) (string-equal name type))
-                        [">"
-                         "doc_comment"
-                         "line_comment"
-                         "string_content"
-                         "type_identifier"
-                         ])))
-          (init-treesit-first-ancestor-with-type
-           [type_arguments type_parameters] :include-node 'rust))))
-
-      (let ((modes '(rust-mode rust-ts-mode rustic-mode)))
-        (init-smartparens-add-return-posthandler modes)
-        (sp-with-modes modes
-          (sp-local-pair "'" "'"
-                         :unless '((:add init-smartparens-rust-single-quote-p) (:rem sp-in-comment-p sp-in-string-quotes-p))
-                         :post-handlers'(:rem sp-escape-quotes-after-insert))
-
-          (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
-                                                    ("||\n" "RET"))))))
     ))
