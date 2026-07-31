@@ -50,6 +50,7 @@ Source: http://stackoverflow.com/a/22116480/1231408"
 (use-package jinx
   :ensure nil
   :if (not init-os-win)
+  :diminish "⍶"
   :hook (((conf-mode-hook prog-mode-hook text-mode-hook) . jinx-mode))
   :bind (("M-$" . jinx-correct)
          ("C-M-$" . jinx-languages)))
