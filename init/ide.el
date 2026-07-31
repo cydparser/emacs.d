@@ -16,7 +16,7 @@
      company-dabbrev))
   (company-dabbrev-downcase nil)
   (company-dabbrev-ignore-case nil)
-  (company-idle-delay 0.5))
+  (company-idle-delay 0.4))
 
 (use-package company-box
   :hook (company-mode-hook . company-box-mode)
