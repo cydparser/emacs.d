@@ -72,7 +72,8 @@ Source: http://stackoverflow.com/a/22116480/1231408"
         yaml-ts-mode))
 
     (defun init-text ()
-      (unless (memq major-mode init-text-flyspell-disabled-modes)
+      (when (and init-os-win
+                 (not (memq major-mode init-text-flyspell-disabled-modes)))
         (flyspell-mode))
       (set (make-local-variable 'company-backends) init-text-company-backends))))
 
