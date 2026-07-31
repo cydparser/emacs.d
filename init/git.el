@@ -14,7 +14,6 @@
   )
 
 (use-package magit
-  :hook (git-commit-mode-hook . flyspell-mode)
   :custom
   (magit-diff-refine-hunk t)
   (magit-diff-visit-prefer-worktree t)
