@@ -26,6 +26,13 @@
   :demand
   :hook (company-mode-hook . company-quickhelp-mode))
 
+(use-package completion-preview
+  :ensure nil
+  :hook (after-init-hook . global-completion-preview-mode)
+  :custom
+  (completion-preview-exact-match-only t)
+  (completion-preview-idle-delay 0.4))
+
 (use-package dap-mode
   :ensure nil
   :init (setq dap-breakpoints-file (expand-file-name "dap-breakpoints" init-var-directory)))
