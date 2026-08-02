@@ -65,12 +65,39 @@
           (init-treesit-first-ancestor-with-type
            [type_arguments type_parameters] :include-node 'rust))))
 
+      (defun init-smartparens-rust-single-pipe-p (id action context)
+        (and
+         (eq action 'insert)
+         (string-equal id "|")
+         (not
+          (or
+           (eq context 'comment)
+           (eq context 'string)
+           (when-let ((char (char-after)))
+             (= 41 char) ; ')'
+             (when-let ((char (char-before (- (point) 2))))
+               (= ?= char)))))
+         (when-let ((node (treesit-node-at (point) 'rust)))
+           (or
+            (when-let ((parent (treesit-node-parent node)))
+              (string-equal "binary_expression" (treesit-node-type parent)))
+            (let ((type (treesit-node-type node)))
+              (seq-some (lambda (name) (string-equal name type))
+                        ["doc_comment"
+                         "line_comment"
+                         "string_content"
+                         ]))))))
+
       (let ((modes '(rust-mode rust-ts-mode rustic-mode)))
         (init-smartparens-add-return-posthandler modes)
         (sp-with-modes modes
           (sp-local-pair "'" "'"
                          :unless '((:add init-smartparens-rust-single-quote-p) (:rem sp-in-comment-p sp-in-string-quotes-p))
                          :post-handlers'(:rem sp-escape-quotes-after-insert))
+
+          (sp-local-pair "|" "|"
+                         :actions '(insert wrap autoskip)
+                         :unless '(init-smartparens-rust-single-pipe-p))
 
           (sp-local-pair "/*" "*/" :post-handlers '(("| " "SPC")
                                                     ("* ||\n[i]" "RET"))))))
