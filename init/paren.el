@@ -102,6 +102,7 @@
 
     ;; Modified from smartparens-markdown.
     (sp-with-modes 'typst-ts-mode
+      (init-smartparens-add-return-posthandler '(typst-ts-mode))
       (sp-local-pair "*" "*"
                      :unless '(init-paren-typst-math-or-raw-p sp--gfm-point-after-word-p sp-point-at-bol-p)
                      :post-handlers '(("[d1]" "SPC"))
