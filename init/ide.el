@@ -29,6 +29,7 @@
 (use-package completion-preview
   :ensure nil
   :hook (after-init-hook . global-completion-preview-mode)
+  :diminish ""
   :custom
   (completion-preview-exact-match-only t)
   (completion-preview-idle-delay 0.4))
