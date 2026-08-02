@@ -31,9 +31,14 @@
        :related-files-fn #'init-projectile-rust-related-files-fn))
 
     (with-eval-after-load 'smartparens-rust
-      (defun init-smartparens-rust-single-quote-p (_id action _context)
+      (defun init-smartparens-rust-single-quote-p (id action context)
         (and
          (eq action 'insert)
+         (string-equal id "'")
+         (not
+          (or
+           (eq context 'comment)
+           (eq context 'string)))
          (or
           (when-let ((char (char-after)))
             (or
