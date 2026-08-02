@@ -57,7 +57,31 @@
     (unbind-key "M-r" smartparens-mode-map)
     (unbind-key "M-s" smartparens-mode-map)
 
-    (defalias 'sp--syntax-class-to-char 'syntax-class-to-char)
+    (defun sp--post-self-insert-hook-handler ()
+      "HACK: The original function does an excessive amount of work."
+      (with-demoted-errors "sp--post-self-insert-hook-handler: %S"
+        (when smartparens-mode
+          (sp--with-case-sensitive
+            (catch 'done
+              (let ((action nil))
+                (when (region-active-p)
+                  (condition-case err
+                      (sp-wrap--initialize)
+                    (user-error
+                     (message (error-message-string err))
+                     (unless (eq buffer-undo-list t)
+                       (sp--undo-pop-to-last-insertion-node)
+                       (pop buffer-undo-list)
+                       (undo-boundary))
+                     (restore-buffer-modified-p sp-buffer-modified-p)
+                     (throw 'done nil))))
+                (cond
+                 (sp-wrap-overlays
+                  (sp-wrap))
+                 (t
+                  (unless overwrite-mode (sp--setaction action (sp-insert-pair)))
+                  (unless action
+                    (setq sp-last-operation 'sp-self-insert))))))))))
 
     (defun init-sp-kill-region-or-backward-word (arg)
       "Kill selected region or backward word."
