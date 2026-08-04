@@ -34,6 +34,10 @@
          (prog-mode-hook . turn-on-smartparens-mode))
   :custom
   (sp-base-key-bindings 'paredit)
+  (sp-echo-match-when-invisible nil)
+  (sp-highlight-pair-overlay nil)
+  (sp-highlight-wrap-overlay nil)
+  (sp-highlight-wrap-tag-overlay nil)
   (sp-no-reindent-after-kill-modes
    '(asm-mode
      haskell-mode
