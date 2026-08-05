@@ -90,7 +90,8 @@
         (init-smartparens-add-return-posthandler modes)
         (sp-with-modes modes
           (sp-local-pair "'" "'"
-                         :unless '((:add init-smartparens-rust-single-quote-p) (:rem sp-in-comment-p sp-in-string-quotes-p))
+                         :unless '((:add init-smartparens-rust-single-quote-p)
+                                   (:rem sp-in-comment-p sp-in-string-quotes-p sp-point-after-word-p sp-in-rust-lifetime-context))
                          :post-handlers'(:rem sp-escape-quotes-after-insert))
 
           (sp-local-pair "|" "|"
