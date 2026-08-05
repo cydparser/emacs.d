@@ -27,7 +27,12 @@
   :demand
   :hook (after-init-hook . counsel-projectile-mode)
   :custom
-  (counsel-projectile-remove-current-project t))
+  (counsel-projectile-remove-current-project t)
+  :config
+  (progn
+    (init-patch 'counsel-projectile '(20211004 2003)
+      (defun projectile-ignored-files-rel () nil)
+      (defun projectile-ignored-directories-rel () nil))))
 
 (use-package ivy
   :diminish ""
