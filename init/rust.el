@@ -31,10 +31,9 @@
        :related-files-fn #'init-projectile-rust-related-files-fn))
 
     (with-eval-after-load 'smartparens-rust
-      (defun init-smartparens-rust-single-quote-p (id action context)
+      (defun init-smartparens-rust-single-quote-p (_id action context)
         (and
          (eq action 'insert)
-         (string-equal id "'")
          (not
           (or
            (eq context 'comment)
@@ -65,10 +64,9 @@
           (init-treesit-first-ancestor-with-type
            [type_arguments type_parameters] :include-node 'rust))))
 
-      (defun init-smartparens-rust-single-pipe-p (id action context)
+      (defun init-smartparens-rust-single-pipe-p (_id action context)
         (and
          (eq action 'insert)
-         (string-equal id "|")
          (not
           (or
            (eq context 'comment)
