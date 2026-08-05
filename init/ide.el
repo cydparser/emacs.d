@@ -40,10 +40,7 @@
 
 (use-package eglot
   :commands (init-eglot)
-  :hook ((eglot-managed-mode-hook . init-eglot)
-         (nix-mode-hook . eglot-ensure)
-         (toml-ts-mode-hook . eglot-ensure)
-         (yaml-ts-mode-hook . eglot-ensure))
+  :hook ((eglot-managed-mode-hook . init-eglot))
   :bind (:map eglot-mode-map
               ("C-." . eglot-code-actions))
   :init
