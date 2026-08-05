@@ -32,11 +32,11 @@
   :config
   (progn
     (defun init-emacs-lisp-mode ()
-      (setq mode-name "elisp")
+      (setq-local mode-name "elisp")
       (add-to-list (make-local-variable 'company-backends) #'company-elisp)
+      (rainbow-delimiters-mode)
       (unless (init-special-buffer-p)
-        (aggressive-indent-mode)
-        (rainbow-delimiters-mode)))))
+        (aggressive-indent-mode)))))
 
 (use-package macrostep
   :bind (:map emacs-lisp-mode-map
