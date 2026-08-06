@@ -1,22 +1,22 @@
 ;;; -*- lexical-binding: t -*-
 
 (use-package dumb-jump
-  :after xref
   :demand
+  :hook (prog-mode-hook . init-dumb-jump)
   :custom
   (dumb-jump-fallback-search nil)
   (dumb-jump-force-searcher 'rg)
   (dumb-jump-rg-search-args "--multiline")
   (dumb-jump-selector 'ivy)
-  :init
-  (progn
-    ;; Add dumb-jump to global xref-backend-functions before etags--xref-backend.
-    (add-hook 'xref-backend-functions 'dumb-jump-xref-activate 89))
   :config
   (progn
     (unbind-key "C-M-g" dumb-jump-mode-map)
     (unbind-key "C-M-p" dumb-jump-mode-map)
     (unbind-key "C-M-q" dumb-jump-mode-map)
+
+    (defun init-dumb-jump ()
+      ;; Insert `dumb-jump' before `etags--xref-backend'.
+      (add-hook 'xref-backend-functions 'dumb-jump-xref-activate 89 :local))
 
     ;; XXX upstream this
     (setq dumb-jump-find-rules
