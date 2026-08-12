@@ -235,18 +235,6 @@
   (projectile-ignored-project-function #'init-projectile-ignored-project-p)
   (projectile-test-suffix-function #'init-projectile-test-suffix)
   (projectile-use-git-grep t)
-  (projectile-other-file-alist
-   '(;; From projectile's default list
-     ("c"    . ("h"))
-     ("h"    . ("c"))
-     (nil    . ("lock" "gpg"))
-     ("lock" . (""))
-     ("gpg"  . (""))
-     ;; GWT
-     ("java"   . ("css" "gss" "ui.xml"))
-     ("css"    . ("java"))
-     ("gss"    . ("java"))
-     ("ui.xml" . ("java"))))
   :init
   (progn
     (defun init-projectile-ignored-project-p (project-root)
