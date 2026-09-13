@@ -39,20 +39,20 @@
            (eq context 'comment)
            (eq context 'string)))
          (or
-          (when-let ((char (char-after)))
+          (when-let* ((char (char-after)))
             (or
              (= ?> char)
              (= ?\" char)))
-          (when-let ((char (char-before (point))))
+          (when-let* ((char (char-before (point))))
             (or
              (= ?+ char)
              (= ?, char)
              (= ?< char)))
-          (when-let ((char (char-before (- (point) 1))))
+          (when-let* ((char (char-before (- (point) 1))))
             (or
              (= ?& char)
              (= ?+ char)))
-          (when-let ((node (treesit-node-at (point) 'rust)))
+          (when-let* ((node (treesit-node-at (point) 'rust)))
             (let ((type (treesit-node-type node)))
               (seq-some (lambda (name) (string-equal name type))
                         [">"
@@ -77,7 +77,7 @@
                (= ?= char)))))
          (when-let ((node (treesit-node-at (point) 'rust)))
            (or
-            (when-let ((parent (treesit-node-parent node)))
+            (when-let* ((parent (treesit-node-parent node)))
               (string-equal "binary_expression" (treesit-node-type parent)))
             (let ((type (treesit-node-type node)))
               (seq-some (lambda (name) (string-equal name type))

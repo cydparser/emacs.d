@@ -26,7 +26,7 @@
 
     (put 'typst-ts-mode 'flyspell-mode-predicate 'init-flyspell-typst-verify)
     (defun init-flyspell-typst-verify (&optional parser-or-lang)
-      (if-let (node (treesit-node-at (point) parser-or-lang))
+      (if-let* ((node (treesit-node-at (point) parser-or-lang)))
           (string-equal "text" (treesit-node-type node))))
 
     (defun init-flyspell-save-word ()

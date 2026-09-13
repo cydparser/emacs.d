@@ -56,7 +56,7 @@
 
 (defun init-treesit-print-node (&optional parser-or-lang)
   (interactive)
-  (if-let ((node (treesit-node-at (point) parser-or-lang)))
+  (if-let* ((node (treesit-node-at (point) parser-or-lang)))
       (treesit-node-type node)))
 
 (defun init-treesit-print-path (&optional parser-or-lang)
