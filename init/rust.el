@@ -67,24 +67,26 @@
       (defun init-smartparens-rust-single-pipe-p (_id action context)
         (and
          (eq action 'insert)
-         (not
-          (or
-           (eq context 'comment)
-           (eq context 'string)
-           (when-let ((char (char-after)))
-             (= 41 char) ; ')'
-             (when-let ((char (char-before (- (point) 2))))
-               (= ?= char)))))
-         (when-let ((node (treesit-node-at (point) 'rust)))
-           (or
-            (when-let* ((parent (treesit-node-parent node)))
-              (string-equal "binary_expression" (treesit-node-type parent)))
-            (let ((type (treesit-node-type node)))
-              (seq-some (lambda (name) (string-equal name type))
-                        ["doc_comment"
-                         "line_comment"
-                         "string_content"
-                         ]))))))
+         (or
+          (eq context 'comment)
+          (eq context 'string)
+          (and
+           (not
+            (or
+             (when-let* ((char (char-after)))
+               (= 41 char)) ; 41 == ')'
+             (when-let* ((char (char-before (- (point) 2))))
+               (= ?= char))))
+           (when-let* ((node (treesit-node-at (point) 'rust)))
+             (or
+              (when-let* ((parent (treesit-node-parent node)))
+                (string-equal "binary_expression" (treesit-node-type parent)))
+              (let ((type (treesit-node-type node)))
+                (not (seq-some (lambda (name) (string-equal name type))
+                               ["doc_comment"
+                                "line_comment"
+                                "string_content"
+                                ])))))))))
 
       (let ((modes '(rust-mode rust-ts-mode rustic-mode)))
         (init-smartparens-add-return-posthandler modes)
