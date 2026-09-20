@@ -100,3 +100,8 @@
                ((looking-at-p "^[a-zA-Z\\]") standard-indent)
                (t (back-to-indentation)
                   (max (current-column) standard-indent))))))))
+
+(use-package toml-ts-mode
+  :ensure nil
+  :custom
+  (toml-ts-indent-offset 0))
