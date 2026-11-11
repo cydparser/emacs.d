@@ -41,8 +41,6 @@
 (use-package eglot
   :commands (init-eglot)
   :hook ((eglot-managed-mode-hook . init-eglot))
-  :bind (:map eglot-mode-map
-              ("C-." . eglot-code-actions))
   :init
   (progn
     ;; View JSON with (jsonrpc--json-encode eglot-workspace-configuration)

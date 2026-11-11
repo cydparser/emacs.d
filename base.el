@@ -423,6 +423,11 @@ ARG determines the direction and number of sexps."
   :custom
   (reb-re-syntax 'string))
 
+(use-package refactor
+  :ensure nil
+  :bind (("C-." . refactor))
+  )
+
 (use-package repeat
   :ensure nil
   :hook (after-init-hook . repeat-mode)
